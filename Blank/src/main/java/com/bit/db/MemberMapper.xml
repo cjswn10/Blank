@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+  	<insert id="insertMember">
+  		insert into member values(#{mno},#{id},#{pwd},#{name},#{phone},#{email})
+  	</insert>
+  	
+  	<select id="checkId" resultType="memberVo">
+  		select id from member where id=#{id}
+  	</select>
+  	
+  	<select id="login" resultType="memberVo">
+  		select * from member where id=#{id} and pwd=#{pwd}
+  	</select>
+  	
+  	<select id="memberNextMno" resultType="java.lang.Integer">
+  		select nvl(max(mno),0)+1 from member
+  	</select>
+</mapper>
