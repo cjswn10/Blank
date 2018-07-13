@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-�������Դϴ�.
+
+¼öÁ¤Áß
+ÇöÁØÀÌÇü
 </body>
 </html>
