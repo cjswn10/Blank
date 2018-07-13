@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-수정중
+수정중입니다.
 </body>
 </html>
