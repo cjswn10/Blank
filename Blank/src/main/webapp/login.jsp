@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/main.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/login.css">
 <!--===============================================================================================-->
 
 </head>
@@ -41,7 +41,7 @@
 					<span class="login100-form-title p-b-43">
 						Login
 						
-						<img alt="logo" src="resources\img/logo.png">
+						<img alt="logo" src="resources\img/login.png">
 						 
 					</span>
 					<!-- 로그인 입니다 -->
