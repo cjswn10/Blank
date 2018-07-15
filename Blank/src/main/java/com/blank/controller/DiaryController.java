@@ -47,12 +47,14 @@ public class DiaryController {
 	public ModelAndView diaryUpdateSubmit(DiaryVo d) {
 		/*Map map = new HashMap();
 		map.put("d", d);*/
-		ModelAndView mav = new ModelAndView("redirect:/listDiary.do");
+		ModelAndView mav = new ModelAndView();
 		int re = dao.updateDiary(d);
-		if (re < 1) {
+		if (re > 0) {
+			mav.setViewName("redirect:/listDiary.do");
+		}else {
 			mav.addObject("msg", "일기  수정 실패");
-			mav.setViewName("error");
-		}			
+			mav.setViewName("error");			
+		}		
 		return mav;				
 	}
 	
