@@ -9,5 +9,6 @@
 <body>
 	<a href="listBook.do">목록</a><br>
 	<a href="join.do">가입</a><br>
+	<a href="listDiary.do">일기 목록</a>
 </body>
 </html>

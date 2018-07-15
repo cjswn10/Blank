@@ -10,6 +10,7 @@
 	<h2>일기 수정</h2>
 	<hr>
 	<form action="updateDiary.do" method="post">
+		<input type="hidden" name="dno" value="${d.dno }">
 		제목 : <input type="text" name="dtitle" value="${d.dtitle }"><br>
 		타입 : <input type="text" name="dtype" value="${d.dtype }"><br>
 		파일 : <input type="text" name="dfile" value="${d.dfile }"><br>
