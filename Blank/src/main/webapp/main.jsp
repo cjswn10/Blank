@@ -35,13 +35,13 @@
 	<!--Theme Responsive css-->
 	<link rel="stylesheet" href="resources/css/responsive.css" />
 
-	<script src="vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	<script src="js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse">
 
-
-	<!-- Preloader -->
+	
+	<!-- Preloader  홈페이지 첫 로딩 자바스크립트 
 	<div id="loading">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
@@ -52,6 +52,7 @@
 			</div>
 		</div>
 	</div>
+	-->
 	<!--End off Preloader -->
 
 
@@ -84,17 +85,17 @@
                                 </a>
 							<ul class="dropdown-menu cart-list">
 								<li>
-									<a href="#" class="photo"><img src="assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
+									<a href="#" class="photo"><img src="resources/img/thumb01.jpg" class="cart-thumb" alt="" /></a>
 									<h6><a href="#">Delica omtantur </a></h6>
 									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
 								</li>
 								<li>
-									<a href="#" class="photo"><img src="assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
+									<a href="#" class="photo"><img src="resources/img/thumb01.jpg" class="cart-thumb" alt="" /></a>
 									<h6><a href="#">Delica omtantur </a></h6>
 									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
 								</li>
 								<li>
-									<a href="#" class="photo"><img src="assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
+									<a href="#" class="photo"><img src="resources/img/thumb01.jpg" class="cart-thumb" alt="" /></a>
 									<h6><a href="#">Delica omtantur </a></h6>
 									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
 								</li>
@@ -121,8 +122,8 @@
 
 					<a class="navbar-brand" href="#brand">
 
-                            <img src="assets/images/logo.png" class="logo logo-display m-top-10" alt="">
-                            <img src="assets/images/logo.jpg" class="logo logo-scrolled" alt="">
+                            <!--  <img src="resources/img/logo.png" class="logo logo-display m-top-10" alt="">-->
+                            <img src="resources/img/logo.jpg" class="logo logo-scrolled" alt="">
 
                         </a>
 				</div>
@@ -338,32 +339,32 @@
 		<div class="featured_slider">
 			<div>
 				<div class="featured_img">
-					<img src="assets/images/fprojects/1.jpg" alt="" />
-					<a href="assets/images/fprojects/1.jpg" class="popup-img"></a>
+					<img src="resources/img/fprojects/1.jpg" alt="" />
+					<a href="resources/img/fprojects/1.jpg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="assets/images/fprojects/2.jpg" alt="" />
-					<a href="assets/images/fprojects/2.jpg" class="popup-img"></a>
+					<img src="resources/img/fprojects/2.jpg" alt="" />
+					<a href="resources/img/fprojects/2.jpg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="assets/images/fprojects/3.jpg" alt="" />
-					<a href="assets/images/fprojects/3.jpg" class="popup-img"></a>
+					<img src="resources/img/fprojects/3.jpg" alt="" />
+					<a href="resources/img/fprojects/3.jpg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="assets/images/fprojects/4.jpg" alt="" />
-					<a href="assets/images/fprojects/4.jpg" class="popup-img"></a>
+					<img src="resources/img/fprojects/4.jpg" alt="" />
+					<a href="resources/img/fprojects/4.jpg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="assets/images/fprojects/5.jpg" alt="" />
-					<a href="assets/images/fprojects/5.jpg" class="popup-img"></a>
+					<img src="resources/img/fprojects/5.jpg" alt="" />
+					<a href="resources/img/fprojects/5.jpg" class="popup-img"></a>
 				</div>
 			</div>
 		</div>
@@ -464,12 +465,12 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="portfolio_item">
-												<img src="assets/images/Portfolio/2.jpg" alt="" />
+												<img src="resources/img/Portfolio/2.jpg" alt="" />
 												<div class="portfolio_hover text-center">
 													<h6 class="text-uppercase text-white">Title</h6>
 													<p class=" text-white">Lorem ipsum dolor sit amet</p>
 													<div class="portfolio_hover_icon">
-														<a href="assets/images/Portfolio/2.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+														<a href="resources/img/Portfolio/2.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href=""><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -477,12 +478,12 @@
 										</div>
 										<div class="col-md-6 m-top-30">
 											<div class="portfolio_item portfolio_item2">
-												<img src="assets/images/Portfolio/3.jpg" alt="" />
+												<img src="resources/img/Portfolio/3.jpg" alt="" />
 												<div class="portfolio_hover text-center">
 													<h6 class="text-uppercase text-white">Title</h6>
 													<p class=" text-white">Lorem ipsum dolor sit amet</p>
 													<div class="portfolio_hover_icon">
-														<a href="assets/images/Portfolio/3.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+														<a href="resources/img/Portfolio/3.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href=""><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -490,12 +491,12 @@
 										</div>
 										<div class="col-md-6 m-top-30">
 											<div class="portfolio_item portfolio_item2">
-												<img src="assets/images/Portfolio/5.jpg" alt="" />
+												<img src="resources/img/Portfolio/5.jpg" alt="" />
 												<div class="portfolio_hover text-center">
 													<h6 class="text-uppercase text-white">Title</h6>
 													<p class=" text-white">Lorem ipsum dolor sit amet</p>
 													<div class="portfolio_hover_icon">
-														<a href="assets/images/Portfolio/5.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+														<a href="resources/img/Portfolio/5.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href=""><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -505,12 +506,12 @@
 								</div>
 								<div class="col-md-4">
 									<div class="portfolio_item portfolio_item3 sm-m-top-30">
-										<img src="assets/images/Portfolio/1.jpg" alt="" />
+										<img src="resources/img/Portfolio/1.jpg" alt="" />
 										<div class="portfolio_hover text-center">
 											<h6 class="text-uppercase text-white">Title</h6>
 											<p class=" text-white">Lorem ipsum dolor sit amet</p>
 											<div class="portfolio_hover_icon">
-												<a href="assets/images/Portfolio/1.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+												<a href="resources/img/Portfolio/1.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 												<a href=""><i class="fa fa-search"></i></a>
 											</div>
 										</div>
@@ -518,12 +519,12 @@
 								</div>
 								<div class="col-md-4 m-top-30">
 									<div class="portfolio_item portfolio_item2">
-										<img src="assets/images/Portfolio/6.jpg" alt="" />
+										<img src="resources/img/Portfolio/6.jpg" alt="" />
 										<div class="portfolio_hover text-center">
 											<h6 class="text-uppercase text-white">Title</h6>
 											<p class=" text-white">Lorem ipsum dolor sit amet</p>
 											<div class="portfolio_hover_icon">
-												<a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+												<a href="resources/img/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 												<a href=""><i class="fa fa-search"></i></a>
 											</div>
 										</div>
@@ -531,12 +532,12 @@
 								</div>
 								<div class="col-md-8 m-top-30">
 									<div class="portfolio_item">
-										<img src="assets/images/Portfolio/4.jpg" alt="" />
+										<img src="resources/img/Portfolio/4.jpg" alt="" />
 										<div class="portfolio_hover text-center">
 											<h6 class="text-uppercase text-white">Title</h6>
 											<p class=" text-white">Lorem ipsum dolor sit amet</p>
 											<div class="portfolio_hover_icon">
-												<a href="assets/images/Portfolio/4.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+												<a href="resources/img/Portfolio/4.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 												<a href=""><i class="fa fa-search"></i></a>
 											</div>
 										</div>
@@ -832,32 +833,32 @@
 					<div class="main_cbrand text-center roomy-100">
 						<div class="col-md-2 col-sm-4 col-6">
 							<div class="cbrand_item m-bottom-10">
-								<a href=""><img src="assets/images/clients/1.jpg" alt="" /></a>
+								<a href=""><img src="resources/img/clients/1.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-6">
 							<div class="cbrand_item m-bottom-10">
-								<a href=""><img src="assets/images/clients/2.jpg" alt="" /></a>
+								<a href=""><img src="resources/img/clients/2.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-6">
 							<div class="cbrand_item m-bottom-10">
-								<a href=""><img class="" src="assets/images/clients/5.jpg" alt="" /></a>
+								<a href=""><img class="" src="resources/img/clients/5.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-6">
 							<div class="cbrand_item m-bottom-10">
-								<a href=""><img src="assets/images/clients/4.jpg" alt="" /></a>
+								<a href=""><img src="resources/img/clients/4.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-6">
 							<div class="cbrand_item m-bottom-10">
-								<a href=""><img src="assets/images/clients/3.jpg" alt="" /></a>
+								<a href=""><img src="resources/img/clients/3.jpg" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-6">
 							<div class="cbrand_item m-bottom-10">
-								<a href=""><img src="assets/images/clients/1.jpg" alt="" /></a>
+								<a href=""><img src="resources/img/clients/1.jpg" alt="" /></a>
 							</div>
 						</div>
 					</div>
@@ -919,7 +920,7 @@
 							<div class="col-md-4">
 								<div class="blog_item m-top-20">
 									<div class="blog_item_img">
-										<img src="assets/images/Blog/1.jpg" alt="" />
+										<img src="resources/img/Blog/1.jpg" alt="" />
 									</div>
 									<div class="blog_text roomy-40">
 										<h6>PLEASUARE WITHOUT CONSCIENCE</h6>
@@ -930,7 +931,7 @@
 							<div class="col-md-4">
 								<div class="blog_item m-top-20">
 									<div class="blog_item_img">
-										<img src="assets/images/Blog/2.jpg" alt="" />
+										<img src="resources/img/Blog/2.jpg" alt="" />
 									</div>
 									<div class="blog_text roomy-40">
 										<h6>PLEASUARE WITHOUT CONSCIENCE</h6>
@@ -941,7 +942,7 @@
 							<div class="col-md-4">
 								<div class="blog_item m-top-20">
 									<div class="blog_item_img">
-										<img src="assets/images/Blog/3.jpg" alt="" />
+										<img src="resources/img/Blog/3.jpg" alt="" />
 									</div>
 									<div class="blog_text roomy-40">
 										<h6>PLEASUARE WITHOUT CONSCIENCE</h6>
@@ -1062,22 +1063,22 @@
 
 	<!-- JS includes -->
 
-	<script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
-	<script src="assets/js/vendor/popper.min.js"></script>
-	<script src="assets/js/vendor/bootstrap.min.js"></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
-	<script src="assets/js/jquery.magnific-popup.js"></script>
-	<script src="assets/js/jquery.easing.1.3.js"></script>
-	<script src="assets/js/slick.min.js"></script>
-	<script src="assets/js/jquery.collapse.js"></script>
-	<script src="assets/js/bootsnav.js"></script>
+	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/jquery.collapse.js"></script>
+	<script src="js/bootsnav.js"></script>
 
 
 	<!-- paradise slider js -->
 
 
 	<script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
-	<script src="assets/js/gmaps.min.js"></script>
+	<script src="js/gmaps.min.js"></script>
 
 	<script>
 		function showmap() {
@@ -1098,8 +1099,8 @@
 
 
 
-	<script src="assets/js/plugins.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
 
