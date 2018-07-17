@@ -2,6 +2,8 @@ package com.blank.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class DiaryVo {
 	private int dno;
 	private String dtitle;
@@ -10,6 +12,16 @@ public class DiaryVo {
 	private String dfile;
 	private String dfont;
 	private String dweather;
+
+	private MultipartFile upload;
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
 
 	public DiaryVo() {
 		super();
