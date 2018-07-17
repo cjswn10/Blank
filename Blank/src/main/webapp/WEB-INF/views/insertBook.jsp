@@ -5,12 +5,65 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.title
+	{
+		font-size: 30px;
+		position: absolute;
+		width: 160px;
+		height:100px;
+		left: 40px;
+		top: -10px;
+	}
+	.menu
+	{ 
+		font-size: 30px;
+		position: absolute;
+		left: 1100px;
+		top: 60px;
+	}
+	.ifm
+	{
+		font-size: 18px;
+		position: absolute;
+		left: 1150px;
+		top: 20px;
+	}
+	.book
+	{
+		position: absolute;
+		left: 500px;
+		top: 150px;
+		background-color: pink;
+		width: 500px;
+		height: 600px;
+	}
+	.aa
+	{
+		position: absolute;
+		left: 140px;
+		top: 100px;
+		text-align: center;
+		font-size: 20px;
+		
+	}
+</style>
 </head>
 <body>
-	<form action="insertBook.do" method="post">
-		일기장 제목 : <input type="text" name="btitle"><br>
-		일기장 색상 : <input type="text" name="bcolor"><br>
-		<input type="submit" value="등록">
-	</form>
+	<div class="title">
+		<h1>그림 일기</h1>
+	</div>
+	
+	<div class="book">
+		<input type="text" class="aa" height="50" width="30">
+	</div>
+	
+	<div class="menu">
+		<a href="listBook.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+	</div>
+	
+	<div class="ifm">
+		<a href="">성민규님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+	</div>
 </body>
 </html>

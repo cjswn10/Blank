@@ -18,7 +18,7 @@
 		top: 300px;
 	}
 	.title
-	{
+	{ 
 		font-size: 30px;
 		position: absolute;
 		width: 160px;
@@ -43,7 +43,7 @@
 	.list
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		border: 1px solid black;
 		height:400px;
@@ -53,59 +53,59 @@
 	.list1
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		background-color:yellow;
 		height:400px;
 		left: 1000px;
-		top: 200px;
+		top: -200px;
 	}
 	.list2
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		background-color:red;
 		height:400px;
 		left: 450px;
-		top: 700px;
+		top: -100px;
 	}
 	.list3
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		background-color:pink;
 		height:400px;
 		left: 1000px;
-		top: 700px;
+		top: -500px;
 	}
 	#a
 	{
 		position: absolute;
 		left: 280px;
-		top: 0px;
+		top: -20px;
 		
 	}
 	#b
 	{
 		position: absolute;
 		left: 280px;
-		top: 0px;
+		top: -20px;
 		
 	}
 	#c
 	{
 		position: absolute;
 		left: 280px;
-		top: 0px;
+		top: -20px;
 		
 	}
 	#d
 	{
 		position: absolute;
 		left: 280px;
-		top: 0px;
+		top: -20px;
 		
 	}
 	#e
@@ -124,7 +124,7 @@
 		font-size: 150%;
 		color: black;
 	}
-	
+
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -151,6 +151,7 @@
 		});
 		
 	})
+	//삭제버튼 구현
 	function pro(url)
 	{
 		re = confirm("정말로 삭제 할껍니까?");
@@ -176,7 +177,7 @@
 	</div>
 	
 	<div class="menu">
-		<a href="">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+		<a href="listBook.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">
