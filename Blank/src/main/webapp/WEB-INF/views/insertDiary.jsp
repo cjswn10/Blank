@@ -7,14 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<h2>일기 등록</h2>
 	<hr>
 	<form action="insertDiary.do" method="post">
 		제목 : <input type="text" name="dtitle"><br>
 		타입 : <input type="text" name="dtype"><br>
 		파일 : <input type="text" name="dfile"><br>
-		폰트 : <input type="text" name="dfont"><br>
 		날씨 : <input type="text" name="dweather"><br>
 		<input type="submit" value="등록">
 	</form>

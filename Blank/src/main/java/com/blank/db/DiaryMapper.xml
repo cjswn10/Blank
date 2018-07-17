@@ -9,7 +9,7 @@
 	</delete>
 
 	<update id="updateDiary">
-		update diary set dtitle = #{dtitle}, dtype = #{dtype}, dfile = #{dfile}, dfont = #{dfont}, dweather = #{dweather} where dno=#{dno} 
+		update diary set dtitle = #{dtitle}, dtype = #{dtype}, dfile = #{dfile}, dweather = #{dweather} where dno=#{dno} 
 	</update>
 
 	<select id="detailDiary" resultType="diaryvo">
@@ -17,7 +17,7 @@
 	</select>
 
 	<insert id="insertDiary">
-		insert into diary values(#{dno},#{dtitle},sysdate,#{dtype},#{dfile},#{dfont},#{dweather})
+		insert into diary values(#{dno},#{dtitle},sysdate,#{dtype},#{dfile},#{dweather})
 	</insert>	
 	
 	<select id="diaryNextNo" resultType="java.lang.Integer">
