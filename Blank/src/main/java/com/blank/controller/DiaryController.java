@@ -1,12 +1,18 @@
 package com.blank.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
@@ -73,11 +79,28 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
-	public ModelAndView diaryInsertSubmit(DiaryVo d) {
+	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
+		d.setDfile("");
+		String path = request.getRealPath("resources/upload");
+		System.out.println(path);
+		
+		MultipartFile upload = d.getUpload();
+		String dfile = upload.getOriginalFilename();
+		if (dfile != null && !dfile.equals("")) {
+			d.setDfile(dfile);
+			try {
+				byte[]data = upload.getBytes();
+				FileOutputStream fos = new FileOutputStream(path + "/" + dfile);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		int no = dao.diaryNextNo();
 		d.setDno(no);
-		/*Map map = new HashMap();
-		map.put("d", d);*/
 		ModelAndView mav = new ModelAndView("redirect:/listDiary.do");
 		int re = dao.insertDiary(d);
 		if (re < 1) {
