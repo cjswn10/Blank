@@ -5,6 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$.ajax({
+			url: "listDiary.do",
+			success:function(data){				
+				var list = eval("("+data+")");
+				alert(list);
+		}})
+	})
+</script>
 <title>Insert title here</title>
 </head>
 <body>
