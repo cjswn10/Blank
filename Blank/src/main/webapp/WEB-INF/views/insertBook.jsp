@@ -16,7 +16,7 @@
 		top: -10px;
 	}
 	.menu
-	{
+	{ 
 		font-size: 30px;
 		position: absolute;
 		left: 1100px;

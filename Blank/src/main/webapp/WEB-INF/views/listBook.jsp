@@ -18,7 +18,7 @@
 		top: 300px;
 	}
 	.title
-	{
+	{ 
 		font-size: 30px;
 		position: absolute;
 		width: 160px;
