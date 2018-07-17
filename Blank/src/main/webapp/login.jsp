@@ -59,9 +59,10 @@
 						
 						
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" type="submit">
 								로그인
 							</button>
+							<input type="submit" value="차건우ㅄㅇ">
 						</div>
 					</form>
 					

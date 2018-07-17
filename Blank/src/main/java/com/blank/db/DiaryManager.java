@@ -18,7 +18,7 @@ public class DiaryManager {
 	{
 		try {
 			
-			Reader reader = Resources.getResourceAsReader("com/blank/db/MemberConfig.xml");
+			Reader reader = Resources.getResourceAsReader("com/blank/db/BlankConfig.xml");
 			factory = new SqlSessionFactoryBuilder().build(reader);
 			reader.close();
 			
