@@ -12,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
 import com.blank.vo.DiaryVo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class DiaryController {
@@ -101,7 +104,7 @@ public class DiaryController {
 		
 		int no = dao.diaryNextNo();
 		d.setDno(no);
-		ModelAndView mav = new ModelAndView("redirect:/listDiary.do");
+		ModelAndView mav = new ModelAndView("redirect:/diary.do");
 		int re = dao.insertDiary(d);
 		if (re < 1) {
 			mav.addObject("msg", "일기 등록 실패");
@@ -111,10 +114,22 @@ public class DiaryController {
 		return mav;				
 	}
 	
+	@RequestMapping("diary.do")
+	public void diary() {
+		
+	}
+	
 	@RequestMapping("listDiary.do")
-	public ModelAndView listDiary() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listDiary());
-		return mav;
+	@ResponseBody
+	public String listDiary() {
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString(dao.listDiary());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
 	}
 }
