@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="listBook.do">목록</a><br>
+	<a href="listBooka.do">목록</a><br>
 	<a href="join.do">가입</a><br>
-	<a href="listDiary.do">일기 목록</a>
+	<a href="listDiary.do">일기 목록</a><br>
+	<a href="login.do">로그인</a><br>
+	
 </body>
 </html>

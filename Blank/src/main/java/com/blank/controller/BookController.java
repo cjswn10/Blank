@@ -1,16 +1,19 @@
 package com.blank.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.BookDao;
 import com.blank.vo.BookVo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class BookController {
@@ -22,13 +25,27 @@ public class BookController {
 		this.dao = dao;
 	}
 	
+	//일기장 목록 뷰페이지
+	@RequestMapping("listBooka.do")
+	public void list()
+	{}
+	
 	//일기장 목록
-	@RequestMapping("listBook.do")
-	public ModelAndView listBook()
+	@RequestMapping(value="listBook.do",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String listBook()
 	{
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listBook());
-		return mav;
+		String str = "";
+		List<BookVo> list = dao.listBook();
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			str = mapper.writeValueAsString(list);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return str;
 	}
 	
 	//일기장 상세보기
@@ -88,16 +105,16 @@ public class BookController {
 	}
 	
 	//일기장 삭제
-	@RequestMapping("deleteBook.do")
+	@RequestMapping(value="deleteBook.do")
 	public ModelAndView deleteBook(int bno)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/listBook.do");
+		ModelAndView mav = new ModelAndView("redirect:/listBooka.do");
 		Map map = new HashMap();
 		map.put("bno", bno);
 		int re = dao.deleteBook(map);
 		if(re<1)
 		{
-			mav.addObject("msg", "일기장에 삭제에실패 하였습니다.");
+			mav.addObject("msg", "일기장 삭제에실패 하였습니다.");
 			mav.setViewName("error");
 		}
 		return mav;
