@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	<!-- 새일기장 생성 a태그 -->
+	<!-- 새일기장 생성 a태그   -->
 	.book_writer
 	{
 		font-size: 25px;
