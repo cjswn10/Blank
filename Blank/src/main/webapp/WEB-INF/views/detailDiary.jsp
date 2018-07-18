@@ -11,6 +11,7 @@
 	제목 : ${d.dtitle }<br>
 	날짜 : ${d.ddate }<br>
 	날씨 : ${d.dweather }<br>
+	<img src="resources/upload/${d.dfile }">
 	<hr>
 	<a href="updateDiary.do?dno=${d.dno }">수정</a>
 	<a href="deleteDiary.do?dno=${d.dno }">삭제</a>

@@ -36,12 +36,13 @@ public class MemberController {
 	
 	@RequestMapping(value="join.do", method=RequestMethod.POST)
 	public ModelAndView joinSubmit(MemberVo mv) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("redirect:/login.do");
 		mv.setMno(dao.memberNextMno());
 		int re = dao.memberInsert(mv);
 		if (re < 1) {
 			mav.addObject("msg", "회원 가입 실패");
 			mav.setViewName("error");
+			System.out.println("error");
 		}
 		return mav;
 	}
@@ -66,14 +67,25 @@ public class MemberController {
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public ModelAndView login(String id, String pwd, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(id);
 		Map map = new HashMap();
 		map.put("id", id);
 		map.put("pwd", pwd);
 		Boolean r = dao.login(map);
 		if (r == true) {
 			session.setAttribute("id", id);
-			mav.setViewName("redirect:/main.do");
+//			mav.setViewName("redirect:/main.do");
+			//일단 멤버아니여도 로그인 되게 해놓을게요
 		}
+		System.out.println("----------------------------------------main");
+		mav.setViewName("redirect:/main.do");
+		return mav;
+	}
+	
+	@RequestMapping("/main.do")
+	public ModelAndView main() {
+		ModelAndView mav = new ModelAndView();
 		return mav;
 	}	
 }

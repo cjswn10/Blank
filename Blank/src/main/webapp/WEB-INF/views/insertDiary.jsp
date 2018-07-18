@@ -9,11 +9,11 @@
 <body>
 	<h2>일기 등록</h2>
 	<hr>
-	<form action="insertDiary.do" method="post">
+	<form action="insertDiary.do" method="post" enctype="multipart/form-data">
 		제목 : <input type="text" name="dtitle"><br>
 		타입 : <input type="text" name="dtype"><br>
-		파일 : <input type="text" name="dfile"><br>
 		날씨 : <input type="text" name="dweather"><br>
+		파일 : <input type="file" name="upload"><br>
 		<input type="submit" value="등록">
 	</form>
 </body>

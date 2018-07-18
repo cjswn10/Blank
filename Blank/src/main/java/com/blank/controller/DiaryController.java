@@ -1,16 +1,25 @@
 package com.blank.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
 import com.blank.vo.DiaryVo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class DiaryController {
@@ -22,6 +31,7 @@ public class DiaryController {
 		this.dao = dao;
 	}
 	
+	//일기 삭제
 	@RequestMapping("deleteDiary.do")
 	public ModelAndView deleteDiary(int dno) {
 		Map map = new HashMap();
@@ -34,6 +44,7 @@ public class DiaryController {
 		return mav;
 	}
 	
+	//일기 수정 폼
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -43,6 +54,7 @@ public class DiaryController {
 		return mav;
 	}
 	
+	//일기 수정 실행
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d) {
 		/*Map map = new HashMap();
@@ -58,6 +70,7 @@ public class DiaryController {
 		return mav;				
 	}
 	
+	//일기 상세
 	@RequestMapping("detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -67,18 +80,37 @@ public class DiaryController {
 		return mav;
 	}
 	
+	//일기 등록 폼
 	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 		
 	}
 	
+	//일기 등록 실행
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
-	public ModelAndView diaryInsertSubmit(DiaryVo d) {
+	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
+		d.setDfile("");
+		String path = request.getRealPath("resources/upload");
+		System.out.println(path);
+		
+		MultipartFile upload = d.getUpload();
+		String dfile = upload.getOriginalFilename();
+		if (dfile != null && !dfile.equals("")) {
+			d.setDfile(dfile);
+			try {
+				byte[]data = upload.getBytes();
+				FileOutputStream fos = new FileOutputStream(path + "/" + dfile);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		int no = dao.diaryNextNo();
 		d.setDno(no);
-		/*Map map = new HashMap();
-		map.put("d", d);*/
-		ModelAndView mav = new ModelAndView("redirect:/listDiary.do");
+		ModelAndView mav = new ModelAndView("redirect:/diary.do");
 		int re = dao.insertDiary(d);
 		if (re < 1) {
 			mav.addObject("msg", "일기 등록 실패");
@@ -88,10 +120,23 @@ public class DiaryController {
 		return mav;				
 	}
 	
-	@RequestMapping("listDiary.do")
-	public ModelAndView listDiary() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listDiary());
-		return mav;
+	@RequestMapping("diary.do")
+	public void diary() {
+		
+	}
+	
+	//일기 목록
+	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String listDiary() {
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString(dao.listDiary());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
 	}
 }

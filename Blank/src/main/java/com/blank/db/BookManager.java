@@ -18,7 +18,7 @@ public class BookManager {
 	{
 		try {
 			
-			Reader reader = Resources.getResourceAsReader("com/blank/db/BookConfig.xml");
+			Reader reader = Resources.getResourceAsReader("com/blank/db/BlankConfig.xml");
 			factory = new SqlSessionFactoryBuilder().build(reader);
 			reader.close();
 			

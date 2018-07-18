@@ -28,6 +28,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="resources/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/css/main.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/login.css">
 <!--===============================================================================================-->
 
 
@@ -41,7 +42,6 @@
 <script type="text/javascript">
 $(function() {
    
-	
   	$("#pwd2").click(function() {
 		setInterval(function() {
 			if($("#pwd").val() != $("#pwd2").val()){
@@ -62,6 +62,15 @@ $(function() {
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+/*
+.container-login100 {
+	width: 400px;
+	margin-left: auto;
+    margin-right: auto
+}
+*/
+</style>
 </head>
 <body>
 <div class="container-login100">

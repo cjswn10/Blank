@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 	.book_writer
 	{
-		font-size: 25px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 40px;
 		position: absolute;
 		width: 300px;
 		height:100px;
@@ -19,23 +20,32 @@
 	}
 	.title
 	{ 
-		font-size: 30px;
+		font-family: 'Nanum Pen Script', serif;
+		
 		position: absolute;
 		width: 160px;
 		height:100px;
 		left: 40px;
 		top: -10px;
 	}
+	
+	.title h1
+	{
+		font-size: 80px;
+	}
+	
 	.menu
 	{
-		font-size: 30px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 40px;
 		position: absolute;
 		left: 1100px;
 		top: 60px;
 	}
 	.ifm
 	{
-		font-size: 18px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 25px;
 		position: absolute;
 		left: 1150px;
 		top: 20px;
@@ -149,8 +159,18 @@
 				
 			}
 		});
+		//무한스크롤입니다.
+		$(window).scroll(function(){
+			var sh = $(window).scrollTop() + $(window).height();
+			
+			var dh = $(document).height();
+			if(sh + 200 >= dh)
+				{
+									
+				}
+		});
 		
-	})
+	});
 	//삭제버튼 구현
 	function pro(url)
 	{
@@ -162,9 +182,9 @@
 	}
 </script>
 </head>
-<body>
+<body background->
 	<div class="title">
-		<h1>그림 일기</h1>
+		<h1>빈&nbsp;&nbsp;칸</h1>
 	</div>
 	
 	<div class="list"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="e"></span></a></div>
