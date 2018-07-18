@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,7 +43,7 @@
 	.list
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		border: 1px solid black;
 		height:400px;
@@ -53,32 +53,32 @@
 	.list1
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		background-color:yellow;
 		height:400px;
 		left: 1000px;
-		top: 200px;
+		top: -200px;
 	}
 	.list2
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		background-color:red;
 		height:400px;
 		left: 450px;
-		top: 700px;
+		top: -100px;
 	}
 	.list3
 	{
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		width: 300px;
 		background-color:pink;
 		height:400px;
 		left: 1000px;
-		top: 700px;
+		top: -500px;
 	}
 	#a
 	{
@@ -161,7 +161,7 @@
 	}
 </script>
 </head>
-<body>
+<body background->
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
