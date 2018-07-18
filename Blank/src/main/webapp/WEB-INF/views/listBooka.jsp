@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	<!-- 새일기장 생성 a태그   -->
+	/* 새일기장 생성 a태그   */
 	.book_writer
 	{
 		font-size: 25px;
@@ -18,7 +18,7 @@
 		left: 60px;
 		top: 300px;
 	}
-	<!-- 로고 표시 -->
+	/*로고 표시 */
 	.title
 	{ 
 		font-size: 30px;
@@ -28,7 +28,7 @@
 		left: 40px;
 		top: -10px;
 	}
-	<!-- 일기장,즐겨찾기 -->
+	/* 일기장,즐겨찾기 */
 	.menu
 	{
 		font-size: 30px;
@@ -36,7 +36,7 @@
 		left: 1100px;
 		top: 60px;
 	}
-	<!-- id,마이페이지,로그아웃 -->
+	/* id,마이페이지,로그아웃 */
 	.ifm
 	{
 		font-size: 18px;
@@ -44,7 +44,7 @@
 		left: 1150px;
 		top: 20px;
 	}
-	<!-- 새일기장 만들기 -->
+	/* 새일기장 만들기 */
 	.insertBook
 	{
 		font-size: 25px;
@@ -55,7 +55,7 @@
 		left: 350px;
 		top: 200px;
 	}
-	<!-- 새일기장 만들기2 -->
+	/* 새일기장 만들기2 */
 	.insertBook2
 	{
 		font-size: 25px;
@@ -66,16 +66,16 @@
 		left: 930px;
 		top: -300px;
 	}
-	<!-- remove 아이콘위치 -->
-	#remove-location
+	/* remove 아이콘위치 */
+	#remove_location
 	{
 		position: relative;
 		left: 395px;
 		top: -85px;
 		
 	}
-	<!-- plus 아이콘위치 -->
-	#plus-location
+	/* plus 아이콘위치 */
+	#plus_location
 	{
 		position: relative;
 		top:170px;
@@ -83,19 +83,19 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
-	<!-- plus 아이콘 -->
+	/* plus 아이콘 */
 	.glyphicon-plus
 	{
 		font-size: 400%;
 		color: black;
 	}
-	<!-- remove 아이콘 -->
+	/* remove 아이콘 */
 	.glyphicon-remove
 	{
 		font-size: 250%;
 		color: black;
 	}
-	<!-- 일기장 목록 컨테이너 -->
+	/* 일기장 목록 컨테이너 */
 	#main_container
 	{
 		position: absolute;
@@ -104,7 +104,7 @@
 		width: 1200px;
 		height: 1200px;
 	}
-	<!-- 일기장 목록 서브컨테이너 -->
+	/* 일기장 목록 서브컨테이너 */
 	#sub_container
 	{
 		margin: 10px;
@@ -112,17 +112,17 @@
 		width: 1200px;
 		height: 900px;
 	}
-	<!-- 일기장 목록을 포괄하는 div 화면보다 넘어가면 숨김 -->
+	/* 일기장 목록을 포괄하는 div 화면보다 넘어가면 숨김 */
 	#main
 	{
 		overflow: hidden;
 	}
-	<!-- 일기장 목록 div 생성위치를 왼쪽으로부터 생성 -->
+	/* 일기장 목록 div 생성위치를 왼쪽으로부터 생성*/
 	#main > div
 	{
 		float: left;
 	}
-	<!-- 서브컨테이너의 자식 div들 -->
+	/* 서브컨테이너의 자식 div들 */
 	#sub_container > div
 	{
 		position:relative;
@@ -135,7 +135,7 @@
 		padding: 40px;
 		background-color: yellow;
 	}
-	<!-- 일기장 제목 -->
+	/* 일기장 제목 */
 	.btitle
 	{
 		position:relative;
@@ -192,7 +192,7 @@
 						})
 						
 						//일기장 삭제 아이콘
-						var remove = $("<span class='glyphicon glyphicon-remove' id='remove-location'></span>")
+						var remove = $("<span class='glyphicon glyphicon-remove' id='remove_location'></span>")
 						
 						//일기장 삭제a태그에 삭제아이콘 추가
 						$(a).append(remove)
@@ -229,8 +229,8 @@
 		</table>
 	</div>
 
-		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus-location"></span></a></div>
-		  <div class="insertBook2"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus-location"></span></a></div>
+		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
+		  <div class="insertBook2"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
 
 	<div class="book_writer">
 		<a href="insertBook.do">새 일기장</a>
