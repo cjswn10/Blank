@@ -1,28 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#div{
+		position: absolute;
+		left: 30%;
+	}
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	$(function () {
+	$(function addList() {
 		$.ajax({
 			url: "listDiary.do",
 			success:function(data){				
-				var list = eval("("+data+")");
+				var list = eval("("+data+")");				
 				$.each(list, function(i, d) {
-					var div = $('<div></div>');
-					$.each(d, function(j, v) {
-						var img = $('<img></img>').attr("src", "resources/upload" + v.dfile);
-						var p1 = $('<p></p>').html(v.dtitle);
-						$(div).append(img, p1);
-						$('#div').append(div);
-					})
-				})
-				
+					var div = $('<div></div>');					
+					var img = $('<img></img>').attr({
+						src: "resources/upload/" + d.dfile,
+						width: "500",
+						height: "500"					
+					});
+					var p1 = $('<p></p>').html(d.dtitle);
+					$(div).append(img, p1);
+					$('#div').append(div);
+				})				
 		}})
+		$(window).scroll(function(){
+			var sh = $(window).scrollTop() + $(window).height();
+			var dh = $(document).height();			
+			if(sh + 200 >= dh){				
+				addList();
+				$(window).scrollTop();
+			};		
+		})
 	})
 </script>
 </head>

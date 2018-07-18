@@ -10,7 +10,6 @@ public class DiaryVo {
 	private Date ddate;
 	private String dtype;
 	private String dfile;
-	private String dfont;
 	private String dweather;
 
 	private MultipartFile upload;
@@ -28,14 +27,13 @@ public class DiaryVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DiaryVo(int dno, String dtitle, Date ddate, String dtype, String dfile, String dfont, String dweather) {
+	public DiaryVo(int dno, String dtitle, Date ddate, String dtype, String dfile, String dweather) {
 		super();
 		this.dno = dno;
 		this.dtitle = dtitle;
 		this.ddate = ddate;
 		this.dtype = dtype;
 		this.dfile = dfile;
-		this.dfont = dfont;
 		this.dweather = dweather;
 	}
 
@@ -77,14 +75,6 @@ public class DiaryVo {
 
 	public void setDfile(String dfile) {
 		this.dfile = dfile;
-	}
-
-	public String getDfont() {
-		return dfont;
-	}
-
-	public void setDfont(String dfont) {
-		this.dfont = dfont;
 	}
 
 	public String getDweather() {

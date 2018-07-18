@@ -31,6 +31,7 @@ public class DiaryController {
 		this.dao = dao;
 	}
 	
+	//일기 삭제
 	@RequestMapping("deleteDiary.do")
 	public ModelAndView deleteDiary(int dno) {
 		Map map = new HashMap();
@@ -43,6 +44,7 @@ public class DiaryController {
 		return mav;
 	}
 	
+	//일기 수정 폼
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -52,6 +54,7 @@ public class DiaryController {
 		return mav;
 	}
 	
+	//일기 수정 실행
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d) {
 		/*Map map = new HashMap();
@@ -67,6 +70,7 @@ public class DiaryController {
 		return mav;				
 	}
 	
+	//일기 상세
 	@RequestMapping("detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -76,11 +80,13 @@ public class DiaryController {
 		return mav;
 	}
 	
+	//일기 등록 폼
 	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 		
 	}
 	
+	//일기 등록 실행
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
 		d.setDfile("");
@@ -119,7 +125,8 @@ public class DiaryController {
 		
 	}
 	
-	@RequestMapping("listDiary.do")
+	//일기 목록
+	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary() {
 		String str = "";
