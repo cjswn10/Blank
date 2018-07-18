@@ -37,7 +37,7 @@
 		<div class="container-login100">
 		
 			<div class="wrap-login100 p-b-160 p-t-50">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="login.do" method="post">
 					<span class="login100-form-title p-b-43">
 						Login
 						
@@ -45,7 +45,7 @@
 						 
 					</span>
 					<!-- 로그인 입니다 -->
-					<form action="login.do" method="post">
+
 						<div class="wrap-input100 rs1 validate-input" data-validate = "Username is required">
 							<input class="input100" type="text" name="id" placeholder="아이디">
 							<span class="label-input100"></span>
@@ -62,9 +62,8 @@
 							<button class="login100-form-btn" type="submit">
 								로그인
 							</button>
-							<input type="submit" value="차건우ㅄㅇ">
 						</div>
-					</form>
+
 					
 					<!-- 회원가입 입니다.  -->
 					

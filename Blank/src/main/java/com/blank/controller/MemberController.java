@@ -42,6 +42,7 @@ public class MemberController {
 		if (re < 1) {
 			mav.addObject("msg", "회원 가입 실패");
 			mav.setViewName("error");
+			System.out.println("error");
 		}
 		return mav;
 	}
