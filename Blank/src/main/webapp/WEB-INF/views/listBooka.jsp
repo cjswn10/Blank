@@ -7,11 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 	/* 새일기장 생성 a태그   */
 	.book_writer
 	{
-		font-size: 25px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 40px;
 		position: absolute;
 		width: 300px;
 		height:100px;
@@ -21,7 +22,8 @@
 	/*로고 표시 */
 	.title
 	{ 
-		font-size: 30px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 80px;
 		position: absolute;
 		width: 160px;
 		height:100px;
@@ -31,7 +33,8 @@
 	/* 일기장,즐겨찾기 */
 	.menu
 	{
-		font-size: 30px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 40px;
 		position: absolute;
 		left: 1100px;
 		top: 60px;
@@ -39,7 +42,8 @@
 	/* id,마이페이지,로그아웃 */
 	.ifm
 	{
-		font-size: 18px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 25px;
 		position: absolute;
 		left: 1150px;
 		top: 20px;
@@ -138,9 +142,10 @@
 	/* 일기장 제목 */
 	.btitle
 	{
+		font-family: 'Nanum Pen Script', serif;
 		position:relative;
 		display:table;
-		font-size: 20px;
+		font-size: 30px;
 		top:30px;
 		margin-left: auto;
 		margin-right: auto;
@@ -230,7 +235,7 @@
 	</div>
 
 		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
-		  <div class="insertBook2"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
+		  
 
 	<div class="book_writer">
 		<a href="insertBook.do">새 일기장</a>
