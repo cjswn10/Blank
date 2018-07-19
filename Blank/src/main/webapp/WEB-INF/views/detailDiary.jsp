@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<h2>일기 상세</h2>
@@ -14,9 +15,9 @@
 	<img src="resources/upload/${d.dfile }">
 	<hr>
 	<a href="updateDiary.do?dno=${d.dno }">수정</a>
-	<a href="deleteDiary.do?dno=${d.dno }">삭제</a>
+	<a id="delete" href="deleteDiary.do?dno=${d.dno }">삭제</a>
 	<hr>
-	<a href="listDiary.do">일기 목록</a>
+	<a href="diary.do">일기 목록</a>
 	<hr>
 </body>
 </html>
