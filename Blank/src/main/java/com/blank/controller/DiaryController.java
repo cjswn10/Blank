@@ -30,6 +30,13 @@ public class DiaryController {
 	public void setDao(DiaryDao dao) {
 		this.dao = dao;
 	}
+	/*
+	 * 다이어리 주의사항
+	 * dfont 기본값 설정해주기
+	 * dtype은 그림글사진(db순서) 순서로 있으면1 없으면 0 
+	 * ex)글:O 그림:O 사진:X 	=> dtype=110
+	 */
+	
 	
 	//일기 삭제
 	@RequestMapping("deleteDiary.do")

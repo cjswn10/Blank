@@ -7,9 +7,14 @@
 	<delete id="deleteDiary">
 		delete diary where dno=#{dno}
 	</delete>
+	
+	<delete id="deleteWrite">
+		delete write where dno=#{dno}
+	</delete>
 
 	<update id="updateDiary">
-		update diary set dtitle = #{dtitle}, dtype = #{dtype}, dfile = #{dfile}, dweather = #{dweather} where dno=#{dno} 
+		update diary set dtitle=#{dtitle}, ddate=#{ddate}, dweather=#{dweather}, dfont=#{dfont}, dtype=#{dtype},  dfile=#{dfile}, dcontent=#{dcontent}, dphoto=#{dphoto}
+		 where dno=#{dno} 
 	</update>
 
 	<select id="detailDiary" resultType="diaryvo">
@@ -17,14 +22,22 @@
 	</select>
 
 	<insert id="insertDiary">
-		insert into diary values(#{dno},#{dtitle},sysdate,#{dtype},#{dfile},#{dweather})
-	</insert>	
+		insert into diary values(#{dno},#{dtitle}, #{ddate}, #{dweather}, #{dfont}, #{dtype}, #{dfile}, #{dcontent}, #{dphoto})
+	</insert>
+	
+	<insert id="insertWrite">
+		insert into write values(seq_write.nextval, #{bno}, #{dno}, #{mno}, sysdate, #{secret})
+	</insert>
 	
 	<select id="diaryNextNo" resultType="java.lang.Integer">
   		select nvl(max(dno),0)+1 from diary
   	</select>
 	
 	<select id="selectAll" resultType="diaryvo">
-		select * from diary
+		SELECT d.dno, dtitle, ddate, dweather, dtype, dfile, dfont, dcontent, dphoto, w.bno, w.mno
+		FROM diary d, write w
+		WHERE w.dno=d.dno AND w.bno=#{bno}
+		ORDER BY ddate
+		
 	</select>
 </mapper>

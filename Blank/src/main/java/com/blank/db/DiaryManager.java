@@ -27,7 +27,11 @@ public class DiaryManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+	/*
+	 * 가이드
+	 * INSERT랑 DELETE 할 때는 diary랑 write테이블 두개에 insert가 성공해야 commit되게 수정 필요
+	 * write는 wno는 시퀀스 쓸꺼야
+	 */
 	public static int deleteDiary(Map map) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
