@@ -199,11 +199,16 @@
 						//일기장 삭제 아이콘
 						var remove = $("<span class='glyphicon glyphicon-remove' id='remove_location'></span>")
 						
+						//일기장 색상
+						var color = $(div).attr({
+							style:"background-color:"+d.bcolor
+						})
+						
 						//일기장 삭제a태그에 삭제아이콘 추가
 						$(a).append(remove)
 						
 						//일기장 목록에 제목,삭제a태그 추가
-						$(div).append(title,a)
+						$(div).append(title,a,color)
 
 						//일기장 서브컨테이너에 추가
 						$("#sub_container").append(div)
@@ -246,7 +251,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">성민규님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
 	</div>
 </body>
 </html>
