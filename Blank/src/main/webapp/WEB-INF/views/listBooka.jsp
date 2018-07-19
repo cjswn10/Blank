@@ -74,8 +74,8 @@
 	#remove_location
 	{
 		position: relative;
-		left: 395px;
-		top: -85px;
+		left: 390px;
+		top: -100px;
 		
 	}
 	/* plus 아이콘위치 */
@@ -177,11 +177,15 @@
 						//일기장 목록 div
 						var div = $("<div></div>");
 						
+						//일기장 -->> 일기목록
+						var a1 = $("<a href='diary.do'></a>")
+						
 						//일기장 제목
 						var title = $("<span class='btitle'></span>").html(d.btitle);
 						
 						//일기장 삭제a태그
 						var a = $("<a></a>")
+						
 						
 						//remove 아이콘을 누르면 발생하여 선택한 일기장 삭제
 						$(a).click(function() {
@@ -206,10 +210,13 @@
 						
 						//일기장 삭제a태그에 삭제아이콘 추가
 						$(a).append(remove)
+						$(a1).append(title)
 						
 						//일기장 목록에 제목,삭제a태그 추가
-						$(div).append(title,a,color)
+						$(div).append(a1,a,color)
 
+						//$(a1).append(div)
+						
 						//일기장 서브컨테이너에 추가
 						$("#sub_container").append(div)
 					});

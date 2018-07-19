@@ -68,7 +68,7 @@ public class BookController {
 	@RequestMapping(value="insertBook.do",method=RequestMethod.POST)
 	public ModelAndView insertBook(BookVo b)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/listBook.do");
+		ModelAndView mav = new ModelAndView("redirect:/listBooka.do");
 		b.setBno(dao.bookNextBno());
 		int re = dao.insertBook(b);
 		if(re<1)

@@ -31,12 +31,12 @@
 	}
 	.book
 	{
-		position: absolute;
+		position: relative;
 		left: 500px;
 		top: 150px;
 		background-color: pink;
 		width: 500px;
-		height: 600px;
+		height: 570px;
 	}
 	.aa
 	{
@@ -47,7 +47,46 @@
 		font-size: 20px;
 		
 	}
+	.s1
+	{
+		position: relative;
+		left: 200px;
+		top: 600px;
+	}
+	.false
+	{
+		position: relative;
+		left: 250px;
+		top: 600px;
+	}
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".false").click(function() {
+			re = confirm('사이트에서 나가시겠습니까?');
+			if(re == true)
+			{
+				location.href="listBooka.do"
+			}	
+			else
+			{
+				return;
+			}	 
+		})
+		$(".s1").click(function() {
+			re = confirm('일기장을 생성하시겠습니까?');
+			if(re == true)
+			{
+				location.href="listBooka.do"
+			}	
+			else
+			{
+				return;
+			}	 
+		})
+	})
+</script>
 </head>
 <body>
 	<div class="title">
@@ -55,7 +94,12 @@
 	</div>
 	
 	<div class="book">
-		<input type="text" class="aa" height="50" width="30">
+		<form action="insertBook.do" method="post" id="f">
+			<input type="text" name="btitle" class="aa" height="50" width="30">
+			<input type="hidden" name="bcolor" value="aqua" >
+			<input type="submit" value="등록">
+			<a class="false">취소</a>
+		</form>
 	</div>
 	
 	<div class="menu">
@@ -63,7 +107,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">성민규님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
 	</div>
 </body>
 </html>
