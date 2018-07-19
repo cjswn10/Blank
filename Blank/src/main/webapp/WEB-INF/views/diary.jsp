@@ -19,31 +19,26 @@
 			success:function(data){				
 				var list = eval("("+data+")");				
 				$.each(list, function(i, d) {
-					var div = $('<div></div>');					
+					var div = $('<div></div>');	
 					var img = $('<img></img>').attr({
 						src: "resources/upload/" + d.dfile,
 						width: "500",
 						height: "500"					
 					});
+					var a = $('<a href="detailDiary.do?dno='+d.dno+'"></a>')
 					var p1 = $('<p></p>').html(d.dtitle);
-					$(div).append(img, p1);
+					$(a).append(img);
+					$(div).append(a, p1);
 					$('#div').append(div);
 				})				
 		}})
-		$(window).scroll(function(){
-			var sh = $(window).scrollTop() + $(window).height();
-			var dh = $(document).height();			
-			if(sh + 200 >= dh){				
-				addList();
-				$(window).scrollTop();
-			};		
-		})
+		
 	})
 </script>
 </head>
 <body>
 	<h2>일기장~</h2>
 	<div id="div"></div>
-	<a href="insertDiary.do">일기 추가</a>
+	<a href="insertDiary.do">일기 작성</a>
 </body>
 </html>

@@ -36,7 +36,7 @@ public class DiaryController {
 	public ModelAndView deleteDiary(int dno) {
 		Map map = new HashMap();
 		map.put("dno", dno);
-		ModelAndView mav = new ModelAndView("redirect:/listDiary.do");
+		ModelAndView mav = new ModelAndView("redirect:/diary.do");
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "삭제 실패");
