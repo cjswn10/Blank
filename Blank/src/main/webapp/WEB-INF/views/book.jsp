@@ -151,6 +151,16 @@
 		margin-right: auto;
 		
 	}
+	/*일기장 수정*/
+	.update
+	{
+		position:relative;
+		display:table;
+		font-size: 30px;
+		top:400px;
+		left: 120px;
+
+	}
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -163,7 +173,9 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+
 	$(function() {
+		
 		
 		var id = $("#id").val();
 		//일기장 목록 불러오기위한 기능 
@@ -174,6 +186,7 @@
 				data:{"id":id},
 				success:function(data)
 				{
+					alert(data)
 					var list = eval("("+data+")");
 					$.each(list,function(i,d){
 						
@@ -181,21 +194,27 @@
 						var div = $("<div></div>");
 						
 						//일기장 -->> 일기목록
-						var a1 = $("<a href='diary.do'></a>")
+						var aList = $("<a href='diary.do?mno="+d.mno+"'></a>")
 						
 						//일기장 제목
 						var title = $("<span class='btitle'></span>").html(d.btitle);
 						
+						//일기장수정 문구
+						var Update = $("<span class='update'></span>").html("수정하기")
+						
+						//일기장 수정a태그
+						var aUpdate = $("<a href='updateBook.do?bno="+d.bno+"'></a>")
+						
 						//일기장 삭제a태그
-						var a = $("<a></a>")
+						var aRemove = $("<a></a>")
 						
 						
 						//remove 아이콘을 누르면 발생하여 선택한 일기장 삭제
-						$(a).click(function() {
-							re = confirm('정말로 삭제 하시겠습니까?');
+						$(aRemove).click(function() {
+							re = confirm('삭제된 그림일기장은 복구할 수 없습니다.\n정말로 삭제 하시겠습니까?');
 							if(re == true)
 							{
-								location.href="deleteBook.do?bno="+d.bno;
+								location.href="deleteBook.do?bno="+d.bno+"&dno=3";
 							}	
 							else
 							{
@@ -211,14 +230,18 @@
 							style:"background-color:"+d.bcolor
 						})
 						
+						//일기장 수정a태그에 수정하기 문구 추가
+						$(aUpdate).append(Update)
+						
 						//일기장 삭제a태그에 삭제아이콘 추가
-						$(a).append(remove)
-						$(a1).append(title)
+						$(aRemove).append(remove)
+						
+						//일기장 목록 --> 일기목록
+						$(aList).append(title)
 						
 						//일기장 목록에 제목,삭제a태그 추가
-						$(div).append(a1,a,color)
+						$(div).append(aList,aRemove,color,aUpdate)
 
-						//$(a1).append(div)
 						
 						//일기장 서브컨테이너에 추가
 						$("#sub_container").append(div)
