@@ -7,14 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import com.blank.db.BookManager;
 import com.blank.vo.BookVo;
+import com.blank.vo.MemberVo;
 
 @Repository
 public class BookDao {
 
 	//일기장 목록
-	public List<BookVo> listBook()
+	public List<BookVo> listBook(Map map)
 	{
-		return BookManager.listBook();
+		return BookManager.listBook(map);
 	}
 	//일기장 상세보기
 	public BookVo detailBook(Map map)
