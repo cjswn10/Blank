@@ -75,12 +75,10 @@ public class BookController {
 	
 	//일기장 작성 Submit
 	@RequestMapping(value="insertBook.do",method=RequestMethod.POST)
-	public ModelAndView insertBook(BookVo b,int mno)
+	public ModelAndView insertBook(BookVo b)
 	{
-		System.out.println(mno);
-		ModelAndView mav = new ModelAndView("redirect:/Book.do");
+		ModelAndView mav = new ModelAndView("redirect:/book.do");
 		b.setBno(dao.bookNextBno());
-		b.setMno(mno);
 		int re = dao.insertBook(b);
 		if(re<1)
 		{
@@ -105,7 +103,7 @@ public class BookController {
 	@RequestMapping(value="updateBook.do",method=RequestMethod.POST)
 	public ModelAndView updateBook(BookVo b)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/listBook.do");
+		ModelAndView mav = new ModelAndView("redirect:/book.do");
 		int re = dao.updateBook(b);
 		if(re<1)
 		{
@@ -119,11 +117,11 @@ public class BookController {
 	@RequestMapping(value="deleteBook.do")
 	public ModelAndView deleteBook(int bno,int dno)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/listBooka.do");
+		ModelAndView mav = new ModelAndView("redirect:/Book.do");
 		Map map = new HashMap();
 		map.put("bno", bno);
 		map.put("dno", dno);
-		int re = dao.deleteBook(map);
+		int re = dao.deleteBook(bno,dno);
 		if(re<1)
 		{
 			mav.addObject("msg", "일기장 삭제에실패 하였습니다.");

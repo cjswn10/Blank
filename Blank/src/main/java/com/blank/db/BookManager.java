@@ -82,15 +82,18 @@ public class BookManager {
 		return re;
 	}
 	//일기장 삭제
-	public static int deleteBook(Map map)
+	public static int deleteBook(int dno,int bno)
 	{
 		int re = -1;
 		
+		int cnt = 0;
+		int cntOk = 3;
+		
 		SqlSession session = factory.openSession();
-		int reBook = session.delete("book.deleteBook", map);
-		int reDiary = session.delete("book.deleteDiary", map);
-		int reWrite = session.delete("book.deleteWrite", map);
-		if(reBook == 1 && reDiary == 1 && reWrite == 1)
+		cnt += session.delete("book.deleteBook", bno);
+		cnt += session.delete("book.deleteDiary", dno);
+		cnt += session.delete("book.deleteWrite", dno);
+		if(cnt == cntOk)
 		{
 			session.commit();
 			re=1;

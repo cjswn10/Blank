@@ -64,10 +64,10 @@
 <script type="text/javascript">
 	$(function() {
 		$(".false").click(function() {
-			re = confirm('사이트에서 나가시겠습니까?');
+			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
 			if(re == true)
 			{
-				location.href="listBooka.do"
+				location.href="book.do"
 			}	
 			else
 			{
@@ -75,15 +75,7 @@
 			}	 
 		})
 		$(".s1").click(function() {
-			re = confirm('일기장을 생성하시겠습니까?');
-			if(re == true)
-			{
-				location.href="listBooka.do"
-			}	
-			else
-			{
-				return;
-			}	 
+			alert("일기장이 생성되었습니다.")
 		})
 	})
 </script>
@@ -95,8 +87,6 @@
 	
 	<div class="book">
 		<form action="insertBook.do" method="post" id="f">
-			<input type="hidden" name="id" id="id" value="${id }">
-			<input type="hidden" name="mno" id="mno" value="${mno }">
 			<input type="text" name="btitle" class="aa" height="50" width="30">
 			<input type="hidden" name="bcolor" value="aqua" >
 			<input class="s1" type="submit" value="등록">

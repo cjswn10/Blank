@@ -5,13 +5,102 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.title
+	{
+		font-size: 30px;
+		position: absolute;
+		width: 160px;
+		height:100px;
+		left: 40px;
+		top: -10px;
+	}
+	.menu
+	{ 
+		font-size: 30px;
+		position: absolute;
+		left: 1100px;
+		top: 60px;
+	}
+	.ifm
+	{
+		font-size: 18px;
+		position: absolute;
+		left: 1150px;
+		top: 20px;
+	}
+	.book
+	{
+		position: relative;
+		left: 500px;
+		top: 150px;
+		background-color: pink;
+		width: 500px;
+		height: 570px;
+	}
+	.aa
+	{
+		position: absolute;
+		left: 140px;
+		top: 100px;
+		text-align: center;
+		font-size: 20px;
+		
+	}
+	.s1
+	{
+		position: relative;
+		left: 200px;
+		top: 600px;
+	}
+	.false
+	{
+		position: relative;
+		left: 250px;
+		top: 600px;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".false").click(function() {
+			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
+			if(re == true)
+			{
+				location.href="book.do"
+			}	
+			else
+			{
+				return;
+			}	 
+		})
+		$(".s1").click(function() {
+			alert("일기장이 수정되었습니다.")
+		})
+	})
+</script>
 </head>
 <body>
-	<form action="updateBook.do" method="post">
-		<input type="hidden" name="bno" value="${b.bno }">
-		일기장 제목 : <input type="text" name="btitle" value="${b.btitle }"><br>
-		일기장 색상 : <input type="text" name="bcolor" value="${b.bcolor }"><br>
-		<input type="submit" value="수정">
-	</form>
+	<div class="title">
+		<h1>그림 일기</h1>
+	</div>
+	
+	<div class="book">
+		<form action="updateBook.do" method="post" id="f">
+			<input type="text" name="btitle" value="${b.btitle }" class="aa" height="50" width="30">
+			<input type="hidden" name="bcolor" value="${b.bcolor }">
+			<input type="hidden" name="bno" value="${b.bno }" >
+			<input class="s1" type="submit" value="수정">
+			<a class="false">취소</a>
+		</form>
+	</div>
+	
+	<div class="menu">
+		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+	</div>
+	
+	<div class="ifm">
+		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+	</div>
 </body>
 </html>
