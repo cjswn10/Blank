@@ -95,15 +95,17 @@
 	
 	<div class="book">
 		<form action="insertBook.do" method="post" id="f">
+			<input type="hidden" name="id" id="id" value="${id }">
+			<input type="hidden" name="mno" id="mno" value="${mno }">
 			<input type="text" name="btitle" class="aa" height="50" width="30">
 			<input type="hidden" name="bcolor" value="aqua" >
-			<input type="submit" value="등록">
+			<input class="s1" type="submit" value="등록">
 			<a class="false">취소</a>
 		</form>
 	</div>
 	
 	<div class="menu">
-		<a href="listBooka.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">

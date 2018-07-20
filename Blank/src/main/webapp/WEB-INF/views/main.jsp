@@ -17,7 +17,7 @@
 <hr>
 
 <div class="menus" align="right">
-<a href="listBooka.do" class="main_menu">일기장</a>
+<a href="book.do" class="main_menu">일기장</a>
 <a href="#" class="main_menu">그룹일기</a>
 <a href="#" class="main_menu">즐겨찾기</a>
 </div>
