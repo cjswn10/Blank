@@ -26,8 +26,24 @@ public class MemberDao {
 		return MemberManager.login(map);
 	}
 	
+	public int mno(Map map)
+	{
+		return MemberManager.mno(map);
+	}
+	
 	public int memberNextMno()
 	{
 		return MemberManager.memberNextMno();
 	}
+
+	public int updateMember(MemberVo mv) {
+		// TODO Auto-generated method stub
+		return MemberManager.updateMember(mv);
+	}
+
+	public MemberVo getMember(Map map) {
+		// TODO Auto-generated method stub
+		return MemberManager.getMember(map);
+	}
+
 }

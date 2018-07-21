@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="book">
-  <select id="listBook" resultType="bookVo" parameterType="String">
-    select b.bno,btitle,bcolor,w.mno from book b,write w,member m where b.bno=w.bno and w.mno=m.mno and id=#{id} order by b.bno
+  <select id="listBook" resultType="bookVo" parameterType="java.lang.Integer">
+    select distinct(b.bno),b.btitle,b.bcolor,b.mno from book b,member m where b.mno=m.mno and b.mno=#{mno} order by b.bno
   </select>
   
   <select id="detailBook" resultType="bookVo">
@@ -16,7 +16,7 @@
   </select>
   
   <insert id="insertBook">
-  	insert into book values(#{bno},#{btitle},#{bcolor})
+  	insert into book values(#{bno},#{mno},#{btitle},#{bcolor})
   </insert>
   
   <update id="updateBook">
@@ -28,10 +28,10 @@
   </delete>
   
   <delete id="deleteDiary">
-		delete diary where dno=#{dno}
-	</delete>
+	delete diary where dno=#{dno}
+  </delete>
 	
-	<delete id="deleteWrite">
-		delete write where dno=#{dno}
-	</delete>
+  <delete id="deleteWrite">
+	delete write where dno=#{dno}
+  </delete>
 </mapper>

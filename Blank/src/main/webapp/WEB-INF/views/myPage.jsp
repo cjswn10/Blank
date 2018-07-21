@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	
 	/*로고 표시 */
 	.title
 	{
@@ -25,7 +26,7 @@
 		font-size: 40px;
 		position: relative;
 		left: 1100px;
-		top: -630px;
+		top: -60px;
 	}
 	/* id,마이페이지,로그아웃 */
 	.ifm
@@ -34,38 +35,25 @@
 		font-size: 25px;
 		position: relative;
 		left: 1150px;
-		top: -730px;
+		top: -160px;
 	}
-	.book
+	.qna
 	{
-		position: relative;
-		left: 500px;
-		top: 150px;
-		background-color: pink;
-		width: 500px;
-		height: 570px;
-	}
-	.btitle
-	{
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 100px;
 		position: absolute;
-		left: 140px;
-		top: 100px;
-		text-align: center;
-		font-size: 20px;
-		
+		left: 600px;
+		top: 200px;
 	}
-	.s1
+	.pwdCheck
 	{
-		position: relative;
-		left: 200px;
-		top: 600px;
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 100px;
+		position: absolute;
+		left: 530px;
+		top: 450px;
 	}
-	.false
-	{
-		position: relative;
-		left: 250px;
-		top: 600px;
-	}
+	
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -78,20 +66,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$(".false").click(function() {
-			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
-			if(re == true)
-			{
-				location.href="book.do"
-			}	
-			else
-			{
-				return;
-			}	 
-		})
-		$(".s1").click(function() {
-			alert("일기장이 수정되었습니다.")
-		})
+		
 	})
 </script>
 </head>
@@ -100,22 +75,18 @@
 		<h1>그림 일기</h1>
 	</div>
 	
-	<div class="book">
-		<form action="updateBook.do" method="post" id="f">
-			<input type="text" name="btitle" value="${b.btitle }" class="btitle" height="50" width="30">
-			<input type="hidden" name="bcolor" value="${b.bcolor }">
-			<input type="hidden" name="bno" value="${b.bno }" >
-			<input class="s1" type="submit" value="수정">
-			<a class="false">취소</a>
-		</form>
+	<div class="main">
+		<a href="qNa.do" class="qna">Q & A</a>
+		<a href="pwdCheck.do?id=${id }" class="pwdCheck">회원정보수정</a>
 	</div>
+	
 	
 	<div class="menu">
 		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="">${id }님</a><span>  |  </span><a href="#">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
 	</div>
 </body>
 </html>

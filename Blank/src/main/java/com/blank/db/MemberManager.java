@@ -46,7 +46,7 @@ public class MemberManager {
 		session.close();
 		return no;
 	}
-	
+	//로그인
 	public static boolean login(Map map) {
 		boolean b = false;
 		SqlSession session = factory.openSession();
@@ -57,12 +57,41 @@ public class MemberManager {
 		return b;
 	}
 	
+	//아이디 중복체크
 	public static int checkId(Map map)
 	{
-		int re = -1;
+		int re = 0;
 		SqlSession session = factory.openSession();
 		re = session.selectOne("member.checkId",map);
-		
+		session.close();
+		return re;
+	}
+	
+	//회원번호 세션유지를 위한 메소드
+	public static int mno(Map map)
+	{
+		int mno = 0;
+		SqlSession session = factory.openSession();
+		mno = session.selectOne("member.mno",map);
+		session.close();
+		return mno;
+	}
+	
+	//회원정보수정 폼
+	public static MemberVo getMember(Map map) {
+		// TODO Auto-generated method stub
+		MemberVo mv = new MemberVo();
+		SqlSession session = factory.openSession();
+		mv = session.selectOne("member.getMember", map);
+		return mv;
+	}
+	
+	//회원정보수정 서브밋
+	public static int updateMember(MemberVo mv) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		SqlSession session = factory.openSession(true);
+		re = session.insert("member.updateMember", mv);
 		session.close();
 		return re;
 	}
