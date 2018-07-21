@@ -21,10 +21,10 @@
 	}
 	/*로고 표시 */
 	.title
-	{ 
+	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 80px;
-		position: absolute;
+		position: relative;
 		width: 160px;
 		height:100px;
 		left: 40px;
@@ -32,21 +32,21 @@
 	}
 	/* 일기장,즐겨찾기 */
 	.menu
-	{
+	{ 
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
-		position: absolute;
+		position: relative;
 		left: 1100px;
-		top: 60px;
+		top: -560px;
 	}
 	/* id,마이페이지,로그아웃 */
 	.ifm
 	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
-		position: absolute;
+		position: relative;
 		left: 1150px;
-		top: 20px;
+		top: -660px;
 	}
 	/* 새일기장 만들기 */
 	.insertBook
@@ -57,19 +57,9 @@
 		border: 1px solid black;
 		height:500px;
 		left: 350px;
-		top: 200px;
+		top: 100px;
 	}
-	/* 새일기장 만들기2 */
-	.insertBook2
-	{
-		font-size: 25px;
-		position: relative;
-		width: 450px;
-		border: 1px solid black;
-		height:500px;
-		left: 930px;
-		top: -300px;
-	}
+
 	/* remove 아이콘위치 */
 	#remove_location
 	{
@@ -154,6 +144,7 @@
 	/*일기장 수정*/
 	.update
 	{
+		font-family: 'Nanum Pen Script', serif;
 		position:relative;
 		display:table;
 		font-size: 30px;
@@ -177,16 +168,18 @@
 	$(function() {
 		
 		
-		var id = $("#id").val();
+		//var id = $("#id").val();
+		var mno = $("#mno").val();
+		
 		//일기장 목록 불러오기위한 기능 
 		var listBook = function() {
 					
 			$.ajax({
 				url:"listBook.do",
-				data:{"id":id},
+				data:{"mno":mno},
 				success:function(data)
 				{
-					alert(data)
+					//alert(data)
 					var list = eval("("+data+")");
 					$.each(list,function(i,d){
 						
@@ -200,7 +193,7 @@
 						var title = $("<span class='btitle'></span>").html(d.btitle);
 						
 						//일기장수정 문구
-						var Update = $("<span class='update'></span>").html("수정하기")
+						var Update = $("<span class='update'></span>").html("일기장 수정")
 						
 						//일기장 수정a태그
 						var aUpdate = $("<a href='updateBook.do?bno="+d.bno+"'></a>")
@@ -275,6 +268,7 @@
 
 		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
 		  <input type="hidden" name="id" id="id" value="${id }">
+		  <input type="hidden" name="mno" id="mno" value="${mno }">
 
 	<div class="book_writer">
 		<a href="insertBook.do">새 일기장</a>
@@ -285,7 +279,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
 	</div>
 </body>
 </html>

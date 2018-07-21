@@ -29,6 +29,20 @@ public class MemberController {
 		this.dao = dao;
 	}
 	
+	@RequestMapping(value="myPage.do")
+	public ModelAndView myPage() {
+		
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	@RequestMapping(value="qNa.do")
+	public ModelAndView Qna() {
+		
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -53,7 +67,6 @@ public class MemberController {
 		Map map = new HashMap();
 		map.put("id", id);
 		int rowcount = dao.memberCheckId(map);
-        
         return String.valueOf(rowcount);
 
 	
@@ -75,6 +88,7 @@ public class MemberController {
 		Boolean r = dao.login(map);
 		if (r == true) {
 			session.setAttribute("id", id);
+			session.setAttribute("mno", dao.mno(map));
 //			mav.setViewName("redirect:/main.do");
 			//일단 멤버아니여도 로그인 되게 해놓을게요
 		}
@@ -88,4 +102,46 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}	
+	
+	@RequestMapping(value="pwdCheck.do", method=RequestMethod.GET)
+	public void pwdCheckForm() {
+		
+	}
+	
+	@RequestMapping(value="pwdCheck.do", method=RequestMethod.POST)
+	public ModelAndView pwdCheck(String id, String pwd,int mno) {
+		ModelAndView mav = new ModelAndView();
+		
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		map.put("mno", mno);
+		Boolean r = dao.login(map);
+		if (r == true) {
+			mav.setViewName("updateMember");
+			mav.addObject("m", dao.getMember(map));
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="updateMember.do", method=RequestMethod.GET)
+	public void memberUpdateForm() {
+		
+	}
+	
+	@RequestMapping(value="updateMember.do", method=RequestMethod.POST)
+	public ModelAndView memberUpdate(MemberVo mv) {
+		
+		ModelAndView mav = new ModelAndView("redirect:/myPage.do");
+		
+		int re = dao.updateMember(mv);
+		if (re < 1) {
+			mav.addObject("msg", "회원정보 수정 실패");
+			mav.setViewName("error");
+		}
+		
+		return mav;
+	}
+	
 }

@@ -7,12 +7,24 @@
   		insert into member values(#{mno},#{id},#{pwd},#{name},#{phone},#{email})
   	</insert>
   	
+  	<select id="getMember" resultType="memberVo">
+  		select * from member where mno=#{mno}
+  	</select>
+  	
+  	<update id="updateMember">
+  		update member set pwd=#{pwd},name=#{name},phone=#{phone},email=#{email} where mno=#{mno}
+  	</update>
+  	
   	<select id="checkId" parameterType="String" resultType="java.lang.Integer">
   		select count(*) from member where id=#{id}
   	</select>
   	
   	<select id="login" resultType="memberVo">
   		select * from member where id=#{id} and pwd=#{pwd}
+  	</select>
+  	
+  	<select id="mno" resultType="java.lang.Integer" parameterType="String">
+  		select mno from member where id=#{id}
   	</select>
   	
   	<select id="memberNextMno" resultType="java.lang.Integer">

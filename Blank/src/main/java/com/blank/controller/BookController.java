@@ -39,11 +39,11 @@ public class BookController {
 	//일기장 목록
 	@RequestMapping(value="listBook.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listBook(String id)
+	public String listBook(int mno)
 	{
 		
 		Map map = new HashMap();
-		map.put("id", id);
+		map.put("mno", mno);
 		String str = "";
 		List<BookVo> list = dao.listBook(map);	
 		try {
@@ -75,10 +75,11 @@ public class BookController {
 	
 	//일기장 작성 Submit
 	@RequestMapping(value="insertBook.do",method=RequestMethod.POST)
-	public ModelAndView insertBook(BookVo b)
+	public ModelAndView insertBook(BookVo b,int mno)
 	{
 		ModelAndView mav = new ModelAndView("redirect:/book.do");
 		b.setBno(dao.bookNextBno());
+		b.setMno(mno);
 		int re = dao.insertBook(b);
 		if(re<1)
 		{

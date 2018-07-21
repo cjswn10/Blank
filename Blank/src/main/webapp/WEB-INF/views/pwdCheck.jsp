@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	/*로고 표시 */
 	.title
 	{
 		font-family: 'Nanum Pen Script', serif;
@@ -18,54 +17,67 @@
 		left: 40px;
 		top: -10px;
 	}
-	/* 일기장,즐겨찾기 */
 	.menu
 	{ 
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
 		position: relative;
 		left: 1100px;
-		top: -630px;
+		top: -360px;
 	}
-	/* id,마이페이지,로그아웃 */
 	.ifm
 	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: relative;
 		left: 1150px;
-		top: -730px;
+		top: -460px;
 	}
-	.book
+	.f
 	{
 		position: relative;
 		left: 500px;
-		top: 150px;
-		background-color: pink;
-		width: 500px;
-		height: 570px;
+		top: 330px;
 	}
-	.btitle
+	.pwd
 	{
-		position: absolute;
-		left: 140px;
-		top: 100px;
-		text-align: center;
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size: 30px;
+	}
+	.sub
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
 		font-size: 20px;
-		
+		top: 70px;
+		left: 180px;
 	}
-	.s1
+	.check
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size: 50px;
+		top: 230px;
+		left: 350px;
+	}
+	.my
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position:relative;
+		left:265px;
+		top:-50px;
+		font-size: 70px;
+	}
+	#pwd
 	{
 		position: relative;
-		left: 200px;
-		top: 600px;
+		font-size:16px;
+		width:250px;
+		top: -5px;
+		left: 30px;
 	}
-	.false
-	{
-		position: relative;
-		left: 250px;
-		top: 600px;
-	}
+	
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -78,20 +90,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$(".false").click(function() {
-			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
-			if(re == true)
-			{
-				location.href="book.do"
-			}	
-			else
-			{
-				return;
-			}	 
-		})
-		$(".s1").click(function() {
-			alert("일기장이 수정되었습니다.")
-		})
+		
 	})
 </script>
 </head>
@@ -100,13 +99,18 @@
 		<h1>그림 일기</h1>
 	</div>
 	
-	<div class="book">
-		<form action="updateBook.do" method="post" id="f">
-			<input type="text" name="btitle" value="${b.btitle }" class="btitle" height="50" width="30">
-			<input type="hidden" name="bcolor" value="${b.bcolor }">
-			<input type="hidden" name="bno" value="${b.bno }" >
-			<input class="s1" type="submit" value="수정">
-			<a class="false">취소</a>
+	<div class="check">
+		<span class="my">본인확인</span><br>
+		<span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span>
+	</div>
+	
+	
+	<div class="main">
+		<form action="pwdCheck.do" method="post" class="f">
+			<input type="hidden" name="id" id="id" value="${id }"><br>
+			<input type="hidden" name="mno" id="mno" value="${mno }"><br>
+			<label class="pwd">비밀번호 : </label><input type="password" name="pwd" id="pwd"><br>
+			<input type="submit" value="확인" class="sub">
 		</form>
 	</div>
 	
@@ -115,7 +119,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
 	</div>
 </body>
 </html>

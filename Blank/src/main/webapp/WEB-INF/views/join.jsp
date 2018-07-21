@@ -41,7 +41,24 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
-   
+	
+	//아이디 중복확인
+	$("#id").keyup(function() {
+		$.ajax({
+			url:"checkId.do",
+			data:{"id":$("#id").val()},
+			success:function(data)
+			{
+				if($.trim(data) == 0){
+                    $('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');
+                }
+                else{
+                    $('#checkMsg').html('<p style="color:red">이미 사용중인 아이디입니다.</p>');
+                }
+			}
+		})
+	})
+	
   	$("#pwd2").click(function() {
 		setInterval(function() {
 			if($("#pwd").val() != $("#pwd2").val()){
@@ -54,7 +71,8 @@ $(function() {
 	});
    
    $("#joinBtn").click(function() {
-      location.href = "join.do";
+      
+	   location.href = "join.do";
    });
    
 
@@ -79,8 +97,8 @@ $(function() {
 	<h2>회원가입 </h2>
 	<div class="form-group">
 	    <label>아이디 </label>
-	    <input type="text" class="form-control" name="id" id="id" placeholder="아이디">
-	    <span id="checkId"></span><br>
+	    <input type="text" class="form-control" name="id" id="id" placeholder="아이디" >
+	    <span id="checkMsg"></span>
 	</div>
 	<div class="form-group">
 	    <label>비밀번호 </label>
