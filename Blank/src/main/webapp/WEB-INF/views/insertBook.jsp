@@ -9,7 +9,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 	/*로고 표시 */
 	.title
-	{
+	{ 
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 80px;
 		position: relative;

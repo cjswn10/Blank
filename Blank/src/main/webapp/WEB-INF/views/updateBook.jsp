@@ -39,7 +39,7 @@
 		top: -960px;
 	}
 	.book
-	{
+	{ 
 		position: relative;
 		left: 300px;
 		top: 100px;

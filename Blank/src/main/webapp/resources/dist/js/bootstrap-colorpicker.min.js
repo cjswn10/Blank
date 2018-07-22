@@ -1,4 +1,4 @@
-/*!
+/*! 
  * Bootstrap Colorpicker - Simple and customizable colorpicker component for Twitter Bootstrap.
  * @package bootstrap-colorpicker
  * @version v3.0.0-beta.1
