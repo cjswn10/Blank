@@ -118,7 +118,7 @@ public class BookController {
 	@RequestMapping(value="deleteBook.do")
 	public ModelAndView deleteBook(int bno,int dno)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/Book.do");
+		ModelAndView mav = new ModelAndView("redirect:/book.do");
 		Map map = new HashMap();
 		map.put("bno", bno);
 		map.put("dno", dno);
