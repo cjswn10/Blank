@@ -19,13 +19,15 @@
 		top: -10px;
 	}
 	/* 일기장,즐겨찾기 */
+	/* 일기장,즐겨찾기 */
 	.menu
 	{ 
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
 		position: relative;
+		width:400px;
 		left: 1100px;
-		top: -630px;
+		top: -860px;
 	}
 	/* id,마이페이지,로그아웃 */
 	.ifm
@@ -33,14 +35,15 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: relative;
+		width:300px;
 		left: 1150px;
-		top: -730px;
+		top: -960px;
 	}
 	.book
 	{
 		position: relative;
-		left: 500px;
-		top: 150px;
+		left: 250px;
+		top: 100px;
 		background-color: pink;
 		width: 500px;
 		height: 570px;
@@ -65,6 +68,14 @@
 		position: relative;
 		left: 250px;
 		top: 600px;
+	}
+	.container
+	{
+		position: relative;
+		width: 600px;
+		height: 800px;
+		top: -30px;
+		left: 50px;
 	}
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -99,15 +110,16 @@
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
-	
-	<div class="book">
-		<form action="updateBook.do" method="post" id="f">
-			<input type="text" name="btitle" value="${b.btitle }" class="btitle" height="50" width="30">
-			<input type="hidden" name="bcolor" value="${b.bcolor }">
-			<input type="hidden" name="bno" value="${b.bno }" >
-			<input class="s1" type="submit" value="수정">
-			<a class="false">취소</a>
-		</form>
+	<div class="container">
+		<div class="book">
+			<form action="updateBook.do" method="post" id="f">
+				<input type="text" name="btitle" value="${b.btitle }" class="btitle" height="50" width="30">
+				<input type="hidden" name="bcolor" value="${b.bcolor }">
+				<input type="hidden" name="bno" value="${b.bno }" >
+				<input class="s1" type="submit" value="수정">
+				<a class="false">취소</a>
+			</form>
+		</div>
 	</div>
 	
 	<div class="menu">
@@ -115,7 +127,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>

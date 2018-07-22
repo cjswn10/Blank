@@ -22,6 +22,7 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
 		position: absolute;
+		width:300px;
 		left: 1100px;
 		top: 60px;
 	}
@@ -30,14 +31,16 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: absolute;
+		width:300px;
 		left: 1150px;
-		top: 20px;
+		top: 17px;
 	}
-	.f
+	.main
 	{
 		position: relative;
-		left: 600px;
-		top: 220px;
+		left: 330px;
+		width:600px;
+		top: 260px;
 	}
 	.sub
 	{
@@ -62,6 +65,7 @@
 		font-size: 50px;
 		top: 230px;
 		left: 350px;
+		width: 500px;
 	}
 	.my
 	{
@@ -78,6 +82,14 @@
 		font-size:30px;
 		width: 500px;
 		height: 500px;
+	}
+	.container
+	{
+		position: relative;
+		width: 600px;
+		height: 900px;
+		top: -30px;
+		left: 50px;
 	}
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -119,46 +131,46 @@
 	<div class="check">
 		<span class="my">회원정보 수정</span><br>
 	</div>
-	
-	
-	<div class="main">
-		<form action="updateMember.do" method="post" class="f">
-			<table id="tb">
-				<tr>
-					<td>아이디</td>
-					<td>
-						<input type="hidden" name="mno" id="mno" value="${mno }">
-						<input type="text" name="id" id="id" value="${id }">
-					</td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td>
-						<input type="password" name="pwd" id="pwd">
-					</td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td>
-						<input type="text" name="name" id="name" value="${m.name }">
-					</td>
-				</tr>
-				<tr>
-					<td>휴대전화</td>
-					<td>
-						<input type="tel" name="phone" id="phone" value="${m.phone }">
-					</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td>
-						<input type="email" name="email" id="email" value="${m.email }">
-					</td>
-				</tr>
-			</table>
-				<input type="submit" value="수정" class="sub">
-				<a class="s1">취소</a>
-		</form>
+	<div class="container">
+		<div class="main">
+			<form action="updateMember.do" method="post" class="f">
+				<table id="tb">
+					<tr>
+						<td>아이디</td>
+						<td>
+							<input type="hidden" name="mno" id="mno" value="${mno }">
+							<input type="text" name="id" id="id" value="${id }" readonly="readonly" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td>
+							<input type="password" name="pwd" id="pwd" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td>
+							<input type="text" name="name" id="name" value="${m.name }" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<td>휴대전화</td>
+						<td>
+							<input type="tel" name="phone" id="phone" value="${m.phone }" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td>
+							<input type="email" name="email" id="email" value="${m.email }" style="text-align: center;">
+						</td>
+					</tr>
+				</table>
+					<input type="submit" value="수정" class="sub">
+					<a class="s1">취소</a>
+			</form>
+		</div>
 	</div>
 	
 	
@@ -170,7 +182,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>

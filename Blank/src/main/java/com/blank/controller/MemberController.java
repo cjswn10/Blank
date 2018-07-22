@@ -29,6 +29,7 @@ public class MemberController {
 		this.dao = dao;
 	}
 	
+	//마이페이지
 	@RequestMapping(value="myPage.do")
 	public ModelAndView myPage() {
 		
@@ -36,10 +37,21 @@ public class MemberController {
 		return mav;
 	}
 	
+	//Q&A
 	@RequestMapping(value="qNa.do")
 	public ModelAndView Qna() {
 		
 		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//로그아웃
+	@RequestMapping(value="logOut.do")
+	public ModelAndView logOut(HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		mav.setViewName("redirect:/login.do");
 		return mav;
 	}
 	
@@ -60,6 +72,8 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
+	//아이디중복체크
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam("id")String id) {
@@ -87,7 +101,11 @@ public class MemberController {
 		map.put("pwd", pwd);
 		Boolean r = dao.login(map);
 		if (r == true) {
+			
+			//아이디 세션유지
 			session.setAttribute("id", id);
+			
+			//회원번호 세션유지
 			session.setAttribute("mno", dao.mno(map));
 //			mav.setViewName("redirect:/main.do");
 			//일단 멤버아니여도 로그인 되게 해놓을게요
@@ -103,6 +121,7 @@ public class MemberController {
 		return mav;
 	}	
 	
+	//비밀번호 인증
 	@RequestMapping(value="pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
@@ -121,10 +140,15 @@ public class MemberController {
 			mav.setViewName("updateMember");
 			mav.addObject("m", dao.getMember(map));
 		}
+		else
+		{
+			mav.addObject("msg", "비밀번호가 일치하지 않습니다.");
+		}	
 		
 		return mav;
 	}
 	
+	//회원정보 수정
 	@RequestMapping(value="updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		

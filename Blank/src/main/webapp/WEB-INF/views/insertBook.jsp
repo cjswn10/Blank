@@ -24,8 +24,9 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
 		position: relative;
+		width:400px;
 		left: 1100px;
-		top: -630px;
+		top: -860px;
 	}
 	/* id,마이페이지,로그아웃 */
 	.ifm
@@ -33,14 +34,15 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: relative;
+		width:300px;
 		left: 1150px;
-		top: -730px;
+		top: -960px;
 	}
 	.book
 	{
 		position: relative;
-		left: 500px;
-		top: 150px;
+		left: 250px;
+		top: 100px;
 		background-color: pink;
 		width: 500px;
 		height: 570px;
@@ -65,6 +67,14 @@
 		position: relative;
 		left: 250px;
 		top: 600px;
+	}
+	.container
+	{
+		position: relative;
+		width: 600px;
+		height: 800px;
+		top: -30px;
+		left: 50px;
 	}
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -101,14 +111,16 @@
 		<h1>그림 일기</h1>
 	</div>
 	
-	<div class="book">
-		<form action="insertBook.do" method="post" id="f">
-			<input type="hidden" name="mno" id="mno" value="${mno }">
-			<input type="text" name="btitle" class="aa" height="50" width="30">
-			<input type="hidden" name="bcolor" value="aqua" >
-			<input class="s1" type="submit" value="등록">
-			<a class="false">취소</a>
-		</form>
+	<div class="container">
+		<div class="book">
+			<form action="insertBook.do" method="post" id="f">
+				<input type="hidden" name="mno" id="mno" value="${mno }">
+				<input type="text" name="btitle" class="aa" height="50" width="30">
+				<input type="hidden" name="bcolor" value="aqua" >
+				<input class="s1" type="submit" value="등록">
+				<a class="false">취소</a>
+			</form>
+		</div>
 	</div>
 	
 	<div class="menu">
@@ -116,7 +128,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>
