@@ -1,6 +1,6 @@
 package com.blank.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,6 +11,12 @@ public class DiaryVo {
 	private String dtype;
 	private String dfile;
 	private String dweather;
+	private String dphoto;
+	private String dfont;
+	private Date dwritedate;
+	private String dcontent;
+	private int serect;
+	private int bno;
 
 	private MultipartFile upload;
 
@@ -27,7 +33,8 @@ public class DiaryVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DiaryVo(int dno, String dtitle, Date ddate, String dtype, String dfile, String dweather) {
+	public DiaryVo(int dno, String dtitle, Date ddate, String dtype, String dfile, String dweather, String dphoto,
+			String dfont, Date dwritedate, String dcontent, int serect, int bno) {
 		super();
 		this.dno = dno;
 		this.dtitle = dtitle;
@@ -35,6 +42,12 @@ public class DiaryVo {
 		this.dtype = dtype;
 		this.dfile = dfile;
 		this.dweather = dweather;
+		this.dphoto = dphoto;
+		this.dfont = dfont;
+		this.dwritedate = dwritedate;
+		this.dcontent = dcontent;
+		this.serect = serect;
+		this.bno = bno;
 	}
 
 	public int getDno() {
@@ -84,4 +97,53 @@ public class DiaryVo {
 	public void setDweather(String dweather) {
 		this.dweather = dweather;
 	}
+
+	public String getDphoto() {
+		return dphoto;
+	}
+
+	public void setDphoto(String dphoto) {
+		this.dphoto = dphoto;
+	}
+
+	public String getDfont() {
+		return dfont;
+	}
+
+	public void setDfont(String dfont) {
+		this.dfont = dfont;
+	}
+
+	public Date getDwritedate() {
+		return dwritedate;
+	}
+
+	public void setDwritedate(Date dwritedate) {
+		this.dwritedate = dwritedate;
+	}
+
+	public String getDcontent() {
+		return dcontent;
+	}
+
+	public void setDcontent(String dcontent) {
+		this.dcontent = dcontent;
+	}
+
+	public int getSerect() {
+		return serect;
+	}
+
+	public void setSerect(int serect) {
+		this.serect = serect;
+	}
+
+	public int getBno() {
+		return bno;
+	}
+
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+
 }

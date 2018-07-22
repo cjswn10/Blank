@@ -3,10 +3,12 @@ package com.blank.controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,10 +97,13 @@ public class DiaryController {
 	
 	//일기 등록 실행
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
-	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
-		d.setDfile("");
+	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {		
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
+		
+		int bno = (Integer) session.getAttribute("bno");
+		System.out.println(bno);
+		
 		
 		MultipartFile upload = d.getUpload();
 		String dfile = upload.getOriginalFilename();
@@ -117,7 +122,7 @@ public class DiaryController {
 		
 		int no = dao.diaryNextNo();
 		d.setDno(no);
-		ModelAndView mav = new ModelAndView("redirect:/diary.do");
+		ModelAndView mav = new ModelAndView("redirect:/diary.do?bno="+bno);
 		int re = dao.insertDiary(d);
 		if (re < 1) {
 			mav.addObject("msg", "일기 등록 실패");
@@ -135,11 +140,16 @@ public class DiaryController {
 	//일기 목록
 	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listDiary() {
+	public String listDiary(int bno, HttpSession session) {		
+		Map map = new HashMap();
+		map.put("bno", bno);
+		
+		session.setAttribute("bno", bno);
+		
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str = mapper.writeValueAsString(dao.listDiary());
+			str = mapper.writeValueAsString(dao.listDiary(map));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
