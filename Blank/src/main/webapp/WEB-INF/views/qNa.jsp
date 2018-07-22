@@ -22,22 +22,25 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
 		position: relative;
+		width:300px;
 		left: 1100px;
-		top: -500px;
+		top: -530px;
 	}
 	.ifm
 	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: relative;
+		width:350px;
 		left: 1150px;
-		top: -600px;
+		top: -630px;
 	}
 	.check
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size: 50px;
+		width:400px;
 		top: 200px;
 		left: 100px;
 	}
@@ -46,8 +49,9 @@
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size: 45px;
+		width:600px;
 		top: -20px;
-		left: 650px;
+		left: 600px;
 	}
 
 	
@@ -97,7 +101,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>

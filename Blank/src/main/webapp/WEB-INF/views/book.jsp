@@ -36,6 +36,7 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
 		position: relative;
+		width:300px;
 		left: 1100px;
 		top: -560px;
 	}
@@ -45,6 +46,7 @@
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: relative;
+		width:350px;
 		left: 1150px;
 		top: -660px;
 	}
@@ -279,7 +281,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>

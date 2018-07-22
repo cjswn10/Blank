@@ -11,8 +11,8 @@
 
 <div class="upper">
 <span class="upper_menu">임연주님</span>
-<a href="#" class="upper_menu">마이페이지</a>
-<a href="#" class="upper_menu">로그아웃</a>
+<a href="myPage.do" class="upper_menu">마이페이지</a>
+<a href="logOut.do" class="upper_menu">로그아웃</a>
 </div>
 <hr>
 

@@ -21,23 +21,28 @@
 	{ 
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
+		width:400px;
 		position: relative;
 		left: 1100px;
-		top: -360px;
+		top: -660px;	
 	}
 	.ifm
 	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
 		position: relative;
+		width: 300px;
 		left: 1150px;
-		top: -460px;
+		top: -760px;
+		
 	}
-	.f
+	.main
 	{
 		position: relative;
-		left: 500px;
-		top: 330px;
+		width:350px;
+		height:300px;
+		left: 300px;
+		top: 200px;
 	}
 	.pwd
 	{
@@ -58,14 +63,15 @@
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size: 50px;
-		top: 230px;
-		left: 350px;
+		width:1000px;
+		top: 130px;
+		left: 130px;
 	}
 	.my
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position:relative;
-		left:265px;
+		left:290px;
 		top:-50px;
 		font-size: 70px;
 	}
@@ -77,6 +83,24 @@
 		top: -5px;
 		left: 30px;
 	}
+	.container
+	{
+		position: relative;
+		width: 600px;
+		height: 600px;
+		top: -30px;
+		left: 50px;
+	}
+	#d
+	{
+		font-family: 'Nanum Pen Script', serif;
+		font-size:30px;
+		position: relative;
+		top:220px;
+		left:430px;
+		width:300px;
+	}
+
 	
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -91,6 +115,10 @@
 <script type="text/javascript">
 	$(function() {
 		
+		setTimeout(function () {
+			$("#d").html("");
+		},5000);
+		
 	})
 </script>
 </head>
@@ -99,27 +127,31 @@
 		<h1>그림 일기</h1>
 	</div>
 	
-	<div class="check">
-		<span class="my">본인확인</span><br>
-		<span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span>
+	<div class="container">
+		<div class="check">
+			<span class="my">본인확인</span><br>
+			<span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span>
+		</div>
+		
+		<div id="d"><font color="red">${msg }</font></div>
+		
+		<div class="main">
+			<form action="pwdCheck.do" method="post" class="f">
+				<input type="hidden" name="id" id="id" value="${id }"><br>
+				<input type="hidden" name="mno" id="mno" value="${mno }"><br>
+				<label class="pwd">비밀번호 : </label><input type="password" name="pwd" id="pwd"><br>
+				<input type="submit" value="확인" class="sub">
+			</form>
+		</div>
 	</div>
 	
-	
-	<div class="main">
-		<form action="pwdCheck.do" method="post" class="f">
-			<input type="hidden" name="id" id="id" value="${id }"><br>
-			<input type="hidden" name="mno" id="mno" value="${mno }"><br>
-			<label class="pwd">비밀번호 : </label><input type="password" name="pwd" id="pwd"><br>
-			<input type="submit" value="확인" class="sub">
-		</form>
-	</div>
 	
 	<div class="menu">
 		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>
