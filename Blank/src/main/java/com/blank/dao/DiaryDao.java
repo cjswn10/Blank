@@ -31,7 +31,7 @@ public class DiaryDao {
 		return DiaryManager.diaryNextNo();
 	}
 	
-	public List<DiaryVo> listDiary(){
-		return DiaryManager.listDiary();
+	public List<DiaryVo> listDiary(Map map){
+		return DiaryManager.listDiary(map);
 	}
 }

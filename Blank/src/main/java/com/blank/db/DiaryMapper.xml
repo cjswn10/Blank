@@ -22,7 +22,7 @@
 	</select>
 
 	<insert id="insertDiary">
-		insert into diary values(#{dno},#{dtitle}, #{ddate}, #{dweather}, #{dfont}, #{dtype}, #{dfile}, #{dcontent}, #{dphoto})
+		insert into diary values(#{dno},#{dtitle}, sysdate, #{dtype}, #{dfile}, #{dweather}, #{dphoto}, #{dfont}, #{dwritedate}, #{dcontent}, #{serect}, #{bno})
 	</insert>
 	
 	<insert id="insertWrite">
@@ -34,10 +34,9 @@
   	</select>
 	
 	<select id="selectAll" resultType="diaryvo">
-		SELECT d.dno, dtitle, ddate, dweather, dtype, dfile, dfont, dcontent, dphoto, w.bno, w.mno
-		FROM diary d, write w
-		WHERE w.dno=d.dno AND w.bno=#{bno}
-		ORDER BY ddate
-		
+		SELECT dno, dtitle, ddate, dfile, dweather, dphoto, dfont, dwritedate, dcontent, b.bno
+		FROM diary d, book b
+		WHERE d.bno = b.bno and b.bno=#{bno}
+		ORDER BY ddate		
 	</select>
 </mapper>
