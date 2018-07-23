@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="resources/css/base.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -10,21 +11,19 @@
 	<a href="#" class="main">그림일기</a>
 
 <div class="upper">
-<span class="upper_menu">임연주님</span>
-<a href="#" class="upper_menu">마이페이지</a>
+<span class="upper_menu">OOO님</span>
 <a href="#" class="upper_menu">로그아웃</a>
 </div>
 <hr>
 
 <div class="menus" align="right">
 <a href="listBooka.do" class="main_menu">일기장</a>
-<a href="#" class="main_menu">그룹일기</a>
 <a href="#" class="main_menu">즐겨찾기</a>
+<a href="#" class="main_menu">마이페이지</a>
 </div>
 
 <div class="title_favo" align="center">
-<img alt="★" src="img/star.png" width="80px">
-<span style="font-size: 50px;">즐겨찾기</span>
+	main
 </div>
 
 <div id="favo_list" align="center"></div>

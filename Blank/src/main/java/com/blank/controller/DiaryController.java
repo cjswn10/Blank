@@ -1,8 +1,6 @@
 package com.blank.controller;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
 import com.blank.vo.DiaryVo;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+/*
+ * 다이어리 주의사항
+ * dtype은 그림글사진(db순서) 순서로 있으면1 없으면 0 
+ * ex)그림:O 글:O 사진:X 	=> dtype="110"
+ */
 
 @Controller
 public class DiaryController {
@@ -30,13 +34,6 @@ public class DiaryController {
 	public void setDao(DiaryDao dao) {
 		this.dao = dao;
 	}
-	/*
-	 * 다이어리 주의사항
-	 * dfont 기본값 설정해주기
-	 * dtype은 그림글사진(db순서) 순서로 있으면1 없으면 0 
-	 * ex)글:O 그림:O 사진:X 	=> dtype=110
-	 */
-	
 	
 	//일기 삭제
 	@RequestMapping("deleteDiary.do")
@@ -96,17 +93,37 @@ public class DiaryController {
 	//일기 등록 실행
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
-		d.setDfile("");
+		//int mno = Integer.parseInt(request.getParameter("mno"));
+		//int bno = Integer.parseInt(request.getParameter("bno"));
+		int mno = 1000;
+		int bno = 2;
+		
+		d.setMno(mno);
+		d.setBno(bno);
+		
+		d.setDtype("000");
+		//타입 값 넣기
+		if(d.getDfile() != null) {
+			d.setDtype("100");
+		}
+		//trim 넣기
+		if(d.getDcontent() != null) {
+			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
+		}
+		
+		d.setDphoto("");
+		
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
 		
 		MultipartFile upload = d.getUpload();
-		String dfile = upload.getOriginalFilename();
-		if (dfile != null && !dfile.equals("")) {
-			d.setDfile(dfile);
+		String dphoto = upload.getOriginalFilename();
+		if (dphoto != null && !dphoto.equals("")) {
+			d.setDphoto(dphoto);
+			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[]data = upload.getBytes();
-				FileOutputStream fos = new FileOutputStream(path + "/" + dfile);
+				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
 				fos.write(data);
 				fos.close();
 			} catch (Exception e) {
@@ -117,8 +134,24 @@ public class DiaryController {
 		
 		int no = dao.diaryNextNo();
 		d.setDno(no);
+		
+		Map map = new HashMap();
+		map.put("dno", d.getDno());
+		map.put("dtitle", d.getDtitle());
+		map.put("ddate", d.getDdate());
+		map.put("dweather", d.getDweather());
+		map.put("dfont", d.getDfont());
+		map.put("dtype", d.getDtype());
+		map.put("dfile", d.getDfile());
+		map.put("dcontent", d.getDcontent());
+		map.put("dphoto", d.getDphoto());
+		map.put("secret", d.getSecret());
+		map.put("mno", d.getMno());
+		map.put("bno", d.getBno());
+		
 		ModelAndView mav = new ModelAndView("redirect:/diary.do");
-		int re = dao.insertDiary(d);
+
+		int re = dao.insertDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "일기 등록 실패");
 			mav.setViewName("error");
