@@ -1,15 +1,15 @@
 package com.blank.vo;
 
-public class Favorite {
-	
+public class FavoriteVo {
+	 
 	private int fno;
 	private int mno;
 	private int fmno;
-	public Favorite() {
+	public FavoriteVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Favorite(int fno, int mno, int fmno) {
+	public FavoriteVo(int fno, int mno, int fmno) {
 		super();
 		this.fno = fno;
 		this.mno = mno;

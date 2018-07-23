@@ -104,6 +104,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		
 		System.out.println(id);
+		System.out.println(pwd);
 		Map map = new HashMap();
 		map.put("id", id);
 		map.put("pwd", pwd);
