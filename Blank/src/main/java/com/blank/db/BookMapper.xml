@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="book">
   <select id="listBook" resultType="bookVo" parameterType="java.lang.Integer">
-    select distinct(b.bno),b.btitle,b.bcolor,b.mno from book b,member m where b.mno=m.mno and b.mno=#{mno} order by b.bno
+    select distinct(b.bno),btitle,bcolor,b.mno from book b,member m where b.mno=m.mno and b.mno=#{mno} order by b.bno
   </select>
   
   <select id="detailBook" resultType="bookVo">
@@ -28,10 +28,10 @@
   </delete>
   
   <delete id="deleteDiary">
-	delete diary where dno=#{dno}
+	delete diary where bno=#{bno}
   </delete>
 	
   <delete id="deleteWrite">
-	delete write where dno=#{dno}
+	delete write where bno=#{bno}
   </delete>
 </mapper>

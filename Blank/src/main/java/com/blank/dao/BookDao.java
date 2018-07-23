@@ -33,9 +33,9 @@ public class BookDao {
 		return BookManager.updateBook(b);
 	}
 	//일기장 삭제
-	public int deleteBook(int dno,int bno)
+	public int deleteBook(Map map)
 	{
-		return BookManager.deleteBook(dno,bno);
+		return BookManager.deleteBook(map);
 	}
 	//일기장 번호자동증가
 	public int bookNextBno()

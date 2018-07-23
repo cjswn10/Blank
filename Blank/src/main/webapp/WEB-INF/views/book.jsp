@@ -151,7 +151,7 @@
 		display:table;
 		font-size: 30px;
 		top:400px;
-		left: 120px;
+		left: 130px;
 
 	}
 </style>
@@ -209,7 +209,7 @@
 							re = confirm('삭제된 그림일기장은 복구할 수 없습니다.\n정말로 삭제 하시겠습니까?');
 							if(re == true)
 							{
-								location.href="deleteBook.do?bno="+d.bno+"&dno=3";
+								location.href="deleteBook.do?bno="+d.bno;
 							}	
 							else
 							{
