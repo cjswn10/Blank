@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -6,10 +7,6 @@
 
 	<delete id="deleteDiary">
 		delete diary where dno=#{dno}
-	</delete>
-	
-	<delete id="deleteWrite">
-		delete write where dno=#{dno}
 	</delete>
 
 	<update id="updateDiary">
@@ -22,11 +19,7 @@
 	</select>
 
 	<insert id="insertDiary">
-		insert into diary values(#{dno},#{dtitle}, sysdate, #{dtype}, #{dfile}, #{dweather}, #{dphoto}, #{dfont}, #{dwritedate}, #{dcontent}, #{serect}, #{bno})
-	</insert>
-	
-	<insert id="insertWrite">
-		insert into write values(seq_write.nextval, #{bno}, #{dno}, #{mno}, sysdate, #{secret})
+		insert into diary values(#{dno},#{dtitle}, #{ddate}, #{dweather}, #{dfont}, #{dtype}, #{dfile}, #{dcontent}, #{dphoto}, #{secret}, sysdate, #{mno}, #{bno})
 	</insert>
 	
 	<select id="diaryNextNo" resultType="java.lang.Integer">
@@ -34,9 +27,10 @@
   	</select>
 	
 	<select id="selectAll" resultType="diaryvo">
-		SELECT dno, dtitle, ddate, dfile, dweather, dphoto, dfont, dwritedate, dcontent, b.bno
-		FROM diary d, book b
-		WHERE d.bno = b.bno and b.bno=#{bno}
-		ORDER BY ddate		
+		SELECT *
+		FROM diary
+		WHERE mno=#{mno} AND bno=#{bno}
+		ORDER BY ddate
 	</select>
+  
 </mapper>

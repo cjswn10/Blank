@@ -3,26 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<h2>일기 등록</h2>
 	<hr>
-	
 	<form action="insertDiary.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
-		제목 : <input type="text" name="dtitle"><br>
-		타입 : <input type="text" name="dtype"><br>
-		파일 : <input type="file" name="upload"><br>
-		날씨 : <input type="text" name="dweather"><br>
-		포토 : <input type="text" name="dphoto"><br>
-		폰트 : <input type="text" name="dfont"><br>
-		작성일 : <input type="date" name="dwritedate"><br>
-		내용 : <br>
-		<textarea rows="10" cols="60" name="dcontent"></textarea><br>
-		공개 유무 : <input type="number" name="serect">		
-		<input type="submit" value="등록">
+		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle"><br>
+		<div class="row">
+			<label for="ddate" class="col-sm-2 control-label">날짜</label>
+			<div class="col-xs-3">
+				<input type="date" name="ddate" id="ddate" class="form-control" placeholder=".col-xs-2">
+			</div>
+			<label for="dweather" class="col-sm-2 control-label">날씨</label>
+			<div class="col-xs-3">
+				<input type="text" name="dweather" id="dweather" class="form-control" placeholder="">
+			</div>
+		</div>
+		<label for="dfont">글씨체</label>
+		<select name="dfont" id="dfont">
+			<option value="Nanum Brush Script">Nanum Brush Script</option>
+			<option value="Nanum Gothic">Nanum Gothic</option>
+			<option value="Nanum Gothic Coding">Nanum Gothic Coding</option>
+			<option value="Nanum Myeongjo">Nanum Myeongjo</option>
+			<option value="Nanum Pen Script">Nanum Pen Script</option>
+		</select><br>
+		<textarea class="form-control" rows="10" name="dcontent"></textarea><br>
+		그림 : <input type="text" name="dfile"><br>
+		사진 : <input type="file" name="upload">
+		<br><input type="radio" name="secret" value=1 checked="checked"> 비공개
+		<input type="radio" name="secret" value=0> 전체공개<br>
+		<button type="submit">등록</button>
 	</form>
 </body>
-</html>

@@ -27,15 +27,12 @@ public class DiaryManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	/*
-	 * 가이드
-	 * INSERT랑 DELETE 할 때는 diary랑 write테이블 두개에 insert가 성공해야 commit되게 수정 필요
-	 * write는 wno는 시퀀스 쓸꺼야
-	 */
+
 	public static int deleteDiary(Map map) {
 		int re = -1;
-		SqlSession session = factory.openSession(true);
-		re = session.delete("diary.deleteDiary", map);		
+		SqlSession session = factory.openSession();
+		re = session.delete("diary.deleteDiary", map);
+		session.commit();
 		session.close();
 		return re;
 	}
@@ -56,11 +53,12 @@ public class DiaryManager {
 		return d;
 	}
 	
-	public static int insertDiary(DiaryVo d) {
+	public static int insertDiary(Map map) {
 		int re =  -1;
-		SqlSession session = factory.openSession(true);
-		re = session.insert("diary.insertDiary", d);
-		session.close();		
+		SqlSession session = factory.openSession();
+		re = session.insert("diary.insertDiary", map);
+		session.commit();
+		session.close();
 		return re;
 		
 	}

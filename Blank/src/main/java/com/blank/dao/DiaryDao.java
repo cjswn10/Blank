@@ -23,8 +23,8 @@ public class DiaryDao {
 		return DiaryManager.detailDiary(map);
 	}
 	
-	public int insertDiary(DiaryVo d) {
-		return DiaryManager.insertDiary(d);
+	public int insertDiary(Map map) {
+		return DiaryManager.insertDiary(map);
 	}
 
 	public int diaryNextNo() {
