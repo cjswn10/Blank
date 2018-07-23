@@ -1,5 +1,6 @@
 package com.blank.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,18 +34,18 @@ public class DiaryController {
 		this.dao = dao;
 	}
 /*
- * �떎�씠�뼱由� 二쇱쓽�궗�빆
- * dtype�� 洹몃┝湲��궗吏�(db�닚�꽌) �닚�꽌濡� �엳�쑝硫�1 �뾾�쑝硫� 0 
- * ex)洹몃┝:O 湲�:O �궗吏�:X 	=> dtype="110"
+ 	=> dtype="110"
  */
 	
 	
 	//일기 삭제
 	@RequestMapping("deleteDiary.do")
-	public ModelAndView deleteDiary(int dno) {
+	public ModelAndView deleteDiary(int dno, HttpSession session) {
+		int mno = (Integer) session.getAttribute("mno");
+		int bno = (Integer) session.getAttribute("bno");
 		Map map = new HashMap();
 		map.put("dno", dno);
-		ModelAndView mav = new ModelAndView("redirect:/diary.do");
+		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "�궘�젣 �떎�뙣");
@@ -64,22 +65,57 @@ public class DiaryController {
 	
 	//일기 수정
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
-	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session) {		
+	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
 		map.put("d", d);*/
+		String dtype = d.getDtype();
+		System.out.println(dtype);
+		
+		if(d.getDfile() != null) {
+			d.setDtype("100");
+		}
+		//trim 글 타입 설정
+		if(d.getDcontent() != null) {
+			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
+		}
 		
 		int mno = (Integer) session.getAttribute("mno");
-		int bno = (Integer) session.getAttribute("bno");
-		System.out.println(mno);
-		System.out.println(bno);
+		int bno = (Integer) session.getAttribute("bno");		
 		ModelAndView mav = new ModelAndView();
+		
+		String oldFname = d.getDphoto();
+		
+		
+		String path = request.getRealPath("resources/upload");
+		System.out.println(path);
+		
+		MultipartFile upload = d.getUpload();
+		String dphoto = upload.getOriginalFilename();
+		if (dphoto != null && !dphoto.equals("")) {
+			d.setDphoto(dphoto);
+			d.setDtype(d.getDtype().substring(0, 2) + "1");
+			try {
+				byte[]data = upload.getBytes();
+				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		int re = dao.updateDiary(d);
 		if (re > 0) {
-			mav.setViewName("redirect:/listDiary.do");
+			mav.setViewName("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		}else {
 			mav.addObject("msg", "수정 실패");
 			mav.setViewName("error");			
 		}		
+		if (re > 0 && !oldFname.equals("") && oldFname != null && !oldFname.equals("")) {
+			File file = new File(path + "/" + oldFname);
+			file.delete();
+		}
 		return mav;				
 	}
 	

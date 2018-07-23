@@ -116,13 +116,12 @@ public class BookController {
 	
 	//일기장 삭제
 	@RequestMapping(value="deleteBook.do")
-	public ModelAndView deleteBook(int bno,int dno)
+	public ModelAndView deleteBook(int bno)
 	{
 		ModelAndView mav = new ModelAndView("redirect:/book.do");
 		Map map = new HashMap();
 		map.put("bno", bno);
-		map.put("dno", dno);
-		int re = dao.deleteBook(bno,dno);
+		int re = dao.deleteBook(map);
 		if(re<1)
 		{
 			mav.addObject("msg", "일기장 삭제에실패 하였습니다.");

@@ -50,7 +50,7 @@
 		position: relative;
 		font-size: 30px;
 	}
-	.sub
+	#sub
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
@@ -140,7 +140,7 @@
 				<input type="hidden" name="id" id="id" value="${id }"><br>
 				<input type="hidden" name="mno" id="mno" value="${mno }"><br>
 				<label class="pwd">비밀번호 : </label><input type="password" name="pwd" id="pwd"><br>
-				<input type="submit" value="확인" class="sub">
+				<input class="btn btn-default" type="submit" value="확인" id="sub">
 			</form>
 		</div>
 	</div>

@@ -33,7 +33,7 @@ $(function() {
 		<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
 		<input type="hidden" name="mno" id="mno" value="${mno }"><br> 
 	
-		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle"><br>
+		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle">
 		<div class="row">
 			<label for="ddate" class="col-sm-2 control-label">날짜</label>
 			<div class="col-xs-3">
@@ -55,8 +55,10 @@ $(function() {
 		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: 궁서체"></textarea><br>
 		그림 : <input type="text" name="dfile"><br>
 		사진 : <input type="file" name="upload">
-		<br><input type="radio" name="secret" value=1 checked="checked"> 비공개
+		<br>
+		<input type="radio" name="secret" value=1 checked="checked"> 비공개
 		<input type="radio" name="secret" value=0> 전체공개<br>
 		<button type="submit">등록</button>
 	</form>
 </body>
+</html>
