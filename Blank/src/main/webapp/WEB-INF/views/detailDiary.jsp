@@ -6,6 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('#delete').click(function() {
+			re = confirm("정말 삭제하시겠습니다?");
+			if (re == true) {
+				location.href = "deleteDiary.do?dno="+${d.dno }
+			}
+			if (re == false) {
+				location.href = "detailDiary.do?dno="+${d.dno}
+			}
+		})
+	})
+</script>
 </head>
 <body>
 	<h2>일기 상세</h2>
@@ -18,7 +31,7 @@
 	내용 : ${d.dcontent}<br>
 	<hr>
 	<a href="updateDiary.do?dno=${d.dno }">수정</a>
-	<a id="delete" href="deleteDiary.do?dno=${d.dno }">삭제</a>
+	<button id="delete">삭제</button>
 	<hr>
 	<a href="diary.do">일기 목록</a>
 	<hr>
