@@ -73,7 +73,7 @@
 	</div>
 	
 	<div class="ifm">
-		<a href="#">${id }님</a><span>  |  </span><a href="#">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>

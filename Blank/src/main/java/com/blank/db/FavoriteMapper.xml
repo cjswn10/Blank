@@ -8,7 +8,7 @@
   </select>
   
   <delete id="deleteFavorite">
-  	DELETE FROM favorites WHERE fno=? AND fmno=?;
+  	DELETE FROM favorites WHERE fno=#{fno} AND fmno=#{fmno};
   </delete>
  
 </mapper>
