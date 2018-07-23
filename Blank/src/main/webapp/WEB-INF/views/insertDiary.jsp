@@ -3,11 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+$(function() {
+	$("#dfont").change(function() {
+		console.log($(this).val())
+		$("#dcontent").attr({
+			style : "font-family:"+$(this).val()
+		})
+		
+		//alert($(this).children("option:selected").text());
+	});
+
+});
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -37,7 +52,7 @@
 			<option value="Nanum Myeongjo">Nanum Myeongjo</option>
 			<option value="Nanum Pen Script">Nanum Pen Script</option>
 		</select><br>
-		<textarea class="form-control" rows="10" name="dcontent"></textarea><br>
+		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: 궁서체"></textarea><br>
 		그림 : <input type="text" name="dfile"><br>
 		사진 : <input type="file" name="upload">
 		<br>

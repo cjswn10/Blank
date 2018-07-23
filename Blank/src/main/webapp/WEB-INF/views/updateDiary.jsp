@@ -43,6 +43,7 @@
 		<input type="radio" name="secret" value=1 checked="checked"> 비공개
 		<input type="radio" name="secret" value=0> 전체공개<br>
 		<button type="submit">수정</button>
+
 	</form>
 </body>
 </html>
