@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.blank.vo.BookVo;
+import com.blank.vo.MemberVo;
 
 public class BookManager {
 
@@ -28,11 +29,11 @@ public class BookManager {
 		}
 	}
 	//일기장 목록
-	public static List<BookVo> listBook()
+	public static List<BookVo> listBook(Map map)
 	{
 		List<BookVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("book.listBook");
+		list = session.selectList("book.listBook",map);
 		session.close();
 		return list;
 	}
@@ -50,6 +51,7 @@ public class BookManager {
 	{
 		int re = -1;
 		SqlSession session = factory.openSession();
+		
 		re = session.insert("book.insertBook", b);
 		if(re > 0)
 		{
@@ -80,19 +82,26 @@ public class BookManager {
 		return re;
 	}
 	//일기장 삭제
-	public static int deleteBook(Map map)
+	public static int deleteBook(int dno,int bno)
 	{
 		int re = -1;
+		
+		int cnt = 0;
+		int cntOk = 3;
+		
 		SqlSession session = factory.openSession();
-		re = session.delete("book.deleteBook", map);
-		if(re > 0)
+		cnt += session.delete("book.deleteBook", bno);
+		cnt += session.delete("book.deleteDiary", dno);
+		cnt += session.delete("book.deleteWrite", dno);
+		if(cnt == cntOk)
 		{
 			session.commit();
+			re=1;
 		}
 		else
 		{
 			session.rollback();
-		}	
+		}
 		session.close();
 		return re;
 	}

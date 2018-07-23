@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -7,10 +8,10 @@
 	<delete id="deleteDiary">
 		delete diary where dno=#{dno}
 	</delete>
-	
+
 	<update id="updateDiary">
 		update diary set dtitle=#{dtitle}, ddate=#{ddate}, dweather=#{dweather}, dfont=#{dfont}, dtype=#{dtype},  dfile=#{dfile}, dcontent=#{dcontent}, dphoto=#{dphoto}
-		 where dno=#{dno}
+		 where dno=#{dno} 
 	</update>
 
 	<select id="detailDiary" resultType="diaryvo">
@@ -31,4 +32,5 @@
 		WHERE mno=#{mno} AND bno=#{bno}
 		ORDER BY ddate
 	</select>
+  
 </mapper>

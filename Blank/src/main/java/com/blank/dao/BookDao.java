@@ -7,14 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import com.blank.db.BookManager;
 import com.blank.vo.BookVo;
+import com.blank.vo.MemberVo;
 
 @Repository
 public class BookDao {
 
 	//일기장 목록
-	public List<BookVo> listBook()
+	public List<BookVo> listBook(Map map)
 	{
-		return BookManager.listBook();
+		return BookManager.listBook(map);
 	}
 	//일기장 상세보기
 	public BookVo detailBook(Map map)
@@ -32,9 +33,9 @@ public class BookDao {
 		return BookManager.updateBook(b);
 	}
 	//일기장 삭제
-	public int deleteBook(Map map)
+	public int deleteBook(int dno,int bno)
 	{
-		return BookManager.deleteBook(map);
+		return BookManager.deleteBook(dno,bno);
 	}
 	//일기장 번호자동증가
 	public int bookNextBno()

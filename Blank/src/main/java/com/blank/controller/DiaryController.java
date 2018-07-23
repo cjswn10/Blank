@@ -1,10 +1,14 @@
 package com.blank.controller;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,14 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
 import com.blank.vo.DiaryVo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-
-/*
- * ´ÙÀÌ¾î¸® ÁÖÀÇ»çÇ×
- * dtypeÀº ±×¸²±Û»çÁø(db¼ø¼­) ¼ø¼­·Î ÀÖÀ¸¸é1 ¾øÀ¸¸é 0 
- * ex)±×¸²:O ±Û:O »çÁø:X 	=> dtype="110"
- */
 
 @Controller
 public class DiaryController {
@@ -34,8 +32,14 @@ public class DiaryController {
 	public void setDao(DiaryDao dao) {
 		this.dao = dao;
 	}
+/*
+ * ë‹¤ì´ì–´ë¦¬ ì£¼ì˜ì‚¬í•­
+ * dtypeì€ ê·¸ë¦¼ê¸€ì‚¬ì§„(dbìˆœì„œ) ìˆœì„œë¡œ ìˆìœ¼ë©´1 ì—†ìœ¼ë©´ 0 
+ * ex)ê·¸ë¦¼:O ê¸€:O ì‚¬ì§„:X 	=> dtype="110"
+ */
 	
-	//ÀÏ±â »èÁ¦
+	
+	//ì¼ê¸° ì‚­ì œ
 	@RequestMapping("deleteDiary.do")
 	public ModelAndView deleteDiary(int dno) {
 		Map map = new HashMap();
@@ -43,12 +47,12 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/diary.do");
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "»èÁ¦ ½ÇÆĞ");
+			mav.addObject("msg", "ì‚­ì œ ì‹¤íŒ¨");
 		}
 		return mav;
 	}
 	
-	//ÀÏ±â ¼öÁ¤ Æû
+	//ì¼ê¸° ìˆ˜ì • í¼
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -58,7 +62,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÀÏ±â ¼öÁ¤ ½ÇÇà
+	//ì¼ê¸° ìˆ˜ì • ì‹¤í–‰
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d) {
 		/*Map map = new HashMap();
@@ -68,13 +72,13 @@ public class DiaryController {
 		if (re > 0) {
 			mav.setViewName("redirect:/listDiary.do");
 		}else {
-			mav.addObject("msg", "ÀÏ±â  ¼öÁ¤ ½ÇÆĞ");
+			mav.addObject("msg", "ì¼ê¸°  ìˆ˜ì • ì‹¤íŒ¨");
 			mav.setViewName("error");			
 		}		
 		return mav;				
 	}
 	
-	//ÀÏ±â »ó¼¼
+	//ì¼ê¸° ìƒì„¸
 	@RequestMapping("detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -84,13 +88,13 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÀÏ±â µî·Ï Æû
+	//ì¼ê¸° ë“±ë¡ í¼
 	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 		
 	}
 	
-	//ÀÏ±â µî·Ï ½ÇÇà
+		//ì¼ê¸° ë“±ë¡ ì‹¤í–‰
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
 		//int mno = Integer.parseInt(request.getParameter("mno"));
@@ -102,11 +106,11 @@ public class DiaryController {
 		d.setBno(bno);
 		
 		d.setDtype("000");
-		//Å¸ÀÔ °ª ³Ö±â
+		//íƒ€ì… ê°’ ë„£ê¸°
 		if(d.getDfile() != null) {
 			d.setDtype("100");
 		}
-		//trim ³Ö±â
+		//trim ë„£ê¸°
 		if(d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -153,7 +157,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "ÀÏ±â µî·Ï ½ÇÆĞ");
+			mav.addObject("msg", "ì¼ê¸° ë“±ë¡ ì‹¤íŒ¨");
 			mav.setViewName("error");
 		}	
 		
@@ -165,14 +169,19 @@ public class DiaryController {
 		
 	}
 	
-	//ÀÏ±â ¸ñ·Ï
+	//ì¼ê¸° ëª©ë¡
 	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listDiary() {
+	public String listDiary(int bno, HttpSession session) {		
+		Map map = new HashMap();
+		map.put("bno", bno);
+		
+		session.setAttribute("bno", bno);
+		
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str = mapper.writeValueAsString(dao.listDiary());
+			str = mapper.writeValueAsString(dao.listDiary(map));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -180,3 +189,4 @@ public class DiaryController {
 		return str;
 	}
 }
+
