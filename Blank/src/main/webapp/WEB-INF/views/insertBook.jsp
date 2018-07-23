@@ -103,6 +103,8 @@
 		height: 40px;
 	}
 	
+
+	
 </style>
 
 <!-- 색상구현 css -->
@@ -145,6 +147,15 @@
 			 
 		});
 		
+		$("#color-picker-size").click(function() {
+			var color = $(this).val();
+			
+			$(".book").attr({
+				style:"background-color:"+color
+			})
+			
+		})
+		
 		
 		$(".false").click(function() {
 			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
@@ -168,7 +179,6 @@
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
-	
 	
 	<div class="containe">
 		<div class="book">

@@ -10,7 +10,7 @@ import com.blank.vo.DiaryVo;
 
 @Repository
 public class DiaryDao {
-
+  
 	public int deleteDiary(Map map) {
 		return DiaryManager.deleteDiary(map);
 	}
