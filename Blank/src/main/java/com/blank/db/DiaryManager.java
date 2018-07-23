@@ -72,10 +72,10 @@ public class DiaryManager {
 		return dno;
 	}
 	
-	public static List<DiaryVo> listDiary(){
+	public static List<DiaryVo> listDiary(Map map){
 		List<DiaryVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("diary.selectAll");
+		list = session.selectList("diary.selectAll", map);
 		session.close();
 		return list;
 	}
