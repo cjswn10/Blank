@@ -10,11 +10,11 @@
 <body>
 	<h2>일기 상세</h2>
 	제목 : ${d.dtitle }<br>
-	일기날짜 : ${d.dwritedate }<br>
+	일기날짜 : ${d.ddate }<br>
 	날씨 : ${d.dweather }<br>
 	타입 : ${d.dweather }<br>
-	작성(수정)일 : ${d.ddate}<br>	
-	<img width="500" height="500" src="resources/upload/${d.dfile }"><br>
+	작성(수정)일 : ${d.wdate}<br>	
+	<img width="500" height="500" src="resources/upload/${d.dphoto }"><br>
 	내용 : ${d.dcontent}<br>
 	<hr>
 	<a href="updateDiary.do?dno=${d.dno }">수정</a>

@@ -189,7 +189,7 @@
 						var div = $("<div></div>");
 						
 						//일기장 -->> 일기목록
-						var aList = $("<a href='diary.do?mno="+d.mno+"'></a>")
+						var aList = $("<a href='diary.do?mno="+d.mno+"&bno="+d.bno+"'></a>")
 						
 						//일기장 제목
 						var title = $("<span class='btitle'></span>").html(d.btitle);

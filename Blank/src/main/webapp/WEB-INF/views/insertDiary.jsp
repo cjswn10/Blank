@@ -14,6 +14,10 @@
 	<h2>일기 등록</h2>
 	<hr>
 	<form action="insertDiary.do" method="post" enctype="multipart/form-data">
+	
+		<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
+		<input type="hidden" name="mno" id="mno" value="${mno }"><br> 
+	
 		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle"><br>
 		<div class="row">
 			<label for="ddate" class="col-sm-2 control-label">날짜</label>

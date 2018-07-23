@@ -3,7 +3,7 @@ package com.blank.controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +33,9 @@ public class DiaryController {
 		this.dao = dao;
 	}
 /*
- * 다이어리 주의사항
- * dtype은 그림글사진(db순서) 순서로 있으면1 없으면 0 
- * ex)그림:O 글:O 사진:X 	=> dtype="110"
+ * �떎�씠�뼱由� 二쇱쓽�궗�빆
+ * dtype�� 洹몃┝湲��궗吏�(db�닚�꽌) �닚�꽌濡� �엳�쑝硫�1 �뾾�쑝硫� 0 
+ * ex)洹몃┝:O 湲�:O �궗吏�:X 	=> dtype="110"
  */
 	
 	
@@ -47,12 +47,12 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/diary.do");
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "삭제 실패");
+			mav.addObject("msg", "�궘�젣 �떎�뙣");
 		}
 		return mav;
 	}
 	
-	//일기 수정 폼
+	//일기 수정
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -62,17 +62,22 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//일기 수정 실행
+	//일기 수정
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
-	public ModelAndView diaryUpdateSubmit(DiaryVo d) {
+	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session) {		
 		/*Map map = new HashMap();
 		map.put("d", d);*/
+		
+		int mno = (Integer) session.getAttribute("mno");
+		int bno = (Integer) session.getAttribute("bno");
+		System.out.println(mno);
+		System.out.println(bno);
 		ModelAndView mav = new ModelAndView();
 		int re = dao.updateDiary(d);
 		if (re > 0) {
 			mav.setViewName("redirect:/listDiary.do");
 		}else {
-			mav.addObject("msg", "일기  수정 실패");
+			mav.addObject("msg", "수정 실패");
 			mav.setViewName("error");			
 		}		
 		return mav;				
@@ -94,23 +99,18 @@ public class DiaryController {
 		
 	}
 	
-		//일기 등록 실행
+		//일기 등록 
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
-	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
-		//int mno = Integer.parseInt(request.getParameter("mno"));
-		//int bno = Integer.parseInt(request.getParameter("bno"));
-		int mno = 1000;
-		int bno = 2;
-		
-		d.setMno(mno);
-		d.setBno(bno);
+	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
+		int mno = (Integer) session.getAttribute("mno");
+		int bno = (Integer) session.getAttribute("bno");	
 		
 		d.setDtype("000");
-		//타입 값 넣기
+		//그림 타입 설정
 		if(d.getDfile() != null) {
 			d.setDtype("100");
 		}
-		//trim 넣기
+		//trim 글 타입 설정
 		if(d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -153,7 +153,7 @@ public class DiaryController {
 		map.put("mno", d.getMno());
 		map.put("bno", d.getBno());
 		
-		ModelAndView mav = new ModelAndView("redirect:/diary.do");
+		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno="+mno+"&bno="+bno);
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
@@ -172,11 +172,13 @@ public class DiaryController {
 	//일기 목록
 	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listDiary(int bno, HttpSession session) {		
+	public String listDiary(int bno, int mno, HttpSession session) {		
 		Map map = new HashMap();
 		map.put("bno", bno);
+		map.put("mno", mno);
 		
 		session.setAttribute("bno", bno);
+		session.setAttribute("mno", mno);
 		
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
