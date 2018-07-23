@@ -143,6 +143,15 @@
 				 
 			});
 		
+		$("#color-picker-size").click(function() {
+			var color = $(this).val();
+			
+			$(".book").attr({
+				style:"background-color:"+color
+			})
+			
+		})
+		
 		$(".false").click(function() {
 			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
 			if(re == true)
