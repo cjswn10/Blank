@@ -32,15 +32,14 @@ public class DiaryController {
 	public void setDao(DiaryDao dao) {
 		this.dao = dao;
 	}
-	/*
-	 * ¥Ÿ¿ÃæÓ∏Æ ¡÷¿«ªÁ«◊
-	 * dfont ±‚∫ª∞™ º≥¡§«ÿ¡÷±‚
-	 * dtype¿∫ ±◊∏≤±€ªÁ¡¯(dbº¯º≠) º¯º≠∑Œ ¿÷¿∏∏È1 æ¯¿∏∏È 0 
-	 * ex)±€:O ±◊∏≤:O ªÁ¡¯:X 	=> dtype=110
-	 */
+/*
+ * Îã§Ïù¥Ïñ¥Î¶¨ Ï£ºÏùòÏÇ¨Ìï≠
+ * dtypeÏùÄ Í∑∏Î¶ºÍ∏ÄÏÇ¨ÏßÑ(dbÏàúÏÑú) ÏàúÏÑúÎ°ú ÏûàÏúºÎ©¥1 ÏóÜÏúºÎ©¥ 0 
+ * ex)Í∑∏Î¶º:O Í∏Ä:O ÏÇ¨ÏßÑ:X 	=> dtype="110"
+ */
 	
 	
-	//¿œ±‚ ªË¡¶
+	//ÏùºÍ∏∞ ÏÇ≠Ï†ú
 	@RequestMapping("deleteDiary.do")
 	public ModelAndView deleteDiary(int dno) {
 		Map map = new HashMap();
@@ -48,12 +47,12 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/diary.do");
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "ªË¡¶ Ω«∆–");
+			mav.addObject("msg", "ÏÇ≠Ï†ú Ïã§Ìå®");
 		}
 		return mav;
 	}
 	
-	//¿œ±‚ ºˆ¡§ ∆˚
+	//ÏùºÍ∏∞ ÏàòÏ†ï Ìèº
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -63,7 +62,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//¿œ±‚ ºˆ¡§ Ω««‡
+	//ÏùºÍ∏∞ ÏàòÏ†ï Ïã§Ìñâ
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d) {
 		/*Map map = new HashMap();
@@ -73,13 +72,13 @@ public class DiaryController {
 		if (re > 0) {
 			mav.setViewName("redirect:/listDiary.do");
 		}else {
-			mav.addObject("msg", "¿œ±‚  ºˆ¡§ Ω«∆–");
+			mav.addObject("msg", "ÏùºÍ∏∞  ÏàòÏ†ï Ïã§Ìå®");
 			mav.setViewName("error");			
 		}		
 		return mav;				
 	}
 	
-	//¿œ±‚ ªÛºº
+	//ÏùºÍ∏∞ ÏÉÅÏÑ∏
 	@RequestMapping("detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -89,29 +88,46 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//¿œ±‚ µÓ∑œ ∆˚
+	//ÏùºÍ∏∞ Îì±Î°ù Ìèº
 	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 		
 	}
 	
-	//¿œ±‚ µÓ∑œ Ω««‡
+		//ÏùºÍ∏∞ Îì±Î°ù Ïã§Ìñâ
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
-	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {		
+	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request) {
+		//int mno = Integer.parseInt(request.getParameter("mno"));
+		//int bno = Integer.parseInt(request.getParameter("bno"));
+		int mno = 1000;
+		int bno = 2;
+		
+		d.setMno(mno);
+		d.setBno(bno);
+		
+		d.setDtype("000");
+		//ÌÉÄÏûÖ Í∞í ÎÑ£Í∏∞
+		if(d.getDfile() != null) {
+			d.setDtype("100");
+		}
+		//trim ÎÑ£Í∏∞
+		if(d.getDcontent() != null) {
+			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
+		}
+		
+		d.setDphoto("");
+		
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
 		
-		int bno = (Integer) session.getAttribute("bno");
-		System.out.println(bno);
-		
-		
 		MultipartFile upload = d.getUpload();
-		String dfile = upload.getOriginalFilename();
-		if (dfile != null && !dfile.equals("")) {
-			d.setDfile(dfile);
+		String dphoto = upload.getOriginalFilename();
+		if (dphoto != null && !dphoto.equals("")) {
+			d.setDphoto(dphoto);
+			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[]data = upload.getBytes();
-				FileOutputStream fos = new FileOutputStream(path + "/" + dfile);
+				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
 				fos.write(data);
 				fos.close();
 			} catch (Exception e) {
@@ -122,10 +138,26 @@ public class DiaryController {
 		
 		int no = dao.diaryNextNo();
 		d.setDno(no);
-		ModelAndView mav = new ModelAndView("redirect:/diary.do?bno="+bno);
-		int re = dao.insertDiary(d);
+		
+		Map map = new HashMap();
+		map.put("dno", d.getDno());
+		map.put("dtitle", d.getDtitle());
+		map.put("ddate", d.getDdate());
+		map.put("dweather", d.getDweather());
+		map.put("dfont", d.getDfont());
+		map.put("dtype", d.getDtype());
+		map.put("dfile", d.getDfile());
+		map.put("dcontent", d.getDcontent());
+		map.put("dphoto", d.getDphoto());
+		map.put("secret", d.getSecret());
+		map.put("mno", d.getMno());
+		map.put("bno", d.getBno());
+		
+		ModelAndView mav = new ModelAndView("redirect:/diary.do");
+
+		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "¿œ±‚ µÓ∑œ Ω«∆–");
+			mav.addObject("msg", "ÏùºÍ∏∞ Îì±Î°ù Ïã§Ìå®");
 			mav.setViewName("error");
 		}	
 		
@@ -137,7 +169,7 @@ public class DiaryController {
 		
 	}
 	
-	//¿œ±‚ ∏Ò∑œ
+	//ÏùºÍ∏∞ Î™©Î°ù
 	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, HttpSession session) {		
@@ -157,3 +189,4 @@ public class DiaryController {
 		return str;
 	}
 }
+
