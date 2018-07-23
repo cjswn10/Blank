@@ -42,7 +42,7 @@
 		width:600px;
 		top: 260px;
 	}
-	.sub
+	#sub
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
@@ -50,7 +50,7 @@
 		top: 50px;
 		left: 100px;
 	}
-	.s1
+	#s1
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
@@ -104,11 +104,11 @@
 <script type="text/javascript">
 	$(function() {
 		
-		$(".sub").click(function() {
+		$("#sub").click(function() {
 			alert("회원정보가 수정 되었습니다.")
 		})
 		
-		$(".s1").click(function() {
+		$("#s1").click(function() {
 			re = confirm("작성하신 내용은 저장되지 않습니다.\n수정을 취소 하시겠습니까?")
 			if(re)
 			{
@@ -167,8 +167,9 @@
 						</td>
 					</tr>
 				</table>
-					<input type="submit" value="수정" class="sub">
-					<a class="s1">취소</a>
+					<input class="btn btn-default" type="submit" value="수정" id="sub">
+					<input class="btn btn-default" type="reset" value="취소" id="s1">
+					
 			</form>
 		</div>
 	</div>

@@ -43,7 +43,6 @@
 		position: relative;
 		left: 300px;
 		top: 100px;
-		background-color:pink;
 		width: 500px;
 		height: 570px;
 	}
@@ -56,13 +55,13 @@
 		font-size: 20px;
 		
 	}
-	.s1
+	#s1
 	{
 		position: relative;
 		left: 180px;
 		top: 500px;
 	}
-	.false
+	#false
 	{
 		position: relative;
 		left: 230px;
@@ -125,6 +124,7 @@
 <script type="text/javascript">
 	$(function() {
 		
+		
 		$('#color-picker-size').colorpicker(
 				{
 					customClass: 'custom-size',
@@ -143,8 +143,9 @@
 				 
 			});
 		
-		$("#color-picker-size").click(function() {
-			var color = $(this).val();
+		$(".colorpicker-saturation").click(function() {
+			
+			var color = $("#color-picker-size").val();
 			
 			$(".book").attr({
 				style:"background-color:"+color
@@ -152,7 +153,7 @@
 			
 		})
 		
-		$(".false").click(function() {
+		$("#false").click(function() {
 			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
 			if(re == true)
 			{
@@ -163,7 +164,7 @@
 				return;
 			}	 
 		})
-		$(".s1").click(function() {
+		$("#s1").click(function() {
 			alert("일기장이 수정되었습니다.")
 		})
 	})
@@ -175,7 +176,7 @@
 	</div>
 	
 	<div class="containe">
-		<div class="book">
+		<div class="book" style="background-color: ${b.bcolor}">
 			<form action="updateBook.do" method="post" id="f">
 				<input type="hidden" name="bno" value="${b.bno }">
 				<input type="text" name="btitle" class="aa" value="${b.btitle }" height="50" width="30">
@@ -192,8 +193,8 @@
 			  			</div>
 					</div>
 				</div>
-				<input class="s1" type="submit" value="수정">
-				<a class="false">취소</a>
+				<input class="btn btn-default" id="s1" type="submit" value="수정">
+				<input class="btn btn-default" id="false" type="reset" value="취소">				
 			</form>
 		</div>
 	</div>

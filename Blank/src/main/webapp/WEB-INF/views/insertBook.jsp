@@ -56,13 +56,13 @@
 		font-size: 20px;
 		
 	}
-	.s1
+	#s1
 	{
 		position: relative;
 		left: 180px;
 		top: 500px;
 	}
-	.false
+	#false
 	{
 		position: relative;
 		left: 230px;
@@ -147,8 +147,9 @@
 			 
 		});
 		
-		$("#color-picker-size").click(function() {
-			var color = $(this).val();
+		$(".colorpicker-saturation").click(function() {
+			
+			var color = $("#color-picker-size").val();
 			
 			$(".book").attr({
 				style:"background-color:"+color
@@ -156,8 +157,7 @@
 			
 		})
 		
-		
-		$(".false").click(function() {
+		$("#false").click(function() {
 			re = confirm('작성하신 내용이 삭제될수 있습니다.\n사이트에서 나가시겠습니까?');
 			if(re == true)
 			{
@@ -169,7 +169,7 @@
 			}	 
 		})
 		
-		$(".s1").click(function() {
+		$("#s1").click(function() {
 			alert("일기장이 생성되었습니다.")
 		})
 	})
@@ -198,14 +198,14 @@
 			  			</div>
 					</div>
 				</div>
-				<input class="s1" type="submit" value="등록">
-				<a class="false">취소</a>
+				<input class="btn btn-default" id="s1" type="submit" value="등록">
+				<input class="btn btn-default" id="false" type="reset" value="취소">
 			</form>
 		</div>
 	</div>
 	
 	<div class="menu">
-		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">
