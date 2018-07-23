@@ -18,8 +18,8 @@
 		날짜 : <input type="text" name="ddate" value="${d.ddate}"><br>
 		날씨 : <input type="text" name="dweather" value="${d.dweather}"><br>
 		폰트 : <input type="text" name="dfont" value="${d.dfont }"><br>
-		타입 : <input type="text" name="dtype" value="${d.dtype }"><br>
-		파일 : <input type="text" name="dfile" value="${d.dfile }"><br>
+		타입 : <input type="hidden" name="dtype" value="${d.dtype }"><br>
+		그림 : <input type="text" name="dfile" value="${d.dfile }"><br>
 		포토 : <input type="file" name="dphoto" value="${d.dphoto}"><br>
 		내용 :<br>
 		<textarea rows="10" cols="60" name="dcontent">${d.dcontent }</textarea><br>

@@ -19,7 +19,7 @@
 <div class="menus" align="right">
 <a href="book.do" class="main_menu">일기장</a>
 <a href="#" class="main_menu">즐겨찾기</a>
-<a href="#" class="main_menu">마이페이지</a>
+<a href="myPage.do" class="main_menu">마이페이지</a>
 </div>
 
 <div class="title_favo" align="center">
