@@ -1,7 +1,7 @@
 package com.blank.vo;
 
 public class FavoriteVo {
-	
+	 
 	private int fno;
 	private int mno;
 	private int fmno;

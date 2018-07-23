@@ -6,7 +6,7 @@
   <select id="listFavorite" resultType="favoriteVo">
    	SELECT m.id FROM favorites f, member m WHERE f.mno=#{mno} AND f.fmno = m.mno;
   </select>
-  
+   
   <delete id="deleteFavorite">
   	DELETE FROM favorites WHERE fno=#{fno} AND fmno=#{fmno};
   </delete>
