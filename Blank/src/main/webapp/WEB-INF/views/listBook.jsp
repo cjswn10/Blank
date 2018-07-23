@@ -197,7 +197,7 @@
 	</div>
 	
 	<div class="menu">
-		<a href="listBook.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+		<a href="listBook.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">
