@@ -11,6 +11,14 @@
   		select * from member where mno=#{mno}
   	</select>
   	
+  	<select id="searchId" resultType="String">
+  		select id from member where name=#{name} and phone=#{phone}
+  	</select>
+  	
+  	<select id="searchPwd" resultType="String">
+  		select pwd from member where id=#{id} and phone=#{phone}
+  	</select>
+  	
   	<update id="updateMember">
   		update member set pwd=#{pwd},name=#{name},phone=#{phone},email=#{email} where mno=#{mno}
   	</update>
