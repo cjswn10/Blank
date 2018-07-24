@@ -89,16 +89,10 @@ public class BookManager {
 		int cnt = 0;
 		int cntOk = 2;
 		
-		
 		SqlSession session = factory.openSession();
 		
-		int re1 = session.delete("book.deleteWrite", map);
-		
-		if(re1 == 1)
-		{
-			cnt += session.delete("book.deleteDiary", map);
-			cnt += session.delete("book.deleteBook", map);
-		}
+		cnt += session.delete("book.deleteDiary", map);
+		cnt += session.delete("book.deleteBook", map);
 		
 		if(cnt == cntOk)
 		{

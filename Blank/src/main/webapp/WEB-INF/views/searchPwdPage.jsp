@@ -105,7 +105,15 @@
 				{
 					if(data != "")
 					{
-						confirm("고객님의 비밀번호는"+data+"입니다.")
+						var re = confirm("고객님의 비밀번호는"+data+"입니다.")
+						if(re)
+						{
+							location.href="login.do";
+						}
+						else
+						{
+							return;
+						}
 					}
 					else
 					{

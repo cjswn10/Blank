@@ -31,7 +31,4 @@
 	delete diary where bno=#{bno}
   </delete>
 	
-  <delete id="deleteWrite">
-	delete write where bno=#{bno}
-  </delete>
 </mapper>
