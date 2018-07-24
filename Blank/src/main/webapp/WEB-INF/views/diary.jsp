@@ -10,6 +10,13 @@
 		position: absolute;
 		left: 30%;
 	}
+	.div{
+		border: 1px solid red;
+		margin: 50px;
+		padding: 10px;			
+		
+		
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -26,21 +33,30 @@
 					var list = eval("("+data+")");
 					$.each(list, function(i, d) {
 						//날짜 날씨 제목 그림 사진 글
-						var div = $('<div></div>');	
-						var img = $('<img></img>').attr({
-							src: "resources/upload/" + d.dphoto,
-							width: "500",
-							height: "500"					
-						});
+						var div = $('<div ></div>');
+						div.addClass('div');
+						
 						var a = $('<a href="detailDiary.do?dno='+d.dno+'"></a>')
-						var p1 = $('<p></p>').html(d.ddate);
-						var p2 = $('<p></p>').html(d.dweather);
-						var p3 = $('<p></p>').html(d.dtitle);
 						var br = $('<br>');
-						var p4 = $('<textarea rows="10" cols="60" readonly="readonly"></textarea>').html(d.dcontent);
-						$(a).append(img);
-						$(div).append(p1,p2,p3,a,br,p4);
-						$('#div').append(div);					
+						var p = $('<textarea rows="15" cols="50" readonly="readonly"></textarea>').html(d.dcontent);
+						
+						if (d.dphoto != null) {							
+							var img = $('<img></img>').attr({
+								src: "resources/upload/" + d.dphoto,
+								width: "250",
+								height: "250"					
+							});
+							$(a).append(img);
+							$(div).append(a,br,p);
+							$('#div').append(div);
+						}else {
+							$(a).append(p);
+							$(div).append(a);
+							$('#div').append(div);					
+						}						
+						/* $(div).append(a,br,p);				
+						$(div).append(p);		 */					
+					
 					})				
 			}})		
 		}
