@@ -95,6 +95,26 @@ public class MemberManager {
 		session.close();
 		return re;
 	}
+	
+	//회원아이디 찾기
+	public static String searchId(Map map)
+	{
+		String id = "";
+		SqlSession session = factory.openSession();
+		id = session.selectOne("member.searchId", map);
+		session.close();
+		return id;
+	}
+	
+	//회원비밀번호 찾기
+		public static String searchPwd(Map map)
+		{
+			String pwd = "";
+			SqlSession session = factory.openSession();
+			pwd = session.selectOne("member.searchPwd", map);
+			session.close();
+			return pwd;
+		}
 }
 
 
