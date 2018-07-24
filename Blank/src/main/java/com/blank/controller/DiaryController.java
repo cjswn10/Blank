@@ -1,9 +1,7 @@
 package com.blank.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
 import com.blank.vo.DiaryVo;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -38,7 +35,7 @@ public class DiaryController {
  */
 	
 	
-	//ÏùºÍ∏∞ ÏÇ≠Ï†ú
+	//¿œ±‚ ªË¡¶
 	@RequestMapping("deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
@@ -53,7 +50,7 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "ÔøΩÍ∂òÔøΩÏ†£ ÔøΩÎñéÔøΩÎô£");
+			mav.addObject("msg", "ªË¡¶ Ω«∆–");
 			mav.setViewName("error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
@@ -63,7 +60,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÏùºÍ∏∞ ÏàòÏ†ï
+	//¿œ±‚ ºˆ¡§ ∆˚
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -73,8 +70,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÏùºÍ∏∞ ÏàòÏ†ï 
-	//ÌååÏùº ÏàòÏ†ïÏïàÌïòÍ≥† ÏàòÏ†ïÏãúÏóêÎèÑ ÌååÏùº ÏÇ≠Ï†úÎê®.. Ìï¥Í≤∞ÌïÑÏöî
+	//¿œ±‚ ºˆ¡§ 
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
@@ -85,7 +81,7 @@ public class DiaryController {
 		if(d.getDfile() != null) {
 			d.setDtype("100");
 		}
-		//trim Í∏Ä ÌÉÄÏûÖ ÏÑ§Ï†ï
+		
 		if(d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -119,7 +115,7 @@ public class DiaryController {
 		if (re > 0) {
 			mav.setViewName("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		}else {
-			mav.addObject("msg", "ÏàòÏ†ï Ïã§Ìå®");
+			mav.addObject("msg", "ºˆ¡§ Ω«∆–");
 			mav.setViewName("error");			
 		}		
 		if (re > 0 && !oldFname.equals("") && oldFname != null && !oldFname.equals("")) {
@@ -129,7 +125,7 @@ public class DiaryController {
 		return mav;				
 	}
 	
-	//ÏùºÍ∏∞ ÏÉÅÏÑ∏
+	//¿œ±‚ ªÛºº
 	@RequestMapping("detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -139,24 +135,25 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÏùºÍ∏∞ Îì±Î°ù Ìèº
+	//¿œ±‚¿€º∫ ∆˚
 	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 		
 	}
 	
-		//ÏùºÍ∏∞ Îì±Î°ù 
+	//¿œ±‚ ¿€º∫
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");	
 		
 		d.setDtype("000");
-		//Í∑∏Î¶º ÌÉÄÏûÖ ÏÑ§Ï†ï
+		//±◊∏≤ ¿÷¿ª ∂ß
 		if(d.getDfile() != null) {
 			d.setDtype("100");
 		}
-		//trim Í∏Ä ÌÉÄÏûÖ ÏÑ§Ï†ï
+		
+		//trim ¿∏∑Œ ≥ªøÎ∞¯πÈ¡ˆøÏ±‚«ÿæﬂ«ÿ
 		if(d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -203,7 +200,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "ÏùºÍ∏∞ Îì±Î°ù Ïã§Ìå®");
+			mav.addObject("msg", "¿€º∫ Ω«∆–");
 			mav.setViewName("error");
 		}	
 		
@@ -215,7 +212,7 @@ public class DiaryController {
 		
 	}
 	
-	//ÏùºÍ∏∞ Î™©Î°ù
+	//¿œ±‚ ∏Ò∑œ
 	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {		

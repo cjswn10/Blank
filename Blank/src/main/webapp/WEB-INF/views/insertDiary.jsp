@@ -24,7 +24,6 @@ $(function() {
 			style : "font-family:"+$(this).val()
 		})
 		
-		//alert($(this).children("option:selected").text());
 	});
 
 });
@@ -54,7 +53,6 @@ $(function() {
 		<label for="dfont">글씨체</label>
 		<select name="dfont" id="dfont">
 			<option value="Nanum Brush Script" style="font-family: Nanum Brush Script" selected="selected" >Nanum Brush Script</option>
-			<!-- <option value="Nanum Gothic" style="font-family: Nanum Gothic">Nanum Gothic</option> -->
 			<option value="Nanum Gothic Coding" style="font-family:Nanum Gothic Coding">Nanum Gothic Coding</option>
 			<option value="Nanum Myeongjo" style="font-family:Nanum Myeongjo">Nanum Myeongjo</option>
 			<option value="Nanum Pen Script" style="font-family:Nanum Pen Script">Nanum Pen Script</option>

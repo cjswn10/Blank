@@ -29,7 +29,7 @@
 		SELECT *
 		FROM diary
 		WHERE mno=#{mno} AND bno=#{bno}
-		ORDER BY ddate
+		ORDER BY ddate DESC
 	</select>
   
 </mapper>
