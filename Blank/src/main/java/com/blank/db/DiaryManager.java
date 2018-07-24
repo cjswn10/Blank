@@ -1,6 +1,7 @@
 package com.blank.db;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.blank.vo.DiaryVo;
+import com.blank.vo.GrimpanVo;
 
 public class DiaryManager {
 
@@ -78,5 +80,14 @@ public class DiaryManager {
 		list = session.selectList("diary.selectAll", map);
 		session.close();
 		return list;
+	}
+	
+	public static GrimpanVo grimpan(Map map) {
+		
+		GrimpanVo g = null;
+		SqlSession session = factory.openSession();
+		g = session.selectOne("diary.grimpan",map);
+		session.close();
+		return g;
 	}
 }
