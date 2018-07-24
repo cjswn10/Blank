@@ -15,9 +15,7 @@
 	.div{
 		border: 1px solid red;
 		margin: 50px;
-		padding: 10px;			
-		
-		
+		padding: 10px;		
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -59,10 +57,8 @@
 							$(a).append(p);
 							$(div).append(a);
 							$('#div').append(div);					
-						}						
-						/* $(div).append(a,br,p);				
-						$(div).append(p);		 */					
-            
+
+						}		            
 					})				
 			}})		
 		}
@@ -73,7 +69,7 @@
 </script>
 </head>
 <body>
-	<h2>일기장~</h2>
+	<h2><a href="book.do">일기장~</a></h2>
 	<div id="div"></div>
 	<a href="insertDiary.do">일기 작성</a>
 </body>
