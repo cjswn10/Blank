@@ -29,13 +29,7 @@ public class MemberController {
 		this.dao = dao;
 	}
 	
-	//즐겨찾기
-	@RequestMapping(value="favorite.do")
-	public ModelAndView favorite()
-	{
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	}
+	
 	
 	//마이페이지
 	@RequestMapping(value="myPage.do")
