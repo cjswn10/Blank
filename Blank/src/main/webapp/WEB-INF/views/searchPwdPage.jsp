@@ -82,6 +82,13 @@
 	{
 		font-size: 200%;
 	}
+	.idPage
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size:25px;
+		top: 130px;
+	}
 
 </style>
 
@@ -105,7 +112,15 @@
 				{
 					if(data != "")
 					{
-						confirm("고객님의 비밀번호는"+data+"입니다.")
+						var re = confirm("고객님의 비밀번호는"+data+"입니다.")
+						if(re)
+						{
+							location.href="login.do";
+						}
+						else
+						{
+							return;
+						}
 					}
 					else
 					{
@@ -146,6 +161,9 @@
 				</tr>
 			</table>
 			<button id="searchPwd">확인</button>
+		</div>
+		<div class="idPage">
+			<span>아이디가 기억이 나지 않는 다면 ?</span>&nbsp;&nbsp;<a href="searchIdPage.do">아이디 찾기 바로가기</a>
 		</div>
 	</div>
 </body>

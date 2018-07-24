@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.blank.db.DiaryManager;
 import com.blank.vo.DiaryVo;
+import com.blank.vo.GrimpanVo;
 
 @Repository
 public class DiaryDao {
@@ -33,5 +34,9 @@ public class DiaryDao {
 	
 	public List<DiaryVo> listDiary(Map map){
 		return DiaryManager.listDiary(map);
+	}
+	
+	public GrimpanVo grimpan(Map map) {
+		return DiaryManager.grimpan(map);
 	}
 }

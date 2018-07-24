@@ -30,11 +30,10 @@ public class DiaryController {
 	public void setDao(DiaryDao dao) {
 		this.dao = dao;
 	}
-/*
- 	=> dtype="110"
- */
-	
-	
+
+	/*
+ 	//=> dtype="110"
+ 	 */
 	//일기 삭제
 	@RequestMapping("deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
@@ -42,6 +41,7 @@ public class DiaryController {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 		Map map = new HashMap();
+
 		map.put("dno", dno);		
 		
 		String path = request.getRealPath("resources/upload");
@@ -56,11 +56,11 @@ public class DiaryController {
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
 			File file = new File(path + "/" + oldFname);
 			file.delete();
+
 		}
 		return mav;
 	}
-	
-	//일기 수정 폼
+
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
@@ -69,39 +69,44 @@ public class DiaryController {
 		mav.addObject("d", dao.detailDiary(map));
 		return mav;
 	}
+
 	
 	//일기 수정 
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
 		map.put("d", d);*/
+
 		String dtype = d.getDtype();
 		System.out.println(dtype);
-		
-		if(d.getDfile() != null) {
+
+		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
 		if(d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
-		
+
 		int mno = (Integer) session.getAttribute("mno");
-		int bno = (Integer) session.getAttribute("bno");		
+		int bno = (Integer) session.getAttribute("bno");
 		ModelAndView mav = new ModelAndView();
+
 		
-		String oldFname = d.getDphoto();		
 		
+		String oldDphoto = d.getDphoto();		
+		
+
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
-		
+
 		MultipartFile upload = d.getUpload();
 		String dphoto = upload.getOriginalFilename();
-		if (dphoto != null && !dphoto.equals("")) {
-			d.setDphoto(dphoto);
+		if (dphoto != null && !dphoto.equals("")) {			
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
+			d.setDphoto(dphoto);
 			try {
-				byte[]data = upload.getBytes();
+				byte[] data = upload.getBytes();
 				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
 				fos.write(data);
 				fos.close();
@@ -110,19 +115,35 @@ public class DiaryController {
 				e.printStackTrace();
 			}
 		}
+
+
 		int re = dao.updateDiary(d);
 		
 		if (re > 0) {
+
 			mav.setViewName("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		}else {
 			mav.addObject("msg", "수정 실패");
 			mav.setViewName("error");			
-		}		
-		if (re > 0 && !oldFname.equals("") && oldFname != null && !oldFname.equals("")) {
-			File file = new File(path + "/" + oldFname);
+		}
+		
+//		d.setDphoto(oldDphoto);
+//		String fname = null;
+//		
+//		if (d.getDphoto() != null) {
+//			fname = d.getDphoto();
+//		}
+//		if (fname != null && !fname.equals("")) {
+//			d.setDphoto(fname);
+//		}
+		
+		
+		if (re > 0 && !dphoto.equals("") && dphoto != null && !dphoto.equals("")) {
+			File file = new File(path + "/" + oldDphoto);
+
 			file.delete();
 		}
-		return mav;				
+		return mav;
 	}
 	
 	//일기 상세
@@ -138,38 +159,38 @@ public class DiaryController {
 	//일기작성 폼
 	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
-		
+
 	}
 	
 	//일기 작성
 	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
-		int bno = (Integer) session.getAttribute("bno");	
-		
+		int bno = (Integer) session.getAttribute("bno");
+
 		d.setDtype("000");
 		//그림 있을 때
-		if(d.getDfile() != null) {
+		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
 		//trim 으로 내용공백지우기해야해
-		if(d.getDcontent() != null) {
+		if (d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
-		
+
 		d.setDphoto("");
-		
+
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
-		
+
 		MultipartFile upload = d.getUpload();
 		String dphoto = upload.getOriginalFilename();
 		if (dphoto != null && !dphoto.equals("")) {
 			d.setDphoto(dphoto);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
-				byte[]data = upload.getBytes();
+				byte[] data = upload.getBytes();
 				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
 				fos.write(data);
 				fos.close();
@@ -178,10 +199,10 @@ public class DiaryController {
 				e.printStackTrace();
 			}
 		}
-		
+
 		int no = dao.diaryNextNo();
 		d.setDno(no);
-		
+
 		Map map = new HashMap();
 		map.put("dno", d.getDno());
 		map.put("dtitle", d.getDtitle());
@@ -195,34 +216,34 @@ public class DiaryController {
 		map.put("secret", d.getSecret());
 		map.put("mno", d.getMno());
 		map.put("bno", d.getBno());
-		
-		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno="+mno+"&bno="+bno);
+
+		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno=" + mno + "&bno=" + bno);
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "작성 실패");
 			mav.setViewName("error");
-		}	
-		
-		return mav;				
+		}
+
+		return mav;
 	}
-	
+
 	@RequestMapping("diary.do")
 	public void diary() {
-		
+
 	}
 	
 	//일기 목록
 	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listDiary(int bno, int mno, HttpSession session) {		
+	public String listDiary(int bno, int mno, HttpSession session) {
 		Map map = new HashMap();
 		map.put("bno", bno);
 		map.put("mno", mno);
-		
+
 		session.setAttribute("bno", bno);
 		session.setAttribute("mno", mno);
-		
+
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -233,5 +254,11 @@ public class DiaryController {
 		}
 		return str;
 	}
-}
+	
+	
+	@RequestMapping("/grimpan.do")
+	public void grimpan() {
 
+	}
+	
+}
