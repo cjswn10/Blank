@@ -108,19 +108,3 @@ function out(e) {
 document.getElementById("delete").addEventListener("click", function(e) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 }, false);
-
-
-
-document.getElementById("rec").addEventListener("click", function(e) {
-	alert("ok")
-	context.beginPath();
-	context.moveTo(startX, startY);
-	context.rect(startX, startY, startX+startY, startX-startY);
-	context.stroke();
-});
-document.getElementById("cyc").addEventListener("click", function(e) {
-	alert("ok");
-});
-document.getElementById("tri").addEventListener("click", function(e) {
-	alert("ok");
-});
