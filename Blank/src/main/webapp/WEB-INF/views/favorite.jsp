@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,15 @@
 		left: 40px;
 		top: -10px;
 	}
+	
+	.main{
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 80px;
+		position: relative;
+		left:40%;
+		top: 200px;;
+	}
+	
 	/* 일기장,즐겨찾기 */
 	.menu
 	{ 
@@ -39,6 +49,11 @@
 		left: 1150px;
 		top: -160px;
 	}
+	#list p
+	{
+		font-family: 'Nanum Pen Script', serif;
+		font-size: 25px;
+	}
 
 
 	
@@ -54,17 +69,34 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		
-	})
+		var listFavorite = function() {
+			$.ajax({
+			url:"listFavorite.do",
+			data:{"mno":$("#mno").val()},
+			success:function(data)
+			{
+				
+				var list = eval("("+data+")");
+				$.each(list,function(i,f){
+					
+					var p = $("<p></p>").html(f);
+					$("#list").append(p);
+				});
+			}});
+		};
+		listFavorite();
+	});
 </script>
 </head>
 <body>
+
+	<input type="hidden" name="mno" id="mno" value="${mno}">
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
 	
-	<div class="main">
-		
+	<div class="main" id="list">
+		<h2>즐겨 찾기</h2>
 	</div>
 	
 	

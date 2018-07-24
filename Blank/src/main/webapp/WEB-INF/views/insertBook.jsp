@@ -59,13 +59,13 @@
 	#s1
 	{
 		position: relative;
-		left: 180px;
+		left: 170px;
 		top: 500px;
 	}
 	#false
 	{
 		position: relative;
-		left: 230px;
+		left: 220px;
 		top: 500px;
 	}
 	.containe
@@ -76,12 +76,12 @@
 		top: -30px;
 		left: 50px;
 	}
-	.container
+	.containerr
 	{
 		position: relative;
 		top: 50px;
-		left: 650px;	
-		width: 100%;
+		left: 700px;	
+		width: 400px;
 	}
 	
 	.custom-size .colorpicker-saturation 
@@ -102,8 +102,6 @@
 	{
 		height: 40px;
 	}
-	
-
 	
 </style>
 
@@ -170,7 +168,7 @@
 		})
 		
 		$("#s1").click(function() {
-			alert("일기장이 생성되었습니다.")
+			confirm("일기장이 생성되었습니다.")
 		})
 	})
 </script>
@@ -184,19 +182,11 @@
 		<div class="book">
 			<form action="insertBook.do" method="post" id="f">
 				<input type="hidden" name="mno" id="mno" value="${mno }">
-				<input type="text" name="btitle" class="aa" height="50" width="30">
-				<div class="container">
-					<div class="row">
-					    <div class="col-md-5">
-							<div class="example">
-			    				<div class="example-content well">
-			        				<div class="example-content-widget">
-			          					<input id="color-picker-size" type="text" name="bcolor" class="form-control"/>
-									</div>
-			   					</div>
-							</div>
-			  			</div>
-					</div>
+				<input type="text" name="btitle" id="btitle" class="aa" height="50" width="30">
+				<div class="containerr">
+					<div class="example-content well">
+			       		<input id="color-picker-size" type="text" name="bcolor" class="form-control"/>
+			       </div>
 				</div>
 				<input class="btn btn-default" id="s1" type="submit" value="등록">
 				<input class="btn btn-default" id="false" type="reset" value="취소">
