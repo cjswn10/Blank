@@ -37,7 +37,7 @@ $(function() {
 		<div class="row">
 			<label for="ddate" class="col-sm-2 control-label">날짜</label>
 			<div class="col-xs-3">
-				<input type="date" name="ddate" id="ddate" class="form-control" placeholder=".col-xs-2">
+				<input type="date" name="ddate" id="ddate" class="form-control" required="required" placeholder=".col-xs-2">
 			</div>
 			<label for="dweather" class="col-sm-2 control-label">날씨</label>
 			<div class="col-xs-3">

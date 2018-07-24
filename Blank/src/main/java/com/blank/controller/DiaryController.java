@@ -94,16 +94,17 @@ public class DiaryController {
 		int bno = (Integer) session.getAttribute("bno");		
 		ModelAndView mav = new ModelAndView();
 		
-		String oldFname = d.getDphoto();		
+		
+		String oldDphoto = d.getDphoto();		
 		
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
 		
 		MultipartFile upload = d.getUpload();
 		String dphoto = upload.getOriginalFilename();
-		if (dphoto != null && !dphoto.equals("")) {
-			d.setDphoto(dphoto);
+		if (dphoto != null && !dphoto.equals("")) {			
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
+			d.setDphoto(dphoto);
 			try {
 				byte[]data = upload.getBytes();
 				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
@@ -121,9 +122,21 @@ public class DiaryController {
 		}else {
 			mav.addObject("msg", "수정 실패");
 			mav.setViewName("error");			
-		}		
-		if (re > 0 && !oldFname.equals("") && oldFname != null && !oldFname.equals("")) {
-			File file = new File(path + "/" + oldFname);
+		}
+		
+//		d.setDphoto(oldDphoto);
+//		String fname = null;
+//		
+//		if (d.getDphoto() != null) {
+//			fname = d.getDphoto();
+//		}
+//		if (fname != null && !fname.equals("")) {
+//			d.setDphoto(fname);
+//		}
+		
+		
+		if (re > 0 && !dphoto.equals("") && dphoto != null && !dphoto.equals("")) {
+			File file = new File(path + "/" + oldDphoto);
 			file.delete();
 		}
 		return mav;				
