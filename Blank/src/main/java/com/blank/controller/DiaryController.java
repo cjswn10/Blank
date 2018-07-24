@@ -40,15 +40,25 @@ public class DiaryController {
 	
 	//일기 삭제
 	@RequestMapping("deleteDiary.do")
-	public ModelAndView deleteDiary(int dno, HttpSession session) {
+	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
+		
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 		Map map = new HashMap();
-		map.put("dno", dno);
+		map.put("dno", dno);		
+		
+		String path = request.getRealPath("resources/upload");
+		String oldFname = dao.detailDiary(map).getDphoto();		
+				
 		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "�궘�젣 �떎�뙣");
+			mav.setViewName("error");
+		}
+		if (re > 0 && oldFname != null && !oldFname.equals("")) {
+			File file = new File(path + "/" + oldFname);
+			file.delete();
 		}
 		return mav;
 	}
@@ -63,7 +73,8 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//일기 수정
+	//일기 수정 
+	//파일 수정안하고 수정시에도 파일 삭제됨.. 해결필요
 	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
@@ -83,8 +94,7 @@ public class DiaryController {
 		int bno = (Integer) session.getAttribute("bno");		
 		ModelAndView mav = new ModelAndView();
 		
-		String oldFname = d.getDphoto();
-		
+		String oldFname = d.getDphoto();		
 		
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
@@ -104,8 +114,8 @@ public class DiaryController {
 				e.printStackTrace();
 			}
 		}
-		
 		int re = dao.updateDiary(d);
+		
 		if (re > 0) {
 			mav.setViewName("redirect:/diary.do?mno="+mno+"&bno="+bno);
 		}else {
