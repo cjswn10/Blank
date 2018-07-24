@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
+
 <title>Insert title here</title>
 <style type="text/css">
 	#div{
@@ -38,6 +40,9 @@
 						var p3 = $('<p></p>').html(d.dtitle);
 						var br = $('<br>');
 						var p4 = $('<textarea rows="10" cols="60" readonly="readonly"></textarea>').html(d.dcontent);
+						$(p4).attr({
+							style: "font-family:"+d.dfont
+						})
 						$(a).append(img);
 						$(div).append(p1,p2,p3,a,br,p4);
 						$('#div').append(div);					
