@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
+
 <title>Insert title here</title>
 <style type="text/css">
 	#div{
@@ -36,8 +38,12 @@
 						
 						var a = $('<a href="detailDiary.do?dno='+d.dno+'"></a>')
 						var br = $('<br>');
+
 						var p = $('<textarea rows="15" cols="50" readonly="readonly"></textarea>').html(d.dcontent);
-						
+						$(p).attr({
+							style: "font-family:"+d.dfont
+						})
+            
 						if (d.dphoto != null) {							
 							var img = $('<img></img>').attr({
 								src: "resources/upload/" + d.dphoto,
@@ -51,7 +57,8 @@
 							$(a).append(p);
 							$(div).append(a);
 							$('#div').append(div);					
-						}								
+
+						}		            
 					})				
 			}})		
 		}

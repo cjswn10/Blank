@@ -8,17 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	/* 새일기장 생성 a태그   */
-	.book_writer
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 40px;
-		position: absolute;
-		width: 300px;
-		height:100px;
-		left: 60px;
-		top: 300px;
-	}
+
 	/*로고 표시 */
 	.title
 	{
@@ -138,6 +128,7 @@
 		position:relative;
 		display:table;
 		font-size: 30px;
+		color:black;
 		top:30px;
 		margin-left: auto;
 		margin-right: auto;
@@ -150,6 +141,7 @@
 		position:relative;
 		display:table;
 		font-size: 30px;
+		color:black;
 		top:400px;
 		left: 130px;
 
@@ -271,10 +263,6 @@
 		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
 		  <input type="hidden" name="id" id="id" value="${id }">
 		  <input type="hidden" name="mno" id="mno" value="${mno }">
-
-	<div class="book_writer">
-		<a href="insertBook.do">새 일기장</a>
-	</div>
 	
 	<div class="menu">
 		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>

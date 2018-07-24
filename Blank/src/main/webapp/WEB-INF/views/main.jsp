@@ -11,7 +11,7 @@
 	<a href="#" class="main">그림일기</a>
 
 <div class="upper">
-<span class="upper_menu">OOO님</span>
+<span class="upper_menu">${id }님</span>
 <a href="#" class="upper_menu">로그아웃</a>
 </div>
 <hr>
