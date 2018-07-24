@@ -49,6 +49,7 @@
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size: 30px;
+		left: -10px;
 	}
 	#sub
 	{
@@ -81,7 +82,7 @@
 		font-size:16px;
 		width:250px;
 		top: -5px;
-		left: 30px;
+		left: 10px;
 	}
 	.container
 	{

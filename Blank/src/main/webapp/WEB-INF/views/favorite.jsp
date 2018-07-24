@@ -26,7 +26,8 @@
 		font-size: 80px;
 		position: relative;
 		left:40%;
-		top: 200px;;
+		top: 200px;
+		
 	}
 	
 	/* 일기장,즐겨찾기 */
