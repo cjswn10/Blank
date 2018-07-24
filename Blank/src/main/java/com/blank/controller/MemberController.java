@@ -45,6 +45,30 @@ public class MemberController {
 		return mav;
 	}
 	
+	//아이디,비밀번호 찾기 페이지
+	@RequestMapping(value="search.do")
+	public ModelAndView search() {
+			
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//아이디 찾기 페이지
+	@RequestMapping(value="searchIdPage.do")
+	public ModelAndView searchId() {
+				
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//비밀번호 찾기 페이지
+	@RequestMapping(value="searchPwdPage.do")
+	public ModelAndView searchPwd() {
+					
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+
 	//Q&A
 	@RequestMapping(value="qNa.do")
 	public ModelAndView Qna() {
@@ -63,6 +87,7 @@ public class MemberController {
 		return mav;
 	}
 	
+	//회원가입
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -94,6 +119,7 @@ public class MemberController {
 	
 	}
 	
+	//로그인
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public void loginForm() {
 		
@@ -177,4 +203,53 @@ public class MemberController {
 		return mav;
 	}
 	
+	//회원 아이디 찾기
+	@RequestMapping(value="searchId.do")
+	@ResponseBody
+	public String searchId(String name,String phone)
+	{
+		Map map = new HashMap();
+		map.put("name", name);
+		map.put("phone", phone);
+		String str = "";
+		String id = dao.searchId(map);
+		if(id != null)
+		{
+			str = id;
+		}
+		else
+		{
+			str = "";
+		}	
+		return str;
+	}
+	
+	//회원 비밀번호 찾기
+	@RequestMapping(value="searchPwd.do")
+	@ResponseBody
+	public String searchPwd(String id,String phone)
+	{
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("phone", phone);
+		String str = "";
+		String pwd = dao.searchPwd(map);
+		if(pwd != null)
+		{
+			str = pwd;
+		}
+		else
+		{
+			str = "";
+		}	
+		return str;
+	}
+	
 }
+
+
+
+
+
+
+

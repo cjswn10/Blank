@@ -40,7 +40,7 @@ $(function() {
 		<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
 		<input type="hidden" name="mno" id="mno" value="${mno }"><br> 
 	
-		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle">
+		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle" required="required">
 		<div class="row">
 			<label for="ddate" class="col-sm-2 control-label">날짜</label>
 			<div class="col-xs-3">

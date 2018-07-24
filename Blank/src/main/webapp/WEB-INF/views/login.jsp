@@ -73,7 +73,7 @@
 						</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						
-						<a href="#" class="txt1">
+						<a href="search.do" class="txt1">
 							계정을 잊으셨나요?
 						</a>
 					</div>

@@ -37,6 +37,7 @@
 		<textarea class="form-control" rows="10" name="dcontent">${d.dcontent }</textarea><br>
 		그림 : <input type="text" name="dfile" value="${d.dfile }"><br>
 		사진 : <input type="file" name="upload"><br>
+		현재 파일 : ${d.dphoto }
 		<input type="hidden" name="dphoto" value="${d.dphoto }">
 		<input type="hidden" name="dtype" value="${d.dtype }">
 		<br>
