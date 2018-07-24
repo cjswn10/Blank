@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 웹폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -14,6 +17,10 @@ $(function() {
 	$("#dfont").change(function() {
 		console.log($(this).val())
 		$("#dcontent").attr({
+			style : "font-family:"+$(this).val()
+		})
+		
+		$("#dfont").attr({
 			style : "font-family:"+$(this).val()
 		})
 		
@@ -46,13 +53,21 @@ $(function() {
 		</div>
 		<label for="dfont">글씨체</label>
 		<select name="dfont" id="dfont">
-			<option value="Nanum Brush Script">Nanum Brush Script</option>
-			<option value="Nanum Gothic">Nanum Gothic</option>
-			<option value="Nanum Gothic Coding">Nanum Gothic Coding</option>
-			<option value="Nanum Myeongjo">Nanum Myeongjo</option>
-			<option value="Nanum Pen Script">Nanum Pen Script</option>
+			<option value="Nanum Brush Script" style="font-family: Nanum Brush Script" selected="selected" >Nanum Brush Script</option>
+			<!-- <option value="Nanum Gothic" style="font-family: Nanum Gothic">Nanum Gothic</option> -->
+			<option value="Nanum Gothic Coding" style="font-family:Nanum Gothic Coding">Nanum Gothic Coding</option>
+			<option value="Nanum Myeongjo" style="font-family:Nanum Myeongjo">Nanum Myeongjo</option>
+			<option value="Nanum Pen Script" style="font-family:Nanum Pen Script">Nanum Pen Script</option>
+			<option value="Stylish" style="font-family:Stylish">Stylish</option>
+			<option value="Jua" style="font-family:Jua">Jua</option>
+			<option value="Gamja Flower" style="font-family:Gamja Flower">Gamja Flower</option>
+			<option value="Black Han Sans" style="font-family:Black Han Sans">Black Han Sans</option>
+			<option value="Sunflower" style="font-family:Sunflower">Sunflower</option>
+			<option value="Do Hyeon" style="font-family:Do Hyeon">Do Hyeon</option>
+			<option value="Source Sans Pro" style="font-family:Source Sans Pro">Source Sans Pro</option>
+			<option value="Gaegu" style="font-family:Gaegu">Gaegu</option>
 		</select><br>
-		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: 궁서체"></textarea><br>
+		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea><br>
 		그림 : <input type="text" name="dfile"><br>
 		사진 : <input type="file" name="upload">
 		<br>
