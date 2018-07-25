@@ -35,8 +35,4 @@ public class DiaryDao {
 	public List<DiaryVo> listDiary(Map map){
 		return DiaryManager.listDiary(map);
 	}
-	
-	public GrimpanVo grimpan(Map map) {
-		return DiaryManager.grimpan(map);
-	}
 }

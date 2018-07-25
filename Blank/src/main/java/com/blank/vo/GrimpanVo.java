@@ -7,6 +7,15 @@ public class GrimpanVo {
 	private int bno;
 	private int mno;
 	private int dno;
+	private String fname;
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
 
 	private MultipartFile upload;
 
@@ -16,11 +25,12 @@ public class GrimpanVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GrimpanVo(int bno, int mno, int dno) {
+	public GrimpanVo(int bno, int mno, int dno, String fname) {
 		super();
 		this.bno = bno;
 		this.mno = mno;
 		this.dno = dno;
+		this.fname = fname;
 	}
 
 	public int getBno() {
@@ -55,5 +65,4 @@ public class GrimpanVo {
 		this.upload = upload;
 	}
 
-	
 }

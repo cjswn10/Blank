@@ -34,7 +34,7 @@ public class DiaryController {
 	/*
  	//=> dtype="110"
  	 */
-	//ÀÏ±â »èÁ¦
+	//ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/member/deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
@@ -50,7 +50,7 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "»èÁ¦ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("/member/error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
@@ -71,7 +71,7 @@ public class DiaryController {
 	}
 
 	
-	//ÀÏ±â ¼öÁ¤ 
+	//ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
@@ -123,7 +123,7 @@ public class DiaryController {
 
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		}else {
-			mav.addObject("msg", "¼öÁ¤ ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("/member/error");			
 		}
 		
@@ -146,7 +146,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÀÏ±â »ó¼¼
+	//ï¿½Ï±ï¿½ ï¿½ï¿½
 	@RequestMapping("/member/detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -156,25 +156,25 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//ÀÏ±âÀÛ¼º Æû
+	//ï¿½Ï±ï¿½ï¿½Û¼ï¿½ ï¿½ï¿½
 	@RequestMapping(value="/member/insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 
 	}
 	
-	//ÀÏ±â ÀÛ¼º
+	//ï¿½Ï±ï¿½ ï¿½Û¼ï¿½
 	@RequestMapping(value="/member/insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 
 		d.setDtype("000");
-		//±×¸² ÀÖÀ» ¶§
+		//ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
-		//trim À¸·Î ³»¿ë°ø¹éÁö¿ì±âÇØ¾ßÇØ
+		//trim ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
 		if (d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -221,7 +221,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "ÀÛ¼º ½ÇÆÐ");
+			mav.addObject("msg", "ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mav.setViewName("/member/error");
 		}
 
@@ -233,7 +233,7 @@ public class DiaryController {
 
 	}
 	
-	//ÀÏ±â ¸ñ·Ï
+	//ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {
@@ -256,9 +256,6 @@ public class DiaryController {
 	}
 	
 	
-	@RequestMapping("/member/grimpan.do")
-	public void grimpan() {
 
-	}
 	
 }
