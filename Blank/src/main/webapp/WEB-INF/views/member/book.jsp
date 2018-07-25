@@ -180,6 +180,7 @@
 						//일기장 목록 div
 						var div = $("<div></div>");
 						
+						
 						//일기장 -->> 일기목록
 						var aList = $("<a href='diary.do?mno="+d.mno+"&bno="+d.bno+"'></a>")
 						

@@ -31,7 +31,7 @@
 	타입 : ${d.dweather }<br>
 	작성(수정)일 : ${d.wdate}<br>
 	<c:if test="${not empty d.dphoto}">	
-		<img width="500" height="500" src="resources/upload/${d.dphoto }"><br>
+		<img width="500" height="500" src="../resources/upload/${d.dphoto }"><br>
 	</c:if>
 	내용 : <br>
 	<textarea rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
@@ -39,7 +39,7 @@
 	<a href="updateDiary.do?dno=${d.dno }">수정</a>
 	<button id="delete">삭제</button>
 	<hr>
-	<a href="diary.do">일기 목록</a>
+	<a href="diary.do?mno=${mno }&bno=${bno}">일기 목록</a>
 	<hr>
 </body>
 </html>

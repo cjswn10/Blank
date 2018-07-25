@@ -26,7 +26,7 @@ canvas {
 		<canvas id="canvas" width="500" height="500">
 		</canvas>
 	</div>
-	<script type="text/javascript" src="resources/js/drawingColor.js"></script>
+	<script type="text/javascript" src="../resources/js/drawingColor.js"></script>
 	<input type="button" id="selectColor">
 	<input id="myColor" type="color" onchange="cg_color(this.value)">
 	
@@ -38,6 +38,6 @@ canvas {
 
 	<input type="button" value="확인" onclick="setGrimpan()">
 	<input type="text" id="test">
-	<script src="resources/js/draw.js"></script>
+	<script src="../resources/js/draw.js"></script>
 </body>
 </html>
