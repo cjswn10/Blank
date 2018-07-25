@@ -38,7 +38,7 @@
 	.main
 	{
 		position: relative;
-		left: 330px;
+		left: 270px;
 		width:600px;
 		top: 260px;
 	}
@@ -48,7 +48,7 @@
 		position: relative;
 		font-size: 20px;
 		top: 50px;
-		left: 100px;
+		left: 90px;
 	}
 	#s1
 	{
@@ -56,7 +56,7 @@
 		position: relative;
 		font-size: 20px;
 		top: 50px;
-		left: 200px;
+		left: 190px;
 	}
 	.check
 	{
