@@ -35,7 +35,7 @@ public class DiaryController {
  	//=> dtype="110"
  	 */
 	//일기 삭제
-	@RequestMapping("deleteDiary.do")
+	@RequestMapping("/member/deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
 		int mno = (Integer) session.getAttribute("mno");
@@ -47,11 +47,11 @@ public class DiaryController {
 		String path = request.getRealPath("resources/upload");
 		String oldFname = dao.detailDiary(map).getDphoto();		
 				
-		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno="+mno+"&bno="+bno);
+		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "삭제 실패");
-			mav.setViewName("error");
+			mav.setViewName("/member/error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
 			File file = new File(path + "/" + oldFname);
@@ -61,7 +61,7 @@ public class DiaryController {
 		return mav;
 	}
 
-	@RequestMapping(value="updateDiary.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
 		Map map = new HashMap();
 		map.put("dno", dno);
@@ -72,7 +72,7 @@ public class DiaryController {
 
 	
 	//일기 수정 
-	@RequestMapping(value="updateDiary.do", method=RequestMethod.POST)
+	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
 		map.put("d", d);*/
@@ -121,10 +121,10 @@ public class DiaryController {
 		
 		if (re > 0) {
 
-			mav.setViewName("redirect:/diary.do?mno="+mno+"&bno="+bno);
+			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		}else {
 			mav.addObject("msg", "수정 실패");
-			mav.setViewName("error");			
+			mav.setViewName("/member/error");			
 		}
 		
 //		d.setDphoto(oldDphoto);
@@ -147,7 +147,7 @@ public class DiaryController {
 	}
 	
 	//일기 상세
-	@RequestMapping("detailDiary.do")
+	@RequestMapping("/member/detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
 		map.put("dno", dno);
@@ -157,13 +157,13 @@ public class DiaryController {
 	}
 	
 	//일기작성 폼
-	@RequestMapping(value="insertDiary.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 
 	}
 	
 	//일기 작성
-	@RequestMapping(value="insertDiary.do",  method=RequestMethod.POST)
+	@RequestMapping(value="/member/insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
@@ -217,24 +217,24 @@ public class DiaryController {
 		map.put("mno", d.getMno());
 		map.put("bno", d.getBno());
 
-		ModelAndView mav = new ModelAndView("redirect:/diary.do?mno=" + mno + "&bno=" + bno);
+		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno=" + mno + "&bno=" + bno);
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
 			mav.addObject("msg", "작성 실패");
-			mav.setViewName("error");
+			mav.setViewName("/member/error");
 		}
 
 		return mav;
 	}
 
-	@RequestMapping("diary.do")
+	@RequestMapping("/member/diary.do")
 	public void diary() {
 
 	}
 	
 	//일기 목록
-	@RequestMapping(value="listDiary.do", produces="text/plain;charset=utf-8")
+	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {
 		Map map = new HashMap();
@@ -256,7 +256,7 @@ public class DiaryController {
 	}
 	
 	
-	@RequestMapping("/grimpan.do")
+	@RequestMapping("/member/grimpan.do")
 	public void grimpan() {
 
 	}

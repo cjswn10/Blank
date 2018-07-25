@@ -31,13 +31,13 @@ public class BookController {
 	}
 	
 	//일기장 목록 뷰페이지
-	@RequestMapping("book.do")
+	@RequestMapping("/member/book.do")
 	public void list()
 	{}
 	
 	
 	//일기장 목록
-	@RequestMapping(value="listBook.do",produces="text/plain;charset=utf-8")
+	@RequestMapping(value="/member/listBook.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listBook(int mno)
 	{
@@ -58,7 +58,7 @@ public class BookController {
 	}
 	
 	//일기장 상세보기
-	@RequestMapping("detailBook.do")
+	@RequestMapping("/member/detailBook.do")
 	public ModelAndView detailBook(int bno)
 	{
 		ModelAndView mav = new ModelAndView();
@@ -69,28 +69,28 @@ public class BookController {
 	}
 	
 	//일기장 작성 Form
-	@RequestMapping(value="insertBook.do",method=RequestMethod.GET)
+	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.GET)
 	public void insertBookForm()
 	{}
 	
 	//일기장 작성 Submit
-	@RequestMapping(value="insertBook.do",method=RequestMethod.POST)
+	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.POST)
 	public ModelAndView insertBook(BookVo b,int mno)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/book.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/book.do");
 		b.setBno(dao.bookNextBno());
 		b.setMno(mno);
 		int re = dao.insertBook(b);
 		if(re<1)
 		{
 			mav.addObject("msg", "일기장에 작성에실패 하였습니다.");
-			mav.setViewName("error");
+			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
 	//일기장 수정 Form
-	@RequestMapping(value="updateBook.do",method=RequestMethod.GET)
+	@RequestMapping(value="/member/updateBook.do",method=RequestMethod.GET)
 	public ModelAndView updateBookForm(int bno)
 	{
 		ModelAndView mav = new ModelAndView();
@@ -101,31 +101,31 @@ public class BookController {
 	}
 		
 	//일기장 수정 Submit
-	@RequestMapping(value="updateBook.do",method=RequestMethod.POST)
+	@RequestMapping(value="/member/updateBook.do",method=RequestMethod.POST)
 	public ModelAndView updateBook(BookVo b)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/book.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/book.do");
 		int re = dao.updateBook(b);
 		if(re<1)
 		{
 			mav.addObject("msg", "일기장에 수정에실패 하였습니다.");
-			mav.setViewName("error");
+			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
 	//일기장 삭제
-	@RequestMapping(value="deleteBook.do")
+	@RequestMapping(value="/member/deleteBook.do")
 	public ModelAndView deleteBook(int bno)
 	{
-		ModelAndView mav = new ModelAndView("redirect:/book.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/book.do");
 		Map map = new HashMap();
 		map.put("bno", bno);
 		int re = dao.deleteBook(map);
 		if(re<1)
 		{
 			mav.addObject("msg", "일기장 삭제에실패 하였습니다.");
-			mav.setViewName("error");
+			mav.setViewName("/member/error");
 		}
 		return mav;
 	}

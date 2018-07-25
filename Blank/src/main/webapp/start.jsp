@@ -8,9 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="book.do">일기장</a><br>
 	<a href="join.do">가입</a><br>
 	<a href="login.do">로그인</a><br>
-	<a href="diary.do">일기 목록</a>
 </body>
 </html>
