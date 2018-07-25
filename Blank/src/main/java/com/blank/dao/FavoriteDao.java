@@ -11,9 +11,14 @@ import com.blank.vo.FavoriteVo;
 @Repository
 public class FavoriteDao {
 
-	public List<String> list(Map map)
+	public List<FavoriteVo> list(Map map)
 	{
-		System.out.println("dao¿‘¥œ¥Ÿ" + map.get("mno"));
+		
 		return FavoriteManager.list(map);
+	}
+	
+	public int delete(Map map)
+	{
+		return FavoriteManager.delete(map);
 	}
 }
