@@ -81,7 +81,7 @@ function openGrimpan() {
 		</select><br>
 		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea><br>
     
-		<input type="text" name="dfile"> 
+		<input type="text" name="dfile" id="dfile"> 
 		<input type="button" value="그림판열기" onclick="openGrimpan()"><br>
 		사진 : <input type="file" name="upload">
 		<br>

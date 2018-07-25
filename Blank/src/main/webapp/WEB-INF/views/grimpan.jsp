@@ -14,12 +14,11 @@ canvas {
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	
-function setGrimpan() {
-	window.close();
-}
 
-
+ function setGrimpan() {
+	opener.document.getElementById("dfile").value = document.getElementById("test").value;
+	self.close();
+} 
 
 </script>
 <body>
@@ -37,8 +36,8 @@ function setGrimpan() {
 		<input type="button" value="지우기" id="delete">
 	</div>
 
-	<input type="button" value="확인 " onclick="setGrimpan()">
-
+	<input type="button" value="확인" onclick="setGrimpan()">
+	<input type="text" id="test">
 	<script src="resources/js/draw.js"></script>
 </body>
 </html>
