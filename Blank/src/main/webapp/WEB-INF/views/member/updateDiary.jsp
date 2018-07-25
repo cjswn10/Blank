@@ -10,16 +10,31 @@
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 $(function() {
+	var oldFont="${d.dfont}"
 	
 	$("#dcontent").attr({
-		style : "font-family:"+${d.dfont}
+		style : "font-family:${d.dfont}"
 	});
 	
+	$.each($("#dfont").find("option"), function(i, f) {
+		if($(f).val() == oldFont) {
+			$(this).attr({
+				selected : "selected"
+			})
+		}
+	});
 	
-	//$("#dfont option").
-	//연주 폰트 불러오는거 하는중
+	$.each($(".secret"), function(i, s) {
+		console.log(  $(s).val()  );
+		if($(s).val() == ${d.secret}) {
+			$(this).attr({
+				checked : "checked"
+			})
+		}
+	});
 	
 	
 	$("#dfont").change(function() {
@@ -71,15 +86,15 @@ $(function() {
 			<option value="Source Sans Pro" style="font-family:Source Sans Pro">Source Sans Pro</option>
 			<option value="Gaegu" style="font-family:Gaegu">Gaegu</option>
 		</select><br>
-		<textarea class="form-control" rows="10" name="dcontent" style="font-family: ${d.dfont}">${d.dcontent }</textarea><br>
+		<textarea class="form-control" rows="10" name="dcontent" id="dcontent">${d.dcontent }</textarea><br>
 		그림 : <input type="text" name="dfile" value="${d.dfile }"><br>
 		사진 : <input type="file" name="upload"><br>
 		현재 파일 : ${d.dphoto }
 		<input type="hidden" name="dphoto" value="${d.dphoto }">
 		<input type="hidden" name="dtype" value="${d.dtype }">
 		<br>
-		<input type="radio" name="secret" value=1 checked="checked"> 비공개
-		<input type="radio" name="secret" value=0> 전체공개<br>
+		<input type="radio" name="secret" class="secret" value=1> 비공개
+		<input type="radio" name="secret" class="secret" value=0> 전체공개<br>
 		<button type="submit">수정</button>
 
 	</form>
