@@ -46,7 +46,7 @@
             
 						if (d.dphoto != null) {							
 							var img = $('<img></img>').attr({
-								src: "resources/upload/" + d.dphoto,
+								src: "../resources/upload/" + d.dphoto,
 								width: "250",
 								height: "250"					
 							});
