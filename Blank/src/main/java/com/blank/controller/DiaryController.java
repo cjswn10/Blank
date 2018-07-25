@@ -233,6 +233,7 @@ public class DiaryController {
 
 	}
 	
+	
 	//일기 목록
 	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
