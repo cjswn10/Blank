@@ -26,13 +26,14 @@ public class FavoriteController {
 		
 	}
 	
-	@RequestMapping("/member/listFavorite.do")
+	@RequestMapping(value="/member/listFavorite.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String list(int mno)
 	{
 		Map map = new HashMap();
 		map.put("mno", mno);
 		String str = "";
+		System.out.println("컨트롤러"+dao.list(map));
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 		str = mapper.writeValueAsString(dao.list(map));
@@ -42,9 +43,22 @@ public class FavoriteController {
 		}
 		return str;
 		
+	}
+	@RequestMapping("member/deleteFavorite.do")
+	@ResponseBody
+	public ModelAndView delete(int fno)
+	{
+		Map map = new HashMap();
+		map.put("fno", fno);
 		
-		
-		
+		ModelAndView mav = new ModelAndView("redirect:/member/favorite.do");
+		int re = dao.delete(map);
+		if(re<1)
+		{
+			mav.addObject("msg", "삭제하였습니다.");
+			mav.setViewName("/member/error");
+		}
+		return mav;
 	}
 	
 }

@@ -34,7 +34,7 @@ public class DiaryController {
 	/*
  	//=> dtype="110"
  	 */
-	//�ϱ� ����
+	//占싹깍옙 占쏙옙占쏙옙
 	@RequestMapping("/member/deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
@@ -50,7 +50,7 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "���� ����");
+			mav.addObject("msg", "占쏙옙占쏙옙 占쏙옙占쏙옙");
 			mav.setViewName("/member/error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
@@ -71,7 +71,7 @@ public class DiaryController {
 	}
 
 	
-	//�ϱ� ���� 
+	//占싹깍옙 占쏙옙占쏙옙 
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
@@ -123,7 +123,7 @@ public class DiaryController {
 
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		}else {
-			mav.addObject("msg", "���� ����");
+			mav.addObject("msg", "占쏙옙占쏙옙 占쏙옙占쏙옙");
 			mav.setViewName("/member/error");			
 		}
 		
@@ -146,7 +146,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//�ϱ� ��
+	//占싹깍옙 占쏙옙
 	@RequestMapping("/member/detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -156,25 +156,25 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//�ϱ��ۼ� ��
+	//占싹깍옙占쌜쇽옙 占쏙옙
 	@RequestMapping(value="/member/insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 
 	}
 	
-	//�ϱ� �ۼ�
+	//占싹깍옙 占쌜쇽옙
 	@RequestMapping(value="/member/insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 
 		d.setDtype("000");
-		//�׸� ���� ��
+		//占쌓몌옙 占쏙옙占쏙옙 占쏙옙
 		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
-		//trim ���� �������������ؾ���
+		//trim 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쌔억옙占쏙옙
 		if (d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -221,7 +221,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "�ۼ� ����");
+			mav.addObject("msg", "占쌜쇽옙 占쏙옙占쏙옙");
 			mav.setViewName("/member/error");
 		}
 
@@ -232,8 +232,8 @@ public class DiaryController {
 	public void diary() {
 
 	}
-	
-	//�ϱ� ���
+
+	//일기 목록
 	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {
