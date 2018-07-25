@@ -20,13 +20,13 @@ public class FavoriteController {
 	public void setDao(FavoriteDao dao) {
 		this.dao = dao;
 	}
-	@RequestMapping("/favorite.do")
+	@RequestMapping("/member/favorite.do")
 	public void listview()
 	{
 		
 	}
 	
-	@RequestMapping("/listFavorite.do")
+	@RequestMapping("/member/listFavorite.do")
 	@ResponseBody
 	public String list(int mno)
 	{

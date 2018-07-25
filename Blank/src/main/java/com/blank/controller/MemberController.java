@@ -32,7 +32,7 @@ public class MemberController {
 	
 	
 	//마이페이지
-	@RequestMapping(value="myPage.do")
+	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
 		
 		ModelAndView mav = new ModelAndView();
@@ -64,7 +64,7 @@ public class MemberController {
 	}
 
 	//Q&A
-	@RequestMapping(value="qNa.do")
+	@RequestMapping(value="/member/qNa.do")
 	public ModelAndView Qna() {
 		
 		ModelAndView mav = new ModelAndView();
@@ -72,7 +72,7 @@ public class MemberController {
 	}
 	
 	//로그아웃
-	@RequestMapping(value="logOut.do")
+	@RequestMapping(value="/member/logOut.do")
 	public ModelAndView logOut(HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -94,8 +94,8 @@ public class MemberController {
 		int re = dao.memberInsert(mv);
 		if (re < 1) {
 			mav.addObject("msg", "회원 가입 실패");
-			mav.setViewName("error");
-			System.out.println("error");
+			mav.setViewName("/member/error");
+			System.out.println("/member/error");
 		}
 		return mav;
 	}
@@ -136,27 +136,27 @@ public class MemberController {
 			
 			//회원번호 세션유지
 			session.setAttribute("mno", dao.mno(map));
-//			mav.setViewName("redirect:/main.do");
+//			mav.setViewName("redirect:/member/main.do");
 			//일단 멤버아니여도 로그인 되게 해놓을게요
 		}
 		System.out.println("----------------------------------------main");
-		mav.setViewName("redirect:/main.do");
+		mav.setViewName("redirect:/member/main.do");
 		return mav;
 	}
 	
-	@RequestMapping("/main.do")
+	@RequestMapping("/member/main.do")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}	
 	
 	//비밀번호 인증
-	@RequestMapping(value="pwdCheck.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
 	}
 	
-	@RequestMapping(value="pwdCheck.do", method=RequestMethod.POST)
+	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.POST)
 	public ModelAndView pwdCheck(String id, String pwd,int mno) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -166,7 +166,7 @@ public class MemberController {
 		map.put("mno", mno);
 		Boolean r = dao.login(map);
 		if (r == true) {
-			mav.setViewName("updateMember");
+			mav.setViewName("/member/updateMember");
 			mav.addObject("m", dao.getMember(map));
 		}
 		else
@@ -178,20 +178,20 @@ public class MemberController {
 	}
 	
 	//회원정보 수정
-	@RequestMapping(value="updateMember.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		
 	}
 	
-	@RequestMapping(value="updateMember.do", method=RequestMethod.POST)
+	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.POST)
 	public ModelAndView memberUpdate(MemberVo mv) {
 		
-		ModelAndView mav = new ModelAndView("redirect:/myPage.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/myPage.do");
 		
 		int re = dao.updateMember(mv);
 		if (re < 1) {
 			mav.addObject("msg", "회원정보 수정 실패");
-			mav.setViewName("error");
+			mav.setViewName("/member/error");
 		}
 		
 		return mav;
