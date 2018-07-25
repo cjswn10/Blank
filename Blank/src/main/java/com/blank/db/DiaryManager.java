@@ -82,12 +82,5 @@ public class DiaryManager {
 		return list;
 	}
 	
-	public static GrimpanVo grimpan(Map map) {
-		
-		GrimpanVo g = null;
-		SqlSession session = factory.openSession();
-		g = session.selectOne("diary.grimpan",map);
-		session.close();
-		return g;
-	}
+
 }
