@@ -26,15 +26,26 @@ public class FavoriteManager {
 		}
 	}
 	
-	public static List<String> list(Map map)
+	public static List<FavoriteVo> list(Map map)
 	{
 		System.out.println("매니저````````````````" + map.get("mno"));
 		SqlSession session = factory.openSession();
 
-		List<String> list = session.selectList("favorite.listFavorite", map);
+		List<FavoriteVo> list = session.selectList("favorite.listFavorite", map);
 		System.out.println("id는==========="+list.get(0));
 		session.close();
 		return list;
+	}
+	
+	public static int delete(Map map)
+	{
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.delete("favorite.deleteFavorite",map);
+		session.commit();
+		session.close();
+		
+		return re;
 	}
 	
 	
