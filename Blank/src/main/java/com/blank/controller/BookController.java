@@ -30,13 +30,37 @@ public class BookController {
 		this.dao = dao;
 	}
 	
-	//ÀÏ±âÀå ¸ñ·Ï ºäÆäÀÌÁö
+	@RequestMapping("/member/favoritesBook.do")
+	public void FavoriteBook() {
+		
+	}
+	
+	@RequestMapping("/member/listFavoriteBook.do")
+	@ResponseBody
+	public String listFavoriteBook(int mno) {
+		Map map = new HashMap();
+		map.put("mno", mno);
+		String str = "";
+		List<BookVo> list = dao.listFavoriteBook(map);	
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			str = mapper.writeValueAsString(list);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return str;
+	}
+	
+	
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/member/book.do")
 	public void list()
 	{}
 	
 	
-	//ÀÏ±âÀå ¸ñ·Ï
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="/member/listBook.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listBook(int mno)
@@ -57,7 +81,7 @@ public class BookController {
 		return str;
 	}
 	
-	//ÀÏ±âÀå »ó¼¼º¸±â
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	@RequestMapping("/member/detailBook.do")
 	public ModelAndView detailBook(int bno)
 	{
@@ -68,12 +92,12 @@ public class BookController {
 		return mav;
 	}
 	
-	//ÀÏ±âÀå ÀÛ¼º Form
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ Form
 	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.GET)
 	public void insertBookForm()
 	{}
 	
-	//ÀÏ±âÀå ÀÛ¼º Submit
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ Submit
 	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.POST)
 	public ModelAndView insertBook(BookVo b,int mno)
 	{
@@ -83,13 +107,13 @@ public class BookController {
 		int re = dao.insertBook(b);
 		if(re<1)
 		{
-			mav.addObject("msg", "ÀÏ±âÀå¿¡ ÀÛ¼º¿¡½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			mav.addObject("msg", "ï¿½Ï±ï¿½ï¿½å¿¡ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
-	//ÀÏ±âÀå ¼öÁ¤ Form
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Form
 	@RequestMapping(value="/member/updateBook.do",method=RequestMethod.GET)
 	public ModelAndView updateBookForm(int bno)
 	{
@@ -100,7 +124,7 @@ public class BookController {
 		return mav;
 	}
 		
-	//ÀÏ±âÀå ¼öÁ¤ Submit
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Submit
 	@RequestMapping(value="/member/updateBook.do",method=RequestMethod.POST)
 	public ModelAndView updateBook(BookVo b)
 	{
@@ -108,13 +132,13 @@ public class BookController {
 		int re = dao.updateBook(b);
 		if(re<1)
 		{
-			mav.addObject("msg", "ÀÏ±âÀå¿¡ ¼öÁ¤¿¡½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			mav.addObject("msg", "ï¿½Ï±ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
-	//ÀÏ±âÀå »èÁ¦
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/member/deleteBook.do")
 	public ModelAndView deleteBook(int bno)
 	{
@@ -124,7 +148,7 @@ public class BookController {
 		int re = dao.deleteBook(map);
 		if(re<1)
 		{
-			mav.addObject("msg", "ÀÏ±âÀå »èÁ¦¿¡½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			mav.addObject("msg", "ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			mav.setViewName("/member/error");
 		}
 		return mav;

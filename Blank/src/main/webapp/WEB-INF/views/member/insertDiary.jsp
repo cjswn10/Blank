@@ -98,7 +98,7 @@ function openGrimpan() {
 			
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				$("#img").attr("src", e.target.result);
+				$("#photo").attr("src", e.target.result);
 			}
 			reader.readAsDataURL(f);
 		});
@@ -131,10 +131,11 @@ function openGrimpan() {
 		</div>
 
 		<input type="text" name="dfile" id="dfile"> 
+    <img id="img" width="100" height="100">
 		<input type="button" value="그림판열기" onclick="openGrimpan()"><br>
 		사진 : <input type="file" name="upload" id="upload">
-		<img id="img">
-
+		<img id="photo">
+    <br>
 		
 		<label for="dfont">글씨체</label>
 		<select name="dfont" id="dfont">
@@ -153,7 +154,13 @@ function openGrimpan() {
 		</select><br>
 		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea><br>
     
-    
+<!--
+		<input type="text" name="dfile" id="dfile">
+		<img id="img" width="100" height="100">
+		<input type="button" value="그림판열기" onclick="openGrimpan()"><br>
+		사진 : <input type="file" name="upload">
+		<br>
+-->
 		<input type="radio" name="secret" value=1 checked="checked"> 비공개
 		<input type="radio" name="secret" value=0> 전체공개<br>
 

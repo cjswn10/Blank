@@ -2,53 +2,39 @@ package com.blank.db;
 
 import java.io.Reader;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.blank.vo.FavoriteVo;
+import com.blank.vo.DiaryVo;
 
-public class FavoriteManager {
-	
+public class MainManager {
+
 	private static SqlSessionFactory factory;
-	static {
+	static
+	{
 		try {
+			
 			Reader reader = Resources.getResourceAsReader("com/blank/db/BlankConfig.xml");
 			factory = new SqlSessionFactoryBuilder().build(reader);
 			reader.close();
 			
-		}catch(Exception e)
-		{
+		}catch (Exception e) {
+			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
 	}
 	
-	public static List<FavoriteVo> list(Map map)
+	public static List<DiaryVo> list()
 	{
-		System.out.println("매니저````````````````" + map.get("mno"));
+		List<DiaryVo> list = null;
 		SqlSession session = factory.openSession();
-
-		List<FavoriteVo> list = session.selectList("favorite.listFavorite", map);
-		System.out.println("id는==========="+list.get(0));
+		list = session.selectList("main.mainList");
 		session.close();
 		return list;
 	}
 	
-	public static int delete(Map map)
-	{
-		int re = -1;
-		SqlSession session = factory.openSession();
-		re = session.delete("favorite.deleteFavorite",map);
-		session.commit();
-		session.close();
-		
-		return re;
-	}
 	
-	
-	
-
 }

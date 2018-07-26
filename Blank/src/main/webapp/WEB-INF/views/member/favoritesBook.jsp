@@ -8,23 +8,13 @@
 <title>Insert title here</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	/* 새일기장 생성 a태그   */
-	.book_writer
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 40px;
-		position: absolute;
-		width: 300px;
-		height:100px;
-		left: 60px;
-		top: 300px;
-	}
+
 	/*로고 표시 */
 	.title
-	{ 
+	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 80px;
-		position: absolute;
+		position: relative;
 		width: 160px;
 		height:100px;
 		left: 40px;
@@ -32,21 +22,23 @@
 	}
 	/* 일기장,즐겨찾기 */
 	.menu
-	{
+	{ 
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 40px;
-		position: absolute;
+		position: relative;
+		width:300px;
 		left: 1100px;
-		top: 60px;
+		top: -560px;
 	}
 	/* id,마이페이지,로그아웃 */
 	.ifm
 	{
 		font-family: 'Nanum Pen Script', serif;
 		font-size: 25px;
-		position: absolute;
+		position: relative;
+		width:350px;
 		left: 1150px;
-		top: 20px;
+		top: -660px;
 	}
 	/* 새일기장 만들기 */
 	.insertBook
@@ -57,19 +49,9 @@
 		border: 1px solid black;
 		height:500px;
 		left: 350px;
-		top: 200px;
+		top: 100px;
 	}
-	/* 새일기장 만들기2 */
-	.insertBook2
-	{
-		font-size: 25px;
-		position: relative;
-		width: 450px;
-		border: 1px solid black;
-		height:500px;
-		left: 930px;
-		top: -300px;
-	}
+
 	/* remove 아이콘위치 */
 	#remove_location
 	{
@@ -146,10 +128,23 @@
 		position:relative;
 		display:table;
 		font-size: 30px;
+		color:black;
 		top:30px;
 		margin-left: auto;
 		margin-right: auto;
 		
+	}
+	/*일기장 수정*/
+	.update
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position:relative;
+		display:table;
+		font-size: 30px;
+		color:black;
+		top:400px;
+		left: 130px;
+
 	}
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -163,33 +158,48 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+
 	$(function() {
+		
+		
+		//var id = $("#id").val();
+		var mno = $("#mno").val();
 		
 		//일기장 목록 불러오기위한 기능 
 		var listBook = function() {
+					
 			$.ajax({
-				url:"listBook.do",
+				url:"listFavoriteBook.do",
+				data:{"mno":mno},
 				success:function(data)
 				{
+					//alert(data)
 					var list = eval("("+data+")");
 					$.each(list,function(i,d){
 						
 						//일기장 목록 div
 						var div = $("<div></div>");
 						
+						
 						//일기장 -->> 일기목록
-						var a1 = $("<a href='diary.do'></a>")
+						var aList = $("<a href='diary.do?mno="+d.mno+"&bno="+d.bno+"'></a>")
 						
 						//일기장 제목
 						var title = $("<span class='btitle'></span>").html(d.btitle);
 						
+						//일기장수정 문구
+						var Update = $("<span class='update'></span>").html("일기장 수정")
+						
+						//일기장 수정a태그
+						var aUpdate = $("<a href='updateBook.do?bno="+d.bno+"'></a>")
+						
 						//일기장 삭제a태그
-						var a = $("<a></a>")
+						var aRemove = $("<a></a>")
 						
 						
 						//remove 아이콘을 누르면 발생하여 선택한 일기장 삭제
-						$(a).click(function() {
-							re = confirm('정말로 삭제 하시겠습니까?');
+						$(aRemove).click(function() {
+							re = confirm('삭제된 그림일기장은 복구할 수 없습니다.\n정말로 삭제 하시겠습니까?');
 							if(re == true)
 							{
 								location.href="deleteBook.do?bno="+d.bno;
@@ -208,14 +218,18 @@
 							style:"background-color:"+d.bcolor
 						})
 						
+						//일기장 수정a태그에 수정하기 문구 추가
+						$(aUpdate).append(Update)
+						
 						//일기장 삭제a태그에 삭제아이콘 추가
-						$(a).append(remove)
-						$(a1).append(title)
+						$(aRemove).append(remove)
+						
+						//일기장 목록 --> 일기목록
+						$(aList).append(title)
 						
 						//일기장 목록에 제목,삭제a태그 추가
-						$(div).append(a1,a,color)
+						$(div).append(aList,aRemove,color,aUpdate)
 
-						//$(a1).append(div)
 						
 						//일기장 서브컨테이너에 추가
 						$("#sub_container").append(div)
@@ -232,6 +246,7 @@
 </script>
 </head>
 <body>
+	
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
@@ -247,18 +262,15 @@
 	</div>
 
 		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
-		  
-
-	<div class="book_writer">
-		<a href="insertBook.do">새 일기장</a>
-	</div>
+		  <input type="hidden" name="id" id="id" value="${id }">
+		  <input type="hidden" name="mno" id="mno" value="${mno }">
 	
 	<div class="menu">
-		<a href="listBooka.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">즐겨찾기</a>
+		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
 	</div>
 	
 	<div class="ifm">
-		<a href="">${id }님</a><span>  |  </span><a href="">마이페이지</a><span>  |  </span><a href="">로그아웃</a>
+		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
 	</div>
 </body>
 </html>
