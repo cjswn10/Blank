@@ -27,5 +27,6 @@
     <mapper resource="com/blank/db/DiaryMapper.xml"/>
     <mapper resource="com/blank/db/BookMapper.xml"/>
     <mapper resource="com/blank/db/FavoriteMapper.xml"/>
+    <mapper resource="com/blank/db/MainMapper.xml"/>
   </mappers>
 </configuration>
