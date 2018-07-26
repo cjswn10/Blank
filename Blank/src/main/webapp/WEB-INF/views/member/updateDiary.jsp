@@ -14,11 +14,12 @@
 <script type="text/javascript">
 $(function() {
 	var oldFont="${d.dfont}"
+	var oldSecret=${d.secret}
 	
+	//이전 폰트설정
 	$("#dcontent").attr({
 		style : "font-family:${d.dfont}"
 	});
-	
 	$.each($("#dfont").find("option"), function(i, f) {
 		if($(f).val() == oldFont) {
 			$(this).attr({
@@ -27,16 +28,17 @@ $(function() {
 		}
 	});
 	
+	//공개유무 가져옴
 	$.each($(".secret"), function(i, s) {
 		console.log(  $(s).val()  );
-		if($(s).val() == ${d.secret}) {
+		if($(s).val() == oldSecret) {
 			$(this).attr({
 				checked : "checked"
 			})
 		}
 	});
 	
-	
+	//선택한 폰트 적용
 	$("#dfont").change(function() {
 		console.log($(this).val())
 		$("#dcontent").attr({
@@ -46,7 +48,6 @@ $(function() {
 		$("#dfont").attr({
 			style : "font-family:"+$(this).val()
 		})
-		
 	});
 
 });
@@ -89,7 +90,7 @@ $(function() {
 		<textarea class="form-control" rows="10" name="dcontent" id="dcontent">${d.dcontent }</textarea><br>
 		그림 : <input type="text" name="dfile" value="${d.dfile }"><br>
 		사진 : <input type="file" name="upload"><br>
-		현재 파일 : ${d.dphoto }
+		현재 파일 : <img src="../resources/upload/${d.dphoto }" width="100%">
 		<input type="hidden" name="dphoto" value="${d.dphoto }">
 		<input type="hidden" name="dtype" value="${d.dtype }">
 		<br>

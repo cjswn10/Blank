@@ -168,6 +168,9 @@ public class DiaryController {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 
+		int no = dao.diaryNextNo();
+		d.setDno(no);
+		
 		d.setDtype("000");
 		//그림 있을 때
 		if (d.getDfile() != null) {
@@ -184,8 +187,32 @@ public class DiaryController {
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
 
+		
 		MultipartFile upload = d.getUpload();
-		String dphoto = upload.getOriginalFilename();
+		//String dphoto = upload.getOriginalFilename();
+		/////////////////////////////////////////////////////
+		 
+		
+		String ser_id = request.getParameter("ser_id");
+	       Boolean success = false;
+	       ModelAndView view = new ModelAndView();
+	       //파일명구하기
+	       String orgname = upload.getOriginalFilename();
+	       //확장자 구하기
+	       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
+	       //bno와 dno를 조합하고 확장자를 더하여 파일명 만듬
+	       String dphoto = bno + "b" + no + "." + exc;
+	       System.out.println("디포토"+dphoto);
+	       //임의의 파일 생성
+	       File saveFile = new File(path + "/" + dphoto);
+	       try {
+	    	   upload.transferTo(saveFile);
+	       } catch (Exception e) {
+	    	   // TODO: handle exception
+	    	   System.out.println(e.getMessage());
+	       }
+	       
+		/////////////////////////////////////////////////////
 		if (dphoto != null && !dphoto.equals("")) {
 			d.setDphoto(dphoto);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
@@ -200,8 +227,7 @@ public class DiaryController {
 			}
 		}
 
-		int no = dao.diaryNextNo();
-		d.setDno(no);
+		
 
 		Map map = new HashMap();
 		map.put("dno", d.getDno());
