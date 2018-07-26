@@ -28,7 +28,16 @@ public class BookManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	//ÀÏ±âÀå ¸ñ·Ï
+	
+	public static List<BookVo> listFavoriteBook(Map map){
+		List<BookVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("book.listFavoriteBook", map);
+		session.close();
+		return list;
+	}
+	
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public static List<BookVo> listBook(Map map)
 	{
 		List<BookVo> list = null;
@@ -37,7 +46,7 @@ public class BookManager {
 		session.close();
 		return list;
 	}
-	//ÀÏ±âÀå »ó¼¼º¸±â
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public static BookVo detailBook(Map map)
 	{
 		BookVo b = null;
@@ -46,7 +55,7 @@ public class BookManager {
 		session.close();
 		return b;
 	}
-	//ÀÏ±âÀå »ý¼º
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public static int insertBook(BookVo b)
 	{
 		int re = -1;
@@ -64,7 +73,7 @@ public class BookManager {
 		session.close();
 		return re;
 	}
-	//ÀÏ±âÀå ¼öÁ¤
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public static int updateBook(BookVo b)
 	{
 		int re = -1;
@@ -81,7 +90,7 @@ public class BookManager {
 		session.close();
 		return re;
 	}
-	//ÀÏ±âÀå »èÁ¦
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public static int deleteBook(Map map)
 	{
 		int re = -1;
@@ -106,7 +115,7 @@ public class BookManager {
 		session.close();
 		return re;
 	}
-	//ÀÏ±âÀå ¹øÈ£ÀÚµ¿Áõ°¡
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 	public static int bookNextBno()
 	{
 		int no = 0;

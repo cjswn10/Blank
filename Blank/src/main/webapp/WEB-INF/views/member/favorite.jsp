@@ -100,7 +100,7 @@
 				var list = eval("("+data+")");
 				$.each(list,function(i,f){
 					var img = $("<img src='../resources/img/favoriteicon.png'>")
-					var a = $("<a href='#'></a>").html(f.id+"님");
+					var a = $("<a href='favoritesBook.do?mno='"+f.mno+"></a>").html(f.id+"님");
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					

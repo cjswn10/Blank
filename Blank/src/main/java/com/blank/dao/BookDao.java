@@ -11,33 +11,37 @@ import com.blank.vo.MemberVo;
 
 @Repository
 public class BookDao {
+	
+	public List<BookVo> listFavoriteBook(Map map){
+		return BookManager.listFavoriteBook(map);
+	}
 
-	//ÀÏ±âÀå ¸ñ·Ï
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<BookVo> listBook(Map map)
 	{
 		return BookManager.listBook(map);
 	}
-	//ÀÏ±âÀå »ó¼¼º¸±â
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public BookVo detailBook(Map map)
 	{
 		return BookManager.detailBook(map);
 	}
-	//ÀÏ±âÀå »ı¼º
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int insertBook(BookVo b)
 	{
 		return BookManager.insertBook(b);
 	}
-	//ÀÏ±âÀå ¼öÁ¤
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int updateBook(BookVo b)
 	{
 		return BookManager.updateBook(b);
 	}
-	//ÀÏ±âÀå »èÁ¦
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int deleteBook(Map map)
 	{
 		return BookManager.deleteBook(map);
 	}
-	//ÀÏ±âÀå ¹øÈ£ÀÚµ¿Áõ°¡
+	//ï¿½Ï±ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 	public int bookNextBno()
 	{
 		return BookManager.bookNextBno();
