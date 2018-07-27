@@ -24,12 +24,13 @@ public class GrimpanController {
 	
 	@RequestMapping(value="/grimpan2.do",produces="text/plain;charset=utf-8",method=RequestMethod.POST)
 	@ResponseBody
-	public void makePngFile(String imageUrl,HttpServletRequest request){
+	public String makePngFile(String imageUrl,HttpServletRequest request){
 		/**
 		 * imgbase64 (imgbase64data:image/png;base64,iVBORw0KGgoAA 로 시작)
 		 * saveFilePath (저장경로)
 		 * savename (파일이름)
 		 */ 
+		
 		try {
 			// create a buffered image
 			BufferedImage image = null;
@@ -51,5 +52,7 @@ public class GrimpanController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+		return "ok";
 	}
 }
