@@ -2,6 +2,7 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 var selectColor = document.getElementById("selectColor");
 var myColor = document.getElementById("myColor");
+var drawBackup = new Array();
 
 context.strokeStyle = myColor.value;
 context.lineWidth = document.getElementById("Lwidth").value;
@@ -72,12 +73,14 @@ var drawing = false;
 
 
 function down(e) {
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	startX = e.offsetX;
 	startY = e.offsetY;
 	drawing = true;
 }
 
 function move(e) {
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	if (!drawing)
 		return;
 	var curX = e.offsetX;
@@ -89,6 +92,7 @@ function move(e) {
 
 function draw(curX, curY) {
 	
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	context.beginPath();
 	context.moveTo(startX, startY);
 	context.lineTo(curX, curY);
@@ -104,7 +108,20 @@ function out(e) {
 	drawing = false;
 }
 
+
 // 지우기
 document.getElementById("delete").addEventListener("click", function(e) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 }, false);
+
+document.getElementById("prev").addEventListener("click", function(e) {
+	context.putImageData(drawBackup.pop(), 0, 0);
+});
+
+
+
+
+
+
+
+

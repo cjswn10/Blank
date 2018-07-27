@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
+import com.blank.vo.BookVo;
 import com.blank.vo.DiaryVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,10 +33,42 @@ public class DiaryController {
 		this.dao = dao;
 	}
 
+	@RequestMapping("/member/detailFavoriteDiary.do")
+	public ModelAndView detailFavoriteDiary(int dno) {
+		Map map = new HashMap();
+		map.put("dno", dno);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("d", dao.detailDiary(map));
+		return mav;
+	}
+	
+	@RequestMapping("/member/favoritesDiary.do")
+	public void FavoriteBook() {
+		
+	}
+	
+	@RequestMapping(value="/member/favoriteDiaryList.do", produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String listFavoriteDiary(int fmno) {
+		Map map = new HashMap();
+		map.put("fmno", fmno);
+		String str = "";
+		List<DiaryVo> list = dao.listFavoriteDiary(map);	
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			str = mapper.writeValueAsString(list);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return str;
+	}
+	
 	/*
  	//=> dtype="110"
  	 */
-	//占싹깍옙 占쏙옙占쏙옙
+	//�뜝�떦源띿삕 �뜝�룞�삕�뜝�룞�삕
 	@RequestMapping("/member/deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
@@ -50,7 +84,7 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "占쏙옙占쏙옙 占쏙옙占쏙옙");
+			mav.addObject("msg", "�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕");
 			mav.setViewName("/member/error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
@@ -71,7 +105,7 @@ public class DiaryController {
 	}
 
 	
-	//占싹깍옙 占쏙옙占쏙옙 
+	//�뜝�떦源띿삕 �뜝�룞�삕�뜝�룞�삕 
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
@@ -123,7 +157,7 @@ public class DiaryController {
 
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		}else {
-			mav.addObject("msg", "占쏙옙占쏙옙 占쏙옙占쏙옙");
+			mav.addObject("msg", "�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕");
 			mav.setViewName("/member/error");			
 		}
 		
@@ -146,7 +180,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//占싹깍옙 占쏙옙
+	//�뜝�떦源띿삕 �뜝�룞�삕
 	@RequestMapping("/member/detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -156,13 +190,13 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//占싹깍옙占쌜쇽옙 占쏙옙
+	//�뜝�떦源띿삕�뜝�뙗�눦�삕 �뜝�룞�삕
 	@RequestMapping(value="/member/insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 
 	}
 	
-	//占싹깍옙 占쌜쇽옙
+	//�뜝�떦源띿삕 �뜝�뙗�눦�삕
 	@RequestMapping(value="/member/insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
@@ -172,12 +206,12 @@ public class DiaryController {
 		d.setDno(no);
 		
 		d.setDtype("000");
-		//占쌓몌옙 占쏙옙占쏙옙 占쏙옙
+		//�뜝�뙎紐뚯삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕
 		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
-		//trim 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쌔억옙占쏙옙
+		//trim �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�뙏�뼲�삕�뜝�룞�삕
 		if (d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -247,7 +281,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "占쌜쇽옙 占쏙옙占쏙옙");
+			mav.addObject("msg", "�뜝�뙗�눦�삕 �뜝�룞�삕�뜝�룞�삕");
 			mav.setViewName("/member/error");
 		}
 
@@ -259,7 +293,7 @@ public class DiaryController {
 
 	}
 
-	//일기 목록
+	//�씪湲� 紐⑸줉
 	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {

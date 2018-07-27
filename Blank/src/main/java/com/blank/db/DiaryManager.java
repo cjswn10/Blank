@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.blank.vo.BookVo;
 import com.blank.vo.DiaryVo;
 
 public class DiaryManager {
@@ -27,6 +28,15 @@ public class DiaryManager {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	
+	public static List<DiaryVo> listFavoriteDiary(Map map){
+		List<DiaryVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("diary.listFavoriteDiary", map);
+		session.close();
+		return list;
 	}
 
 	public static int deleteDiary(Map map) {

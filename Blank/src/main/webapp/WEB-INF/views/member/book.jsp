@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -202,6 +202,7 @@
 							re = confirm('삭제된 그림일기장은 복구할 수 없습니다.\n정말로 삭제 하시겠습니까?');
 							if(re == true)
 							{
+								confirm("일기장이 정상적으로 삭제되었습니다. ")
 								location.href="deleteBook.do?bno="+d.bno;
 							}	
 							else

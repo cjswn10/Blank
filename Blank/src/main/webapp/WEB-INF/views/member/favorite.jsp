@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>빈칸을 채우다.e</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 	
@@ -93,14 +93,14 @@
 		var listFavorite = function() {
 			$.ajax({
 			url:"listFavorite.do",
-			data:{"mno":$("#mno").val()},
+			data:{"mno":$("#mno").val()},				
 			success:function(data)
 			{
 				
-				var list = eval("("+data+")");
-				$.each(list,function(i,f){
+				var list = eval("("+data+")");					
+				$.each(list,function(i,f){	
 					var img = $("<img src='../resources/img/favoriteicon.png'>")
-					var a = $("<a href='favoritesBook.do?mno='"+f.mno+"></a>").html(f.id+"님");
+					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"'></a>").html(f.id+"님");				
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
@@ -116,7 +116,8 @@
 <body style="background-image: url('https://png.pngtree.com/thumb_back/fw800/back_pic/03/74/41/5757bc295499924.jpg');">
 
 	<input type="hidden" name="mno" id="mno" value="${mno}">
-	<div class="title">
+	<input type="hidden" name="fmno" id="fmno" value="${fmno}">
+		<div class="title">
 		<h1>그림 일기</h1>
 	</div>
 	

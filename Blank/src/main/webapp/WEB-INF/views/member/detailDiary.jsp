@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {
@@ -36,7 +36,7 @@
 	내용 : <br>
 	<textarea rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
 	<hr>
-	<a href="updateDiary.do?dno=${d.dno }">수정</a>
+	<a href="updateDiary.do?dno=${d.dno }">수정</a>	
 	<button id="delete">삭제</button>
 	<hr>
 	<a href="diary.do?mno=${mno }&bno=${bno}">일기 목록</a>

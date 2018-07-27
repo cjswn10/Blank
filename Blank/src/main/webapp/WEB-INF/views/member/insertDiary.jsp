@@ -41,6 +41,8 @@ function openGrimpan() {
 
 </script>
 
+<title>빈칸을 채우다.</title>
+
 <!-- 사진 보여주기 -->
 <script>
 	var sel_file;
@@ -69,7 +71,6 @@ function openGrimpan() {
 	}
 </script>
 
-<title>Insert title here</title>
 </head>
 <body>
 	<h2>일기 등록</h2>
