@@ -59,14 +59,13 @@ $(function() {
 		})
 	})
 	
-  	$("#pwd2").click(function() {
-		setInterval(function() {
-			if($("#pwd").val() != $("#pwd2").val()){
-				$("#checkPwd").html("비밀번호를 확인해주세요");
-			}else{
-				$("#checkPwd").html("");
-			}
-		}, 100);
+  	$("#pwd2").keyup(function() {
+	
+		if($("#pwd").val() != $("#pwd2").val()){
+			$("#checkPwd").html("비밀번호가 일치하지 않습니다").attr("style", "color:#F2594B");
+		}else{
+			$("#checkPwd").html("");
+		}
 		
 	});
    
