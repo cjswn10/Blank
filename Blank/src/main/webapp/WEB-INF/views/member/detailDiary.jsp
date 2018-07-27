@@ -36,7 +36,7 @@
 	내용 : <br>
 	<textarea rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
 	<hr>
-	<a href="updateDiary.do?dno=${d.dno }">수정</a>
+	<a href="updateDiary.do?dno=${d.dno }">수정</a>	
 	<button id="delete">삭제</button>
 	<hr>
 	<a href="diary.do?mno=${mno }&bno=${bno}">일기 목록</a>

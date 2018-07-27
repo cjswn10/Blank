@@ -29,15 +29,9 @@ public class BookManager {
 		}
 	}
 	
-	public static List<BookVo> listFavoriteBook(Map map){
-		List<BookVo> list = null;
-		SqlSession session = factory.openSession();
-		list = session.selectList("book.listFavoriteBook", map);
-		session.close();
-		return list;
-	}
 	
-	//�ϱ��� ���
+	
+	//占싹깍옙占쏙옙 占쏙옙占�
 	public static List<BookVo> listBook(Map map)
 	{
 		List<BookVo> list = null;
@@ -46,7 +40,7 @@ public class BookManager {
 		session.close();
 		return list;
 	}
-	//�ϱ��� �󼼺���
+	//占싹깍옙占쏙옙 占쏢세븝옙占쏙옙
 	public static BookVo detailBook(Map map)
 	{
 		BookVo b = null;
@@ -55,7 +49,7 @@ public class BookManager {
 		session.close();
 		return b;
 	}
-	//�ϱ��� ����
+	//占싹깍옙占쏙옙 占쏙옙占쏙옙
 	public static int insertBook(BookVo b)
 	{
 		int re = -1;
@@ -73,7 +67,7 @@ public class BookManager {
 		session.close();
 		return re;
 	}
-	//�ϱ��� ����
+	//占싹깍옙占쏙옙 占쏙옙占쏙옙
 	public static int updateBook(BookVo b)
 	{
 		int re = -1;
@@ -90,7 +84,7 @@ public class BookManager {
 		session.close();
 		return re;
 	}
-	//�ϱ��� ����
+	//占싹깍옙占쏙옙 占쏙옙占쏙옙
 	public static int deleteBook(Map map)
 	{
 		int re = -1;
@@ -115,7 +109,7 @@ public class BookManager {
 		session.close();
 		return re;
 	}
-	//�ϱ��� ��ȣ�ڵ�����
+	//占싹깍옙占쏙옙 占쏙옙호占쌘듸옙占쏙옙占쏙옙
 	public static int bookNextBno()
 	{
 		int no = 0;
