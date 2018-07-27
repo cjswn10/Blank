@@ -38,7 +38,7 @@ function openGrimpan() {
 }
 
 </script>
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 </head>
 <body>
 	<h2>일기 등록</h2>

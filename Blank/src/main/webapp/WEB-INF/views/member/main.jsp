@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="../resources/css/base.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 </head>
 <body>
 	<a href="#" class="main">그림일기</a>

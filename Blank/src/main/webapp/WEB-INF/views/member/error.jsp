@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 </head>
 <body>
 	다음과 같은 문제가 발생하였습니다<br>	
