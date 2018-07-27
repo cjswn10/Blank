@@ -168,6 +168,9 @@ public class DiaryController {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 
+		int no = dao.diaryNextNo();
+		d.setDno(no);
+		
 		d.setDtype("000");
 		//ï¿½ëœï¿½ë™ï§ëš¯ì‚• ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚• ï¿½ëœï¿½ë£ï¿½ì‚•
 		if (d.getDfile() != null) {
@@ -184,8 +187,32 @@ public class DiaryController {
 		String path = request.getRealPath("resources/upload");
 		System.out.println(path);
 
+		
 		MultipartFile upload = d.getUpload();
-		String dphoto = upload.getOriginalFilename();
+		//String dphoto = upload.getOriginalFilename();
+		/////////////////////////////////////////////////////
+		 
+		
+		String ser_id = request.getParameter("ser_id");
+	       Boolean success = false;
+	       ModelAndView view = new ModelAndView();
+	       //ÆÄÀÏ¸í±¸ÇÏ±â
+	       String orgname = upload.getOriginalFilename();
+	       //È®ÀåÀÚ ±¸ÇÏ±â
+	       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
+	       //bno¿Í dno¸¦ Á¶ÇÕÇÏ°í È®ÀåÀÚ¸¦ ´õÇÏ¿© ÆÄÀÏ¸í ¸¸µë
+	       String dphoto = bno + "b" + no + "." + exc;
+	       System.out.println("µğÆ÷Åä"+dphoto);
+	       //ÀÓÀÇÀÇ ÆÄÀÏ »ı¼º
+	       File saveFile = new File(path + "/" + dphoto);
+	       try {
+	    	   upload.transferTo(saveFile);
+	       } catch (Exception e) {
+	    	   // TODO: handle exception
+	    	   System.out.println(e.getMessage());
+	       }
+	       
+		/////////////////////////////////////////////////////
 		if (dphoto != null && !dphoto.equals("")) {
 			d.setDphoto(dphoto);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
@@ -200,8 +227,7 @@ public class DiaryController {
 			}
 		}
 
-		int no = dao.diaryNextNo();
-		d.setDno(no);
+		
 
 		Map map = new HashMap();
 		map.put("dno", d.getDno());

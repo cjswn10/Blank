@@ -1,38 +1,40 @@
 package com.blank.db;
 
 import java.io.Reader;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.blank.vo.GrimpanVo;
+import com.blank.vo.DiaryVo;
 
-public class GrimpanManager {
+public class MainManager {
 
 	private static SqlSessionFactory factory;
-	static {
+	static
+	{
 		try {
-
+			
 			Reader reader = Resources.getResourceAsReader("com/blank/db/BlankConfig.xml");
 			factory = new SqlSessionFactoryBuilder().build(reader);
 			reader.close();
-
-		} catch (Exception e) {
+			
+		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
 	}
-
-	public static GrimpanVo grimpan(Map map) {
-
-		GrimpanVo g = null;
+	
+	public static List<DiaryVo> list()
+	{
+		List<DiaryVo> list = null;
 		SqlSession session = factory.openSession();
-		g = session.selectOne("diary.grimpan", map);
+		list = session.selectList("main.mainList");
 		session.close();
-		return g;
+		return list;
 	}
-
+	
+	
 }
