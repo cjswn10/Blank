@@ -5,7 +5,7 @@
 <mapper namespace="favorite">
 
   <select id="listFavorite" resultType="favoriteVo" parameterType="java.lang.Integer">
-   	SELECT m.id,f.fno FROM favorites f, member m WHERE f.mno=#{mno} AND f.fmno = m.mno
+   	SELECT m.id,f.fno, f.mno, f.fmno FROM favorites f, member m WHERE f.mno=#{mno} AND f.fmno = m.mno
   </select>
    
   <delete id="deleteFavorite">

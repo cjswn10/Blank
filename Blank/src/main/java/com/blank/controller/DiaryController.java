@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.DiaryDao;
+import com.blank.vo.BookVo;
 import com.blank.vo.DiaryVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,6 +33,38 @@ public class DiaryController {
 		this.dao = dao;
 	}
 
+	@RequestMapping("/member/detailFavoriteDiary.do")
+	public ModelAndView detailFavoriteDiary(int dno) {
+		Map map = new HashMap();
+		map.put("dno", dno);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("d", dao.detailDiary(map));
+		return mav;
+	}
+	
+	@RequestMapping("/member/favoritesDiary.do")
+	public void FavoriteBook() {
+		
+	}
+	
+	@RequestMapping(value="/member/favoriteDiaryList.do", produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String listFavoriteDiary(int fmno) {
+		Map map = new HashMap();
+		map.put("fmno", fmno);
+		String str = "";
+		List<DiaryVo> list = dao.listFavoriteDiary(map);	
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			str = mapper.writeValueAsString(list);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return str;
+	}
+	
 	/*
  	//=> dtype="110"
  	 */
