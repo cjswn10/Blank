@@ -31,9 +31,4 @@
 		WHERE mno=#{mno} AND bno=#{bno}
 		ORDER BY ddate DESC
 	</select>
-	
-	<select id="grimpan" resultType="grimpanVo">
-		select dno,mno,bno from diary where dno=#{dno}	
-	</select>
-  
 </mapper>

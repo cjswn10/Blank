@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.blank.db.DiaryManager;
 import com.blank.vo.DiaryVo;
-import com.blank.vo.GrimpanVo;
 
 @Repository
 public class DiaryDao {
