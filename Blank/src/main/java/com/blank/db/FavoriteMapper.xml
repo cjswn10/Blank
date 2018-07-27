@@ -11,5 +11,8 @@
   <delete id="deleteFavorite">
   	DELETE FROM favorites WHERE fno=#{fno}
   </delete>
- 
+
+	<insert id="insertFavorite">
+		INSERT INTO favorites VALUES(seq_favorites.nextval, #{mno}, #{fmno})
+	</insert> 
 </mapper>

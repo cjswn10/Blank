@@ -28,11 +28,9 @@ public class FavoriteManager {
 	
 	public static List<FavoriteVo> list(Map map)
 	{
-		System.out.println("매니저````````````````" + map.get("mno"));
 		SqlSession session = factory.openSession();
 
 		List<FavoriteVo> list = session.selectList("favorite.listFavorite", map);
-		System.out.println("id는==========="+list.get(0));
 		session.close();
 		return list;
 	}

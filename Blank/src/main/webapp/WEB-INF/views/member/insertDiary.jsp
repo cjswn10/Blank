@@ -29,42 +29,6 @@ $(function() {
 		
 	});
 	
-	/*
-	//사진띄우기
-	var upload = $("#upload");
-    var holder = $("#holder");
-    var state = $("#status");
-
-	if (typeof window.FileReader === 'undefined') {
-	  state.className = 'fail';
-	} else {
-	  state.className = 'success';
-	  state.html("File API & FileReader available");
-	}
-	 
-	upload.onchange = function (e) {
-	  e.preventDefault();
-	
-	  var file = upload.files[0];
-	  var reader = new FileReader();
-	  $(reader).onload = function (event) {
-		  console.log("reader");
-	    var img = $("<img></img>");
-	    $(img).src = event.target.result;
-
-	    if (img.width > 560) { // holder width
-	      img.width = 560;
-	    }
-	    
-	    $(holder).html("");
-	    $(holder).append(img);
-	  };
-	  reader.readAsDataURL(file);
-	
-	};
-	//
-	*/
-	
 });
 
 var openG;
@@ -98,7 +62,6 @@ function openGrimpan() {
 			}
 			
 			sel_file = f;
-			
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#photo").attr("src", e.target.result);
@@ -106,8 +69,8 @@ function openGrimpan() {
 			reader.readAsDataURL(f);
 		});
 	}
-
 </script>
+
 </head>
 <body>
 	<h2>일기 등록</h2>
@@ -117,56 +80,77 @@ function openGrimpan() {
 	
 		<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
 		<input type="hidden" name="mno" id="mno" value="${mno }"><br> 
-	
-		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle" required="required">
-		<div class="row">
-			<label for="ddate" class="col-sm-2 control-label">날짜</label>
-			<div class="col-xs-3">
-				<input type="date" name="ddate" id="ddate" class="form-control" required="required" placeholder=".col-xs-2">
-
-			</div>
-			<label for="dweather" class="col-sm-2 control-label">날씨</label>
-			<div class="col-xs-3">
-				<input type="text" name="dweather" id="dweather"
-					class="form-control" placeholder="">
-			</div>
-		</div>
-
-		<input type="text" name="dfile" id="dfile"> 
-    <img id="img" width="100" height="100">
-		<input type="button" value="그림판열기" onclick="openGrimpan()"><br>
-		사진 : <input type="file" name="upload" id="upload">
-		<img id="photo">
-    <br>
 		
-		<label for="dfont">글씨체</label>
-		<select name="dfont" id="dfont">
-			<option value="Nanum Brush Script" style="font-family: Nanum Brush Script" selected="selected" >Nanum Brush Script</option>
-			<option value="Nanum Gothic Coding" style="font-family:Nanum Gothic Coding">Nanum Gothic Coding</option>
-			<option value="Nanum Myeongjo" style="font-family:Nanum Myeongjo">Nanum Myeongjo</option>
-			<option value="Nanum Pen Script" style="font-family:Nanum Pen Script">Nanum Pen Script</option>
-			<option value="Stylish" style="font-family:Stylish">Stylish</option>
-			<option value="Jua" style="font-family:Jua">Jua</option>
-			<option value="Gamja Flower" style="font-family:Gamja Flower">Gamja Flower</option>
-			<option value="Black Han Sans" style="font-family:Black Han Sans">Black Han Sans</option>
-			<option value="Sunflower" style="font-family:Sunflower">Sunflower</option>
-			<option value="Do Hyeon" style="font-family:Do Hyeon">Do Hyeon</option>
-			<option value="Source Sans Pro" style="font-family:Source Sans Pro">Source Sans Pro</option>
-			<option value="Gaegu" style="font-family:Gaegu">Gaegu</option>
-		</select><br>
-		<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea><br>
-    
-<!--
-		<input type="text" name="dfile" id="dfile">
-		<img id="img" width="100" height="100">
-		<input type="button" value="그림판열기" onclick="openGrimpan()"><br>
-		사진 : <input type="file" name="upload">
-		<br>
--->
-		<input type="radio" name="secret" value=1 checked="checked"> 비공개
-		<input type="radio" name="secret" value=0> 전체공개<br>
-
-		<button type="submit">등록</button>
+		<table>
+			<tr>
+				<td colspan="2">
+					<label for="dtitle">제목 </label>
+					<input type="text" name="dtitle" id="dtitle" required="required">
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<label for="ddate">날짜</label>
+					<input type="date" name="ddate" id="ddate" required="required">
+				</td>
+				<td>
+					<label for="dweather">날씨</label>
+					<input type="text" name="dweather" id="dweather">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<label for="dfont">글씨체</label>
+					<select name="dfont" id="dfont">
+						<option value="Nanum Brush Script" style="font-family: Nanum Brush Script" selected="selected" >Nanum Brush Script</option>
+						<option value="Nanum Gothic Coding" style="font-family:Nanum Gothic Coding">Nanum Gothic Coding</option>
+						<option value="Nanum Myeongjo" style="font-family:Nanum Myeongjo">Nanum Myeongjo</option>
+						<option value="Nanum Pen Script" style="font-family:Nanum Pen Script">Nanum Pen Script</option>
+						<option value="Stylish" style="font-family:Stylish">Stylish</option>
+						<option value="Jua" style="font-family:Jua">Jua</option>
+						<option value="Gamja Flower" style="font-family:Gamja Flower">Gamja Flower</option>
+						<option value="Black Han Sans" style="font-family:Black Han Sans">Black Han Sans</option>
+						<option value="Sunflower" style="font-family:Sunflower">Sunflower</option>
+						<option value="Do Hyeon" style="font-family:Do Hyeon">Do Hyeon</option>
+						<option value="Source Sans Pro" style="font-family:Source Sans Pro">Source Sans Pro</option>
+						<option value="Gaegu" style="font-family:Gaegu">Gaegu</option>
+					</select>
+					<!-- 그림판 버튼 -->
+					<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px"></button>
+					<input type="text" name="dfile" id="dfile"> 
+					
+					<!-- 사진첨부 버튼 -->
+					<label for="upload"><img alt="사진첨부" src="../resources/img/icon/photo.png" width="25px"></label>
+					<input type="file" name="upload" id="upload" style="display: none;">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<!-- 그림 -->
+					<img id="img" width="300">
+					<!-- 사진 -->
+					<img id="photo">
+					<!-- 글 -->
+					<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="radio" name="secret" value=1 checked="checked">나만보기
+					<input type="radio" name="secret" value=0>전체공개
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td>
+					<button type="submit">등록</button>
+				</td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>
