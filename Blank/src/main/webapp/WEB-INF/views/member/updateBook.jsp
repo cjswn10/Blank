@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 		/*로고 표시 */
@@ -106,7 +106,7 @@
 
 <!-- 색상구현 css -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/dist/css/bootstrap-colorpicker.css" rel="stylesheet">
+<link href="../resources/dist/css/bootstrap-colorpicker.css" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -120,7 +120,7 @@
 <script src="//code.jquery.com/jquery-3.2.1.js"></script>
 
 <!-- 색상구현 자바스크립트 -->
-<script src="resources/dist/js/bootstrap-colorpicker.min.js"></script>
+<script src="../resources/dist/js/bootstrap-colorpicker.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		

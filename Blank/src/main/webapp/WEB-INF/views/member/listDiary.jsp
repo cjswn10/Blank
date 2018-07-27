@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 </script>
-<title>Insert title here</title>
+<title>빈칸을 채우다.</title>
 </head>
 <body>
 </body>
