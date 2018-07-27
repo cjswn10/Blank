@@ -27,21 +27,19 @@ canvas {
 			
 			$.ajax({
 				type : "POST",
-				url : "grimpan2.do",
+				url : "girmpn2.do",
 				contentType: "application/x-www-form-urlencoded; charset=utf-8",
-				data : {
-					"imageUrl" : imageUrl
-				},
-				success : function() {
-					alert("ok");
-				}
-			});
+				data : {"imageUrl" : imageUrl}
+				
+			}).success(function(data) {
+					var arr = eval("("+data+")");
+					alert(arr)
+				});
 
 			// 부모창으로 넘기기
 			opener.document.getElementById("img").src = document
 					.getElementById("myImage").src;
 			self.close();
-			
 			
 		});
 		
