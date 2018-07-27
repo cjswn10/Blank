@@ -14,34 +14,48 @@ canvas {
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	
-	
-	
-	
-	
 	$(function() {
 		$("#download").click(function() {
 			downloadCanvas(this, 'canvas', 'seongin.png');
 		});
+		
+		$("#btnOk").click(function() {
+			
+			var myImage = document.getElementById("myImage");
+			var imageUrl = canvas.toDataURL();
+			myImage.src = canvas.toDataURL();
+			
+			$.ajax({
+				type : "POST",
+				url : "grimpan2.do",
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				data : {
+					"imageUrl" : imageUrl
+				},
+				success : function() {
+					alert("ok");
+				}
+			});
+
+			// 부모창으로 넘기기
+			opener.document.getElementById("img").src = document
+					.getElementById("myImage").src;
+			self.close();
+			
+			
+		});
+		
 	});
-	
+
+	//C:\Blank\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Blank\resources\upload2
 	// 작업 이미지 로컬 다운로드(.PNG)
 	function downloadCanvas(link, canvasId, filename) {
 		link.href = document.getElementById(canvasId).toDataURL();
 		link.download = filename;
 	}
+
+
 	
-	// 이미지 변환 및 부모창으로 데이터 넘기기
-	function setGrimpan() {
-		
-		//이미지로 변환
-		var myImage = document.getElementById("myImage");
-		myImage.src = canvas.toDataURL();
-		
-		// 부모창으로 넘기기
-		opener.document.getElementById("img").src = document.getElementById("myImage").src;
-		self.close();
-	}
 </script>
 <body>
 	<div>
@@ -57,16 +71,17 @@ canvas {
 		onchange="cg_line(this.value)">
 
 	<div>
-		<input type="button" value="지우기" id="delete">
+		<input type="button" value="지우기" id="delete"> <input
+			type="button" value="되돌리기" id="prev">
 	</div>
 
 	<div>
-		<input type="button" value="확인" onclick="setGrimpan()">
+		<input type="button" id="btnOk" value="확인">
 	</div>
 	<a id="download"><button type="button">Download</button></a>
-	
+
 	<img id="myImage">
-	
+
 	<script src="../resources/js/draw.js"></script>
 </body>
 </html>
