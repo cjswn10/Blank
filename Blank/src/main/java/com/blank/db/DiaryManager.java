@@ -11,7 +11,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.blank.vo.DiaryVo;
-import com.blank.vo.GrimpanVo;
 
 public class DiaryManager {
 
