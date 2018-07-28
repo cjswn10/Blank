@@ -16,32 +16,32 @@ public class BookDao {
 		return BookManager.listFavoriteBook(map);
 	}
 
-	//�ϱ��� ���
+	//占싹깍옙占쏙옙 占쏙옙占�
 	public List<BookVo> listBook(Map map)
 	{
 		return BookManager.listBook(map);
 	}
-	//�ϱ��� �󼼺���
+	//占싹깍옙占쏙옙 占쏢세븝옙占쏙옙
 	public BookVo detailBook(Map map)
 	{
 		return BookManager.detailBook(map);
 	}
-	//�ϱ��� ����
+	//占싹깍옙占쏙옙 占쏙옙占쏙옙
 	public int insertBook(BookVo b)
 	{
 		return BookManager.insertBook(b);
 	}
-	//�ϱ��� ����
+	//占싹깍옙占쏙옙 占쏙옙占쏙옙
 	public int updateBook(BookVo b)
 	{
 		return BookManager.updateBook(b);
 	}
-	//�ϱ��� ����
+	//占싹깍옙占쏙옙 占쏙옙占쏙옙
 	public int deleteBook(Map map)
 	{
 		return BookManager.deleteBook(map);
 	}
-	//�ϱ��� ��ȣ�ڵ�����
+	//占싹깍옙占쏙옙 占쏙옙호占쌘듸옙占쏙옙占쏙옙
 	public int bookNextBno()
 	{
 		return BookManager.bookNextBno();

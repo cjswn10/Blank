@@ -230,14 +230,14 @@ public class DiaryController {
 		String ser_id = request.getParameter("ser_id");
 	       Boolean success = false;
 	       ModelAndView view = new ModelAndView();
-	       //ÆÄÀÏ¸í±¸ÇÏ±â
+	       //ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï±ï¿½
 	       String orgname = upload.getOriginalFilename();
-	       //È®ÀåÀÚ ±¸ÇÏ±â
+	       //È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
-	       //bno¿Í dno¸¦ Á¶ÇÕÇÏ°í È®ÀåÀÚ¸¦ ´õÇÏ¿© ÆÄÀÏ¸í ¸¸µë
+	       //bnoï¿½ï¿½ dnoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ È®ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	       String dphoto = bno + "b" + no + "." + exc;
-	       System.out.println("µðÆ÷Åä"+dphoto);
-	       //ÀÓÀÇÀÇ ÆÄÀÏ »ý¼º
+	       System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+dphoto);
+	       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	       File saveFile = new File(path + "/" + dphoto);
 	       try {
 	    	   upload.transferTo(saveFile);
