@@ -29,7 +29,7 @@
 		position: relative;
 		width:300px;
 		left: 1100px;
-		top: -560px;
+		top: -600px;
 	}
 	/* id,마이페이지,로그아웃 */
 	.ifm
@@ -39,7 +39,7 @@
 		position: relative;
 		width:350px;
 		left: 1150px;
-		top: -660px;
+		top: -700px;
 	}
 	/* 새일기장 만들기 */
 	.insertBook
@@ -109,6 +109,17 @@
 		font-size: 400%;
 		color: black;
 	}
+	.selectBook
+	{
+		position: relative;
+		left: 50px;
+		top: 100px;
+	}
+	.btitle
+	{
+		width: 250px;
+		height: 40px;
+	}
 
 </style>
 
@@ -126,6 +137,26 @@
 	$(function () {
 		var mno = document.location.search.substr(5,4);		
 		var bno = document.location.search.substr(14,1);		
+		
+		var selectBook = function(){
+			$.ajax({
+				url:"listBook.do",
+				data:{"mno":mno},
+				success:function(data)
+				{
+					var list = eval("("+data+")")
+					$.each(list,function(i,b){
+						var btitle = $("<option value="+b.bno+"></option>").html(b.btitle);
+						$(".btitle").append(btitle);
+									
+					})
+				}
+			})
+		}
+		$(".btitle").change(function(){
+			var btitle = $(".btitle").val();
+			location.href="diary.do?mno="+mno+"&bno="+btitle+""
+		})
 		
 		var listDiary = function () {
 			
@@ -164,7 +195,10 @@
 					})				
 			}})		
 		}
+		selectBook();
 		listDiary();
+		
+		
 		
 	})
 	
@@ -185,6 +219,15 @@
 		</table>
 	</div>
 	
+	<div class="selectBook">
+		<select class="btitle">
+			<option value="">이동하고싶은 일기장을 선택하세요</option>
+		</select>
+	</div>
+	
+	
+	
+	<span id="test"></span>
 	<div class="insertBook"><a href="insertDiary.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
 	
 	<div class="menu">
