@@ -47,3 +47,22 @@ hr {
 li{
 	list-style: none;
 }
+
+
+ 
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.container .landing {
+    width: 70%;
+    height: 600px;
+    margin: auto;
+    background-color: orange;
+    /*
+    background-image: url(https://i.ytimg.com/vi/dtxcy6g3zeY/maxresdefault.jpg);
+    */
+    background-size: cover;
+    background-position: center center;
+}

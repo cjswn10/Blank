@@ -12,9 +12,7 @@ import com.blank.vo.MemberVo;
 @Repository
 public class BookDao {
 	
-	public List<BookVo> listFavoriteBook(Map map){
-		return BookManager.listFavoriteBook(map);
-	}
+	
 
 	//占싹깍옙占쏙옙 占쏙옙占�
 	public List<BookVo> listBook(Map map)
