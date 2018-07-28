@@ -144,11 +144,14 @@ public class MemberController {
 		return mav;
 	}
 	
+	/*
 	@RequestMapping("/member/main.do")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}	
+	*/
+	
 	
 	//비밀번호 인증
 	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
