@@ -10,6 +10,11 @@ import com.blank.vo.DiaryVo;
 
 @Repository
 public class DiaryDao {
+	
+	public List<DiaryVo> listFavoriteDiary(Map map)
+	{
+		return DiaryManager.listFavoriteDiary(map);
+	}
   
 	public int deleteDiary(Map map) {
 		return DiaryManager.deleteDiary(map);

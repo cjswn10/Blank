@@ -26,6 +26,13 @@
 	main
 </div>
 
+<section class="landing">
+		<div class="container">
+		hahahah
+		</div>
+		
+</section>
+
 <div id="favo_list" align="center"></div>
 </body>
 </html>
