@@ -5,7 +5,7 @@
 <mapper namespace="diary">	
 
 	<select id="listFavoriteDiary" resultType="diaryvo">
-		select distinct(d.dno), d.dfont, d.dphoto,d.dcontent from diary d, favorites f where d.mno=f.mno and f.mno = #{fmno}
+		select distinct(d.dno), d.dfont, d.dphoto,d.dcontent from diary d, favorites f where d.mno=#{fmno}
 	</select>
 
 	<delete id="deleteDiary">

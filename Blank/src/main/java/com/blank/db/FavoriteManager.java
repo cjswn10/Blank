@@ -25,6 +25,17 @@ public class FavoriteManager {
 			System.out.println(e.getMessage());
 		}
 	}
+		
+	public static int insertFavorite(Map map) {
+		System.out.println("mno : " + map.get("mno"));
+		System.out.println("fmno : " + map.get("fmno"));
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("favorite.insertFavorite", map);
+		session.commit();
+		session.close();		
+		return re;
+	}
 	
 	public static List<FavoriteVo> list(Map map)
 	{

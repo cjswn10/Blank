@@ -49,7 +49,7 @@ public class DiaryController {
 	
 	@RequestMapping(value="/member/favoriteDiaryList.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listFavoriteDiary(int fmno) {
+	public String listFavoriteDiary(int fmno, HttpSession session) {
 		Map map = new HashMap();
 		map.put("fmno", fmno);
 		String str = "";
@@ -68,7 +68,7 @@ public class DiaryController {
 	/*
  	//=> dtype="110"
  	 */
-	//�뜝�떦源띿삕 �뜝�룞�삕�뜝�룞�삕
+	//占쎈쐻占쎈뼣繹먮씮�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 	@RequestMapping("/member/deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
@@ -84,7 +84,7 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕");
+			mav.addObject("msg", "占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲");
 			mav.setViewName("/member/error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
@@ -105,7 +105,7 @@ public class DiaryController {
 	}
 
 	
-	//�뜝�떦源띿삕 �뜝�룞�삕�뜝�룞�삕 
+	//占쎈쐻占쎈뼣繹먮씮�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
 		/*Map map = new HashMap();
@@ -157,7 +157,7 @@ public class DiaryController {
 
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		}else {
-			mav.addObject("msg", "�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕");
+			mav.addObject("msg", "占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲");
 			mav.setViewName("/member/error");			
 		}
 		
@@ -180,7 +180,7 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//�뜝�떦源띿삕 �뜝�룞�삕
+	//占쎈쐻占쎈뼣繹먮씮�굲 占쎈쐻占쎈짗占쎌굲
 	@RequestMapping("/member/detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -190,13 +190,13 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//�뜝�떦源띿삕�뜝�뙗�눦�삕 �뜝�룞�삕
+	//占쎈쐻占쎈뼣繹먮씮�굲占쎈쐻占쎈솙占쎈닰占쎌굲 占쎈쐻占쎈짗占쎌굲
 	@RequestMapping(value="/member/insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 
 	}
 	
-	//�뜝�떦源띿삕 �뜝�뙗�눦�삕
+	//占쎈쐻占쎈뼣繹먮씮�굲 占쎈쐻占쎈솙占쎈닰占쎌굲
 	@RequestMapping(value="/member/insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
@@ -206,12 +206,12 @@ public class DiaryController {
 		d.setDno(no);
 		
 		d.setDtype("000");
-		//�뜝�뙎紐뚯삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕
+		//占쎈쐻占쎈솊筌뤿슣�굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲
 		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
-		//trim �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�뙏�뼲�삕�뜝�룞�삕
+		//trim 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈솋占쎈섣占쎌굲占쎈쐻占쎈짗占쎌굲
 		if (d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -230,14 +230,14 @@ public class DiaryController {
 		String ser_id = request.getParameter("ser_id");
 	       Boolean success = false;
 	       ModelAndView view = new ModelAndView();
-	       //���ϸ��ϱ�
+	       //占쏙옙占싹몌옙占싹깍옙
 	       String orgname = upload.getOriginalFilename();
-	       //Ȯ���� ���ϱ�
+	       //확占쏙옙占쏙옙 占쏙옙占싹깍옙
 	       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
-	       //bno�� dno�� �����ϰ� Ȯ���ڸ� ���Ͽ� ���ϸ� ����
+	       //bno占쏙옙 dno占쏙옙 占쏙옙占쏙옙占싹곤옙 확占쏙옙占쌘몌옙 占쏙옙占싹울옙 占쏙옙占싹몌옙 占쏙옙占쏙옙
 	       String dphoto = bno + "b" + no + "." + exc;
-	       System.out.println("������"+dphoto);
-	       //������ ���� ����
+	       System.out.println("占쏙옙占쏙옙占쏙옙"+dphoto);
+	       //占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	       File saveFile = new File(path + "/" + dphoto);
 	       try {
 	    	   upload.transferTo(saveFile);
@@ -281,7 +281,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "�뜝�뙗�눦�삕 �뜝�룞�삕�뜝�룞�삕");
+			mav.addObject("msg", "占쎈쐻占쎈솙占쎈닰占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲");
 			mav.setViewName("/member/error");
 		}
 
@@ -293,7 +293,7 @@ public class DiaryController {
 
 	}
 
-	//�씪湲� 紐⑸줉
+	//占쎌뵬疫뀐옙 筌뤴뫖以�
 	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {
