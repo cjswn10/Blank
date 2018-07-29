@@ -17,7 +17,7 @@ public class MainController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/main.do")
+	@RequestMapping("/member/main.do")
 	public ModelAndView list()
 	{
 		ModelAndView mav = new ModelAndView();

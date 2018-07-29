@@ -1,4 +1,4 @@
-package com.bank.filter;
+package com.blank.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -37,7 +37,7 @@ public class LoginFilter implements Filter {
 		// place your code here
 
 		// pass the request along the filter chain
-		
+	
 		String id = (String)((HttpServletRequest)request).getSession().getAttribute("id");
 		
 		if(id != null)
@@ -49,7 +49,6 @@ public class LoginFilter implements Filter {
 			((HttpServletResponse)response).sendRedirect("/controller/login.do");
 		}	
 		
-		
 	}
 
 	/**
@@ -60,3 +59,4 @@ public class LoginFilter implements Filter {
 	}
 
 }
+
