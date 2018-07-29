@@ -10,6 +10,10 @@ import com.blank.vo.FavoriteVo;
 
 @Repository
 public class FavoriteDao {
+	
+	public int insertFavorite(Map map) {
+		return FavoriteManager.insertFavorite(map);
+	}
 
 	public List<FavoriteVo> list(Map map)
 	{

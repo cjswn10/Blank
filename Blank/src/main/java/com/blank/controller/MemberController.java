@@ -31,7 +31,7 @@ public class MemberController {
 	
 	
 	
-	//¸¶ÀÌÆäÀÌÁö
+	//ë§ˆì´í˜ì´ì§€
 	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
 		
@@ -39,7 +39,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//¾ÆÀÌµğ,ºñ¹Ğ¹øÈ£ Ã£±â ÆäÀÌÁö
+	//ì•„ì´ë””,ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€
 	@RequestMapping(value="search.do")
 	public ModelAndView search() {
 			
@@ -47,7 +47,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//¾ÆÀÌµğ Ã£±â ÆäÀÌÁö
+	//ì•„ì´ë”” ì°¾ê¸° í˜ì´ì§€
 	@RequestMapping(value="searchIdPage.do")
 	public ModelAndView searchId() {
 				
@@ -55,7 +55,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//ºñ¹Ğ¹øÈ£ Ã£±â ÆäÀÌÁö
+	//ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€
 	@RequestMapping(value="searchPwdPage.do")
 	public ModelAndView searchPwd() {
 					
@@ -71,7 +71,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//·Î±×¾Æ¿ô
+	//ë¡œê·¸ì•„ì›ƒ
 	@RequestMapping(value="/member/logOut.do")
 	public ModelAndView logOut(HttpSession session) {
 		
@@ -81,7 +81,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//È¸¿ø°¡ÀÔ
+	//íšŒì›ê°€ì…
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -93,14 +93,14 @@ public class MemberController {
 		mv.setMno(dao.memberNextMno());
 		int re = dao.memberInsert(mv);
 		if (re < 1) {
-			mav.addObject("msg", "È¸¿ø °¡ÀÔ ½ÇÆĞ");
+			mav.addObject("msg", "íšŒì› ê°€ì… ì‹¤íŒ¨");
 			mav.setViewName("/member/error");
 			System.out.println("/member/error");
 		}
 		return mav;
 	}
 	
-	//¾ÆÀÌµğÁßº¹Ã¼Å©
+	//ì•„ì´ë””ì¤‘ë³µì²´í¬
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam("id")String id) {
@@ -113,7 +113,7 @@ public class MemberController {
 	
 	}
 	
-	//·Î±×ÀÎ
+	//ë¡œê·¸ì¸
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public void loginForm() {
 		
@@ -131,29 +131,26 @@ public class MemberController {
 		Boolean r = dao.login(map);
 		if (r == true) {
 			
-			//¾ÆÀÌµğ ¼¼¼ÇÀ¯Áö
+			//ì•„ì´ë”” ì„¸ì…˜ìœ ì§€
 			session.setAttribute("id", id);
 			
-			//È¸¿ø¹øÈ£ ¼¼¼ÇÀ¯Áö
+			//íšŒì›ë²ˆí˜¸ ì„¸ì…˜ìœ ì§€
 			session.setAttribute("mno", dao.mno(map));
 //			mav.setViewName("redirect:/member/main.do");
-			//ÀÏ´Ü ¸â¹ö¾Æ´Ï¿©µµ ·Î±×ÀÎ µÇ°Ô ÇØ³õÀ»°Ô¿ä
+			//ì¼ë‹¨ ë©¤ë²„ì•„ë‹ˆì—¬ë„ ë¡œê·¸ì¸ ë˜ê²Œ í•´ë†“ì„ê²Œìš”
 		}
 		System.out.println("----------------------------------------main");
 		mav.setViewName("redirect:/member/main.do");
 		return mav;
 	}
 	
-	/*
 	@RequestMapping("/member/main.do")
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}	
-	*/
 	
-	
-	//ºñ¹Ğ¹øÈ£ ÀÎÁõ
+	//ë¹„ë°€ë²ˆí˜¸ ì¸ì¦
 	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
@@ -174,13 +171,13 @@ public class MemberController {
 		}
 		else
 		{
-			mav.addObject("msg", "ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			mav.addObject("msg", "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}	
 		
 		return mav;
 	}
 	
-	//È¸¿øÁ¤º¸ ¼öÁ¤
+	//íšŒì›ì •ë³´ ìˆ˜ì •
 	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		
@@ -193,14 +190,14 @@ public class MemberController {
 		
 		int re = dao.updateMember(mv);
 		if (re < 1) {
-			mav.addObject("msg", "È¸¿øÁ¤º¸ ¼öÁ¤ ½ÇÆĞ");
+			mav.addObject("msg", "íšŒì›ì •ë³´ ìˆ˜ì • ì‹¤íŒ¨");
 			mav.setViewName("/member/error");
 		}
 		
 		return mav;
 	}
 	
-	//È¸¿ø ¾ÆÀÌµğ Ã£±â
+	//íšŒì› ì•„ì´ë”” ì°¾ê¸°
 	@RequestMapping(value="searchId.do")
 	@ResponseBody
 	public String searchId(String name,String phone)
@@ -221,7 +218,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//È¸¿ø ºñ¹Ğ¹øÈ£ Ã£±â
+	//íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	@RequestMapping(value="searchPwd.do")
 	@ResponseBody
 	public String searchPwd(String id,String phone)
@@ -249,4 +246,251 @@ public class MemberController {
 
 
 
+
+=======
+package com.blank.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.blank.dao.MemberDao;
+import com.blank.vo.MemberVo;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Controller
+public class MemberController {
+
+	@Autowired
+	private MemberDao dao;
+
+	public void setDao(MemberDao dao) {
+		this.dao = dao;
+	}
+	
+	
+	
+	//ë§ˆì´í˜ì´ì§€
+	@RequestMapping(value="/member/myPage.do")
+	public ModelAndView myPage() {
+		
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//ì•„ì´ë””,ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€
+	@RequestMapping(value="search.do")
+	public ModelAndView search() {
+			
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//ì•„ì´ë”” ì°¾ê¸° í˜ì´ì§€
+	@RequestMapping(value="searchIdPage.do")
+	public ModelAndView searchId() {
+				
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€
+	@RequestMapping(value="searchPwdPage.do")
+	public ModelAndView searchPwd() {
+					
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+
+	//Q&A
+	@RequestMapping(value="/member/qNa.do")
+	public ModelAndView Qna() {
+		
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	//ë¡œê·¸ì•„ì›ƒ
+	@RequestMapping(value="/member/logOut.do")
+	public ModelAndView logOut(HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		mav.setViewName("redirect:/login.do");
+		return mav;
+	}
+	
+	//íšŒì›ê°€ì…
+	@RequestMapping(value="join.do", method=RequestMethod.GET)	
+	public void joinForm() {
+		
+	}
+	
+	@RequestMapping(value="join.do", method=RequestMethod.POST)
+	public ModelAndView joinSubmit(MemberVo mv) {
+		ModelAndView mav = new ModelAndView("redirect:/login.do");
+		mv.setMno(dao.memberNextMno());
+		int re = dao.memberInsert(mv);
+		if (re < 1) {
+			mav.addObject("msg", "íšŒì› ê°€ì… ì‹¤íŒ¨");
+			mav.setViewName("/member/error");
+			System.out.println("/member/error");
+		}
+		return mav;
+	}
+	
+	//ì•„ì´ë””ì¤‘ë³µì²´í¬
+	@RequestMapping(value="checkId.do")
+	@ResponseBody
+	public String checkId(@RequestParam("id")String id) {
+		
+		Map map = new HashMap();
+		map.put("id", id);
+		int rowcount = dao.memberCheckId(map);
+        return String.valueOf(rowcount);
+
+	
+	}
+	
+	//ë¡œê·¸ì¸
+	@RequestMapping(value="login.do", method=RequestMethod.GET)
+	public void loginForm() {
+		
+	}
+	
+	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	public ModelAndView login(String id, String pwd, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(id);
+		System.out.println(pwd);
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		Boolean r = dao.login(map);
+		if (r == true) {
+			
+			//ì•„ì´ë”” ì„¸ì…˜ìœ ì§€
+			session.setAttribute("id", id);
+			
+			//íšŒì›ë²ˆí˜¸ ì„¸ì…˜ìœ ì§€
+			session.setAttribute("mno", dao.mno(map));
+//			mav.setViewName("redirect:/member/main.do");
+			//ì¼ë‹¨ ë©¤ë²„ì•„ë‹ˆì—¬ë„ ë¡œê·¸ì¸ ë˜ê²Œ í•´ë†“ì„ê²Œìš”
+		}
+		System.out.println("----------------------------------------main");
+		mav.setViewName("redirect:/member/main.do");
+		return mav;
+	}
+	
+	/*
+	@RequestMapping("/member/main.do")
+	public ModelAndView main() {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}	
+	*/
+	
+	
+	//ë¹„ë°€ë²ˆí˜¸ ì¸ì¦
+	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
+	public void pwdCheckForm() {
+		
+	}
+	
+	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.POST)
+	public ModelAndView pwdCheck(String id, String pwd,int mno) {
+		ModelAndView mav = new ModelAndView();
+		
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		map.put("mno", mno);
+		Boolean r = dao.login(map);
+		if (r == true) {
+			mav.setViewName("/member/updateMember");
+			mav.addObject("m", dao.getMember(map));
+		}
+		else
+		{
+			mav.addObject("msg", "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		}	
+		
+		return mav;
+	}
+	
+	//íšŒì›ì •ë³´ ìˆ˜ì •
+	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
+	public void memberUpdateForm() {
+		
+	}
+	
+	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.POST)
+	public ModelAndView memberUpdate(MemberVo mv) {
+		
+		ModelAndView mav = new ModelAndView("redirect:/member/myPage.do");
+		
+		int re = dao.updateMember(mv);
+		if (re < 1) {
+			mav.addObject("msg", "íšŒì›ì •ë³´ ìˆ˜ì • ì‹¤íŒ¨");
+			mav.setViewName("/member/error");
+		}
+		
+		return mav;
+	}
+	
+	//íšŒì› ì•„ì´ë”” ì°¾ê¸°
+	@RequestMapping(value="searchId.do")
+	@ResponseBody
+	public String searchId(String name,String phone)
+	{
+		Map map = new HashMap();
+		map.put("name", name);
+		map.put("phone", phone);
+		String str = "";
+		String id = dao.searchId(map);
+		if(id != null)
+		{
+			str = id;
+		}
+		else
+		{
+			str = "";
+		}	
+		return str;
+	}
+	
+	//íšŒì› ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	@RequestMapping(value="searchPwd.do")
+	@ResponseBody
+	public String searchPwd(String id,String phone)
+	{
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("phone", phone);
+		String str = "";
+		String pwd = dao.searchPwd(map);
+		if(pwd != null)
+		{
+			str = pwd;
+		}
+		else
+		{
+			str = "";
+		}	
+		return str;
+	}
+	
+}
 

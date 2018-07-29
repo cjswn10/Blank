@@ -3,9 +3,13 @@ package com.blank.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,11 +29,29 @@ public class FavoriteController {
 	{
 		
 	}
+	@RequestMapping(value="/member/insertFavorite.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView insertFavorite(int mno, int fmno) {
+		Map map = new HashMap();
+		map.put("mno", mno);
+		map.put("fmno", fmno);
+		
+		ModelAndView mav = new ModelAndView();
+		int re = dao.insertFavorite(map);
+		if (re > 0) {
+			mav.addObject("re", re);
+		}else {
+			mav.addObject("msg","즐겨찾기 추가 실패");
+			mav.setViewName("/member/error");		
+		}		
+		return mav;
+	}
 	
 	@RequestMapping(value="/member/listFavorite.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String list(int mno)
-	{
+	public String list(int mno, HttpSession session)
+	{	
+		session.setAttribute("mno", mno);		
 		Map map = new HashMap();
 		map.put("mno", mno);
 		String str = "";
@@ -46,8 +68,10 @@ public class FavoriteController {
 	}
 	@RequestMapping("member/deleteFavorite.do")
 	@ResponseBody
-	public ModelAndView delete(int fno)
+	public ModelAndView delete(int fno, HttpSession session)
 	{
+		
+		session.setAttribute("fno", fno);
 		Map map = new HashMap();
 		map.put("fno", fno);
 		
