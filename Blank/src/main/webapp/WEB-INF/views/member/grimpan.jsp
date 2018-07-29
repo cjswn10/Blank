@@ -22,19 +22,20 @@ canvas {
 		$("#btnOk").click(function() {
 			
 			var myImage = document.getElementById("myImage");
-			var imageUrl = canvas.toDataURL();
+			var imageUrl = canvas.toDataURL(); 
 			myImage.src = canvas.toDataURL();
 			
 			$.ajax({
 				type : "POST",
-				url : "girmpn2.do",
+				url : "grimpan2.do",
 				contentType: "application/x-www-form-urlencoded; charset=utf-8",
-				data : {"imageUrl" : imageUrl}
+				data : {"imageUrl" : imageUrl},
+				success : function(){
+					
+					alert("ok")
+				}
 				
-			}).success(function(data) {
-					var arr = eval("("+data+")");
-					alert(arr)
-				});
+			})
 
 			// 부모창으로 넘기기
 			opener.document.getElementById("img").src = document
@@ -51,6 +52,7 @@ canvas {
 		link.href = document.getElementById(canvasId).toDataURL();
 		link.download = filename;
 	}
+	
 
 
 	
