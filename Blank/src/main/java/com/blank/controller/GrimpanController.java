@@ -24,19 +24,19 @@ public class GrimpanController {
 	
 	@RequestMapping(value="/grimpan2.do",produces="text/plain;charset=utf-8",method=RequestMethod.POST)
 	@ResponseBody
-	public String makePngFile(String imageUrl,HttpServletRequest request){
+	public void makePngFile(String imageUrl,HttpServletRequest request){
 		/**
-		 * imgbase64 (imgbase64data:image/png;base64,iVBORw0KGgoAA ·Î ½ÃÀÛ)
-		 * saveFilePath (ÀúÀå°æ·Î)
-		 * savename (ÆÄÀÏÀÌ¸§)
+		 * imgbase64 (imgbase64data:image/png;base64,iVBORw0KGgoAA ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+		 * saveFilePath (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+		 * savename (ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½)
 		 */ 
 		
 		try {
 			// create a buffered image
 			BufferedImage image = null;
 			
-			String[] base64Arr = imageUrl.split(","); // image/png;base64, ÀÌ ºÎºÐ ¹ö¸®±â À§ÇÑ ÀÛ¾÷
-			byte[] imageByte = Base64.decodeBase64(base64Arr[1]); // base64 to byte array·Î º¯°æ
+			String[] base64Arr = imageUrl.split(","); // image/png;base64, ï¿½ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½
+			byte[] imageByte = Base64.decodeBase64(base64Arr[1]); // base64 to byte arrayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
 			image = ImageIO.read(bis);
@@ -47,12 +47,10 @@ public class GrimpanController {
 			File file = new File(path);
 			String savename = "seongin";
 			File outputfile = new File(file+ savename + ".png");
-			ImageIO.write(image, "png", outputfile); // ÆÄÀÏ»ý¼º
+			ImageIO.write(image, "png", outputfile); // ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		return "ok";
 	}
 }
