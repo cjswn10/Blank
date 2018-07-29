@@ -3,12 +3,14 @@ package com.blank.controller;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.text.SimpleDateFormat;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,11 +77,11 @@ public class GrimpanController {
 	      String filenm = sdf.format(new Date().toString()+"_testimgg2.png");
 	      
 	      BufferedImage image = null;
-	      byte[] byteImge;
+	      byte[] byteImage;
 	      
 	      BASE64Decoder decoder = new BASE64Decoder();
-	      bytImage = decoder.decodeBuffer(rstStrImg);
-	      ByteArrayInputStream bis = new ByteArrayInputStream(byteImge);
+	      byteImage = decoder.decodeBuffer(rstStrImg);
+	      ByteArrayInputStream bis = new ByteArrayInputStream(byteImage);
 	      image = Image().read(bis);
 	      bis.close();
 	      
@@ -93,5 +95,5 @@ public class GrimpanController {
 	      
 	   }
 	   
-	}
+	
 }
