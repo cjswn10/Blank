@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-
 	/*로고 표시 */
 	.title
 	{
@@ -28,8 +26,9 @@
 		position: relative;
 		width:300px;
 		left: 1100px;
-		top: -560px;
+		top: -600px;
 	}
+	
 	/* id,마이페이지,로그아웃 */
 	.ifm
 	{
@@ -153,6 +152,10 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+
+<link rel="stylesheet" href="../resources/css/blank.css">
+
+
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -247,7 +250,7 @@
 </script>
 </head>
 <body>
-	
+
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
@@ -266,9 +269,6 @@
 		  <input type="hidden" name="id" id="id" value="${id }">
 		  <input type="hidden" name="mno" id="mno" value="${mno }">
 	
-	<div class="menu">
-		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
-	</div>
 	
 	<div class="ifm">
 		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
