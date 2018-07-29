@@ -21,38 +21,38 @@ canvas.addEventListener("mouseout", function(e) {
 
 function changeColor(color) {
 	switch (color) {
-	case 'maroon':
-		return "#800000";
-	case 'red':
-		return "#ff0000";
-	case 'orange':
-		return "#ffa500";
-	case 'yellow':
-		return "#ffff00";
-	case 'olive':
-		return "#808000";
-	case 'purple':
-		return "#800080";
-	case 'fuchsia':
-		return "#FF00FF";
-	case 'white':
-		return "#ffffff";
-	case 'lime':
-		return "#00ff00";
-	case 'green':
-		return "#008000";
-	case 'navy':
-		return "#000080";
-	case 'aqua':
-		return "#00ffff";
-	case 'teal':
-		return "#008080";
-	case 'black':
-		return "#000000";
-	case 'silver':
-		return "#c0c0c0";
-	case 'gray':
-		return "#808080";
+	case 'c1':
+		return "#ff1d23";
+	case 'c2':
+		return "#f5941c";
+	case 'c3':
+		return "#ded120";
+	case 'c4':
+		return "#45bf55";
+	case 'c5':
+		return "#1854ff";
+	case 'c6':
+		return "#1d1058";
+	case 'c7':
+		return "#700a8a";
+	case 'c8':
+		return "#f6dddf";
+	case 'c9':
+		return "#32ccb0";
+	case 'c10':
+		return "#ffeda7";
+	case 'c11':
+		return "#ff5c58";
+	case 'c12':
+		return "#f20574";
+	case 'c13':
+		return "#eacbff";
+	case 'c14':
+		return "#bec2c1";
+	case 'c15':
+		return "#fffcf0";
+	case 'c16':
+		return "#1c1a21";
 	default:
 		return color;
 	}
@@ -73,14 +73,13 @@ var drawing = false;
 
 
 function down(e) {
-	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	startX = e.offsetX;
 	startY = e.offsetY;
 	drawing = true;
 }
 
 function move(e) {
-	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
+	
 	if (!drawing)
 		return;
 	var curX = e.offsetX;
@@ -92,7 +91,6 @@ function move(e) {
 
 function draw(curX, curY) {
 	
-	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	context.beginPath();
 	context.moveTo(startX, startY);
 	context.lineTo(curX, curY);
@@ -113,10 +111,10 @@ function out(e) {
 document.getElementById("delete").addEventListener("click", function(e) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 }, false);
-
+// 되돌리기
 document.getElementById("prev").addEventListener("click", function(e) {
 	context.putImageData(drawBackup.pop(), 0, 0);
-});
+},false);
 
 
 

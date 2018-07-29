@@ -20,17 +20,16 @@ public class GrimpanController {
 	public void grimpan() {
 		
 	}
-	
-	
-	@RequestMapping(value="/grimpan2.do",produces="text/plain;charset=utf-8",method=RequestMethod.POST)
+/*	
+	@RequestMapping(value="grimpan2.do",produces="text/plain;charset=utf-8", method=RequestMethod.POST)
 	@ResponseBody
-	public void makePngFile(String imageUrl,HttpServletRequest request){
-		/**
-		 * imgbase64 (imgbase64data:image/png;base64,iVBORw0KGgoAA �� ����)
-		 * saveFilePath (������)
-		 * savename (�����̸�)
-		 */ 
+	public String makePngFile(String imageUrl,HttpServletRequest request){
 		
+		 // imgbase64 (imgbase64data:image/png;base64,iVBORw0KGgoAA �� ����)
+		 // saveFilePath (������)
+		 // savename (�����̸�)
+		  
+		System.out.println(imageUrl);
 		try {
 			// create a buffered image
 			BufferedImage image = null;
@@ -42,8 +41,8 @@ public class GrimpanController {
 			image = ImageIO.read(bis);
 			bis.close();
 			
-			
 			String path = request.getRealPath("resources/upload2");
+			System.out.println(path);
 			File file = new File(path);
 			String savename = "seongin";
 			File outputfile = new File(file+ savename + ".png");
@@ -52,5 +51,47 @@ public class GrimpanController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+		return "ok";
+	}
+*/
+
+
+
+	   @RequestMapping("/canvasUpload")
+	   public String page_canvasUpload(HttpServletRequest request, ModelMap model) {
+	      return "/canv/canvasUpload";
+	   }
+	   
+	   @RequestMapping("/ajax_canvasIpload_proc")
+	   @ResponseBody
+	   public String ajax_canvasUpload_proc(HttpServletRequest request, String strImg) {
+	      String uploadpath = "uploadfile\\";
+	      String folder = request.getServletPath().getRealpath("/")+uploadpath;
+	      String fullpath ="";
+	      String []strParts = strImg.split(",");
+	      String rstStrImg = strParts[1];
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd_hhmmss");
+	      String filenm = sdf.format(new Date().toString()+"_testimgg2.png");
+	      
+	      BufferedImage image = null;
+	      byte[] byteImge;
+	      
+	      BASE64Decoder decoder = new BASE64Decoder();
+	      bytImage = decoder.decodeBuffer(rstStrImg);
+	      ByteArrayInputStream bis = new ByteArrayInputStream(byteImge);
+	      image = Image().read(bis);
+	      bis.close();
+	      
+	      fullpath = folder+filenm;
+	      File folderObj = new File(folder);
+	      if(!folderObj.isDirectory())folderObj.mkdir();
+	      File ouputFile = new File(fullpath);
+	      if(ouputFile.exists())ouputFile.delete();
+	      ImageIO.write(image, "png", ouputFile);
+	      return uploadpath+filenm;
+	      
+	   }
+	   
 	}
 }
