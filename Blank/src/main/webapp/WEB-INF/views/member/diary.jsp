@@ -123,13 +123,11 @@
 
 </style>
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<link rel="stylesheet" href="../resources/css/blank.css">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -167,7 +165,7 @@
 					var list = eval("("+data+")");
 					$.each(list, function(i, d) {
 						//날짜 날씨 제목 그림 사진 글
-						var div = $('<div ></div>');
+						var div = $('<div></div>');
 						
 						var a = $('<a href="detailDiary.do?dno='+d.dno+'"></a>')
 						var br = $('<br>');
@@ -197,14 +195,12 @@
 		}
 		selectBook();
 		listDiary();
-		
-		
-		
-	})
+	});
 	
 </script>
 </head>
 <body>
+
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>

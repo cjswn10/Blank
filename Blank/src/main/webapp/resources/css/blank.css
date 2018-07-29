@@ -1,0 +1,132 @@
+/*************	common	************/
+ /*float clearfix*/
+.clearfix::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+
+
+
+/**************	  menu	*************/
+.logo {
+	width: 150px;
+	margin-left: 10px;
+}
+
+nav {
+    width:100%;
+    background:#ffffff;
+}
+ul {
+    margin:10px auto;
+    /*margin:10px auto;*/
+    float: right;
+}
+ul li {
+    list-style:none;
+    display: inline-block;
+    padding:20px;
+}
+
+ul li a {
+    color:#000000;
+    text-decoration:none;
+}
+
+nav span {
+	display: inline-block;
+	padding:20px 45px;
+	margin:10px auto;
+	float: right;
+}
+
+
+
+
+/**************	side-menu	*************/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#wrapper {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+/*수정해야함 맨 위에 있도록
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+*/
+.side_icon_set {
+	padding: 8px 8px 8px 32px;
+}
+
+.side_icon_set a{
+	display: inline;
+	padding: 0px 10px 0px 0px;
+}
+
+.side_icon {
+	width: 18px;
+	opacity: 0.5;
+	padding: 0px 0px;
+	display: inline;
+}
+
+.side_icon:hover {
+	width: 18px;
+	opacity: 1;
+	display: inline-block;
+}
+
+
+/*************	content	 *************/
+.content {
+	margin: 0px auto;
+}
+
+h2 {
+	text-align: center;
+	color :  #000000
+}

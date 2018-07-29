@@ -1,94 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	
-	/*로고 표시 */
-	.title
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 80px;
-		position: relative;
-		width: 160px;
-		height:100px;
-		left: 40px;
-		top: -10px;
-	}
-	/* 일기장,즐겨찾기 */
-	.menu
-	{ 
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 40px;
-		position: relative;
-		width:300px;
-		left: 1100px;
-		top: -60px;
-	}
-	/* id,마이페이지,로그아웃 */
-	.ifm
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 25px;
-		position: relative;
-		width:350px;
-		left: 1150px;
-		top: -160px;
-	}
-	.qna
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 100px;
-		position: absolute;
-		left: 600px;
-		top: 200px;
-	}
-	.pwdCheck
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 100px;
-		position: absolute;
-		left: 530px;
-		top: 450px;
-	}
-	
-</style>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		
-	})
-</script>
+
+<link rel="stylesheet" href="../resources/css/blank.css">
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 </head>
 <body>
-	<div class="title">
-		<h1>그림 일기</h1>
-	</div>
-	
-	<div class="main">
-		<a href="qNa.do" class="qna">Q & A</a>
-		<a href="pwdCheck.do?id=${id }" class="pwdCheck">회원정보수정</a>
-	</div>
+
+<!-- side-menu -->
+<section id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
 	
-	<div class="menu">
-		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
+	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<a href="logOut.do">logout</a>
+	<a href="qNa.do">Contact</a>
+	<div class="side_icon_set">
+		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
+		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
 	</div>
 	
-	<div class="ifm">
-		<a href="#">${id }님</a><span>  |  </span><a href="#">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
+</section>
+
+<div id="wrapper">
+
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <img src="../resources/img/blank.png" class="logo left">
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+
+	
+	<div class="content" style="margin-top: 180px">
+		<a href="pwdCheck.do?id=${id }"><h2>회원정보수정</h2></a>
+		<br><br>
+		<a href="qNa.do"><h2>CONTACT</h2></a>
 	</div>
+</div>
+
 </body>
 </html>
