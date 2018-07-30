@@ -29,9 +29,7 @@ $(function() {
 		$("#dfont").attr({
 			style : "font-family:"+$(this).val()
 		})
-		
 	});
-	
 });
 
 var openG;
@@ -49,25 +47,50 @@ function openGrimpan() {
 <!-- 사진 보여주기 -->
 <script>
 	var sel_file;
+	var sel_file2;
 	
+
 	$(document).ready(function() {
 		$("#upload").on("change", showImg)
 	});
-	
+
 	function showImg(e) {
 		var files = e.target.files;
 		var filesArr = Array.prototype.slice.call(files);
-		
+
 		filesArr.forEach(function(f) {
-			if(!f.type.match("image.*")) {
+			if (!f.type.match("image.*")) {
 				alert("확장자 오류");
 				return;
 			}
-			
+
 			sel_file = f;
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#photo").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+	
+	$(document).ready(function() {
+		$("#uploadG").on("change", showImgG)
+	});
+
+	function showImgG(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f) {
+			if (!f.type.match("image.*")) {
+				alert("확장자 오류");
+				return;
+			}
+
+			sel_file2 = f;
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#img").attr("src", e.target.result);
 			}
 			reader.readAsDataURL(f);
 		});
@@ -109,11 +132,13 @@ function openGrimpan() {
 		<h2>일기 등록</h2>
 		<hr>
 	
+
 		<form action="insertDiary.do" method="post" enctype="multipart/form-data">
 		
 			<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
 			<input type="hidden" name="mno" id="mno" value="${mno }"><br> 
 			
+
 			<table>
 				<tr>
 					<td colspan="2">
@@ -188,6 +213,5 @@ function openGrimpan() {
 		
 	</div>
 </div>
-	
 </body>
 </html>

@@ -39,9 +39,9 @@
 			<div class="wrap-login100 p-b-160 p-t-50">
 				<form class="login100-form validate-form" action="login.do" method="post">
 					<span class="login100-form-title p-b-43">
-						Login
+						<h2>빈공간에 하나씩 채워 나가다,</h2>
 						
-						<img alt="logo" src="resources\img/login.png">
+						
 						 
 					</span>
 					<!-- 로그인 입니다 -->

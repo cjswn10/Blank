@@ -21,38 +21,64 @@ canvas.addEventListener("mouseout", function(e) {
 
 function changeColor(color) {
 	switch (color) {
-	case 'c1':
-		return "#ff1d23";
-	case 'c2':
-		return "#f5941c";
-	case 'c3':
-		return "#ded120";
-	case 'c4':
-		return "#45bf55";
-	case 'c5':
-		return "#1854ff";
-	case 'c6':
-		return "#1d1058";
-	case 'c7':
-		return "#700a8a";
-	case 'c8':
-		return "#f6dddf";
-	case 'c9':
-		return "#32ccb0";
-	case 'c10':
-		return "#ffeda7";
-	case 'c11':
-		return "#ff5c58";
-	case 'c12':
-		return "#f20574";
-	case 'c13':
-		return "#eacbff";
-	case 'c14':
-		return "#bec2c1";
-	case 'c15':
+	case '#FF0000':
+		return "#FF0000";
+	case '#FF5E00':
+		return "#FF5E00";
+	case '#FFBB00':
+		return "#FFBB00";
+	case '#FFE400':
+		return "#FFE400";
+	case '#ABF200':
+		return "#ABF200";
+	case '#1DDB16':
+		return "#1DDB16";
+	case '#00D8FF ':
+		return "#00D8FF";
+	case '#0054FF':
+		return "#0054FF";
+	case '#0100FF':
+		return "#0100FF";
+	case '#5F00FF':
+		return "#5F00FF";
+	case '#FF00DD':
+		return "#FF00DD";
+	case '#FF007F':
+		return "#FF007F";
+	case '#000000':
+		return "#000000";
+	case '#FFFFFF':
+		return "#FFFFFF";
+	case '#F6CECE':
 		return "#fffcf0";
-	case 'c16':
-		return "#1c1a21";
+	case '#FFA7A7':
+		return "#FFA7A7";
+	case '#FFC19E':
+		return "#FFC19E";
+	case '#FFE08C':
+		return "#FFE08C";
+	case '#FAED7D':
+		return "#FAED7D";
+	case '#CEF279':
+		return "#CEF279";
+	case '#B7F0B1':
+		return "#B7F0B1";
+	case '#B2EBF4':
+		return "#B2EBF4";
+	case '#B2CCFF':
+		return "#B2CCFF";
+	case '#B5B2FF':
+		return "#B5B2FF";
+	case '#D1B2FF':
+		return "#D1B2FF";
+	case '#FFB2F5':
+		return "#FFB2F5";
+	case '#FFB2D9':
+		return "#FFB2D9";
+	case '#D5D5D5':
+		return "#D5D5D5";
+	case '#BDBDBD':
+		return "#BDBDBD";
 	default:
 		return color;
 	}
@@ -73,13 +99,13 @@ var drawing = false;
 
 
 function down(e) {
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	startX = e.offsetX;
 	startY = e.offsetY;
 	drawing = true;
 }
 
 function move(e) {
-	
 	if (!drawing)
 		return;
 	var curX = e.offsetX;
@@ -90,7 +116,7 @@ function move(e) {
 }
 
 function draw(curX, curY) {
-	
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	context.beginPath();
 	context.moveTo(startX, startY);
 	context.lineTo(curX, curY);

@@ -20,6 +20,7 @@
 				location.href = "detailDiary.do?dno="+${d.dno}
 			}
 		})
+		
 	})
 </script>
 </head>
@@ -33,6 +34,8 @@
 	<c:if test="${not empty d.dphoto}">	
 		<img width="500" height="500" src="../resources/upload/${d.dphoto }"><br>
 	</c:if>
+
+	
 	내용 : <br>
 	<textarea rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
 	<hr>

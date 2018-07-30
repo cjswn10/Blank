@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.e</title>
-<style type="text/css">
 
-
-	
-</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
@@ -29,13 +25,12 @@
 			$.ajax({
 			url:"listFavorite.do",
 			data:{"mno":$("#mno").val()},				
-			success:function(data)
-			{
-				
+			success:function(data) {
 				var list = eval("("+data+")");					
 				$.each(list,function(i,f){	
 					var img = $("<img src='../resources/img/favoriteicon.png' width='30px'>")
 					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"'></a>").html(f.id+"님");					
+
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
@@ -87,9 +82,6 @@
 		<ul id="list"></ul>
 		
 	</div>
-</div>
-	
-	
-	
+</div>	
 </body>
 </html>

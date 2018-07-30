@@ -1,6 +1,5 @@
 package com.blank.vo;
 
-
 import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +16,19 @@ public class DiaryVo {
 	private String dphoto;
 	private int secret;
 	private Date wdate;
- 	private int mno;
+	private int mno;
 	private int bno;
 
 	private MultipartFile upload;
+	private MultipartFile upload2;
+
+	public MultipartFile getUpload2() {
+		return upload2;
+	}
+
+	public void setUpload2(MultipartFile upload2) {
+		this.upload2 = upload2;
+	}
 
 	public MultipartFile getUpload() {
 		return upload;
@@ -34,7 +42,7 @@ public class DiaryVo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public DiaryVo(int dno, String dtitle, Date ddate, String dweather, String dfont, String dtype, String dfile,
 			String dcontent, String dphoto, int secret, Date wdate, int mno, int bno) {
 		super();
@@ -157,5 +165,4 @@ public class DiaryVo {
 		this.bno = bno;
 	}
 
-	
 }

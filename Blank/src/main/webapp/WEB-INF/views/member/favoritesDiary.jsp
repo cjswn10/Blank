@@ -129,9 +129,12 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {				
-		var mno = ${mno}		
-		var fmno = document.location.search.substr(6,4);				
-		var fno = document.location.search.substr(15,4);
+		var mno = ${mno}
+		var fmno = document.location.search.substr(6,4);
+		var fno = document.location.search.substring(15, document.location.search.lastIndexOf("&"));
+		var id = document.location.search.substring(document.location.search.lastIndexOf("=")+1)
+		$('#user_id').text(id + "님의 일기");
+		$('	<img class="favoriteIcon" width="50" height="50" src="../resources/img/nfavorite.png">').appendTo('#user_id');
 		
 		var listFavoriteDiary = function () {			
 						
@@ -168,7 +171,7 @@
 						}		            
 					})				
 			}})		
-		}	
+		}			
 		
 		listFavoriteDiary();		
 		
@@ -180,8 +183,10 @@
 					url: "insertFavorite.do",
 					data: {"fmno":fmno, "mno":mno},
 					type: "POST",
-					success:function(){
+					success:function(data){
 						alert("추가 완료")
+					},error: function (data) {
+						alert("추가 실패")
 					}
 				})			
 				
@@ -234,10 +239,9 @@
 			<tr>
 				<td>
 					<table id="sub_container">
-					<div id="user_id">${id }님의 일기장<a id="icon">
-						<img class="favoriteIcon" width="50" height="50" src="../resources/img/nfavorite.png">
-						<!-- <img id="favorite" style="display: none" class="favoriteIcon" width="50" height="50" src="../resources/img/favorite.png"/> -->
-					</a></div>
+						<div id="user_id">
+							
+						</div>
 					</table>
 				</td>
 			</tr>
