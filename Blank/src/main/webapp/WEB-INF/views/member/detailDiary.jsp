@@ -34,6 +34,9 @@
 	<c:if test="${not empty d.dphoto}">	
 		<img width="500" height="500" src="../resources/upload/${d.dphoto }"><br>
 	</c:if>
+	<c:if test="${not empty d.dfile}">	
+		<img width="500" height="500" src="../resources/upload2/${d.dfile }"><br>
+	</c:if>
 
 	
 	내용 : <br>

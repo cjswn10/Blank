@@ -28,25 +28,18 @@ canvas {
 					var imageUrl = canvas.toDataURL();
 					myImage.src = canvas.toDataURL();
 
-					alert(imageUrl)
-
 					$.ajax({
 						type : "POST",
 						url : "grimpan2.do",
 						data : {
 							"imageUrl" : imageUrl
+						},
+						success : function() {
+							alert("ok");
 						}
-					}).success(function(data) {
-						var arr = eval("(" + data + ")");
-						alert(arr)
-					});
-
-					// 부모창으로 넘기기
-					opener.document.getElementById("img").src = document.getElementById("myImage").src;
+					})
 					self.close();
-
 				});
-
 	});
 
 	//C:\Blank\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Blank\resources\upload2
