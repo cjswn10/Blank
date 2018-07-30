@@ -2,6 +2,7 @@ package com.blank.db;
 
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -28,7 +29,7 @@ public class MemberManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	//È¸¿ø°¡ÀÔ
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static int memberInsert(MemberVo m)
 	{
 		int re = -1;
@@ -37,7 +38,7 @@ public class MemberManager {
 		session.close();
 		return re;
 	}
-	//È¸¿ø°¡ÀÔ½Ã °íÀ¯È¸¿ø¹øÈ£ ÀÚµ¿Áõ°¡
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½È£ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 	public static int memberNextMno()
 	{
 		int no = 0;
@@ -46,7 +47,7 @@ public class MemberManager {
 		session.close();
 		return no;
 	}
-	//·Î±×ÀÎ
+	//ï¿½Î±ï¿½ï¿½ï¿½
 	public static boolean login(Map map) {
 		boolean b = false;
 		SqlSession session = factory.openSession();
@@ -57,7 +58,7 @@ public class MemberManager {
 		return b;
 	}
 	
-	//¾ÆÀÌµð Áßº¹Ã¼Å©
+	//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½Ã¼Å©
 	public static int checkId(Map map)
 	{
 		int re = 0;
@@ -67,7 +68,7 @@ public class MemberManager {
 		return re;
 	}
 	
-	//È¸¿ø¹øÈ£ ¼¼¼ÇÀ¯Áö¸¦ À§ÇÑ ¸Þ¼Òµå
+	//È¸ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public static int mno(Map map)
 	{
 		int mno = 0;
@@ -77,7 +78,7 @@ public class MemberManager {
 		return mno;
 	}
 	
-	//È¸¿øÁ¤º¸¼öÁ¤ Æû
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public static MemberVo getMember(Map map) {
 		// TODO Auto-generated method stub
 		MemberVo mv = new MemberVo();
@@ -86,7 +87,7 @@ public class MemberManager {
 		return mv;
 	}
 	
-	//È¸¿øÁ¤º¸¼öÁ¤ ¼­ºê¹Ô
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static int updateMember(MemberVo mv) {
 		// TODO Auto-generated method stub
 		int re = -1;
@@ -96,7 +97,15 @@ public class MemberManager {
 		return re;
 	}
 	
-	//È¸¿ø¾ÆÀÌµð Ã£±â
+	public static List<MemberVo> mainSearchId(Map map)
+	{
+		SqlSession session = factory.openSession();
+		List<MemberVo> list = session.selectList("member.mainSearchId", map);
+		session.close();
+		return list;
+	}
+	
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 	public static String searchId(Map map)
 	{
 		String id = "";
@@ -106,7 +115,7 @@ public class MemberManager {
 		return id;
 	}
 	
-	//È¸¿øºñ¹Ð¹øÈ£ Ã£±â
+	//È¸ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 		public static String searchPwd(Map map)
 		{
 			String pwd = "";
