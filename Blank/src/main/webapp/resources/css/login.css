@@ -15,7 +15,7 @@
   src: url('../fonts/OpenSans/OpenSans-Bold.ttf'); 
 }
 
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -199,7 +199,11 @@ iframe {
   line-height: 1.2;
   text-transform: uppercase;
   text-align: center;
+  
 }
+
+
+	
 
 
 
@@ -461,7 +465,7 @@ input.input100 {
 
 
 /*
-È¸¿ø°¡ÀÔ CSS
+íšŒì›ê°€ì… CSS
 */
 .join-input{
 	border: 1px solid black;
