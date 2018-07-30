@@ -36,12 +36,15 @@ public class FavoriteController {
 		map.put("mno", mno);
 		map.put("fmno", fmno);
 		
+		System.out.println("insertcontroller mno : " +map.get("mno"));
+		System.out.println("insertcontroller fmno : " +map.get("fmno"));
+		
 		ModelAndView mav = new ModelAndView();
 		int re = dao.insertFavorite(map);
 		if (re > 0) {
 			mav.addObject("re", re);
 		}else {
-			mav.addObject("msg","¡Ò∞‹√£±‚ √ﬂ∞° Ω«∆–");
+			mav.addObject("msg","Ï¶êÍ≤®Ï∞æÍ∏∞ Ï∂îÍ∞Ä Ïã§Ìå®");
 			mav.setViewName("/member/error");		
 		}		
 		return mav;
@@ -50,12 +53,11 @@ public class FavoriteController {
 	@RequestMapping(value="/member/listFavorite.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String list(int mno, HttpSession session)
-	{	
+	{			
 		session.setAttribute("mno", mno);		
 		Map map = new HashMap();
 		map.put("mno", mno);
 		String str = "";
-		System.out.println("ƒ¡∆Æ∑—∑Ø"+dao.list(map));
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 		str = mapper.writeValueAsString(dao.list(map));
@@ -79,7 +81,7 @@ public class FavoriteController {
 		int re = dao.delete(map);
 		if(re<1)
 		{
-			mav.addObject("msg", "ªË¡¶«œø¥Ω¿¥œ¥Ÿ.");
+			mav.addObject("msg", "ÏÇ≠Ï†úÌïòÏòÄÏäµÎãàÎã§");
 			mav.setViewName("/member/error");
 		}
 		return mav;
