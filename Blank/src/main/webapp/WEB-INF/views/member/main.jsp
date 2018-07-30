@@ -24,6 +24,8 @@
 	opacity: 0.4;	
 }
 
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
 .clearfix::after {
 	content: '';
 	display: block;
@@ -56,6 +58,7 @@
     padding: 100px 0;
 }
 .blog article {
+
     float: left;
     width: 300px;
     height: 400px;
@@ -69,15 +72,58 @@
 }
 
 .footer {
-    
+    font-family: 'Nanum Pen Script', serif;
+    font-size: 30px;
     text-align: center;
     color: white;
-    background-color: black;
+    background-color: #151515;
 }
+
+.footer h2{
+	font-size: 50px;
+	
+}
+
+.btn-social {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: 2px solid white;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 45px;
+}
+
+
+.btn-outline{
+color:#fff;
+font-size:20px;
+border:2px solid #fff;
+background:0 0;
+transition:all .3s ease-in-out;
+margin-top:15px
+}
+.btn-outline.active,.btn-outline:active,.btn-outline:focus,.btn-outline:hover{
+color:#fff;
+background:#fff;
+border:2px solid #fff;
+}
+
 
 
 </style>
 <link rel="stylesheet" href="../resources/css/base.css">
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -115,7 +161,7 @@
 <title>빈칸을 채우다.</title>
 </head>
 <body>
-	<a href="#" class="main">그림일기</a>
+	<a href="mainjsp" class="main"><img src="../resources/img/mainlogo.png"></a>
 
 <div class="upper">
 <span class="upper_menu">${id }님</span>
@@ -144,13 +190,37 @@
 	
 	   <div class="blog" align="center">
 	   		<div class="clearfix">
-	   						    		    		
+
 	    	</div>
 	   </div> 	    
 </div>
 <!-- 푸터입니다.  -->
 <footer class="footer">
-	<p>비트와밀당하는 팀 X 빈칸 , 2018</p>
+	<h2>비트와밀당하는 팀 X 빈칸 , 2018</h2>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br>김영호
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br>변성인
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br>성민규
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br>임연주
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br>차건우
+       </li>
+
+                            
+    </ul>
 </footer>
 
 </body>

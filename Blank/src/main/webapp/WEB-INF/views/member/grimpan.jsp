@@ -42,8 +42,7 @@ canvas {
 					});
 
 					// 부모창으로 넘기기
-					opener.document.getElementById("img").src = document
-							.getElementById("myImage").src;
+					opener.document.getElementById("img").src = document.getElementById("myImage").src;
 					self.close();
 
 				});

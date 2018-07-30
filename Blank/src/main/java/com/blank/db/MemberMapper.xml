@@ -11,6 +11,10 @@
   		select * from member where mno=#{mno}
   	</select>
   	
+  	<select id="mainSearchId" resultType="memberVo" parameterType="String">
+  		select id from member where id like '%' || #{id} || '%'
+  	</select>
+  	
   	<select id="searchId" resultType="String">
   		select id from member where name=#{name} and phone=#{phone}
   	</select>
