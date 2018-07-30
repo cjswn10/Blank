@@ -99,13 +99,13 @@ var drawing = false;
 
 
 function down(e) {
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	startX = e.offsetX;
 	startY = e.offsetY;
 	drawing = true;
 }
 
 function move(e) {
-	
 	if (!drawing)
 		return;
 	var curX = e.offsetX;
@@ -116,7 +116,7 @@ function move(e) {
 }
 
 function draw(curX, curY) {
-	
+	drawBackup.push(context.getImageData(0, 0, canvas.width, canvas.height));
 	context.beginPath();
 	context.moveTo(startX, startY);
 	context.lineTo(curX, curY);
