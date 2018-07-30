@@ -188,8 +188,23 @@
 							$(a).append(p);
 							$(div).append(a);
 							$("#sub_container").append(div);					
-
 						}		            
+						
+						if (d.dfile != null) {							
+							var img = $('<img></img>').attr({
+								src: "../resources/upload2/" + d.dfile,
+								width: "353",
+								height: "250"					
+							});
+							$(a).append(img);
+							$(div).append(a,br,p);
+							$("#sub_container").append(div);
+						}else {
+							$(a).append(p);
+							$(div).append(a);
+							$("#sub_container").append(div);					
+						}		            
+
 					})				
 			}})		
 		}
