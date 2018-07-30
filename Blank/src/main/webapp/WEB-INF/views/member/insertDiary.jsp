@@ -26,9 +26,7 @@ $(function() {
 		$("#dfont").attr({
 			style : "font-family:"+$(this).val()
 		})
-		
 	});
-	
 });
 
 var openG;
@@ -73,10 +71,10 @@ function openGrimpan() {
 	}
 	
 	$(document).ready(function() {
-		$("#upload2").on("change", showImg2)
+		$("#uploadG").on("change", showImgG)
 	});
 
-	function showImg2(e) {
+	function showImgG(e) {
 		var files = e.target.files;
 		var filesArr = Array.prototype.slice.call(files);
 
@@ -103,8 +101,8 @@ function openGrimpan() {
 
 	<form action="insertDiary.do" method="post" enctype="multipart/form-data">
 	
-		<input type="hidden" name="bno" id="bno" value="${bno }"><br> 
-		<input type="hidden" name="mno" id="mno" value="${mno }"><br> 
+		<input type="hidden" name="bno" id="bno" value="${bno}"><br> 
+		<input type="hidden" name="mno" id="mno" value="${mno}"><br> 
 		
 		<table>
 			<tr>
@@ -144,7 +142,9 @@ function openGrimpan() {
 					</select>
 					<!-- 그림판 버튼 -->
 					<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px"></button>
-					<input type="file" name="upload2" id="upload2"> 
+					
+					<label for="upload2"><img alt="그림첨부" src="../resources/img/icon/photo.png" width="25px"></label>
+					<input type="file" name="uploadG" id="uploadG" style="display: none;"> <input type="text" value="사진">
 					<!-- 사진첨부 버튼 -->
 					<label for="upload"><img alt="사진첨부" src="../resources/img/icon/photo.png" width="25px"></label>
 					<input type="file" name="upload" id="upload" style="display: none;">
