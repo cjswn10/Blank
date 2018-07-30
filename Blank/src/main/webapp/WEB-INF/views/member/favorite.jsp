@@ -74,10 +74,7 @@
 	#list #plus_location{
 	
 		font-size: 20px;
-	}
-
-
-	
+	}	
 </style>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -89,21 +86,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		
-		var fno;
+	$(function() {	
 		
 		var listFavorite = function() {
 			$.ajax({
 			url:"listFavorite.do",
 			data:{"mno":$("#mno").val()},				
 			success:function(data)
-			{
-				
+			{				
 				var list = eval("("+data+")");					
-				$.each(list,function(i,f){	
+				$.each(list,function(i,f){					
 					var img = $("<img src='../resources/img/favoriteicon.png'>")
-					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"'></a>").html(f.id+"님");					
+					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"&id="+f.id+"'></a>").html(f.id+"님");					
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
@@ -119,12 +113,10 @@
 <body style="background-image: url('https://png.pngtree.com/thumb_back/fw800/back_pic/03/74/41/5757bc295499924.jpg');">
 
 	<input type="hidden" name="mno" id="mno" value="${mno}">
-	<input type="hidden" name="fmno" id="fmno" value="${fmno}">
+	<%-- <input type="hidden" name="fmno" id="fmno" value="${fmno}"> --%>
 		<div class="title">
 		<h1>그림 일기</h1>
-	</div>
-	
-	
+	</div>	
 	
 	<div class="menu">
 		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
@@ -136,13 +128,8 @@
 	
 	<div class="main" >
 		<h2>즐겨 찾기</h2>
-		<ul id="list">
-			
-		</ul>
-		
-	</div>
-	
-	
-	
+		<ul id="list">			
+		</ul>		
+	</div>	
 </body>
 </html>

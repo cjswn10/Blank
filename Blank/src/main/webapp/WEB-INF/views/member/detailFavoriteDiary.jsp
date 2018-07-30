@@ -26,8 +26,5 @@
 	내용 : <br>
 	<textarea rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
 	<hr>
-	<hr>
-	<a href="favoritesdiary.do?mno=${mno }">일기 목록</a>
-	<hr>
 </body>
 </html>
