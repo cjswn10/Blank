@@ -105,7 +105,6 @@ function down(e) {
 }
 
 function move(e) {
-	
 	if (!drawing)
 		return;
 	var curX = e.offsetX;
@@ -116,7 +115,6 @@ function move(e) {
 }
 
 function draw(curX, curY) {
-	
 	context.beginPath();
 	context.moveTo(startX, startY);
 	context.lineTo(curX, curY);
