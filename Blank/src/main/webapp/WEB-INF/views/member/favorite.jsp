@@ -30,12 +30,13 @@
 				$.each(list,function(i,f){	
 					var img = $("<img src='../resources/img/favoriteicon.png' width='30px'>")
 					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"'></a>").html(f.id+"님");					
-
+						
+					
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
 					$(li).append(img,a,removeimg);
-					$("#list").append(li);
+					$("#favolist").append(li);
 				});
 			}});
 		};
@@ -76,10 +77,9 @@
 	    </ul>
 	</nav>
 
-	<div class="content" >
+	<div class="content" style="margin-top: 50px;">
 		<h2>즐겨 찾기</h2>
-		
-		<ul id="list"></ul>
+					<ul id="favolist" style="margin-right: auto;"></ul>
 		
 	</div>
 </div>	

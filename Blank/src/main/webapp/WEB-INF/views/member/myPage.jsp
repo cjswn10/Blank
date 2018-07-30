@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=1">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 </head>
 <body>
@@ -22,8 +22,8 @@
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	<h5>회원정보</h5>
 	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
 	<a href="pwdCheck.do?id=${id }">Edit</a>
 	<a href="logOut.do">logout</a>
 	<br>
@@ -52,9 +52,9 @@
 
 	
 	<div class="content" style="margin-top: 180px">
-		<a href="pwdCheck.do?id=${id }"><h2>회원정보수정</h2></a>
+		<h2><a href="pwdCheck.do?id=${id }">MANAGE ACCOUNT</a></h2>
 		<br><br>
-		<a href="qNa.do"><h2>CONTACT</h2></a>
+		<h2><a href="qNa.do">CONTACT US</a></h2>
 	</div>
 </div>
 
