@@ -10,6 +10,6 @@
 <body>
 	<a href="join.do">가입</a><br>
 	<a href="login.do">로그인</a><br>
-	
+	<%response.sendRedirect("login.do"); %>
 </body>
 </html>

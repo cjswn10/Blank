@@ -22,10 +22,14 @@
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	
+	<h5>회원정보</h5>
 	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
 	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
 	<a href="qNa.do">Contact</a>
+	<br>
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
