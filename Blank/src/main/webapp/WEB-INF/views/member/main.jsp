@@ -6,10 +6,19 @@
 <html>
 <head>
 <style type="text/css">
+
+
+
+.clearfix::after {
+	content: '';
+	display: block;
+	clear: both;
+}
 <!-- 랜딩 컨테이너 작업  -->
 .container {
     width: 960px;
     margin: 0 auto;
+
 }
 
 .landing {
@@ -27,25 +36,26 @@
 }
 
 .blog {
+ 	width: 1000px;
+ 	margin: 0 auto;
     padding: 100px 0;
 }
 .blog article {
+	border: 0.5px groove black;
     float: left;
     width: 300px;
+    height: 150px;
     margin-right: 30px;
+    margin-bottom: 30px;
 }
 
 .blog article:last-child {
     margin-right: 0;
-}
-
-.blog article img {
-    width: 100%;
-    height: 200px;
+    
 }
 
 .footer {
-    padding:20px;
+    
     text-align: center;
     color: white;
     background-color: black;
@@ -85,18 +95,25 @@
 
 <div class="container">
 	
-	    <section class="blog">
-	    	<c:forEach var="d" items="${list }">
-	    		<article><img src="http://cafefiles.naver.net/data38/2009/4/27/185/universe_pykmh.jpg" alt>
-	    		<p>${d.dtitle }</p></article>
-	    	</c:forEach>
-	    		
-	    </section>
+	   <div class="blog" align="center">
+	   		<div class="clearfix">
+		    	<c:forEach var="d" items="${list }">
+		    	 
+		    		<article><h2>${d.dtitle }</h2>
+		    			<p>${d.ddate }</p>
+		    		</article>
+		    		
+		    	</c:forEach>
+	    	</div>
+	   </div> 		
+
+	    
+	    
 </div>
 <!-- 푸터입니다.  -->
 <footer class="footer">
 	<p>비트와밀당하는 팀 X 빈칸 , 2018</p>
 </footer>
-<div id="favo_list" align="center"></div>
+
 </body>
 </html>
