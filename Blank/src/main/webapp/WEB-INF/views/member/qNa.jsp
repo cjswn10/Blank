@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
 
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
@@ -47,7 +46,7 @@
 	</nav>
 
 	
-	<div class="content" style="width: 80%;">
+	<div class="content" style="width: 100%;">
 			<div class="row">
 				<div id="map" style="width:100%;height:400px;"></div>
 			</div>
@@ -80,9 +79,6 @@
               return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
           }
           var result = response.result;
-          // 검색 결과 갯수: result.total
-          // 첫번째 결과 결과 주소: result.items[0].address
-          // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
           var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
           map.setCenter(myaddr); // 검색된 좌표로 지도 이동
           // 마커 표시

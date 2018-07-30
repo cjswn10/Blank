@@ -14,8 +14,14 @@
 	float: right;
 }
 
+a::selection {
+	color: #fff;
+	background: #fdb2c2;
+}
 
-
+a, h5, h4 {
+	color: #818181;
+}
 
 /**************	  menu	*************/
 .logo {
@@ -24,10 +30,11 @@
 }
 
 nav {
-    width:100%;
+    width:1100px;
     background:#ffffff;
+    margin: 0 auto;
 }
-ul {
+nav ul {
     margin:10px auto;
     /*margin:10px auto;*/
     float: right;
@@ -38,13 +45,16 @@ nav ul li {
     padding:20px;
 }
 
-ul li a {
-    color:#000000;
+nav ul li a {
+    color: #000000;
+    font-weight: 600;
     text-decoration:none;
 }
 
 nav span {
 	display: inline-block;
+	font-weight: 600;
+	color: #000000;
 	padding:20px 45px;
 	margin:10px auto;
 	float: right;
@@ -133,13 +143,24 @@ nav span {
 	position: relative;
 	margin:0px auto;
 }
+	<!--mypage-->
+.content a{
+	color: #818181;
+}
+
+.content a:hover {
+	text-decoration: none;
+	color: #ff8c9d !important;
+}
+
 
 h2 {
 	text-align: center;
-	color :  #000000
+	color :  #818181;
 }
 
 .content h3 {
 	text-align: left;
 	margin: 10px auto;	
 }
+

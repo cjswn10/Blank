@@ -28,17 +28,17 @@
 			success:function(data) {
 				var list = eval("("+data+")");					
 				$.each(list,function(i,f){	
-
           
-					var img = $("<img src='../resources/img/favoriteicon.png'>")
+					var img = $("<img src='../resources/img/favoriteicon.png' width='30px'>")
 
 					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"&id="+f.id+"'></a>").html(f.id+"님");					
+
 
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
 					$(li).append(img,a,removeimg);
-					$("#list").append(li);
+					$("#favolist").append(li);
 				});
 			}});
 		};
@@ -55,10 +55,14 @@
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	
 	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
 	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
 	<a href="qNa.do">Contact</a>
+	<br>
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
@@ -79,10 +83,9 @@
 	    </ul>
 	</nav>
 
-	<div class="content" >
+	<div class="content" style="margin-top: 50px;">
 		<h2>즐겨 찾기</h2>
-		
-		<ul id="list"></ul>
+					<ul id="favolist" style="margin-right: auto;"></ul>
 		
 	</div>
 </div>	
