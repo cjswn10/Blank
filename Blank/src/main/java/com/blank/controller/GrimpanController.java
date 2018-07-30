@@ -26,7 +26,7 @@ public class GrimpanController {
 
 	@RequestMapping(value = "grimpan2.do", produces = "text/plain;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
-	public String makePngFile(String imageUrl, HttpServletRequest request) {
+	public void makePngFile(String imageUrl, HttpServletRequest request) {
 
 		// imgbase64 (imgbase64data:image/png;base64,iVBORw0KGgoAA 占쏙옙 占쏙옙占쏙옙)
 		// saveFilePath (占쏙옙占쏙옙占쏙옙)
@@ -54,8 +54,6 @@ public class GrimpanController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
-		return "ok";
 	}
 
 	/*

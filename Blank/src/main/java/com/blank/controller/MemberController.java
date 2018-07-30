@@ -39,6 +39,13 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/member/test.do")
+	public ModelAndView test() {
+		
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
 
 	//�븘�씠�뵒,鍮꾨�踰덊샇 李얘린 �럹�씠吏�
 	@RequestMapping(value="search.do")
@@ -207,6 +214,35 @@ public class MemberController {
 		}
 		
 		return mav;
+	}
+	
+
+	@RequestMapping(value="/member/mainSearchId.do",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String mainSearchId(String id,HttpSession session)
+	{
+		Map map = new HashMap();
+		map.put("id", id);
+		//session.setAttribute("serchMno", dao.mno(map));
+		String str = "";
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			if(id != "")
+			{
+				str = mapper.writeValueAsString(dao.mainSearchId(map)); 
+			}
+			else
+			{
+				str = "";
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+			
+		return str;
 	}
 	
 

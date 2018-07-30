@@ -1,6 +1,7 @@
 package com.blank.dao;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -12,46 +13,52 @@ import com.blank.vo.MemberVo;
 @Repository
 public class MemberDao {
 
-	//È¸¿ø°¡ÀÔ
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int memberInsert(MemberVo m) {
 		return MemberManager.memberInsert(m);
 	}
-	//¾ÆÀÌµð Áßº¹Ã¼Å©
+	//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½Ã¼Å©
 	public int memberCheckId(Map map) {
 
 		return MemberManager.checkId(map);
 		
 	}
-	//·Î±×ÀÎ
+	//ï¿½Î±ï¿½ï¿½ï¿½
 	public Boolean login(Map map) {
 		return MemberManager.login(map);
 	}
-	//È¸¿ø¹øÈ£ ¼¼¼ÇÀ¯Áö
+	//È¸ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int mno(Map map)
 	{
 		return MemberManager.mno(map);
 	}
-	//È¸¿ø¹øÈ£ ÀÚµ¿Áõ°¡
+	//È¸ï¿½ï¿½ï¿½ï¿½È£ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 	public int memberNextMno()
 	{
 		return MemberManager.memberNextMno();
 	}
-	//È¸¿øÁ¤º¸¼öÁ¤
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int updateMember(MemberVo mv) {
 		// TODO Auto-generated method stub
 		return MemberManager.updateMember(mv);
 	}
-	//È¸¿øÁ¤º¸ ¹Þ¾Æ¿À±â
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
 	public MemberVo getMember(Map map) {
 		// TODO Auto-generated method stub
 		return MemberManager.getMember(map);
 	}
-	//È¸¿ø ¾ÆÀÌµð Ã£±â
+	
+	public List<MemberVo> mainSearchId(Map map)
+	{
+		return MemberManager.mainSearchId(map);
+	}
+	
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 	public String searchId(Map map)
 	{
 		return MemberManager.searchId(map);
 	}
-	//È¸¿ø ºñ¹Ð¹øÈ£ Ã£±â
+	//È¸ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 	public String searchPwd(Map map)
 	{
 		return MemberManager.searchPwd(map);

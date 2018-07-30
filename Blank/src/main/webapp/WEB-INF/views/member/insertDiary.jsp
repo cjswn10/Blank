@@ -47,7 +47,7 @@ function openGrimpan() {
 <!-- 사진 보여주기 -->
 <script>
 	var sel_file;
-	var sel_file2;
+	var sel_fileG;
 	
 
 	$(document).ready(function() {
@@ -87,7 +87,7 @@ function openGrimpan() {
 				return;
 			}
 
-			sel_file2 = f;
+			sel_fileG = f;
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#img").attr("src", e.target.result);
@@ -177,10 +177,12 @@ function openGrimpan() {
 						</select>
 						<!-- 그림판 버튼 -->
 						<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px"></button>
-						<input type="text" name="dfile" id="dfile"> 
+						
+						<label for="uploadG"><img alt="사진첨부" src="../resources/img/icon/draw.png" width="40px"></label>
+						<input type="file" name="uploadG" id="uploadG" style="display: none;">
 						
 						<!-- 사진첨부 버튼 -->
-						<label for="upload"><img alt="사진첨부" src="../resources/img/icon/photo.png" width="25px"></label>
+						<label for="upload"><img alt="사진첨부" src="../resources/img/icon/picture.png" width="40px"></label>
 						<input type="file" name="upload" id="upload" style="display: none;">
 					</td>
 				</tr>
