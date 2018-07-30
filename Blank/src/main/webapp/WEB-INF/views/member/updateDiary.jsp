@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,12 +53,24 @@ $(function() {
 	});
 
 });
+// 그림판 띄어주는 창
+var openG;
+
+function openGrimpan() {
+	
+	window.name = "insertDiary";
+	openG = window.open("grimpan.do","grimpan","width=900,heigth=900");
+}
+
+
 
 </script>
 
 <!-- 사진 보여주기 -->
 <script>
 	var sel_file;
+	var sel_fileG;
+	
 	
 	$(document).ready(function() {
 		$("#upload").on("change", showImg)
@@ -77,6 +90,29 @@ $(function() {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#photo").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+	
+	$(document).ready(function() {
+		$("#uploadG").on("change", showImgG)
+	});
+	
+	function showImgG(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		filesArr.forEach(function(f) {
+			if(!f.type.match("image.*")) {
+				alert("확장자 오류");
+				return;
+			}
+			
+			sel_fileG = f;
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#img").attr("src", e.target.result);
 			}
 			reader.readAsDataURL(f);
 		});
@@ -127,10 +163,12 @@ $(function() {
 					</select>
 					<!-- 그림판 버튼 -->
 					<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px"></button>
-					<input type="text" name="dfile" id="dfile" value="${d.dfile }"> 
+	
+					<label for="uploadG"><img alt="사진첨부" src="../resources/img/icon/draw.png" width="40px"></label>
+					<input type="file" name="uploadG" id="uploadG" style="display: none;">
 					
 					<!-- 사진첨부 버튼 -->
-					<label for="upload"><img alt="사진첨부" src="../resources/img/icon/photo.png" width="25px"></label>
+					<label for="upload"><img alt="사진첨부" src="../resources/img/icon/picture.png" width="25px"></label>
 					<input type="file" name="upload" id="upload" style="display: none;">
 				</td>
 			</tr>
@@ -143,9 +181,13 @@ $(function() {
 			<tr>
 				<td colspan="2">
 					<!-- 그림 -->
-					<img id="img" width="300">
+					<c:if test="${not empty d.dfile}">
+						<img id="img" src="../resources/upload2/${d.dfile}">
+					</c:if>
 					<!-- 사진 -->
-					<img id="photo" src="../resources/upload/${d.dphoto }">
+					<c:if test="${not empty d.dphoto}">
+						<img id="photo" src="../resources/upload/${d.dphoto}">
+					</c:if>
 					<!-- 글 -->
 					<textarea rows="10" name="dcontent" id="dcontent" style="font-family: ${d.dfont};">${d.dcontent }</textarea>
 				</td>

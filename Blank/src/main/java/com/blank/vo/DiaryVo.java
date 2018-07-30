@@ -20,14 +20,14 @@ public class DiaryVo {
 	private int bno;
 
 	private MultipartFile upload;
-	private MultipartFile upload2;
+	private MultipartFile uploadG;
 
-	public MultipartFile getUpload2() {
-		return upload2;
+	public MultipartFile getUploadG() {
+		return uploadG;
 	}
 
-	public void setUpload2(MultipartFile upload2) {
-		this.upload2 = upload2;
+	public void setUploadG(MultipartFile uploadG) {
+		this.uploadG = uploadG;
 	}
 
 	public MultipartFile getUpload() {
