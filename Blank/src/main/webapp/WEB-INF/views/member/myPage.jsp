@@ -37,7 +37,7 @@
 
 	<!-- main-menu -->
 	<nav class="clearfix">
-	    <img src="../resources/img/blank.png" class="logo left">
+	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
 	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
