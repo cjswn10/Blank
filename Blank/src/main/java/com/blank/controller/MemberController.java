@@ -200,6 +200,33 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping(value="mainSearchId.do",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String mainSearchId(String id)
+	{
+		Map map = new HashMap();
+		map.put("id", id);
+		String str = "";
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			if(id != "")
+			{
+				str = mapper.writeValueAsString(dao.mainSearchId(map)); 
+			}
+			else
+			{
+				str = "";
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+			
+		return str;
+	}
+	
 	//�쉶�썝 �븘�씠�뵒 李얘린
 	@RequestMapping(value="searchId.do")
 	@ResponseBody
