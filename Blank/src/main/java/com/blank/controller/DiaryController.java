@@ -217,12 +217,16 @@ public class DiaryController {
 		}
 
 		d.setDphoto("");
+		d.setDfile("");
+	
 
 		String path = request.getRealPath("resources/upload");
+		String path2 = request.getRealPath("resources/upload2");
 		System.out.println(path);
 
 		
 		MultipartFile upload = d.getUpload();
+		MultipartFile upload2 = d.getUpload2();
 		//String dphoto = upload.getOriginalFilename();
 		/////////////////////////////////////////////////////
 		 
@@ -232,29 +236,39 @@ public class DiaryController {
 	       ModelAndView view = new ModelAndView();
 	       //占쏙옙占싹몌옙占싹깍옙
 	       String orgname = upload.getOriginalFilename();
+	       String orgname2 = upload2.getOriginalFilename();
 	       //확占쏙옙占쏙옙 占쏙옙占싹깍옙
 	       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
+	       String exc2 = orgname2.substring(orgname2.lastIndexOf(".")+1, orgname2.length());
 	       //bno占쏙옙 dno占쏙옙 占쏙옙占쏙옙占싹곤옙 확占쏙옙占쌘몌옙 占쏙옙占싹울옙 占쏙옙占싹몌옙 占쏙옙占쏙옙
 	       String dphoto = bno + "b" + no + "." + exc;
+	       String dfile = bno + "b" + no + "grim." + exc2;
 	       System.out.println("占쏙옙占쏙옙占쏙옙"+dphoto);
 	       //占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	       File saveFile = new File(path + "/" + dphoto);
+	       File saveFile2 = new File(path2 + "/" + dfile);
 	       try {
 	    	   upload.transferTo(saveFile);
+	    	   upload2.transferTo(saveFile2);
 	       } catch (Exception e) {
 	    	   // TODO: handle exception
 	    	   System.out.println(e.getMessage());
 	       }
 	       
 		/////////////////////////////////////////////////////
-		if (dphoto != null && !dphoto.equals("")) {
+		if (dphoto != null && !dphoto.equals("") || dfile != null && !dfile.equals("")) {
 			d.setDphoto(dphoto);
+			d.setDfile(dfile);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[] data = upload.getBytes();
+				byte[] data2 = upload2.getBytes();
 				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
+				FileOutputStream fos2 = new FileOutputStream(path2 + "/" + dfile);
 				fos.write(data);
+				fos2.write(data2);
 				fos.close();
+				fos2.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

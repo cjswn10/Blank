@@ -46,25 +46,50 @@ function openGrimpan() {
 <!-- 사진 보여주기 -->
 <script>
 	var sel_file;
+	var sel_file2;
 	
+
 	$(document).ready(function() {
 		$("#upload").on("change", showImg)
 	});
-	
+
 	function showImg(e) {
 		var files = e.target.files;
 		var filesArr = Array.prototype.slice.call(files);
-		
+
 		filesArr.forEach(function(f) {
-			if(!f.type.match("image.*")) {
+			if (!f.type.match("image.*")) {
 				alert("확장자 오류");
 				return;
 			}
-			
+
 			sel_file = f;
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#photo").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+	
+	$(document).ready(function() {
+		$("#upload2").on("change", showImg2)
+	});
+
+	function showImg2(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f) {
+			if (!f.type.match("image.*")) {
+				alert("확장자 오류");
+				return;
+			}
+
+			sel_file2 = f;
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#img").attr("src", e.target.result);
 			}
 			reader.readAsDataURL(f);
 		});
@@ -119,8 +144,7 @@ function openGrimpan() {
 					</select>
 					<!-- 그림판 버튼 -->
 					<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px"></button>
-					<input type="text" name="dfile" id="dfile"> 
-					
+					<input type="file" name="upload2" id="upload2"> 
 					<!-- 사진첨부 버튼 -->
 					<label for="upload"><img alt="사진첨부" src="../resources/img/icon/photo.png" width="25px"></label>
 					<input type="file" name="upload" id="upload" style="display: none;">
@@ -131,7 +155,7 @@ function openGrimpan() {
 					<!-- 그림 -->
 					<img id="img" width="300">
 					<!-- 사진 -->
-					<img id="photo">
+					<img id="photo" width="300">
 					<!-- 글 -->
 					<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea>
 				</td>
