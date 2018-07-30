@@ -5,106 +5,72 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	.title
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 80px;
-		position: relative;
-		width: 160px;
-		height:100px;
-		left: 40px;
-		top: -10px;
-	}
-	.menu
-	{ 
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 40px;
-		position: relative;
-		width:300px;
-		left: 1100px;
-		top: -530px;
-	}
-	.ifm
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 25px;
-		position: relative;
-		width:350px;
-		left: 1150px;
-		top: -630px;
-	}
-	.check
-	{
-		font-family: 'Nanum Pen Script', serif;
-		position: relative;
-		font-size: 50px;
-		width:400px;
-		top: 200px;
-		left: 100px;
-	}
-	.main
-	{
-		font-family: 'Nanum Pen Script', serif;
-		position: relative;
-		font-size: 45px;
-		width:600px;
-		top: -20px;
-		left: 600px;
-	}
 
-	
-</style>
-<!-- 합쳐지고 최소화된 최신 CSS -->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=AEECUGOtAKgtqe22o3QO&submodules=geocoder"></script>
 
+<link rel="stylesheet" href="../resources/css/blank.css">
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 </head>
 <body>
-	<div class="title">
-		<h1>그림 일기</h1>
+	<!-- side-menu -->
+<section id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	
+	
+	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<a href="logOut.do">logout</a>
+	<a href="qNa.do">Contact</a>
+	<div class="side_icon_set">
+		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
+		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
 	</div>
 	
-	<div class="check">
-		<a href="#">Q & A</a>
-		<br>
-		<br>
-		<a href="pwdCheck.do?id=${id }">회원정보수정</a>
+</section>
+
+<div id="wrapper">
+
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+
+	
+	<div class="content" style="width: 80%;">
+			<div class="row">
+				<div id="map" style="width:100%;height:400px;"></div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-6">
+	 					<h3>Location</h3>
+	 					<h5>서울 마포구 백범로 23 구프라자 3층</h5><br>
+	 					<h3>Tel</h3>
+ 						<h5>(010)-7706-2878</h5>
+	 			</div>
+ 				<div class="col-md-6">
+ 					<h3>STAFF</h3>
+ 					<h5>비트밀당조</h5><br>
+ 					<h3>Email</h3>
+ 					<h5>flsh22@naver.com</h5>
+ 				</div>
+
+			</div>
 	</div>
-	
-	<input type="hidden" id="id" name="id" value="${id }">
-	
-	<div class="main">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span>차건우</span><br>
-		<span>연락처 : 010-7706-2878</span>
-		<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span>010-9042-1391</span>
-		<br>
-		<span>이메일 : 123123@naver.com</span>
-		<br>
-		<span>주소 : 서울 마포구 백범로 23 구프라자 3층</span>
-		<br>
-		<span><div id="map" style="width:100%;height:400px;"></div></span> 
-	</div>
-	
-	
-	<div class="menu">
-		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="favorite.do">즐겨찾기</a>
-	</div>
-	
-	<div class="ifm">
-		<a href="#">${id }님</a><span>  |  </span><a href="myPage.do">마이페이지</a><span>  |  </span><a href="logOut.do">로그아웃</a>
-	</div>
+</div>
+
 	
 	<script>
       var map = new naver.maps.Map('map');
