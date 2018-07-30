@@ -35,7 +35,11 @@
 						
 						$(id).click(function() {
 							$("#searchId").val(v.id)
-							$("#test").hide();
+							$("#test").hide();	
+							location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
+						})
+						$("#btnMove").click(function(){
+							location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
 						})
 						
 					})
@@ -45,19 +49,20 @@
 			if(this.value != null)
 			{
 				$("#test").show();	
-			}
-			else
-			{
-				$("#test").hide();
 			}	
 			
 		})
+		
 		
 	})
 </script>
 </head>
 <body>
-	<input type="text" name="searchId" id="searchId">
-	<div id="test"></div>
+	<div class="mainSearchId">
+		<input type="text" name="searchId" id="searchId">
+		<button id="btnMove">이동</button>
+		<div id="test"></div>
+	</div>
+	
 </body>
 </html>

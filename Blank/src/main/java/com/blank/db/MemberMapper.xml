@@ -12,7 +12,7 @@
   	</select>
   	
   	<select id="mainSearchId" resultType="memberVo" parameterType="String">
-  		select id from member where id like '%' || #{id} || '%'
+  		select id,mno from member where id like '%' || #{id} || '%'
   	</select>
   	
   	<select id="searchId" resultType="String">
