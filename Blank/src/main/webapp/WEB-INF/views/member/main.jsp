@@ -6,19 +6,35 @@
 <html>
 <head>
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
+.diaryimg{
+	position: relative;    
+    background-size: contain;    
+    width: 300px;
+    height: 400px;
+    z-index: 5;
+    float: left;
+}
+.content{	
+	position: absolute;
+	z-index: 2;
+	font-style: white;	
+}
+.opacity{
+	opacity: 0.4;	
+}
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
 .clearfix::after {
 	content: '';
 	display: block;
-	clear: both;
-}
+	clear: both;	
+	}
 <!-- 랜딩 컨테이너 작업  -->
 .container {
     width: 960px;
     margin: 0 auto;
-
 }
 
 .landing {
@@ -36,16 +52,16 @@
 }
 
 .blog {
- 	width: 1000px;
+	position: relative;
+ 	width: 1400px;
  	margin: 0 auto;
     padding: 100px 0;
 }
 .blog article {
-	border: 1px solid black;
-	border-radius: 10px;
+
     float: left;
     width: 300px;
-    height: 150px;
+    height: 400px;
     margin-right: 30px;
     margin-bottom: 30px;
 }
@@ -109,6 +125,39 @@ border:2px solid #fff;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$.ajax({
+			url: "mainList.do",
+			success:function(data){
+				var list = eval("("+data+")");
+				$.each(list, function(i, d) {
+					var content = $('<p class="content"></p>').html(d.dcontent);
+					var div = $("<div class='diaryimg'></div>").attr({
+						style: "background-image: url('../resources/upload/"+d.dphoto+"')"
+					});
+					var article = $('<article></article');				
+					if (d.dphoto == null) {
+						$(div).attr({
+							style: "background-image: url('../resources/upload/standard.png')"
+						})
+					}
+					
+					$(div).hover(function() {
+						$(this).addClass('opacity')		
+						$(div).append(content);
+					}, function() {
+						$(this).removeClass('opacity')
+						$(content).detach();
+					})
+					$(article).append(div)
+					$('.clearfix').append(div);					
+				})
+			}
+		})
+	})
+</script>
 <title>빈칸을 채우다.</title>
 </head>
 <body>
@@ -141,18 +190,9 @@ border:2px solid #fff;
 	
 	   <div class="blog" align="center">
 	   		<div class="clearfix">
-		    	<c:forEach var="d" items="${list }">
-		    	 
-		    		<article class="form-control"><h2>${d.dtitle }</h2>
-		    			<p>${d.ddate }</p>
-		    		</article>
-		    		
-		    	</c:forEach>
-	    	</div>
-	   </div> 		
 
-	    
-	    
+	    	</div>
+	   </div> 	    
 </div>
 <!-- 푸터입니다.  -->
 <footer class="footer">

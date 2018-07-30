@@ -28,8 +28,9 @@
 			success:function(data) {
 				var list = eval("("+data+")");					
 				$.each(list,function(i,f){	
-					var img = $("<img src='../resources/img/favoriteicon.png' width='30px'>")
-					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"'></a>").html(f.id+"님");					
+          
+					var img = $("<img src='../resources/img/favoriteicon.png'>")
+					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"&id="+f.id+"'></a>").html(f.id+"님");					
 
 					var li = $("<li></li>")
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
