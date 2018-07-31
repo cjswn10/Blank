@@ -76,7 +76,7 @@ public class DiaryController {
  	//=> dtype="110"
  	 */
 	
-	//일기 삭제
+	//�쇨린 ����
 	@RequestMapping("/member/deleteDiary.do")
 	public ModelAndView deleteDiary(int dno, HttpSession session, HttpServletRequest request) {		
 		
@@ -92,7 +92,7 @@ public class DiaryController {
 		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		int re = dao.deleteDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "삭제 실패");
+			mav.addObject("msg", "���� �ㅽ��");
 			mav.setViewName("/member/error");
 		}
 		if (re > 0 && oldFname != null && !oldFname.equals("")) {
@@ -113,11 +113,10 @@ public class DiaryController {
 	}
 
 	
-	//일기 수정
+	//�쇨린 ����
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
-		/*Map map = new HashMap();
-		map.put("d", d);*/
+		
 		
 		int no = d.getDno(); 
 		
@@ -137,13 +136,25 @@ public class DiaryController {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 		ModelAndView mav = new ModelAndView();
+		
 
 		
+		//
+		//이전 파일을 가져오기 위한 map
+		Map map = new HashMap();
+		map.put("dno", d.getDno());
 		
-		String oldDphoto = d.getDphoto();		
+		String oldDfile = (dao.detailDiary(map)).getDfile();
+		String oldDphoto = (dao.detailDiary(map)).getDphoto();
+		
+		System.out.println("---------olddfile"+oldDfile);
+		System.out.println("---------olddfile"+oldDphoto);
+		/*
+		String oldDphoto = d.getDphoto();
 		String oldDfile = d.getDfile();		
+		System.out.println();
+		 */
 		
-
 		String path = request.getRealPath("resources/upload");
 		String pathG = request.getRealPath("resources/upload2");
 		System.out.println(path);
@@ -153,26 +164,28 @@ public class DiaryController {
 		MultipartFile uploadG = d.getUploadG();
 		
 		String orgname = upload.getOriginalFilename();
-	       String dphoto = "x";
+	    String dphoto = "x";
 	       
-	       if(orgname != null && !orgname.equals("")) {
-	    	   
-		       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
-		       //확장자를 포함한 새이름
-		       dphoto = bno + "b" + no + "." + exc;
-		       System.out.println(dphoto);
-		       File saveFile = new File(path + "/" + dphoto);
-		       try {
-		    	   upload.transferTo(saveFile);
-		       } catch (Exception e) {
-		    	   // TODO: handle exception
-		    	   System.out.println(e.getMessage());
-		       }
-	       
+	    //사진이름 바꾸기
+       if(orgname != null && !orgname.equals("")) {
+    	   
+	       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
+	       //���μ��瑜� �ы�⑦�� ���대�
+	       dphoto = bno + "b" + no + "." + exc;
+	       System.out.println("dphoto:"+dphoto);
+	       File saveFile = new File(path + "/" + dphoto);
+	       try {
+	    	   upload.transferTo(saveFile);
+	       } catch (Exception e) {
+	    	   // TODO: handle exception
+	    	   System.out.println(e.getMessage());
 	       }
-		/////////////////////////////////////////////////////
+       
+       }
+
+       /////////////////////////////////////////////////////
 		if (!dphoto.equals("x")) {
-			d.setDphoto(dphoto);
+			
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[] data = upload.getBytes();
@@ -185,6 +198,7 @@ public class DiaryController {
 			}
 		}
 		
+		System.out.println("22222222222222222");
 		
 		String orgnameG = uploadG.getOriginalFilename();
 		String dfile = "x";
@@ -192,10 +206,10 @@ public class DiaryController {
 		if(orgnameG != null && !orgnameG.equals("")) {
 			
 			String excG = orgnameG.substring(orgnameG.lastIndexOf(".")+1, orgnameG.length());
-			//확장자를 포함한 새이름
+			//���μ��瑜� �ы�⑦�� ���대�
 			dfile = bno + "b" + no + "grim." + excG;
 			System.out.println(dfile);
-			//파일경로를 포함한 이름
+			//���쇨꼍濡�瑜� �ы�⑦�� �대�
 		    File saveFile = new File(pathG + "/" + dfile);
 			     
 	       try {
@@ -205,8 +219,10 @@ public class DiaryController {
 	    	   System.out.println(e.getMessage());
 	       }
 		}
+		System.out.println("444");
 		/////////////////////////////////////////////////////
 		if (!dfile.equals("x")) {
+			System.out.println("555");
 			d.setDfile(dfile);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
@@ -220,28 +236,29 @@ public class DiaryController {
 			}
 		}
 		
-//		String dfile = uploadG.getOriginalFilename();
-//		if (dfile != null && !dfile.equals("")) {			
-//			d.setDtype(d.getDtype().substring(0, 2) + "1");
-//			d.setDfile(dfile);
-//			try {
-//				byte[] dataG = uploadG.getBytes();
-//				FileOutputStream fosG = new FileOutputStream(pathG + "/" + dfile);
-//				fosG.write(dataG);
-//				fosG.close();
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 		
 
 		int re = dao.updateDiary(d);
-		
+		System.out.println("re입니다." + re);
 		if (re > 0) {
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
+			
+			if (!dphoto.equals("x")) {
+				System.out.println("666photo");
+				File file = new File(path + "/" + oldDphoto);
+
+				file.delete();
+			}
+			if (!dfile.equals("x")) {
+				System.out.println("777file");
+				File fileG = new File(pathG + "/" + oldDfile);
+				
+				fileG.delete();
+			}
+			
+			
 		}else {
-			mav.addObject("msg", "수정 실패");
+			mav.addObject("msg", "���� �ㅽ��");
 			mav.setViewName("/member/error");			
 		}
 		
@@ -256,20 +273,11 @@ public class DiaryController {
 //		}
 		
 		
-		if (re > 0 && !dphoto.equals("") && dphoto != null && !dphoto.equals("")) {
-			File file = new File(path + "/" + oldDphoto);
-
-			file.delete();
-		}
-		if (re > 0 && !dfile.equals("") && dfile != null && !dfile.equals("")) {
-			File fileG = new File(pathG + "/" + oldDfile);
-			
-			fileG.delete();
-		}
+		
 		return mav;
 	}
 	
-	//일기 상세
+	//�쇨린 ����
 	@RequestMapping("/member/detailDiary.do")
 	public ModelAndView detailDiary(int dno) {
 		Map map = new HashMap();
@@ -279,13 +287,13 @@ public class DiaryController {
 		return mav;
 	}
 	
-	//일기 생성 폼
+	//�쇨린 ���� ��
 	@RequestMapping(value="/member/insertDiary.do", method=RequestMethod.GET)
 	public void diaryInsertForm() {
 
 	}
 	
-	//일기 생성
+	//�쇨린 ����
 	@RequestMapping(value="/member/insertDiary.do",  method=RequestMethod.POST)
 	public ModelAndView diaryInsertSubmit(DiaryVo d, HttpServletRequest request, HttpSession session) {
 		int mno = (Integer) session.getAttribute("mno");
@@ -295,12 +303,12 @@ public class DiaryController {
 		d.setDno(no);
 		
 		d.setDtype("000");
-		//그림 파일 설정
+		//洹몃┝ ���� �ㅼ��
 		if (d.getDfile() != null) {
 			d.setDtype("100");
 		}
 		
-		//trim 해서 써야해(뭐라고 썼을까..?)
+		//trim �댁�� �⑥�쇳��(萸��쇨� �쇱��源�..?)
 		if (d.getDcontent() != null) {
 			d.setDtype(d.getDtype().substring(0, 1) + "1" + d.getDtype().substring(2));
 		}
@@ -323,17 +331,17 @@ public class DiaryController {
 		String ser_id = request.getParameter("ser_id");
 	       Boolean success = false;
 	       ModelAndView view = new ModelAndView();
-	       //원래이름
+	       //�����대�
 	       String orgname = upload.getOriginalFilename();
 	       String dphoto = "x";
 	       
 	       if(orgname != null && !orgname.equals("")) {
 	    	   
 		       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
-		       //확장자를 포함한 새이름
+		       //���μ��瑜� �ы�⑦�� ���대�
 		       dphoto = bno + "b" + no + "." + exc;
 		       System.out.println(dphoto);
-		       //파일경로를 포함한 이름
+		       //���쇨꼍濡�瑜� �ы�⑦�� �대�
 		       File saveFile = new File(path + "/" + dphoto);
 		     
 		       try {
@@ -365,10 +373,10 @@ public class DiaryController {
 	       if(orgnameG != null && !orgnameG.equals("")) {
 	    	   
 		       String excG = orgnameG.substring(orgnameG.lastIndexOf(".")+1, orgnameG.length());
-		       //확장자를 포함한 새이름
+		       //���μ��瑜� �ы�⑦�� ���대�
 		       dfile = bno + "b" + no + "grim." + excG;
 		       System.out.println(dfile);
-		       //파일경로를 포함한 이름
+		       //���쇨꼍濡�瑜� �ы�⑦�� �대�
 		       File saveFileG = new File(pathG + "/" + dfile);
 		     
 		       try {
@@ -413,7 +421,7 @@ public class DiaryController {
 
 		int re = dao.insertDiary(map);
 		if (re < 1) {
-			mav.addObject("msg", "생성 실패");
+			mav.addObject("msg", "���� �ㅽ��");
 			mav.setViewName("/member/error");
 		}
 
@@ -425,7 +433,7 @@ public class DiaryController {
 
 	}
 
-	//일기 목록
+	//�쇨린 紐⑸�
 	@RequestMapping(value="/member/listDiary.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listDiary(int bno, int mno, HttpSession session) {
