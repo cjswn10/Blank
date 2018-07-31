@@ -53,6 +53,7 @@ public class DiaryManager {
 		SqlSession session = factory.openSession(true);
 		re = session.update("diary.updateDiary", d);
 		session.close();
+		System.out.println(d.getDno());
 		return re;
 	}
 	

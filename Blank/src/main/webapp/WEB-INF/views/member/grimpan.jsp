@@ -18,7 +18,7 @@ canvas {
 <script type="text/javascript">
 	$(function() {
 		$("#download").click(function() {
-			downloadCanvas(this, 'canvas', 'seongin.png');
+			downloadCanvas(this, 'canvas', 'myGrim.png');
 		});
 
 		$("#btnOk").click(

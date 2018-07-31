@@ -123,7 +123,7 @@ function openGrimpan() {
 	<h2>일기 수정</h2>
 	<hr>
 	<form action="updateDiary.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="dno" id="dno" value="${d.dno }">
+		<input type="hidden" name="dno" id="dno" value="${d.dno}">
 
 		<table>
 			<tr>
