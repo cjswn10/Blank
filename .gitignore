@@ -14,16 +14,17 @@ local.properties
 .project
 .classpath
 .springBeans
-
+Servers/
 target/
 m2e-wtp/
 META-INF/
 
 pom.properties
 MANIFEST.MF
-C:\Blank\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Blank\resources\*
-!C:\Blank\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Blank\resources\upload2
-!C:\Blank\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Blank\resources\upload
+.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Blank/resources/*
+!.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Blank/resources/upload
+!.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Blank/resources/upload2
+
 
 *.class
 *.log
