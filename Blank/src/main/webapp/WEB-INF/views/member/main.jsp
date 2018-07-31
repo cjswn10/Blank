@@ -43,7 +43,7 @@
     height: 600px;
     margin: auto;
     
-    background-image: url(https://i.ytimg.com/vi/dtxcy6g3zeY/maxresdefault.jpg);
+    background-image: url("../resources/img/mainlogo.jpg");
     
     background-size: cover;
     background-position: center center;
@@ -174,7 +174,7 @@ border:2px solid #fff;
 <title>빈칸을 채우다.</title>
 </head>
 <body>
-	<a href="mainjsp" class="main"><img src="../resources/img/mainlogo.png"></a>
+	<a href="mainjsp" class="main"><img src="../resources/img/.png"></a>
 <div class="upper">
 <span class="upper_menu">${id }님</span>
 <a href="#" class="upper_menu">로그아웃</a>
