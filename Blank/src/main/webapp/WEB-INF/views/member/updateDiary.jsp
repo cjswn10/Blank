@@ -8,9 +8,11 @@
 <title>빈칸을 채우다.</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../resources/css/blank.css?ver=1">
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script src="//code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -120,6 +122,20 @@ function openGrimpan() {
 </script>
 </head>
 <body>
+<div id="wrapper">
+
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <a href="main.do"><img src="../resources/img/blank_pink.png" class="logo left"></a>
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+
+<div class="content" style="margin-top: 180px">
 	<h2>일기 수정</h2>
 	<hr>
 	<form action="updateDiary.do" method="post" enctype="multipart/form-data">
@@ -244,5 +260,7 @@ function openGrimpan() {
 
 		<button type="submit">수정</button>
 	</form>
+	</div>
+</div>
 </body>
 </html>
