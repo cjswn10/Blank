@@ -39,13 +39,6 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/test.do")
-	public ModelAndView test() {
-		
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	}
-	
 
 	//�븘�씠�뵒,鍮꾨�踰덊샇 李얘린 �럹�씠吏�
 	@RequestMapping(value="search.do")
