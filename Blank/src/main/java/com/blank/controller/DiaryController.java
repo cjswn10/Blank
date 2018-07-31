@@ -110,6 +110,9 @@ public class DiaryController {
 		/*Map map = new HashMap();
 		map.put("d", d);*/
 		
+		int no = d.getDno(); 
+		
+		
 		d.setDtype("000");
 		String dtype = d.getDtype();
 		System.out.println(dtype);
@@ -140,10 +143,28 @@ public class DiaryController {
 		MultipartFile upload = d.getUpload();
 		MultipartFile uploadG = d.getUploadG();
 		
-		String dphoto = upload.getOriginalFilename();
-		if (dphoto != null && !dphoto.equals("")) {			
-			d.setDtype(d.getDtype().substring(0, 2) + "1");
+		String orgname = upload.getOriginalFilename();
+	       String dphoto = "x";
+	       
+	       if(orgname != null && !orgname.equals("")) {
+	    	   
+		       String exc = orgname.substring(orgname.lastIndexOf(".")+1, orgname.length());
+		       //확장자를 포함한 새이름
+		       dphoto = bno + "b" + no + "." + exc;
+		       System.out.println(dphoto);
+		       File saveFile = new File(path + "/" + dphoto);
+		       try {
+		    	   upload.transferTo(saveFile);
+		       } catch (Exception e) {
+		    	   // TODO: handle exception
+		    	   System.out.println(e.getMessage());
+		       }
+	       
+	       }
+		/////////////////////////////////////////////////////
+		if (!dphoto.equals("x")) {
 			d.setDphoto(dphoto);
+			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[] data = upload.getBytes();
 				FileOutputStream fos = new FileOutputStream(path + "/" + dphoto);
@@ -155,10 +176,30 @@ public class DiaryController {
 			}
 		}
 		
-		String dfile = uploadG.getOriginalFilename();
-		if (dfile != null && !dfile.equals("")) {			
-			d.setDtype(d.getDtype().substring(0, 2) + "1");
+		
+		String orgnameG = uploadG.getOriginalFilename();
+		String dfile = "x";
+		
+		if(orgnameG != null && !orgnameG.equals("")) {
+			
+			String excG = orgnameG.substring(orgnameG.lastIndexOf(".")+1, orgnameG.length());
+			//확장자를 포함한 새이름
+			dfile = bno + "b" + no + "grim." + excG;
+			System.out.println(dfile);
+			//파일경로를 포함한 이름
+		    File saveFile = new File(pathG + "/" + dfile);
+			     
+	       try {
+	    	   upload.transferTo(saveFile);
+	       } catch (Exception e) {
+	    	   // TODO: handle exception
+	    	   System.out.println(e.getMessage());
+	       }
+		}
+		/////////////////////////////////////////////////////
+		if (!dfile.equals("x")) {
 			d.setDfile(dfile);
+			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[] dataG = uploadG.getBytes();
 				FileOutputStream fosG = new FileOutputStream(pathG + "/" + dfile);
@@ -169,12 +210,26 @@ public class DiaryController {
 				e.printStackTrace();
 			}
 		}
-
+		
+//		String dfile = uploadG.getOriginalFilename();
+//		if (dfile != null && !dfile.equals("")) {			
+//			d.setDtype(d.getDtype().substring(0, 2) + "1");
+//			d.setDfile(dfile);
+//			try {
+//				byte[] dataG = uploadG.getBytes();
+//				FileOutputStream fosG = new FileOutputStream(pathG + "/" + dfile);
+//				fosG.write(dataG);
+//				fosG.close();
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+		
 
 		int re = dao.updateDiary(d);
 		
 		if (re > 0) {
-
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 		}else {
 			mav.addObject("msg", "수정 실패");
@@ -302,7 +357,7 @@ public class DiaryController {
 	    	   
 		       String excG = orgnameG.substring(orgnameG.lastIndexOf(".")+1, orgnameG.length());
 		       //확장자를 포함한 새이름
-		       dfile = bno + "b" + no + "." + excG;
+		       dfile = bno + "b" + no + "grim." + excG;
 		       System.out.println(dfile);
 		       //파일경로를 포함한 이름
 		       File saveFileG = new File(pathG + "/" + dfile);
