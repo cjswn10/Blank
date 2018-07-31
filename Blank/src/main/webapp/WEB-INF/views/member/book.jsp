@@ -54,7 +54,7 @@
 	{
 		position: absolute;
 		top: 800px;
-		left: 250px;
+		left: 270px;
 		width: 1200px;
 		height: 1200px;
 	}
