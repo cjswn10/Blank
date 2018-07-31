@@ -31,6 +31,15 @@ public class DiaryController {
 		this.dao = dao;
 	}
 
+	@RequestMapping("/member/mainDetailDiary.do")
+	public ModelAndView mainDetailDiary(int dno) {
+		Map map = new HashMap();
+		map.put("dno", dno);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("d", dao.detailDiary(map));
+		return mav;
+	}
+	
 	@RequestMapping("/member/detailFavoriteDiary.do")
 	public ModelAndView detailFavoriteDiary(int dno) {
 		Map map = new HashMap();

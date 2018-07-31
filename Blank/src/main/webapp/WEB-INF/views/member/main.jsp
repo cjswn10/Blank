@@ -2,16 +2,10 @@
     pageEncoding="UTF-8"%>
     
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <style type="text/css">
-
-.textDiv{	
-	background-color: pink;
-	background-image: url("../resources/upload/textDiv.png");
-	background-size: cover;	
-}
 
 .diaryimg{
 	position: relative;    
@@ -20,13 +14,15 @@
     float: left;
     background-size: contain;
 	background-repeat: no-repeat;
-	border-radius: 10px;
 }
 .content{	
 	width: 300px;
 	height: 400px;
 	position: absolute;
 	white-space: pre-line;
+	background-color: pink;
+	opacity: 0.8;
+	overflow: hidden;	
 }
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
@@ -69,6 +65,7 @@
     height: 400px;
     margin-right: 30px;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .blog article:last-child {
@@ -135,34 +132,37 @@ border:2px solid #fff;
 	$(function () {
 		$.ajax({
 			url: "mainList.do",
-			success:function(data){
+			success:function(data){				
 				var list = eval("("+data+")");
 				$.each(list, function(i, d) {
 					var font = $('<font color="black"></font>')					
 					var content = $('<div class="content"></div>').html(d.dcontent);
 					$(font).append(content);
 					var div = $("<div class='diaryimg'></div>").attr({
-						style: "background-image: url('../resources/upload/"+d.dphoto+"')"
+						style: "background-image: url('../resources/upload2/"+d.dfile+"')",						
 					});
-					var textDiv = $('<div class="textDiv"><div/>')					
-					var article = $('<article></article');					
 					
-					if (d.dphoto == null) {
+					var article = $('<article></article').attr({
+						onclick: "location.href='mainDetailDiary.do?dno="+d.dno+"'"
+					})
+					
+					if (d.dphoto != null) {
+						$(div).attr({
+							style: "background-image: url('../resources/upload/"+d.dphoto+"')"
+						})
+					}else if (d.dfile == null && d.dphoto == null){
 						$(div).attr({
 							style: "background-image: url('../resources/upload/standard.png')"
 						})
-					}					
-					
-					$(article).append(div)
+					}		
+					$(article).append(div);
 					$('.clearfix').append(article);
 					
 					$(article).hover(function() {
 						$(div).detach();
-						$(this).append(textDiv);
 						$(this).append(content);
 					}, function() {		
 						$(this).append(div);
-						$(textDiv).detach();
 						$(content).detach();
 						$(font).detach();
 					})
@@ -186,7 +186,6 @@ border:2px solid #fff;
 <a href="#" class="main_menu">즐겨찾기</a>
 <a href="myPage.do" class="main_menu">마이페이지</a>
 </div>
-
 <div class="title_favo" align="center">
 	main
 </div>
