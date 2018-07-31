@@ -344,6 +344,7 @@ public class DiaryController {
 		map.put("mno", d.getMno());
 		map.put("bno", d.getBno());
 
+		
 		ModelAndView mav = new ModelAndView("redirect:/member/diary.do?mno=" + mno + "&bno=" + bno);
 
 		int re = dao.insertDiary(map);
