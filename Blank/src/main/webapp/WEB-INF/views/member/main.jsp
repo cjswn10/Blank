@@ -5,6 +5,7 @@
 <!DOCTYPE>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 
 .diaryimg{
@@ -15,7 +16,7 @@
     background-size: contain;
 	background-repeat: no-repeat;
 }
-.content{	
+.contents{	
 	width: 300px;
 	height: 400px;
 	position: absolute;
@@ -27,11 +28,6 @@
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
-.clearfix::after {
-	content: '';
-	display: block;
-	clear: both;	
-	}
 <!-- 랜딩 컨테이너 작업  -->
 .container {
     width: 960px;
@@ -71,19 +67,6 @@
 .blog article:last-child {
     margin-right: 0;
     
-}
-
-.footer {
-    font-family: 'Nanum Pen Script', serif;
-    font-size: 30px;
-    text-align: center;
-    color: white;
-    background-color: #151515;
-}
-
-.footer h2{
-	font-size: 50px;
-	
 }
 
 .btn-social {
@@ -130,19 +113,15 @@ border:2px solid #fff;
 }
 
 </style>
-<link rel="stylesheet" href="../resources/css/base.css">
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<link rel="stylesheet" href="../resources/css/blank.css?ver=2">
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function () {
 		$.ajax({
@@ -151,7 +130,7 @@ border:2px solid #fff;
 				var list = eval("("+data+")");
 				$.each(list, function(i, d) {
 					var font = $('<font color="black"></font>')					
-					var content = $('<div class="content"></div>').html(d.dcontent);
+					var content = $('<div class="contents"></div>').html(d.dcontent);
 					$(font).append(content);
 					var div = $("<div class='diaryimg'></div>").attr({
 						style: "background-image: url('../resources/upload2/"+d.dfile+"')",						
@@ -171,7 +150,7 @@ border:2px solid #fff;
 						})
 					}		
 					$(article).append(div);
-					$('.clearfix').append(article);
+					$('#mainList').append(article);
 					
 					$(article).hover(function() {
 						$(div).detach();
@@ -226,66 +205,94 @@ border:2px solid #fff;
 <title>빈칸을 채우다.</title>
 </head>
 <body>
-	<a href="mainjsp" class="main"><img src="../resources/img/.png"></a>
-<div class="upper">
-<span class="upper_menu">${id }님</span>
-<a href="#" class="upper_menu">로그아웃</a>
-</div>
-<hr>
-
-<div class="menus" align="right">
-<a href="book.do" class="main_menu">일기장</a>
-<a href="#" class="main_menu">즐겨찾기</a>
-<a href="myPage.do" class="main_menu">마이페이지</a>
-</div>
-<div class="title_favo" align="center">
-	main
-</div>
-
-<section class="landing">
-		<div class="container">
-
-		</div>
-		
+<!-- side-menu -->
+<section id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	
+	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
+	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
+	<a href="qNa.do">Contact</a>
+	<br>
+	<div class="side_icon_set">
+		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
+		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
+	</div>
+	
 </section>
 
-<div class="mainSearchId">
+<div id="wrapper">
+
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <a href="main.do"><img src="../resources/img/blank_black.png" class="logo left"></a>
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+
+	<div class="mainSearchId">
 	<input type="text" name="id" id="id">
 	<button id="btnMove">이동</button>
 	<div id="test"></div>
 </div>
-
-<div class="container">
 	
-	   <div class="blog" align="center">
-	   		<div class="clearfix">
+		<div class="landing">
+			<div class="container">
+	
+			</div>
+			
+		</div>
 
-	    	</div>
-	   </div> 	    
 </div>
+	
+	
+	<div class="container">
+		
+		   <div class="blog" align="center">
+		   		<div class="clearfix" id="mainList">
+	
+		    	</div>
+		   </div> 	    
+	</div>
+		
+		
+
+
+
+
+	
+
+
 <!-- 푸터입니다.  -->
 <footer class="footer">
 	<h2>비트와밀당하는 팀 X 빈칸 , 2018</h2>
 	<ul class="list-inline">
        <li>
            <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
-           <br>김영호
+           <br><h5>김영호</h5>
        </li>
        <li>
            <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
-           <br>변성인
+           <br><h5>변성인</h5>
        </li>
        <li>
            <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
-           <br>성민규
+           <br><h5>성민규</h5>
        </li>
        <li>
            <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
-           <br>임연주
+           <br><h5>임연주</h5>
        </li>
        <li>
            <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
-           <br>차건우
+           <br><h5>차건우</h5>
        </li>
 
                             

@@ -13,8 +13,16 @@
 	</delete>
 
 	<update id="updateDiary">
-		update diary set dtitle=#{dtitle}, ddate=#{ddate}, dweather=#{dweather}, dfont=#{dfont}, dtype=#{dtype},  dfile=#{dfile}, dcontent=#{dcontent}, dphoto=#{dphoto}
-		 where dno=#{dno} 
+		update diary set dtitle=#{dtitle}, ddate=#{ddate}, dweather=#{dweather}, dfont=#{dfont}, dtype=#{dtype}, 
+		<if test="dfile != null">
+			dfile=#{dfile}, 
+		</if>
+		<if test="dphoto != null">
+			dphoto=#{dphoto},
+		</if>
+		
+		dcontent=#{dcontent},  secret=#{secret}
+		where dno=#{dno} 
 	</update>
 
 	<select id="detailDiary" resultType="diaryvo">

@@ -25,7 +25,7 @@ a, h5, h4 {
 
 /**************	  menu	*************/
 .logo {
-	width: 150px;
+	width: 105px;
 	margin-left: 10px;
 }
 
@@ -165,3 +165,16 @@ h2 {
 	margin: 10px auto;	
 }
 
+/*************	footer	************/
+.footer {
+    font-family: 'Nanum Pen Script', serif;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    background-color: #151515;
+}
+
+.footer h2{
+	font-size: 50px;
+	
+}
