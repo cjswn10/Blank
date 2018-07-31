@@ -116,14 +116,11 @@ public class DiaryController {
 	//�쇨린 ����
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
-		
-		
+
 		int no = d.getDno(); 
-		
 		
 		d.setDtype("000");
 		String dtype = d.getDtype();
-		System.out.println(dtype);
 
 		if (d.getDfile() != null) {
 			d.setDtype("100");
@@ -136,9 +133,7 @@ public class DiaryController {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 		ModelAndView mav = new ModelAndView();
-		
 
-		
 		//
 		//이전 파일을 가져오기 위한 map
 		Map map = new HashMap();
@@ -146,24 +141,21 @@ public class DiaryController {
 		
 		String oldDfile = (dao.detailDiary(map)).getDfile();
 		String oldDphoto = (dao.detailDiary(map)).getDphoto();
+
 		
 		System.out.println("---------olddfile"+oldDfile);
 		System.out.println("---------olddfile"+oldDphoto);
-		/*
-		String oldDphoto = d.getDphoto();
-		String oldDfile = d.getDfile();		
-		System.out.println();
-		 */
-		
+
 		String path = request.getRealPath("resources/upload");
 		String pathG = request.getRealPath("resources/upload2");
-		System.out.println(path);
-		System.out.println(pathG);
 
 		MultipartFile upload = d.getUpload();
 		MultipartFile uploadG = d.getUploadG();
 		
+		
+		//사진 이름 바꾸는 코드 및 서버에 들어감
 		String orgname = upload.getOriginalFilename();
+
 	    String dphoto = "x";
 	       
 	    //사진이름 바꾸기
@@ -184,8 +176,9 @@ public class DiaryController {
        }
 
        /////////////////////////////////////////////////////
+       //업로드한 사진이 있으면
 		if (!dphoto.equals("x")) {
-			
+			d.setDphoto(dphoto);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
 				byte[] data = upload.getBytes();
@@ -197,9 +190,9 @@ public class DiaryController {
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("22222222222222222");
-		
+	/////////////////////////////////////////////////////그림
+
+		//그림 이름 바꾸는 코드 및 서버에 들어감
 		String orgnameG = uploadG.getOriginalFilename();
 		String dfile = "x";
 		
@@ -220,9 +213,11 @@ public class DiaryController {
 	       }
 		}
 		System.out.println("444");
-		/////////////////////////////////////////////////////
+    
+    //업로드한 파일이 있으면
 		if (!dfile.equals("x")) {
 			System.out.println("555");
+
 			d.setDfile(dfile);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
@@ -235,11 +230,11 @@ public class DiaryController {
 				e.printStackTrace();
 			}
 		}
-		
-		
 
 		int re = dao.updateDiary(d);
+
 		System.out.println("re입니다." + re);
+
 		if (re > 0) {
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
 			
@@ -261,19 +256,7 @@ public class DiaryController {
 			mav.addObject("msg", "���� �ㅽ��");
 			mav.setViewName("/member/error");			
 		}
-		
-//		d.setDphoto(oldDphoto);
-//		String fname = null;
-//		
-//		if (d.getDphoto() != null) {
-//			fname = d.getDphoto();
-//		}
-//		if (fname != null && !fname.equals("")) {
-//			d.setDphoto(fname);
-//		}
-		
-		
-		
+
 		return mav;
 	}
 	

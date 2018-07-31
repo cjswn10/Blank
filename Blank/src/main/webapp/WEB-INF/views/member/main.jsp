@@ -95,7 +95,22 @@ background:#fff;
 border:2px solid #fff;
 }
 
+#test
+	{
+		border: 1px solid black;
+		width: 175px;
+		height: 150px;
+	}
 
+.mainSearchId
+{
+	position:relative;
+	top:30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	height: 100px;
+}
 
 </style>
 
@@ -148,6 +163,43 @@ border:2px solid #fff;
 				})
 			}
 		})
+		$("#test").hide();
+		
+		$("#id").keyup(function() {
+			
+			$("#test").empty();
+			$.ajax({
+				url:"mainSearchId.do",
+				data:{"id":this.value},
+				success:function(data)
+				{
+					
+					var arr = eval("("+data+")")
+					$.each(arr,function(i,v){
+						var id = $("<sapn></span>").html(v.id);
+						var br = $("<br>");
+						$("#test").append(id,br);
+						
+						$(id).click(function() {
+							$("#id").val(v.id)
+							$("#test").hide();	
+							//location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
+						})
+						$("#btnMove").click(function(){
+							location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
+						})
+						
+					})
+				}
+			})
+			
+			if(this.value != null)
+			{
+				$("#test").show();	
+			}	
+			
+		})
+		
 	})
 </script>
 <title>빈칸을 채우다.</title>
@@ -185,7 +237,11 @@ border:2px solid #fff;
 	    </ul>
 	</nav>
 
-	
+	<div class="mainSearchId">
+	<input type="text" name="id" id="id">
+	<button id="btnMove">이동</button>
+	<div id="test"></div>
+</div>
 	
 		<div class="landing">
 			<div class="container">
@@ -207,6 +263,10 @@ border:2px solid #fff;
 	</div>
 		
 		
+
+
+
+
 	
 
 

@@ -109,7 +109,7 @@ nav span {
     transition: margin-left .5s;
     padding: 16px;
 }
-/*¼öÁ¤ÇØ¾ßÇÔ ¸Ç À§¿¡ ÀÖµµ·Ï
+/*ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -142,6 +142,7 @@ nav span {
 .content {
 	position: relative;
 	margin:0px auto;
+	width: 960px;
 }
 	<!--mypage-->
 .content a{
