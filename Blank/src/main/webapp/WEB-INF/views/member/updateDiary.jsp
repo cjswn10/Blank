@@ -21,7 +21,7 @@ $(function() {
 	
 	//이전 폰트설정
 	$("#dcontent").attr({
-		style : "font-family:${d.dfont}"
+		style : "font-family:${d.dfont}; font-size:35px;",
 	});
 	$.each($("#dfont").find("option"), function(i, f) {
 		if($(f).val() == oldFont) {
@@ -39,14 +39,14 @@ $(function() {
 				checked : "checked"
 			})
 		}
-	});
-	
+	});	
 	
 	//선택한 폰트 적용
 	$("#dfont").change(function() {
 		console.log($(this).val())
 		$("#dcontent").attr({
-			style : "font-family:"+$(this).val()
+			style : "font-family:"+$(this).val(),
+			fontSize: "50px"
 		})
 		
 		$("#dfont").attr({
@@ -122,6 +122,25 @@ function openGrimpan() {
 </script>
 </head>
 <body>
+
+<section id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	
+	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
+	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
+	<a href="qNa.do">Contact</a>
+	<br>
+	<div class="side_icon_set">
+		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
+		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
+	</div>
+	
+</section>
+
 <div id="wrapper">
 
 	<!-- main-menu -->
@@ -136,7 +155,6 @@ function openGrimpan() {
 	</nav>
 
 <div class="content" style="margin-top: 180px">
-	<h2>일기 수정</h2>
 	<hr>
 	<form action="updateDiary.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="dno" id="dno" value="${d.dno}">
@@ -198,14 +216,16 @@ function openGrimpan() {
 				<td colspan="2">
 					<!-- 그림 -->
 					<c:if test="${not empty d.dfile}">
-						<img id="img" src="../resources/upload2/${d.dfile}">
+						<img id="img" width="300" height="300" src="../resources/upload2/${d.dfile}">
 					</c:if>
 					<!-- 사진 -->
 					<c:if test="${not empty d.dphoto}">
-						<img id="photo" src="../resources/upload/${d.dphoto}">
+						<img width="300" height="300" id="photo" src="../resources/upload/${d.dphoto}">
 					</c:if>
+					<br>
+					<br>
 					<!-- 글 -->
-					<textarea rows="10" name="dcontent" id="dcontent" style="font-family: ${d.dfont};">${d.dcontent }</textarea>
+					<textarea rows="8" cols="40" name="dcontent" id="dcontent" style="font-family: ${d.dfont};">${d.dcontent }</textarea>
 				</td>
 			</tr>
 			
