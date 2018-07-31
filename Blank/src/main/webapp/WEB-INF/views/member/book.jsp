@@ -7,87 +7,56 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
 <style type="text/css">
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 	/* 새일기장 만들기 */
 	.insertBook
 	{
-		font-size: 25px;
-		position: relative;
-		width: 450px;
+		position:relative;
 		border: 1px solid black;
-		height:500px;
-		left: 350px;
-		top: 100px;
+		width: 960px;
+		margin: 0 auto;
+		top:200px;
+		text-align: center;
+
 	}
 
 	/* remove 아이콘위치 */
 	#remove_location
 	{
 		position: relative;
-		left: 390px;
-		top: -100px;
-		
+		left: 290px;
+		top: -105px;
 	}
-	/* plus 아이콘위치 */
-	#plus_location
-	{
-		position: relative;
-		top:170px;
-		display:table;
-		margin-left: auto;
-		margin-right: auto;
-	}
+
 	/* plus 아이콘 */
 	.glyphicon-plus
 	{
-		font-size: 400%;
-		color: black;
+		font-size: 50px;
+		
 	}
 	/* remove 아이콘 */
 	.glyphicon-remove
 	{
 		font-size: 250%;
-		color: black;
+		
 	}
 	/* 일기장 목록 컨테이너 */
 	#main_container
 	{
-		position: absolute;
-		top: 800px;
-		left: 270px;
 		width: 1200px;
-		height: 1200px;
-	}
-	/* 일기장 목록 서브컨테이너 */
-	#sub_container
-	{
-		margin: 10px;
-		padding: 10px;
-		width: 1200px;
-		height: 900px;
-	}
-	/* 일기장 목록을 포괄하는 div 화면보다 넘어가면 숨김 */
-	#main
-	{
-		overflow: hidden;
-	}
-	/* 일기장 목록 div 생성위치를 왼쪽으로부터 생성*/
-	#main > div
-	{
-		float: left;
+		margin: auto;
 	}
 	/* 서브컨테이너의 자식 div들 */
-	#sub_container > div
+	#main_container > div
 	{
 		position:relative;
-		left: 20px;
-		top: -20px;
-		width: 450px;
-		height: 500px;
+		top:250px;
+		left:50px;
+		width: 350px;
+		height: 400px;
 		float: left;
-		margin: 65px;
+		margin: 100px;
 		padding: 40px;
-		background-color: yellow;
 	}
 	/* 일기장 제목 */
 	.btitle
@@ -95,7 +64,7 @@
 		font-family: 'Nanum Pen Script', serif;
 		position:relative;
 		display:table;
-		font-size: 30px;
+		font-size: 35px;
 		color:black;
 		top:30px;
 		margin-left: auto;
@@ -108,10 +77,10 @@
 		font-family: 'Nanum Pen Script', serif;
 		position:relative;
 		display:table;
-		font-size: 30px;
+		font-size: 25px;
 		color:black;
-		top:400px;
-		left: 130px;
+		top:290px;
+		left: 90px;
 
 	}
 </style>
@@ -151,7 +120,7 @@
 						var title = $("<span class='btitle'></span>").html(d.btitle);
 						
 						//일기장수정 문구
-						var Update = $("<span class='update'></span>").html("일기장 수정")
+						var Update = $("<button class='update'></button>").html("일기장 수정")
 						
 						//일기장 수정a태그
 						var aUpdate = $("<a href='updateBook.do?bno="+d.bno+"'></a>")
@@ -196,7 +165,7 @@
 
 						
 						//일기장 서브컨테이너에 추가
-						$("#sub_container").append(div)
+						$("#main_container").append(div)
 					});
 					
 				}
@@ -238,17 +207,18 @@
 	    </ul>
 	</nav>
 	<div id="main">
-		<table id="main_container">
-			<tr>
-				<td>
-					<table id="sub_container">
-					</table>
-				</td>
-			</tr>
-		</table>
+		
+		  <div class="insertBook">
+		  	<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
+		  </div>
+	
+		<div id="main_container">
+			
+		</div>
 	</div>
 
-		  <div class="insertBook"><a href="insertBook.do"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a></div>
+		  
+		  
 		  <input type="hidden" name="id" id="id" value="${id }">
 		  <input type="hidden" name="mno" id="mno" value="${mno }">
 	
