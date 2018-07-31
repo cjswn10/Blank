@@ -18,7 +18,6 @@
 	제목 : ${d.dtitle }<br>
 	일기날짜 : ${d.ddate }<br>
 	날씨 : ${d.dweather }<br>
-	타입 : ${d.dweather }<br>
 	작성(수정)일 : ${d.wdate}<br>
 	<c:if test="${not empty d.dphoto}">	
 		<img width="500" height="500" src="../resources/upload/${d.dphoto }"><br>
