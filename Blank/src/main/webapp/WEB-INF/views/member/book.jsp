@@ -57,6 +57,7 @@
 		float: left;
 		margin: 100px;
 		padding: 40px;
+		background-color: pink;
 	}
 	/* 일기장 제목 */
 	.btitle
