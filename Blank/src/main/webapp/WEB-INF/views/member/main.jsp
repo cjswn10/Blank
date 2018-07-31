@@ -7,21 +7,26 @@
 <head>
 <style type="text/css">
 
+.textDiv{	
+	background-color: pink;
+	background-image: url("../resources/upload/textDiv.png");
+	background-size: cover;	
+}
+
 .diaryimg{
 	position: relative;    
-    background-size: contain;    
     width: 300px;
     height: 400px;
-    z-index: 5;
     float: left;
+    background-size: contain;
+	background-repeat: no-repeat;
+	border-radius: 10px;
 }
 .content{	
+	width: 300px;
+	height: 400px;
 	position: absolute;
-	z-index: 2;
-	font-style: white;	
-}
-.opacity{
-	opacity: 0.4;	
+	white-space: pre-line;
 }
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
@@ -133,26 +138,34 @@ border:2px solid #fff;
 			success:function(data){
 				var list = eval("("+data+")");
 				$.each(list, function(i, d) {
-					var content = $('<p class="content"></p>').html(d.dcontent);
+					var font = $('<font color="black"></font>')					
+					var content = $('<div class="content"></div>').html(d.dcontent);
+					$(font).append(content);
 					var div = $("<div class='diaryimg'></div>").attr({
 						style: "background-image: url('../resources/upload/"+d.dphoto+"')"
 					});
-					var article = $('<article></article');				
+					var textDiv = $('<div class="textDiv"><div/>')					
+					var article = $('<article></article');					
+					
 					if (d.dphoto == null) {
 						$(div).attr({
 							style: "background-image: url('../resources/upload/standard.png')"
 						})
-					}
+					}					
 					
-					$(div).hover(function() {
-						$(this).addClass('opacity')		
-						$(div).append(content);
-					}, function() {
-						$(this).removeClass('opacity')
-						$(content).detach();
-					})
 					$(article).append(div)
-					$('.clearfix').append(div);					
+					$('.clearfix').append(article);
+					
+					$(article).hover(function() {
+						$(div).detach();
+						$(this).append(textDiv);
+						$(this).append(content);
+					}, function() {		
+						$(this).append(div);
+						$(textDiv).detach();
+						$(content).detach();
+						$(font).detach();
+					})
 				})
 			}
 		})
@@ -162,7 +175,6 @@ border:2px solid #fff;
 </head>
 <body>
 	<a href="mainjsp" class="main"><img src="../resources/img/mainlogo.png"></a>
-
 <div class="upper">
 <span class="upper_menu">${id }님</span>
 <a href="#" class="upper_menu">로그아웃</a>
