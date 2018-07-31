@@ -116,15 +116,10 @@ public class DiaryController {
 	//일기 수정
 	@RequestMapping(value="/member/updateDiary.do", method=RequestMethod.POST)
 	public ModelAndView diaryUpdateSubmit(DiaryVo d, HttpSession session, HttpServletRequest request) {		
-		/*Map map = new HashMap();
-		map.put("d", d);*/
-		
 		int no = d.getDno(); 
-		
 		
 		d.setDtype("000");
 		String dtype = d.getDtype();
-		System.out.println(dtype);
 
 		if (d.getDfile() != null) {
 			d.setDtype("100");
@@ -137,21 +132,18 @@ public class DiaryController {
 		int mno = (Integer) session.getAttribute("mno");
 		int bno = (Integer) session.getAttribute("bno");
 		ModelAndView mav = new ModelAndView();
-
-		
 		
 		String oldDphoto = d.getDphoto();		
 		String oldDfile = d.getDfile();		
-		
 
 		String path = request.getRealPath("resources/upload");
 		String pathG = request.getRealPath("resources/upload2");
-		System.out.println(path);
-		System.out.println(pathG);
 
 		MultipartFile upload = d.getUpload();
 		MultipartFile uploadG = d.getUploadG();
 		
+		
+		//사진 이름 바꾸는 코드 및 서버에 들어감
 		String orgname = upload.getOriginalFilename();
 	       String dphoto = "x";
 	       
@@ -168,10 +160,9 @@ public class DiaryController {
 		    	   // TODO: handle exception
 		    	   System.out.println(e.getMessage());
 		       }
-	       
 	       }
 		/////////////////////////////////////////////////////
-		if (!dphoto.equals("x")) {
+		if (!dphoto.equals("x") &&dphoto != null && !dphoto.equals("")) {
 			d.setDphoto(dphoto);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
@@ -185,7 +176,7 @@ public class DiaryController {
 			}
 		}
 		
-		
+		//그림 이름 바꾸는 코드 및 서버에 들어감
 		String orgnameG = uploadG.getOriginalFilename();
 		String dfile = "x";
 		
@@ -206,7 +197,7 @@ public class DiaryController {
 	       }
 		}
 		/////////////////////////////////////////////////////
-		if (!dfile.equals("x")) {
+		if (!dfile.equals("x") &&dfile != null && !dfile.equals("")) {
 			d.setDfile(dfile);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
 			try {
@@ -220,23 +211,14 @@ public class DiaryController {
 			}
 		}
 		
-//		String dfile = uploadG.getOriginalFilename();
-//		if (dfile != null && !dfile.equals("")) {			
-//			d.setDtype(d.getDtype().substring(0, 2) + "1");
-//			d.setDfile(dfile);
-//			try {
-//				byte[] dataG = uploadG.getBytes();
-//				FileOutputStream fosG = new FileOutputStream(pathG + "/" + dfile);
-//				fosG.write(dataG);
-//				fosG.close();
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		
+		System.out.println(oldDphoto);
+		System.out.println(oldDfile);
+		System.out.println(dphoto);
+		System.out.println(dfile);
 
+		
 		int re = dao.updateDiary(d);
+		System.out.println("re: "+re);
 		
 		if (re > 0) {
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
@@ -245,25 +227,12 @@ public class DiaryController {
 			mav.setViewName("/member/error");			
 		}
 		
-//		d.setDphoto(oldDphoto);
-//		String fname = null;
-//		
-//		if (d.getDphoto() != null) {
-//			fname = d.getDphoto();
-//		}
-//		if (fname != null && !fname.equals("")) {
-//			d.setDphoto(fname);
-//		}
-		
-		
 		if (re > 0 && !dphoto.equals("") && dphoto != null && !dphoto.equals("")) {
 			File file = new File(path + "/" + oldDphoto);
-
 			file.delete();
 		}
 		if (re > 0 && !dfile.equals("") && dfile != null && !dfile.equals("")) {
 			File fileG = new File(pathG + "/" + oldDfile);
-			
 			fileG.delete();
 		}
 		return mav;

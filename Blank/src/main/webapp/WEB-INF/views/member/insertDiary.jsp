@@ -37,7 +37,7 @@ var openG;
 function openGrimpan() {
 	
 	window.name = "insertDiary";
-	openG = window.open("grimpan.do","grimpan","width=900,heigth=900");
+	openG = window.open("grimpan.do","grimpan","width=550,heigth=700");
 }
 
 </script>
@@ -176,13 +176,13 @@ function openGrimpan() {
 							<option value="Gaegu" style="font-family:Gaegu">Gaegu</option>
 						</select>
 						<!-- 그림판 버튼 -->
-						<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px"></button>
+						<button type="button" onclick="openGrimpan()"><img src="../resources/img/icon/pencil.png" alt="그리기" width="16px">그림판</button>
 						
-						<label for="uploadG"><img alt="사진첨부" src="../resources/img/icon/draw.png" width="40px"></label>
+						<label for="uploadG"><img alt="그림첨부" src="../resources/img/icon/draw.png" width="40px">(그림첨부)</label>
 						<input type="file" name="uploadG" id="uploadG" style="display: none;">
 						
 						<!-- 사진첨부 버튼 -->
-						<label for="upload"><img alt="사진첨부" src="../resources/img/icon/picture.png" width="40px"></label>
+						<label for="upload"><img alt="사진첨부" src="../resources/img/icon/picture.png" width="40px">(사진첨부)</label>
 						<input type="file" name="upload" id="upload" style="display: none;">
 					</td>
 				</tr>
