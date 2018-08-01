@@ -35,7 +35,7 @@ public class FavoriteController {
 		map.put("mno", mno);
 		map.put("fmno", fmno);
 		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("redirect:/member/favorite.do");
 		int re = dao.insertFavorite(map);
 		if (re > 0) {
 			mav.addObject("re", re);
@@ -64,6 +64,26 @@ public class FavoriteController {
 		return str;
 		
 	}
+	
+	@RequestMapping(value="/member/listFavorite2.do",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String list2(int mno, HttpSession session)
+	{			
+		//session.setAttribute("mno", mno);		
+		Map map = new HashMap();
+		map.put("mno", mno);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+		str = mapper.writeValueAsString(dao.list2(map));
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return str;
+		
+	}
+	
 	@RequestMapping("member/deleteFavorite.do")
 	@ResponseBody
 	public ModelAndView delete(int fno, HttpSession session)

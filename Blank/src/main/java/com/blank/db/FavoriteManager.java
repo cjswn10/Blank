@@ -44,6 +44,15 @@ public class FavoriteManager {
 		return list;
 	}
 	
+	public static List<FavoriteVo> list2(Map map)
+	{
+		SqlSession session = factory.openSession();
+
+		List<FavoriteVo> list = session.selectList("favorite.listFavorite2", map);
+		session.close();
+		return list;
+	}
+	
 	public static int delete(Map map)
 	{
 		int re = -1;

@@ -155,7 +155,7 @@
 			}})		
 		}  
 		othersDiaryList();	
-		
+
 		//즐겨찾기에서 들어갔을 때
 		if (fno.length <= 4) {
 			$('.favoriteIcon').toggle(function(){
@@ -177,7 +177,7 @@
 					type: "POST",
 					success:function(data){
 						alert("추가완료");
-					} 
+					}
 				}) 
 			})
 		//검색으로 들어갔을 때
@@ -189,7 +189,7 @@
 					url: "insertFavorite.do",
 					data: {"fmno":fmno, "mno":mno},
 					type: "POST",
-					success:function(){
+					success:function(data){
 						alert("추가 완료")
 					}
 				})				
@@ -199,7 +199,7 @@
 				$.ajax({
 					url: "deleteFavorite.do",
 					data: {"fno":fno},				
-					success:function(){
+					success:function(data){
 						alert("삭제 완료")
 					}
 				})				
@@ -228,7 +228,7 @@
 		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 			href="favorite.do">즐겨찾기</a>
 	</div>
-
+	
 	<div class="ifm">
 		<a href="#">${id }님</a><span> | </span><a href="myPage.do">마이페이지</a><span>
 			| </span><a href="logOut.do">로그아웃</a>

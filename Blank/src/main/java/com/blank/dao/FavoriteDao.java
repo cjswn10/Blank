@@ -21,6 +21,12 @@ public class FavoriteDao {
 		return FavoriteManager.list(map);
 	}
 	
+	public List<FavoriteVo> list2(Map map)
+	{
+		
+		return FavoriteManager.list2(map);
+	}
+	
 	public int delete(Map map)
 	{
 		return FavoriteManager.delete(map);
