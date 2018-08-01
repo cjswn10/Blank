@@ -21,29 +21,18 @@ canvas {
 			downloadCanvas(this, 'canvas', 'myGrim.png');
 		});
 
-		$("#btnOk").click(
-				function() {
+		$("#btnOk").click(function() {
 
-					var myImage = document.getElementById("myImage");
-					var imageUrl = canvas.toDataURL();
-					myImage.src = canvas.toDataURL();
+			var myImage = document.getElementById("myImage");
+			var imageUrl = canvas.toDataURL();
+			myImage.src = canvas.toDataURL();
 
-					$.ajax({
-						type : "POST",
-						url : "grimpan2.do",
-						data : {
-							"imageUrl" : imageUrl
-						},
-						success : function() {
-							alert("ok");
-						}
-					})
-					self.close();
-				});
+			self.close();
+		});
 	});
 
 	//C:\Blank\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Blank\resources\upload2
-// 작업 이미지 로컬 다운로드(.PNG)
+	// 작업 이미지 로컬 다운로드(.PNG)
 	function downloadCanvas(link, canvasId, filename) {
 		link.href = document.getElementById(canvasId).toDataURL();
 		link.download = filename;

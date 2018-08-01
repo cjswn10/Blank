@@ -31,6 +31,7 @@ public class MemberController {
 	}
 
 
+
 	//마이페이지
 	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
@@ -48,6 +49,7 @@ public class MemberController {
 		return mav;
 	}
 	
+
 
 	//id찾기
 	@RequestMapping(value="searchIdPage.do")
@@ -115,6 +117,7 @@ public class MemberController {
 		return mav;
 	}
 
+
 	//로그아웃
 	@RequestMapping(value="/member/logOut.do")
 	public ModelAndView logOut(HttpSession session) {
@@ -145,6 +148,7 @@ public class MemberController {
 		return mav;
 	}
 	
+
 	//아이디 중복확인
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
@@ -175,6 +179,7 @@ public class MemberController {
 		
 		Boolean r = dao.login(map);
 		if (r == true) {
+
 			//id, 회원번호 세션 생성
 			session.setAttribute("id", id);
 			session.setAttribute("mno", dao.mno(map));
@@ -185,9 +190,8 @@ public class MemberController {
 		return mav;
 	}
 
-	
 	//회원정보 수정 시 비밀번호 확인
-	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
+  @RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
 	}
@@ -215,6 +219,7 @@ public class MemberController {
 		return mav;
 	}
 	
+
 	//회원정보 수정
 	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
@@ -242,7 +247,6 @@ public class MemberController {
 	{
 		Map map = new HashMap();
 		map.put("id", id);
-		//session.setAttribute("serchMno", dao.mno(map));
 		String str = "";
 		try {
 			
@@ -263,8 +267,5 @@ public class MemberController {
 			
 		return str;
 	}
-	
-
-	
 }
 
