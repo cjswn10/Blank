@@ -69,11 +69,12 @@
     
 }
 
-#test
+#searchid
 	{
 		border: 1px solid black;
-		width: 175px;
+		width: 200px;
 		height: 150px;
+		background-color: white;
 	}
 
 .mainSearchId
@@ -85,6 +86,7 @@
 	width: 300px;
 	height: 100px;
 }
+
 
 </style>
 
@@ -175,11 +177,11 @@
 				})
 			}
 		})
-		$("#test").hide();
+		$("#searchid").hide();
 		
 		$("#id").keyup(function() {
 			
-			$("#test").empty();
+			$("#searchid").empty();
 			$.ajax({
 				url:"mainSearchId.do",
 				data:{"id":this.value},
@@ -190,11 +192,15 @@
 					$.each(arr,function(i,v){
 						var id = $("<span></span>").html(v.id);
 						var br = $("<br>");
-						$("#test").append(id,br);
+						$("#searchid").append(id,br);
+						
+						$("#searchid").click(function(){
+							$(this).hide();
+						})
 						
 						$(id).click(function() {
 							$("#id").val(v.id)
-							$("#test").hide();	
+							$("#searchid").hide();	
 							//location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
 						})
 						$("#btnMove").click(function(){
@@ -205,10 +211,15 @@
 				}
 			})
 			
-			if(this.value != null)
+			if(this.value != "")
 			{
-				$("#test").show();	
+				$("#searchid").show();	
+			}
+			else
+			{
+				$("#searchid").hide();
 			}	
+			
 			
 		})
 		
@@ -250,9 +261,9 @@
 	</nav>
 
 	<div class="mainSearchId">
-	<input type="text" name="id" id="id">
-	<button id="btnMove">이동</button>
-	<div id="test"></div>
+	<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" style="width: 200px">
+	<button id="btnMove" class="glyphicon glyphicon-search" style="height: 26px"></button>
+	<div id="searchid"></div>
 </div>
 	
 		<div class="landing">

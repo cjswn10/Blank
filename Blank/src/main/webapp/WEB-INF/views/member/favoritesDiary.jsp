@@ -72,6 +72,12 @@
 		width: 353px;
 		height: 250px;
 	}
+	#user_id
+	{
+		position: relative;
+		top: -100px;
+		text-align: center;
+	}
 
 </style>
 
@@ -84,7 +90,7 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../resources/css/blank.css?ver=1">
-<script type="text/javascript" src="../resources/js/menu.js" ></script>s
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {				
@@ -191,7 +197,6 @@
 </script>
 </head>
 <body>
-
 <!-- side-menu -->
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -226,10 +231,14 @@
 
 	
 	<div class="content" style="margin-top: 180px">
+		<div id="user_id">
+							
+			</div>
 		<div id="main">
 			<div id="main_container">
 				
 			</div>
+			
 		</div>
 		
 		
