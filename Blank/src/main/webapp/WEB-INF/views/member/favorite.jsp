@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>빈칸을 채우다.e</title>
 <style type="text/css">
 .content h2{
 	text-align: center;
@@ -29,24 +30,21 @@ ul > li{
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <link rel="stylesheet" href="../resources/css/blank.css">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
-
 <script type="text/javascript">
-	$(function() {
-		
-		var fno;
-		
+	$(function() {		
+		var mno = ${mno}
 		var listFavorite = function() {
 			$.ajax({
 			url:"listFavorite.do",
-			data:{"mno":$("#mno").val()},				
+			data:{"mno":mno},				
 			success:function(data) {
+				
 				var list = eval("("+data+")");					
+
 				$.each(list,function(i,f){	
           
 					var img = $("<img src='../resources/img/favoriteicon.png' width='70px'>")
@@ -68,8 +66,7 @@ ul > li{
 </head>
 <body>
 
-	<input type="hidden" name="mno" id="mno" value="${mno}">
-	<input type="hidden" name="fmno" id="fmno" value="${fmno}">
+	<input type="hidden" name="mno" id="mno" value="${mno}">	
 
 <!-- side-menu -->
 <section id="mySidenav" class="sidenav">
@@ -86,8 +83,7 @@ ul > li{
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
-	</div>
-	
+	</div>	
 </section>
 
 <div id="wrapper">
@@ -103,11 +99,10 @@ ul > li{
 	    </ul>
 	</nav>
 	
-
 	<div class="content" style="margin-top: 20%;">
 		<h2># 당신의 픽</h2>
 		<ul id="favolist" style="margin-right: auto;"></ul>
-		
+
 	</div>
 </div>	
 </body>
