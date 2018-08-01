@@ -121,8 +121,10 @@
 						
 						var a = $('<a href="detailDiary.do?dno='+d.dno+'"></a>')
 						var br = $('<br>');
-
-						var p = $('<div class="dcontent"></div>').html(d.dcontent);
+					
+						var reContent = (d.dcontent).replace(/(?:\r\n|\r|\n)/g, '<br/>');
+						
+						var p = $('<div class="dcontent"></div>').html(reContent);
 						$(p).attr({
 							style: "font-family:"+d.dfont
 						})
