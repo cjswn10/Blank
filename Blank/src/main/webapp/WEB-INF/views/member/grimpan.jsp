@@ -51,7 +51,16 @@ canvas {
 </script>
 <body>
 	<div>
-		<canvas id="canvas" width="500" height="500"></canvas>
+		<canvas id="canvas" width="450" height="500" style="didsplay:inline-block;"></canvas>
+		<div style="float:right;">
+		<br><br><br><br><br><br><br><br><br>
+		●CANVAS안에 원하는 그림을 그려주세요<br>
+		●선 SIZE를 조절할 수 있습니다<br>
+		●그림을 모두 지우고 싶으면<img src="../resources/img/icon/newpage.png" width="15px">를 눌러주세요 <br>
+		●그림을 살짝 되돌리고 싶으면<img src="../resources/img/icon/prev.png" width="15px">를 눌러주세요 <br>
+		●그림을 다 그렸으면<img src="../resources/img/icon/download.png" width="15px">를 눌러주세요 <br>
+		●CANVAS 사용을 끝내려면<img src="../resources/img/icon/exit.png" width="15px">를 눌러주세요 <br>
+		</div>
 	</div>
 	
 	<script type="text/javascript" src="../resources/js/drawingColor.js"></script>
@@ -59,7 +68,7 @@ canvas {
 	<input type="button" id="selectColor">
 	<input id="myColor" type="color" onchange="cg_color(this.value)">
 
-	size:<input type="range" min="1" max="5" id="Lwidth" value="1" onchange="cg_line(this.value)">
+	Size:<input type="range" min="1" max="5" id="Lwidth" value="1" onchange="cg_line(this.value)">
 
 	<div>
 		<button id="delete"><img src="../resources/img/icon/newpage.png" width="15px">전체지우기</button>

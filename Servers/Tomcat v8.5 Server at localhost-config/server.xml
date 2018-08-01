@@ -151,7 +151,7 @@
     
     
     
-      <Context docBase="Blank" path="/controller" reloadable="true" source="org.eclipse.jst.jee.server:Blank"/></Host>
+      <Context docBase="blank" path="/controller" reloadable="true" source="org.eclipse.jst.jee.server:Blank"/></Host>
     </Engine>
   </Service>
 </Server>
