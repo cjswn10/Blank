@@ -103,10 +103,14 @@ function openGrimpan() {
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	
 	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
 	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
 	<a href="qNa.do">Contact</a>
+	<br>
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
@@ -128,7 +132,7 @@ function openGrimpan() {
 	</nav>
 
 	
-	<div class="content" style="margin-top: 180px">
+	<div class="content" style="margin-top: 100px">
 		<h2>일기 등록</h2>
 		<hr>
 	
@@ -190,8 +194,9 @@ function openGrimpan() {
 					<td colspan="2">
 						<!-- 그림 -->
 						<img id="img" width="300">
+						<br>
 						<!-- 사진 -->
-						<img id="photo">
+						<img id="photo" width="300">
 						<!-- 글 -->
 						<textarea class="form-control" rows="10" name="dcontent" id="dcontent" style="font-family: Nanum Brush Script"></textarea>
 					</td>

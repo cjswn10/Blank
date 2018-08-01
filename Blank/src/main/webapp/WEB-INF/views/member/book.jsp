@@ -11,11 +11,11 @@
 	/* 새일기장 만들기 */
 	.insertBook
 	{
-		position:relative;
+		
 		border: 1px solid black;
 		width: 960px;
 		margin: 0 auto;
-		top:200px;
+		
 		text-align: center;
 
 	}
@@ -43,20 +43,19 @@
 	/* 일기장 목록 컨테이너 */
 	#main_container
 	{
-		width: 1200px;
-		margin: auto;
+		width: 960px;
+		margin: 0 auto;
 	}
 	/* 서브컨테이너의 자식 div들 */
 	#main_container > div
 	{
 		position:relative;
-		top:250px;
-		left:50px;
+		
 		width: 350px;
 		height: 400px;
 		float: left;
-		margin: 100px;
-		padding: 40px;
+		margin: 50px;
+		padding: 30px;
 		background-color: pink;
 	}
 	/* 일기장 제목 */
@@ -180,14 +179,18 @@
 </script>
 </head>
 <body>
-	<!-- side-menu -->
+<!-- side-menu -->
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	
 	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
 	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
 	<a href="qNa.do">Contact</a>
+	<br>
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
@@ -207,6 +210,8 @@
 	        <li><a href="myPage.do">MYPAGE</a></li>
 	    </ul>
 	</nav>
+	
+	<div class="content">
 	<div id="main">
 		
 		  <div class="insertBook">
@@ -216,14 +221,40 @@
 		<div id="main_container">
 			
 		</div>
+		
 	</div>
-
-		  
+	</div>
 		  
 		  <input type="hidden" name="id" id="id" value="${id }">
 		  <input type="hidden" name="mno" id="mno" value="${mno }">
 	
 </div>
-	
+<!-- 푸터 
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">	
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
+ -->
 </body>
 </html>
