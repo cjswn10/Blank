@@ -5,63 +5,55 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
+
+<link rel="stylesheet" type="text/css" href="resources/css/login.css">
+
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	.title h1
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 80px;
-		width:300px;
-		position: relative;
-		top:10px;
-		left: 600px;
-	}
+
 	.main
 	{
 		position:relative;
-		left:300px;
-		top:200px;
-		width: 600px;
-		height: 500px;
+		top:100px;
+		width: 800px;
+		height: 350px;
+		text-align: center;
+
 	}
 	.phrases
 	{
 		position: relative;
 		top: -100px;
-		left: 50px;
+		text-align: center;
 	}
 	.phrases1
 	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 40px;
+		font-size: 35px;
 	}
 	.phrases2
 	{
 		position:relative;
-		left:50px;
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 20px;
+		font-size: 15px;
 	}
 	.infomation
 	{
-		font-family: 'Nanum Pen Script', serif;
 		font-size: 20px;
 		position: relative;
 		top: 30px;
-		left: 200px;
+		left:100px;
+		text-align: center;
 	}
 	#searchId
 	{
 		position: relative;
+		left:-100px;
 		top: 50px;
-		left: 200px;
 	}
 	#tb
 	{
-		font-family: 'Nanum Pen Script', serif;
 		position: relative;
-		font-size:30px;
+		font-size:20px;
 		width: 500px;
+		height: 100px;
 	}
 	#name
 	{
@@ -90,10 +82,8 @@
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -128,11 +118,8 @@
 </head>
 <body>
 <div class="container-login100">
-	<div class="title">
-		<h1>그림 일기</h1>
-	</div>
+   
 	<div class="main">
-		
 		<div class="phrases">
 			<span class="glyphicon glyphicon-search"></span>
 			<span class="phrases1">회원정보에 등록한 이름과 휴대전화 ID 찾기</span><br>
