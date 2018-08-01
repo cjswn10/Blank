@@ -127,6 +127,7 @@
 </script>
 </head>
 <body>
+<div class="container-login100">
 	<div class="title">
 		<h1>그림 일기</h1>
 	</div>
@@ -156,5 +157,6 @@
 			<button id="searchId">확인</button>
 		</div>
 	</div>
+</div>	
 </body>
 </html>

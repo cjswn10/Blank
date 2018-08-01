@@ -14,7 +14,9 @@
 }
 
 #diary_title{
-	font-size: 40px;
+	font-size: 30px;
+	text-align: left;
+	font-weight: 600;
 }
 	
 </style>
@@ -80,35 +82,32 @@
 	</nav>
 
 	
-	<div class="content" style="margin-top: 180px">
+	<div class="content" style="margin-top: 100px">
 		
 		<div class="row">
-		  <div class="col-md-2" id="diary">일기날짜:</div>
-		  <div class="col-md-2" id="diary">${d.ddate }</div>
-		  <div class="col-md-2" id="diary">날씨:</div>
-		  <div class="col-md-2" id="diary">${d.dweather }</div>
-		  <div class="col-md-2" id="diary">작성(수정)일:</div>
-		  <div class="col-md-2" id="diary">${d.wdate }</div>
+		  <div class="col-md-2"></div>
+		  <div class="col-md-1" id="diary_title">Title</div>
+		  <div class="col-md-8 .col-md-offset-2" id="diary_title">${d.dtitle }</div>
 		</div>
-		
+		<br>
 		<div class="row">
-		  <div class="col-md-2" id="diary_title">제목:</div>
-		  <div class="col-md-8" id="diary_title">${d.dtitle }</div>
-		 
+		  <div class="col-md-2"></div>
+		  <div class="col-md-2" id="diary" style="text-align:left;">Date:</div>
+		  <div class="col-md-3" id="diary" style="text-align: left;">${d.ddate }</div>
+		  <div class="col-md-2" id="diary" style="text-align: left;">Weather:</div>
+		  <div class="col-md-3" id="diary" style="text-align: left;">${d.dweather }</div>
 		</div>
+		<br><br>
 		
-		<c:if test="${not empty d.dphoto}">	
-			<img width="500" height="500" src="../resources/upload/${d.dphoto }"><br>
-		</c:if>
 		<c:if test="${not empty d.dfile}">	
 			<img width="500" height="500" src="../resources/upload2/${d.dfile }"><br>
 		</c:if>
-	
+		<c:if test="${not empty d.dphoto}">	
+			<img width="500" height="500" src="../resources/upload/${d.dphoto }"><br>
+		</c:if>
 		
-		<div class="row">
-		  <div class="col-md-2" id="diary">내용:</div>
-		</div>
-		<textarea class="form-control" rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
+		
+		<textarea rows="10" cols="120" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
 		<hr>
 		
 		<a href="updateDiary.do?dno=${d.dno }"><button>수정</button></a>
@@ -119,6 +118,31 @@
 	</div>
 </div>
 
-	
+<!-- 푸터 -->
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 </body>
 </html>

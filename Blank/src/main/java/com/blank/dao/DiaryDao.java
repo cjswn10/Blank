@@ -11,9 +11,9 @@ import com.blank.vo.DiaryVo;
 @Repository
 public class DiaryDao {
 	
-	public List<DiaryVo> listFavoriteDiary(Map map)
+	public List<DiaryVo> othersDiaryList(Map map)
 	{
-		return DiaryManager.listFavoriteDiary(map);
+		return DiaryManager.othersDiaryList(map);
 	}
   
 	public int deleteDiary(Map map) {
