@@ -5,63 +5,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>빈칸을 채우다.</title>
+<link rel="stylesheet" type="text/css" href="resources/css/login.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	.title h1
-	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 80px;
-		width:300px;
-		position: relative;
-		top:10px;
-		left: 600px;
-	}
 	.main
 	{
 		position:relative;
-		left:300px;
-		top:200px;
-		width: 600px;
-		height: 500px;
+		top:115px;
+		width: 800px;
+		height: 380px;
+		text-align: center;
 	}
 	.phrases
 	{
 		position: relative;
 		top: -100px;
-		left: 50px;
 	}
 	.phrases1
 	{
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 40px;
+		font-size: 35px;
 	}
 	.phrases2
 	{
 		position:relative;
-		left:50px;
-		font-family: 'Nanum Pen Script', serif;
-		font-size: 20px;
+		font-size: 15px;
 	}
 	.infomation
 	{
-		font-family: 'Nanum Pen Script', serif;
 		font-size: 20px;
 		position: relative;
 		top: 30px;
-		left: 200px;
+		left: 100px;
 	}
 	#searchPwd
 	{
 		position: relative;
 		top: 50px;
-		left: 200px;
+		left: -100px;
+
 	}
 	#tb
 	{
-		font-family: 'Nanum Pen Script', serif;
 		position: relative;
-		font-size:30px;
+		font-size:20px;
 		width: 500px;
+		height: 100px;
 	}
 	#id
 	{
@@ -84,10 +72,10 @@
 	}
 	.idPage
 	{
-		font-family: 'Nanum Pen Script', serif;
 		position: relative;
-		font-size:25px;
+		font-size:20px;
 		top: 130px;
+		left: -200px;
 	}
 
 </style>
@@ -134,9 +122,7 @@
 </script>
 </head>
 <body>
-	<div class="title">
-		<h1>그림 일기</h1>
-	</div>
+<div class="container-login100">
 	<div class="main">
 		
 		<div class="phrases">
@@ -166,5 +152,6 @@
 			<span>아이디가 기억이 나지 않는 다면 ?</span>&nbsp;&nbsp;<a href="searchIdPage.do">아이디 찾기 바로가기</a>
 		</div>
 	</div>
+</div>
 </body>
 </html>
