@@ -138,15 +138,13 @@ public class DiaryController {
 		Map map = new HashMap();
 		map.put("dno", d.getDno());
 		
+		//이전 이름이지만 새파일이름도 동일하게 바꿀것이라 파일명은 동일
 		String oldDphoto = (dao.detailDiary(map)).getDphoto();
 		String oldDfile = (dao.detailDiary(map)).getDfile();
 		
 		d.setDphoto(oldDphoto);
 		d.setDfile(oldDfile);
 		
-		System.out.println("---------olddphoto"+oldDphoto);
-		System.out.println("---------olddfile"+oldDfile);
-
 		String path = request.getRealPath("resources/upload");
 		String pathG = request.getRealPath("resources/upload2");
 
@@ -176,7 +174,7 @@ public class DiaryController {
 	       }
        
        }
-
+       
        //업로드한 사진이 있으면
 		if (!dphoto.equals("x")) {
 			d.setDphoto(dphoto);
@@ -190,7 +188,6 @@ public class DiaryController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("업로드한 사진 있음");
 		}
 	/////////////////////////////////////////////////////그림
 
@@ -204,17 +201,17 @@ public class DiaryController {
 			dfile = bno + "b" + no + "grim." + excG;
 			System.out.println(dfile);
 			
-		    File saveFile = new File(pathG + "/" + dfile);
+		   File saveFile = new File(pathG + "/" + dfile);
 	       try {
 	    	   upload.transferTo(saveFile);
 	       } catch (Exception e) {
 	    	   // TODO: handle exception
 	    	   System.out.println(e.getMessage());
 	       }
-	       System.out.println("업로드할 그림 있음");
 		}
     
-    //업로드한 파일이 있으면
+		//업로드한 파일이 있으면
+		d.setDfile("");
 		if (!dfile.equals("x")) {
 			d.setDfile(dfile);
 			d.setDtype(d.getDtype().substring(0, 2) + "1");
@@ -236,15 +233,12 @@ public class DiaryController {
 
 		if (re > 0) {
 			mav.setViewName("redirect:/member/diary.do?mno="+mno+"&bno="+bno);
-			
-			if (!oldDphoto.equals("")) {
-				System.out.println("이전포토삭제");
+			if (oldDphoto != null && !oldDphoto.equals(dphoto)) {
 				File file = new File(path + "/" + oldDphoto);
 
 				file.delete();
 			}
-			if (!oldDfile.equals("")) {
-				System.out.println("이전file 삭제");
+			if (oldDfile != null && !oldDfile.equals(dfile)) {
 				File fileG = new File(pathG + "/" + oldDfile);
 				
 				fileG.delete();
