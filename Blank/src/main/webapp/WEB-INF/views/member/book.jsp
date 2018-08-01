@@ -105,7 +105,6 @@
 				data:{"mno":mno},
 				success:function(data)
 				{
-					//alert(data)
 					var list = eval("("+data+")");
 					$.each(list,function(i,d){
 						

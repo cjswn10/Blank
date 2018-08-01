@@ -141,7 +141,6 @@ public class MemberController {
 
 			mav.addObject("msg", "회원 가입 실패");
 			mav.setViewName("/member/error");
-			System.out.println("/member/error");
 		}
 		return mav;
 	}
@@ -170,8 +169,6 @@ public class MemberController {
 	public ModelAndView login(String id, String pwd, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println(id);
-		System.out.println(pwd);
 		Map map = new HashMap();
 		map.put("id", id);
 		map.put("pwd", pwd);
@@ -183,9 +180,11 @@ public class MemberController {
 			session.setAttribute("mno", dao.mno(map));
 			mav.setViewName("redirect:/member/main.do");
 		}
-		//mav.setViewName("redirect:/member/login.do");
+
+		//mav.setViewName("redirect:/member/main.do");
 		return mav;
-	}	
+	}
+
 	
 	//회원정보 수정 시 비밀번호 확인
 	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)

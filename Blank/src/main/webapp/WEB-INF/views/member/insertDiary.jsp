@@ -36,8 +36,14 @@ var openG;
 
 function openGrimpan() {
 	
+	var popupX = (window.screen.width / 2) - (600 / 2);
+	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+	var popupY= (window.screen.height /2) - (680 / 2);
+	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+	
 	window.name = "insertDiary";
-	openG = window.open("grimpan.do","grimpan","width=550,heigth=700");
+	openG = window.open("grimpan.do","grimpan",'status=no, height=700, width=840, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 }
 
 </script>
