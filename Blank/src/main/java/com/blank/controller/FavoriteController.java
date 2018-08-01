@@ -36,9 +36,6 @@ public class FavoriteController {
 		map.put("mno", mno);
 		map.put("fmno", fmno);
 		
-		System.out.println("insertcontroller mno : " +map.get("mno"));
-		System.out.println("insertcontroller fmno : " +map.get("fmno"));
-		
 		ModelAndView mav = new ModelAndView();
 		int re = dao.insertFavorite(map);
 		if (re > 0) {

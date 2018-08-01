@@ -32,7 +32,6 @@ public class GrimpanController {
 		// saveFilePath (占쏙옙占쏙옙占쏙옙)
 		// savename (占쏙옙占쏙옙占싱몌옙)
 
-		System.out.println(imageUrl);
 		try {
 			// create a buffered image
 			BufferedImage image = null;
@@ -45,7 +44,6 @@ public class GrimpanController {
 			bis.close();
 
 			String path = request.getRealPath("resources/upload2");
-			System.out.println(path);
 			File file = new File(path);
 			String savename = "seongin";
 			File outputfile = new File(file + savename + ".png");
