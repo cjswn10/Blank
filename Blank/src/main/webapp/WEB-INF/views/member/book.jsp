@@ -8,6 +8,8 @@
 <title>빈칸을 채우다.</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+	
 	/* 새일기장 만들기 */
 	.insertBook
 	{
@@ -83,6 +85,8 @@
 		left: 90px;
 
 	}
+	
+	
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -210,7 +214,7 @@
 	    </ul>
 	</nav>
 	
-	<div class="content">
+	<div class="content" style="margin-top: 180px">
 	<div id="main">
 		
 		  <div class="insertBook">
@@ -219,6 +223,8 @@
 	
 		<div id="main_container">
 			
+			
+
 		</div>
 		
 	</div>
@@ -254,6 +260,7 @@
        </li>
     </ul>
 </footer>
+
  -->
 </body>
 </html>
