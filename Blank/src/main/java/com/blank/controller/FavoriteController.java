@@ -30,7 +30,6 @@ public class FavoriteController {
 		
 	}
 	@RequestMapping(value="/member/insertFavorite.do", method=RequestMethod.POST)
-	@ResponseBody
 	public ModelAndView insertFavorite(int mno, int fmno) {
 		Map map = new HashMap();
 		map.put("mno", mno);

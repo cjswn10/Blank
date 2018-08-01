@@ -4,19 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300"
-	rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
 <title>빈칸을 채우다.</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-
+.favoriteIcon{
+	cursor: pointer;
+}
 #user_id {
 	font-family: 'Nanum Pen Script', serif;
 	font-size: 50px;
 }
-
 /*로고 표시 */
 .title {
 	font-family: 'Nanum Pen Script', serif;
@@ -104,30 +102,23 @@
 	color: black;
 }
 </style>
-
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {				
+		
+		var id = location.search.substring(4, location.search.indexOf("&"));
 		var mno = ${mno}
-		var fno = location.search.substr(location.search.lastIndexOf("=")+1);
-		var fmno = location.search.substr(6, 4);
-		var id = location.search.substring(14, location.search.lastIndexOf("&"));
+		var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
+		var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
 		$('#user_id').text(id + "님의 일기");
 		$('	<img class="favoriteIcon" width="50" height="50" src="../resources/img/nfavorite.png">').appendTo('#user_id');
-		if (fmno) {
+		if (fno.length <= 4) {
 			$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
 		}
 		  
@@ -138,16 +129,14 @@
 				success:function(data){				
 					var list = eval("("+data+")");
 					$.each(list, function(i, d) {
-						//날짜 날씨 제목 그림 사진 글
-						var div = $('<div ></div>');
-						
+						var div = $('<div ></div>');						
 						var a = $('<a href="detailFavoriteDiary.do?dno='+d.dno+'"></a>')
 						var br = $('<br>');						
 						var p = $('<textarea rows="8" cols="30" readonly="readonly"></textarea>').html(d.dcontent);
+						
 						$(p).attr({
 							style: "font-family:"+d.dfont
-						})
-            
+						})            
 						if (d.dphoto != null) {							
 							var img = $('<img></img>').attr({
 								src: "../resources/upload/" + d.dphoto,
@@ -160,16 +149,17 @@
 						}else {
 							$(a).append(p);
 							$(div).append(a);
-							$("#sub_container").append(div);					
-
+							$("#sub_container").append(div);
 						}		            
-					})				
+					})	
 			}})		
 		}  
 		othersDiaryList();	
 		
-		if (fmno) {
+		//즐겨찾기에서 들어갔을 때
+		if (fno.length <= 4) {
 			$('.favoriteIcon').toggle(function(){
+				//즐겨찾기에서 삭제
 				$(this).attr("src","../resources/img/nfavorite.png")				
 				$.ajax({
 					url: "deleteFavorite.do",
@@ -177,61 +167,24 @@
 					success:function(data){
 						alert("삭제 완료");
 					}
-				})  
+				})  				
 			},function(){
+				//즐겨찾기에 추가
 				$(this).attr("src","../resources/img/favorite.png")
 				$.ajax({
 					url: "insertFavorite.do",
 					data: {"fmno":fmno, "mno":mno},
-					type: "POST"
+					type: "POST",
 					success:function(data){
 						alert("추가완료");
 					} 
-				})
+				}) 
 			})
-		}
-		
-		 /* if (fmno) {
+		//검색으로 들어갔을 때
+		}else{
+			//즐겨찾기에 추가
 			$('.favoriteIcon').toggle(function () {
 				$(this).attr("src", "../resources/img/favorite.png")
-				
-				$.ajax({
-					url: "insertFavorite.do",
-					data: {"fmno":fmno, "mno":mno},
-					type: "POST",
-					success:function(data){
-						alert("추가 완료")
-					},error: function (data) {
-						alert("추가 실패")
-					}
-				})			
-				
-			},function(){
-				$(this).attr("src", "../resources/img/nfavorite.png")
-				
-				$.ajax({
-					url: "deleteFavorite.do",
-					data: {"fno":fno},				
-					success:function(){
-						alert("삭제 완료")
-					}
-				})			
-			})			
-		}else{			
-			$('.favoriteIcon').toggle(function () {
-				$(this).attr("src", "../resources/img/nfavorite.png")
-				
-				$.ajax({
-					url: "deleteFavorite.do",
-					data: {"fno":fno},				
-					success:function(){
-						alert("삭제 완료")
-					}
-				})			
-				
-			},function(){
-				$(this).attr("src", "../resources/img/favorite.png")
-				
 				$.ajax({
 					url: "insertFavorite.do",
 					data: {"fmno":fmno, "mno":mno},
@@ -239,11 +192,20 @@
 					success:function(){
 						alert("추가 완료")
 					}
-				})			
-			}	 		
-		} */
-	})
-	
+				})				
+			},function(){
+				//즐겨찾기에서 삭제
+				$(this).attr("src", "../resources/img/nfavorite.png")				
+				$.ajax({
+					url: "deleteFavorite.do",
+					data: {"fno":fno},				
+					success:function(){
+						alert("삭제 완료")
+					}
+				})				
+			})	 		
+		}	
+	})	
 </script>
 </head>
 <body>

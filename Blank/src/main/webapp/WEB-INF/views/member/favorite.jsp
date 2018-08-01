@@ -35,23 +35,22 @@ ul > li{
 <link rel="stylesheet" href="../resources/css/blank.css">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
+	
 	$(function() {		
+		$(document).on("pageload", function(){
+			window.location.reload(true);
+		})
 		var mno = ${mno}
 		var listFavorite = function() {
 			$.ajax({
 			url:"listFavorite.do",
 			data:{"mno":mno},				
-			success:function(data) {
-				
-				var list = eval("("+data+")");					
+			success:function(data) {				
+				var list = eval("("+data+")");				
 
-				$.each(list,function(i,f){	
-          
+				$.each(list,function(i,f){          
 					var img = $("<img src='../resources/img/favoriteicon.png' width='70px'>")
-
-					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"&id="+f.id+"'></a>").html(f.id+"님");					
-
-
+					var a = $("<a href='othersDiary.do?id="+f.id+"&fno="+f.fno+"&fmno="+f.fmno+"'></a>").html(f.id+"님");		
 					var li = $("<li></li>");
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
@@ -102,7 +101,6 @@ ul > li{
 	<div class="content" style="margin-top: 20%;">
 		<h2># 당신의 픽</h2>
 		<ul id="favolist" style="margin-right: auto;"></ul>
-
 	</div>
 </div>
 
