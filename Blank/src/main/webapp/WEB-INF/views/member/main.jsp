@@ -198,7 +198,7 @@
 							//location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
 						})
 						$("#btnMove").click(function(){
-							location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
+							location.href="othersDiary.do?fmno="+v.mno+"&id="+v.id+"";
 						})
 						
 					})

@@ -49,18 +49,18 @@ public class DiaryController {
 		return mav;
 	}
 	
-	@RequestMapping("/member/favoritesDiary.do")
-	public void FavoriteBook() {
+	@RequestMapping("/member/othersDiary.do")
+	public void othersDiary() {
 		
 	}
 	
-	@RequestMapping(value="/member/favoriteDiaryList.do", produces="text/plain;charset=utf-8")
+	@RequestMapping(value="/member/othersDiaryList.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public String listFavoriteDiary(int fmno, HttpSession session) {
+	public String othersDiaryList(int fmno, HttpSession session) {
 		Map map = new HashMap();
-		map.put("fmno", fmno);
+		map.put("othermno", fmno);
 		String str = "";
-		List<DiaryVo> list = dao.listFavoriteDiary(map);	
+		List<DiaryVo> list = dao.othersDiaryList(map);	
 		try {
 			
 			ObjectMapper mapper = new ObjectMapper();
