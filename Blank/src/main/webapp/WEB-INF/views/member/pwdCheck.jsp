@@ -16,6 +16,20 @@
 		left: 10px;
 	}
 
+	.container
+	{
+		width: :960px;
+	}
+	#d
+	{
+		font-family: 'Nanum Pen Script', serif;
+		font-size:30px;
+		position: relative;
+		top:220px;
+		left:430px;
+		width:300px;
+	}
+
 
 	
 </style>
@@ -24,7 +38,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css">
+<link rel="stylesheet" href="../resources/css/blank.css?">
+
+
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function() {
@@ -37,7 +53,12 @@
 </script>
 </head>
 <body>
+
+
+	
+
 <!-- side-menu -->
+
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
@@ -70,12 +91,14 @@
 	</nav>
 
 	
-	<div class="content" style="margin-top: 180px;text-align: center;">
-		
-		<div>
-			<h1><span>본인확인</span></h1>
-			<hr>
-			<h4 style="text-align: center;"><span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span></h4>
+
+	<div class="content" style="margin-top: 180px">
+		<div class="container">
+		<div class="check">
+			<span class="my">본인확인</span><br>
+			<span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span>
+
+      
 		</div>
 		
 		<div id="d"><font color="red">${msg }</font></div>
@@ -88,9 +111,15 @@
 				<input class="btn btn-default" type="submit" value="확인" id="sub">
 			</form>
 		</div>
-	
 
 	</div>
+	</div>
 </div>
+
+	
+	
+	
+
+
 </body>
 </html>

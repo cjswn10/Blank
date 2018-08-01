@@ -7,13 +7,73 @@
 <title>빈칸을 채우다.</title>
 <style type="text/css">
 
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+	.main
+	{
+		position: relative;
+		left: 270px;
+		width:600px;
+		
+	}
+	#sub
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size: 20px;
+		top: 50px;
+		left: 90px;
+	}
+	#s1
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size: 20px;
+		top: 50px;
+		left: 190px;
+	}
+	.check
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size: 50px;
+		width: 500px;
+		text-align: center;
+	}
+	
+	.my
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position:relative;
+		left:265px;
+		top:-50px;
+		font-size: 70px;
+	}
+	#tb
+	{
+		font-family: 'Nanum Pen Script', serif;
+		position: relative;
+		font-size:30px;
+		width: 500px;
+		height: 500px;
+	}
+	.container
+	{
+		position: relative;
+		width: 600px;
+		height: 900px;
+		
+	}
+
+
+
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css">
+<link rel="stylesheet" href="../resources/css/blank.css?">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 
 <script type="text/javascript">
@@ -39,7 +99,9 @@
 </script>
 </head>
 <body>
-<!-- side-menu -->
+
+
+	<!-- side-menu -->
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
@@ -54,6 +116,28 @@
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
+	</div>
+	
+</section>
+
+<div id="wrapper">
+
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+
+	
+	<div class="content" style="margin-top: 180px">
+		<div class="check">
+		<span class="my">회원정보 수정</span><br>
+
 	</div>
 	
 </section>
@@ -115,6 +199,8 @@
 					
 			</form>
 	</div>
+
+	</div>
 </div>
 
 	
@@ -147,5 +233,7 @@
 
 	
 	
+
+
 </body>
 </html>
