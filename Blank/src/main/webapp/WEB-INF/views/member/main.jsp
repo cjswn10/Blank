@@ -54,7 +54,7 @@
  	margin: 0 auto;
     padding: 100px 0;
 }
-.blog article {
+.dform {
 
     float: left;
     width: 300px;
@@ -64,35 +64,9 @@
     cursor: pointer;
 }
 
-.blog article:last-child {
+.dform:last-child {
     margin-right: 0;
     
-}
-
-.btn-social {
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-  border: 2px solid white;
-  border-radius: 100%;
-  text-align: center;
-  font-size: 20px;
-  line-height: 45px;
-}
-
-
-.btn-outline{
-color:#fff;
-font-size:20px;
-border:2px solid #fff;
-background:0 0;
-transition:all .3s ease-in-out;
-margin-top:15px
-}
-.btn-outline.active,.btn-outline:active,.btn-outline:focus,.btn-outline:hover{
-color:#fff;
-background:#fff;
-border:2px solid #fff;
 }
 
 #test
@@ -114,13 +88,16 @@ border:2px solid #fff;
 
 </style>
 
-
+<!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- Jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=2">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=3">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function () {
@@ -129,18 +106,24 @@ border:2px solid #fff;
 			success:function(data){				
 				var list = eval("("+data+")");
 				$.each(list, function(i, d) {
-					var font = $('<font color="black"></font>')					
-					var content = $('<div class="contents"></div>').html(d.dcontent);
-					$(font).append(content);
+					
+					var font = $('<font color=" "></font>')					
+					var contents = $('<div class="contents"></div>').html(d.dcontent);
+					$(font).append(contents);
+					
+					/*
+					var diaryDiv = $('<div class="dform"></div>').attr({
+						onclick: "location.href='mainDetailDiary.do?dno="+d.dno+"'"
+					})
+					*/
+					var diaryDiv = $('<div class="dform"></div>');
+					
+					
 					var div = $("<div class='diaryimg'></div>").attr({
 						style: "background-image: url('../resources/upload2/"+d.dfile+"')",						
 					});
 					
-					var article = $('<article></article').attr({
-						onclick: "location.href='mainDetailDiary.do?dno="+d.dno+"'"
-					})
-					
-					if (d.dphoto != null) {
+					if (d.dfile == null && d.dphoto != null) {
 						$(div).attr({
 							style: "background-image: url('../resources/upload/"+d.dphoto+"')"
 						})
@@ -148,16 +131,45 @@ border:2px solid #fff;
 						$(div).attr({
 							style: "background-image: url('../resources/upload/standard.png')"
 						})
-					}		
-					$(article).append(div);
-					$('#mainList').append(article);
+					}
 					
-					$(article).hover(function() {
+					//fancybox를 위한 a태그와 div
+					var a = $('<a data-fancybox="gallery" data-src="#modal'+ d.dno +'" href="javascript:;"></a>');
+					var modalBox = $('<div style="display: none;max-width:800px;" id="modal'+d.dno+'"></div>');
+					
+					var src = "../resources/upload2/" + d.dfile;
+					if(d.dfile == null && d.dphoto != null) {
+						src = "../resources/upload/" + d.dphoto;
+					} else if (d.dfile == null && d.dphoto == null) {
+						src = "../resources/upload/standard.png";
+					}
+					var filephoto = $("<img></img>").attr({
+						src : src,
+						width : "400px"
+					});
+
+					var dtitle = $("<h5></h5>").html(d.dtitle);
+					var ddate = $("<h5></h5>").html(d.ddate);
+					var dweather = $("<h5></h5>").html(d.dweather);
+					//var writermno = $("<h5></h5>").html(d.mno);
+					var dcontent = $("<h5></h5>").html(d.dcontent);
+					$(modalBox).append(dtitle, ddate, dweather, filephoto, dcontent);	
+					//var others = $('<a href="favoritesDiary.do?mno="'+d.mno+'></a>');
+					$("#modal").append(modalBox);
+					
+					
+					
+					$(diaryDiv).append(div);
+					
+					$(a).append(diaryDiv);
+					$('#mainList').append(a);
+					
+					$(diaryDiv).hover(function() {
 						$(div).detach();
-						$(this).append(content);
+						$(this).append(contents);
 					}, function() {		
 						$(this).append(div);
-						$(content).detach();
+						$(contents).detach();
 						$(font).detach();
 					})
 				})
@@ -176,7 +188,7 @@ border:2px solid #fff;
 					
 					var arr = eval("("+data+")")
 					$.each(arr,function(i,v){
-						var id = $("<sapn></span>").html(v.id);
+						var id = $("<span></span>").html(v.id);
 						var br = $("<br>");
 						$("#test").append(id,br);
 						
@@ -228,7 +240,7 @@ border:2px solid #fff;
 
 	<!-- main-menu -->
 	<nav class="clearfix">
-	    <a href="main.do"><img src="../resources/img/blank_black.png" class="logo left"></a>
+	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
 	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
@@ -263,11 +275,9 @@ border:2px solid #fff;
 	</div>
 		
 		
-
-
-
-
-	
+	<!-- modal들을 넣을 div -->
+	<div id="modal"></div>
+		
 
 
 <!-- 푸터입니다.  -->
@@ -294,8 +304,6 @@ border:2px solid #fff;
            <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
            <br><h5>차건우</h5>
        </li>
-
-                            
     </ul>
 </footer>
 

@@ -220,29 +220,6 @@
 		
 		
 		
-		<!-- 이렇게 사진만 띄우기 -->
-		
-		<div>
-			<a data-fancybox="gallery" data-src="#modal" href="javascript:;" data-caption="Caption #1"><img width="300" src="../resources/img/adult.jpg"></a>
-			<a data-fancybox="gallery" data-src="#modal2" data-caption="Caption #2"><img width="300" src="../resources/img/ho.jpg"></a>
-		</div>
-		
-		
-		<!-- 사진&글 -->
-	      <div class="card-body">
-	        <p>
-	          	제목이랑정보나오게 하기
-	        </p>
-	        <p class="mb-0">
-	          <a data-fancybox data-src="#modal" href="javascript:;" class="btn btn-primary">Open demo</a>
-	        </p>
-	         <div style="display: none;" id="modal">
-	          <h2>Hello!</h2>
-	          <p>You are awesome!</p>
-	       	 </div>
-		 </div>
-		
-		
 	</div>
 	
 	
