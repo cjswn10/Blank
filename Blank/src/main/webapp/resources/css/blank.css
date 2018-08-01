@@ -109,7 +109,7 @@ nav span {
     transition: margin-left .5s;
     padding: 16px;
 }
-/*�����ؾ��� �� ���� �ֵ���
+/*
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -170,13 +170,13 @@ h2 {
     font-family: 'Nanum Pen Script', serif;
     font-size: 30px;
     text-align: center;
-    color: white;
+    color: #818181;
     background-color: #151515;
 }
 
-.footer h2{
-	font-size: 50px;
-	
+.footer h3{
+	color: #818181;
+	padding-top: 20px;
 }
 
 .btn-social {

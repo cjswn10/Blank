@@ -18,6 +18,11 @@
 $(function() {
 	var oldFont="${d.dfont}"
 	var oldSecret=${d.secret}
+	var oldDfile="${d.dfile}"
+	var oldDphoto="${d.dphoto}"
+	
+	console.log(oldDfile);
+	console.log(oldDphoto);
 	
 	//이전 폰트설정
 	$("#dcontent").attr({
@@ -33,7 +38,7 @@ $(function() {
 	
 	//이전 공개유무 설정
 	$.each($(".secret"), function(i, s) {
-		console.log(  $(s).val()  );
+		
 		if($(s).val() == oldSecret) {
 			$(this).attr({
 				checked : "checked"
@@ -53,6 +58,23 @@ $(function() {
 			style : "font-family:"+$(this).val()
 		})
 	});
+	
+	//이전 그림이 있으면 보여주기
+	if(oldDfile != "") {
+		console.log("그림있따!!")
+		$("#grim").attr({
+			src : "../resources/upload2/" + oldDfile
+		})
+	}
+	
+	//이전 사진이 있으면 보여주기
+	if(oldDphoto != "") {
+		console.log("사진있따!!")
+		$("#photo").attr({
+			src : "../resources/upload/" + oldDphoto
+		})
+	}
+	
 
 });
 // 그림판 띄어주는 창
@@ -78,7 +100,7 @@ function openGrimpan() {
 	var sel_file;
 	var sel_fileG;
 	
-	
+
 	<!-- 사진 보여주기 -->
 	$(document).ready(function() {
 		$("#upload").on("change", showImg)
@@ -121,7 +143,7 @@ function openGrimpan() {
 			sel_fileG = f;
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				$("#img").attr("src", e.target.result);
+				$("#grim").attr("src", e.target.result);
 			}
 			reader.readAsDataURL(f);
 		});
@@ -161,7 +183,8 @@ function openGrimpan() {
 	    </ul>
 	</nav>
 
-<div class="content" style="margin-top: 180px">
+<div class="content" style="margin-top: 100px">
+	<h2>일기 수정</h2>
 	<hr>
 	<form action="updateDiary.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="dno" id="dno" value="${d.dno}">
@@ -214,17 +237,15 @@ function openGrimpan() {
 				</td>
 			</tr>
 			
-			<!-- 
-			
-			그림, 사진 첨에 띄어주기
-			
-			 -->
+			<!-- 그림, 사진 첨에 띄어주기-->
 			<tr>
 				<td colspan="2">
 					<!-- 그림 -->
-					<img id="img" width="300" height="300" src="../resources/upload2/${d.dfile}">
+					<img id="grim" width="300">
+					<br>
 					<!-- 사진 -->
-					<img id="photo" width="300" height="300" src="../resources/upload/${d.dphoto}">
+					<img width="300" id="photo">
+
 					<br>
 					<br>
 					<!-- 글 -->
@@ -240,50 +261,36 @@ function openGrimpan() {
 			</tr>
 			
 		</table>
-		
-
-<!-- 
-		<label for="dtitle">제목 </label> <input type="text" name="dtitle" id="dtitle" value="${d.dtitle }">
-		<div class="row">
-			<label for="ddate" class="col-sm-2 control-label">날짜</label>
-			<div class="col-xs-3">
-				<input type="date" name="ddate" id="ddate" class="form-control" value="${d.ddate }" placeholder="">
-			</div>
-			<label for="dweather" class="col-sm-2 control-label">날씨</label>
-			<div class="col-xs-3">
-				<input type="text" name="dweather" id="dweather" class="form-control" value="${d.dweather }" placeholder="">
-			</div>
-		</div>
-		<label for="dfont">글씨체</label>
-		
-		<select name="dfont" id="dfont">
-			<option value="Nanum Brush Script" style="font-family: Nanum Brush Script">Nanum Brush Script</option>
-			<option value="Nanum Gothic Coding" style="font-family:Nanum Gothic Coding">Nanum Gothic Coding</option>
-			<option value="Nanum Myeongjo" style="font-family:Nanum Myeongjo">Nanum Myeongjo</option>
-			<option value="Nanum Pen Script" style="font-family:Nanum Pen Script">Nanum Pen Script</option>
-			<option value="Stylish" style="font-family:Stylish">Stylish</option>
-			<option value="Jua" style="font-family:Jua">Jua</option>
-			<option value="Gamja Flower" style="font-family:Gamja Flower">Gamja Flower</option>
-			<option value="Black Han Sans" style="font-family:Black Han Sans">Black Han Sans</option>
-			<option value="Sunflower" style="font-family:Sunflower">Sunflower</option>
-			<option value="Do Hyeon" style="font-family:Do Hyeon">Do Hyeon</option>
-			<option value="Source Sans Pro" style="font-family:Source Sans Pro">Source Sans Pro</option>
-			<option value="Gaegu" style="font-family:Gaegu">Gaegu</option>
-		</select><br>
-		<textarea class="form-control" rows="10" name="dcontent" id="dcontent">${d.dcontent }</textarea><br>
-		그림 : <input type="text" name="dfile" value="${d.dfile }"><br>
-		사진 : <input type="file" name="upload"><br>
-		현재 파일 : <img src="../resources/upload/${d.dphoto }" width="100%">
-		<input type="hidden" name="dphoto" value="${d.dphoto }">
-		<input type="hidden" name="dtype" value="${d.dtype }">
-		<br>
-		<input type="radio" name="secret" class="secret" value=1> 비공개
-		<input type="radio" name="secret" class="secret" value=0> 전체공개<br>
- -->
-
 		<button type="submit">수정</button>
 	</form>
 	</div>
 </div>
+
+<!-- 푸터 -->
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 </body>
 </html>

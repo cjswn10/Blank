@@ -143,14 +143,18 @@
 </script>
 </head>
 <body>
-	<!-- side-menu -->
+<!-- side-menu -->
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	
 	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
 	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
 	<a href="qNa.do">Contact</a>
+	<br>
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
@@ -175,10 +179,10 @@
 		<div class="book">
 			<form action="insertBook.do" method="post" id="f">
 				<input type="hidden" name="mno" id="mno" value="${mno }">
-				<input type="text" name="btitle" id="btitle" class="aa" height="50" width="30">
+				<input type="text" name="btitle" id="btitle" class="aa" height="50" width="30" placeholder="제목">
 				<div class="containerr">
 					<div class="example-content well">
-			       		<input id="color-picker-size" type="text" name="bcolor" class="form-control"/>
+			       		<input id="color-picker-size" type="text" name="bcolor" class="form-control" placeholder="색상 선택"/>
 			       </div>
 				</div>
 				<input class="btn btn-default" id="s1" type="submit" value="등록">
@@ -187,6 +191,32 @@
 		</div>
 	</div>
 </div>	
-	
+
+<!-- 푸터 -->
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 </body>
 </html>

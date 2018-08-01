@@ -99,7 +99,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=3">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=4">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function () {
@@ -293,7 +293,7 @@
 
 <!-- 푸터입니다.  -->
 <footer class="footer">
-	<h2>비트와밀당하는 팀 X 빈칸 , 2018</h2>
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">
        <li>
            <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">

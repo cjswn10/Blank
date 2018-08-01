@@ -31,7 +31,7 @@ public class MemberController {
 	}
 
 
-	//留덉씠�럹�씠吏�
+	//마이페이지
 	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
 		
@@ -40,7 +40,7 @@ public class MemberController {
 	}
 	
 
-	//�븘�씠�뵒,鍮꾨�踰덊샇 李얘린 �럹�씠吏�
+	//계정찾기
 	@RequestMapping(value="search.do")
 	public ModelAndView search() {
 			
@@ -49,7 +49,7 @@ public class MemberController {
 	}
 	
 
-	//�븘�씠�뵒 李얘린 �럹�씠吏�
+	//id찾기
 	@RequestMapping(value="searchIdPage.do")
 	public ModelAndView searchId() {
 				
@@ -57,8 +57,7 @@ public class MemberController {
 		return mav;
 	}
 	
-
-	//鍮꾨�踰덊샇 李얘린 �럹�씠吏�
+	//비밀번호 찾기
 	@RequestMapping(value="searchPwdPage.do")
 	public ModelAndView searchPwd() {
 					
@@ -66,8 +65,49 @@ public class MemberController {
 		return mav;
 	}
 
-
-	//Q&A
+	//아이디 찾기
+	@RequestMapping(value="searchId.do")
+	@ResponseBody
+	public String searchId(String name,String phone)
+	{
+		Map map = new HashMap();
+		map.put("name", name);
+		map.put("phone", phone);
+		String str = "";
+		String id = dao.searchId(map);
+		if(id != null)
+		{
+			str = id;
+		}
+		else
+		{
+			str = "";
+		}	
+		return str;
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping(value="searchPwd.do")
+	@ResponseBody
+	public String searchPwd(String id,String phone)
+	{
+		Map map = new HashMap();
+		map.put("id", id);
+		map.put("phone", phone);
+		String str = "";
+		String pwd = dao.searchPwd(map);
+		if(pwd != null)
+		{
+			str = pwd;
+		}
+		else
+		{
+			str = "";
+		}	
+		return str;
+	}
+	
+	//문의사항(contact)
 	@RequestMapping(value="/member/qNa.do")
 	public ModelAndView Qna() {
 		
@@ -75,7 +115,7 @@ public class MemberController {
 		return mav;
 	}
 
-	//濡쒓렇�븘�썐
+	//로그아웃
 	@RequestMapping(value="/member/logOut.do")
 	public ModelAndView logOut(HttpSession session) {
 		
@@ -86,7 +126,7 @@ public class MemberController {
 	}
 	
 
-	//�쉶�썝媛��엯
+	//회원가입
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -99,13 +139,13 @@ public class MemberController {
 		int re = dao.memberInsert(mv);
 		if (re < 1) {
 
-			mav.addObject("msg", "���� ����");
+			mav.addObject("msg", "회원 가입 실패");
 			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
-	//�븘�씠�뵒以묐났泥댄겕
+	//아이디 중복확인
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam("id")String id) {
@@ -119,7 +159,7 @@ public class MemberController {
 	}
 	
 
-	//濡쒓렇�씤
+	//로그인
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public void loginForm() {
 		
@@ -132,36 +172,26 @@ public class MemberController {
 		Map map = new HashMap();
 		map.put("id", id);
 		map.put("pwd", pwd);
+		
 		Boolean r = dao.login(map);
 		if (r == true) {
-			//�븘�씠�뵒 �꽭�뀡�쑀吏�
+			//id, 회원번호 세션 생성
 			session.setAttribute("id", id);
-			
-			//�쉶�썝踰덊샇 �꽭�뀡�쑀吏�
 			session.setAttribute("mno", dao.mno(map));
-//			mav.setViewName("redirect:/member/main.do");
-			//�씪�떒 硫ㅻ쾭�븘�땲�뿬�룄 濡쒓렇�씤 �릺寃� �빐�넃�쓣寃뚯슂
-
+			mav.setViewName("redirect:/member/main.do");
 		}
-		mav.setViewName("redirect:/member/main.do");
+
+		//mav.setViewName("redirect:/member/main.do");
 		return mav;
 	}
-	
-	/*
-	@RequestMapping("/member/main.do")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	}	
-	*/
-	
-	
 
-	//鍮꾨�踰덊샇 �씤利�
+	
+	//회원정보 수정 시 비밀번호 확인
 	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
 	}
+	
 	
 	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.POST)
 	public ModelAndView pwdCheck(String id, String pwd,int mno) {
@@ -179,13 +209,13 @@ public class MemberController {
 		else
 		{
 
-			mav.addObject("msg", "��� ����");
+			mav.addObject("msg", "비밀번호가 일치하지 않습니다.");
 		}	
 		
 		return mav;
 	}
 	
-	//�쉶�썝�젙蹂� �닔�젙
+	//회원정보 수정
 	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		
@@ -198,14 +228,14 @@ public class MemberController {
 		
 		int re = dao.updateMember(mv);
 		if (re < 1) {
-			mav.addObject("msg", "�쉶�썝�젙蹂� �닔�젙 �떎�뙣");
+			mav.addObject("msg", "회원정보 수정 실패");
 			mav.setViewName("/member/error");
 		}
 		
 		return mav;
 	}
 	
-
+	//아이디 검색(친구일기장)
 	@RequestMapping(value="/member/mainSearchId.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String mainSearchId(String id,HttpSession session)
@@ -235,47 +265,6 @@ public class MemberController {
 	}
 	
 
-	//�쉶�썝 �븘�씠�뵒 李얘린
-	@RequestMapping(value="searchId.do")
-	@ResponseBody
-	public String searchId(String name,String phone)
-	{
-		Map map = new HashMap();
-		map.put("name", name);
-		map.put("phone", phone);
-		String str = "";
-		String id = dao.searchId(map);
-		if(id != null)
-		{
-			str = id;
-		}
-		else
-		{
-			str = "";
-		}	
-		return str;
-	}
-	
-	//�쉶�썝 鍮꾨�踰덊샇 李얘린
-	@RequestMapping(value="searchPwd.do")
-	@ResponseBody
-	public String searchPwd(String id,String phone)
-	{
-		Map map = new HashMap();
-		map.put("id", id);
-		map.put("phone", phone);
-		String str = "";
-		String pwd = dao.searchPwd(map);
-		if(pwd != null)
-		{
-			str = pwd;
-		}
-		else
-		{
-			str = "";
-		}	
-		return str;
-	}
 	
 }
 
