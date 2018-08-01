@@ -111,7 +111,7 @@
 		<hr>
 		
 		<a href="updateDiary.do?dno=${d.dno }"><button>수정</button></a>
-		<button id="delete">삭제</button>
+		<button id="delete"><a herf="#">삭제</a></button>
 		<hr>
 		<a href="diary.do?mno=${mno }&bno=${bno}">일기 목록</a>
 		<hr>

@@ -7,6 +7,15 @@
 <title>빈칸을 채우다.</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+	.content{
+		text-align: center;
+	}
+	
+	.check > span{
+		font-size: 50px;
+	}
+	
 	#pwd
 	{
 		position: relative;
@@ -16,9 +25,9 @@
 		left: 10px;
 	}
 
-	.container
+	.container2
 	{
-		width: :960px;
+		width: :600px;
 	}
 	#d
 	{
@@ -93,7 +102,7 @@
 	
 
 	<div class="content" style="margin-top: 180px">
-		<div class="container">
+		<div class="container2">
 		<div class="check">
 			<span class="my">본인확인</span><br>
 			<span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span>
@@ -115,7 +124,31 @@
 	</div>
 	</div>
 </div>
-
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 	
 	
 	

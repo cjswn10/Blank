@@ -8,29 +8,30 @@
 <style type="text/css">
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-
 	.main
 	{
 		position: relative;
-		left: 270px;
-		width:600px;
+		left: 250px;
+		width:960px;
+		text-align: center;;
 		
 	}
+	
 	#sub
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size: 20px;
-		top: 50px;
-		left: 90px;
+		left: -250px;
+		
 	}
 	#s1
 	{
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size: 20px;
-		top: 50px;
-		left: 190px;
+		left: -240px;
+	
 	}
 	.check
 	{
@@ -54,7 +55,7 @@
 		font-family: 'Nanum Pen Script', serif;
 		position: relative;
 		font-size:30px;
-		width: 500px;
+		width: 600px;
 		height: 500px;
 	}
 	.container
@@ -120,27 +121,7 @@
 	
 </section>
 
-<div id="wrapper">
 
-	<!-- main-menu -->
-	<nav class="clearfix">
-	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
-	    <ul>
-	        <li><a href="book.do">DIARY</a></li>
-	        <li><a href="favorite.do">FAVORITES</a></li>
-	        <li><a href="myPage.do">MYPAGE</a></li>
-	    </ul>
-	</nav>
-
-	
-	<div class="content" style="margin-top: 180px">
-		<div class="check">
-		<span class="my">회원정보 수정</span><br>
-
-	</div>
-	
-</section>
 
 
 <div id="wrapper">
@@ -160,6 +141,8 @@
 	<div class="content" style="margin-top: 100px;text-align: center;">
 		<h2>회원 정보 수정</h2>
 		<hr>
+		<div class="container">
+		<div class="main">
 		<form action="updateMember.do" method="post" class="f">
 				<table id="tb">
 					<tr>
@@ -194,12 +177,13 @@
 						</td>
 					</tr>
 				</table>
+				
 					<input class="btn btn-default" type="submit" value="수정" id="sub">
 					<input class="btn btn-default" type="reset" value="취소" id="s1">
 					
-			</form>
-	</div>
-
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 
