@@ -31,13 +31,13 @@ public class BookController {
 	}
 	
 		
-	//占싹깍옙占쏙옙 占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙
+	//book.jsp
 	@RequestMapping("/member/book.do")
 	public void list()
 	{}
 	
 	
-	//占싹깍옙占쏙옙 占쏙옙占�
+	//listBook
 	@RequestMapping(value="/member/listBook.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String listBook(int mno)
@@ -58,7 +58,7 @@ public class BookController {
 		return str;
 	}
 	
-	//占싹깍옙占쏙옙 占쏢세븝옙占쏙옙
+	//detailBook
 	@RequestMapping("/member/detailBook.do")
 	public ModelAndView detailBook(int bno)
 	{
@@ -69,12 +69,12 @@ public class BookController {
 		return mav;
 	}
 	
-	//占싹깍옙占쏙옙 占쌜쇽옙 Form
+	//insertBook(GET)
 	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.GET)
 	public void insertBookForm()
 	{}
 	
-	//占싹깍옙占쏙옙 占쌜쇽옙 Submit
+	//insertBook(POST)
 	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.POST)
 	public ModelAndView insertBook(BookVo b,int mno)
 	{
@@ -90,7 +90,7 @@ public class BookController {
 		return mav;
 	}
 	
-	//占싹깍옙占쏙옙 占쏙옙占쏙옙 Form
+	//updateBook(GET)
 	@RequestMapping(value="/member/updateBook.do",method=RequestMethod.GET)
 	public ModelAndView updateBookForm(int bno)
 	{
@@ -101,7 +101,7 @@ public class BookController {
 		return mav;
 	}
 		
-	//占싹깍옙占쏙옙 占쏙옙占쏙옙 Submit
+	//updateBook(POST)
 	@RequestMapping(value="/member/updateBook.do",method=RequestMethod.POST)
 	public ModelAndView updateBook(BookVo b)
 	{
@@ -115,7 +115,7 @@ public class BookController {
 		return mav;
 	}
 	
-	//占싹깍옙占쏙옙 占쏙옙占쏙옙
+	//deleteBook
 	@RequestMapping(value="/member/deleteBook.do")
 	public ModelAndView deleteBook(int bno)
 	{

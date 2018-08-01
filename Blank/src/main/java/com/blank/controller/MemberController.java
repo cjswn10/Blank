@@ -31,7 +31,7 @@ public class MemberController {
 	}
 
 
-	//留덉씠�럹�씠吏�
+	//MyPage
 	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
 		
@@ -40,7 +40,7 @@ public class MemberController {
 	}
 	
 
-	//�븘�씠�뵒,鍮꾨�踰덊샇 李얘린 �럹�씠吏�
+	//Search
 	@RequestMapping(value="search.do")
 	public ModelAndView search() {
 			
@@ -49,7 +49,7 @@ public class MemberController {
 	}
 	
 
-	//�븘�씠�뵒 李얘린 �럹�씠吏�
+	//SearchIdPage
 	@RequestMapping(value="searchIdPage.do")
 	public ModelAndView searchId() {
 				
@@ -75,7 +75,7 @@ public class MemberController {
 		return mav;
 	}
 
-	//濡쒓렇�븘�썐
+	//IogOut
 	@RequestMapping(value="/member/logOut.do")
 	public ModelAndView logOut(HttpSession session) {
 		
@@ -86,7 +86,7 @@ public class MemberController {
 	}
 	
 
-	//�쉶�썝媛��엯
+	//Join
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -105,7 +105,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//�븘�씠�뵒以묐났泥댄겕
+	//CheckId
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam("id")String id) {
@@ -119,7 +119,7 @@ public class MemberController {
 	}
 	
 
-	//濡쒓렇�씤
+	//Iogin
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public void loginForm() {
 		
@@ -134,30 +134,18 @@ public class MemberController {
 		map.put("pwd", pwd);
 		Boolean r = dao.login(map);
 		if (r == true) {
-			//�븘�씠�뵒 �꽭�뀡�쑀吏�
 			session.setAttribute("id", id);
 			
-			//�쉶�썝踰덊샇 �꽭�뀡�쑀吏�
 			session.setAttribute("mno", dao.mno(map));
-//			mav.setViewName("redirect:/member/main.do");
-			//�씪�떒 硫ㅻ쾭�븘�땲�뿬�룄 濡쒓렇�씤 �릺寃� �빐�넃�쓣寃뚯슂
 
 		}
 		mav.setViewName("redirect:/member/main.do");
 		return mav;
 	}
 	
-	/*
-	@RequestMapping("/member/main.do")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	}	
-	*/
-	
 	
 
-	//鍮꾨�踰덊샇 �씤利�
+	//PwdCheck
 	@RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
@@ -185,7 +173,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//�쉶�썝�젙蹂� �닔�젙
+	//updateMember
 	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		
@@ -212,7 +200,6 @@ public class MemberController {
 	{
 		Map map = new HashMap();
 		map.put("id", id);
-		//session.setAttribute("serchMno", dao.mno(map));
 		String str = "";
 		try {
 			
@@ -235,7 +222,7 @@ public class MemberController {
 	}
 	
 
-	//�쉶�썝 �븘�씠�뵒 李얘린
+	//searchId
 	@RequestMapping(value="searchId.do")
 	@ResponseBody
 	public String searchId(String name,String phone)
@@ -256,7 +243,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//�쉶�썝 鍮꾨�踰덊샇 李얘린
+	//SearchPwd
 	@RequestMapping(value="searchPwd.do")
 	@ResponseBody
 	public String searchPwd(String id,String phone)
