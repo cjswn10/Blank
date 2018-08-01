@@ -111,8 +111,8 @@
 		<textarea class="form-control" rows="10" cols="60" readonly="readonly" style="font-family: ${d.dfont}">${d.dcontent}</textarea> <br>
 		<hr>
 		
-		<button><a href="updateDiary.do?dno=${d.dno }">수정</a></button>	
-		<button id="delete"><a href="#">삭제</a></button>
+		<a href="updateDiary.do?dno=${d.dno }"><button>수정</button></a>
+		<button id="delete">삭제</button>
 		<hr>
 		<a href="diary.do?mno=${mno }&bno=${bno}">일기 목록</a>
 		<hr>
