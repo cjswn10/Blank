@@ -101,7 +101,6 @@ public class MemberController {
 
 			mav.addObject("msg", "���� ����");
 			mav.setViewName("/member/error");
-			System.out.println("/member/error");
 		}
 		return mav;
 	}
@@ -130,8 +129,6 @@ public class MemberController {
 	public ModelAndView login(String id, String pwd, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println(id);
-		System.out.println(pwd);
 		Map map = new HashMap();
 		map.put("id", id);
 		map.put("pwd", pwd);
@@ -146,7 +143,6 @@ public class MemberController {
 			//�씪�떒 硫ㅻ쾭�븘�땲�뿬�룄 濡쒓렇�씤 �릺寃� �빐�넃�쓣寃뚯슂
 
 		}
-		System.out.println("----------------------------------------main");
 		mav.setViewName("redirect:/member/main.do");
 		return mav;
 	}
