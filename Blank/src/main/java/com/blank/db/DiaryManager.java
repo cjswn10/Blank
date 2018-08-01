@@ -31,10 +31,10 @@ public class DiaryManager {
 	}
 	
 	
-	public static List<DiaryVo> listFavoriteDiary(Map map){
+	public static List<DiaryVo> othersDiaryList(Map map){
 		List<DiaryVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("diary.listFavoriteDiary", map);
+		list = session.selectList("diary.othersDiary", map);
 		session.close();
 		return list;
 	}

@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?">
+<link rel="stylesheet" href="../resources/css/blank.css">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 </head>
 <body>
@@ -58,5 +58,31 @@
 	</div>
 </div>
 
+<!-- 푸터 -->
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 </body>
 </html>

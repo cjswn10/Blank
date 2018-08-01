@@ -84,7 +84,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {
-		var mno = document.location.search.substr(5,4);		
+		var mno = ${mno}		
 		var bno = document.location.search.substr(14,1);		
 		
 		var selectBook = function(){
@@ -101,7 +101,8 @@
 					})
 				}
 			})
-		}
+		};
+		
 		$(".btitle").change(function(){
 			var btitle = $(".btitle").val();
 			location.href="diary.do?mno="+mno+"&bno="+btitle+""
@@ -157,8 +158,8 @@
 						}		            
 
 					})				
-			}})		
-		}
+			}});		
+		};
 		selectBook();
 		listDiary();
 	});
@@ -216,15 +217,38 @@
 				
 			</div>
 		</div>
-		
-		
-		
-		
+			
 	</div>
 	
 	
 </div>
 
+<!-- 푸터 -->
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 </body>
 </html>
 

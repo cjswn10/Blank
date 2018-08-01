@@ -4,8 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="diary">	
 
-	<select id="listFavoriteDiary" resultType="diaryvo">
-		select distinct(d.dno), d.dfont, d.dphoto,d.dcontent from diary d, favorites f where d.mno=#{fmno}
+<!-- 전체공개인 일기만 보여주기 -->
+	<select id="othersDiary" resultType="diaryvo">
+		SELECT * FROM diary WHERE mno=#{othermno} AND secret=0
 	</select>
 
 	<delete id="deleteDiary">

@@ -69,11 +69,12 @@
     
 }
 
-#test
+#searchid
 	{
 		border: 1px solid black;
-		width: 175px;
+		width: 200px;
 		height: 150px;
+		background-color: white;
 	}
 
 .mainSearchId
@@ -86,6 +87,7 @@
 	height: 100px;
 }
 
+
 </style>
 
 <!-- Bootstrap -->
@@ -97,7 +99,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=3">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=4">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function () {
@@ -175,11 +177,11 @@
 				})
 			}
 		})
-		$("#test").hide();
+		$("#searchid").hide();
 		
 		$("#id").keyup(function() {
 			
-			$("#test").empty();
+			$("#searchid").empty();
 			$.ajax({
 				url:"mainSearchId.do",
 				data:{"id":this.value},
@@ -190,25 +192,34 @@
 					$.each(arr,function(i,v){
 						var id = $("<span></span>").html(v.id);
 						var br = $("<br>");
-						$("#test").append(id,br);
+						$("#searchid").append(id,br);
+						
+						$("#searchid").click(function(){
+							$(this).hide();
+						})
 						
 						$(id).click(function() {
 							$("#id").val(v.id)
-							$("#test").hide();	
+							$("#searchid").hide();	
 							//location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
 						})
 						$("#btnMove").click(function(){
-							location.href="favoritesDiary.do?fmno="+v.mno+"&id="+v.id+"";
+							location.href="othersDiary.do?fmno="+v.mno+"&id="+v.id+"";
 						})
 						
 					})
 				}
 			})
 			
-			if(this.value != null)
+			if(this.value != "")
 			{
-				$("#test").show();	
+				$("#searchid").show();	
+			}
+			else
+			{
+				$("#searchid").hide();
 			}	
+			
 			
 		})
 		
@@ -250,9 +261,9 @@
 	</nav>
 
 	<div class="mainSearchId">
-	<input type="text" name="id" id="id">
-	<button id="btnMove">이동</button>
-	<div id="test"></div>
+	<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" style="width: 200px">
+	<button id="btnMove" class="glyphicon glyphicon-search" style="height: 26px"></button>
+	<div id="searchid"></div>
 </div>
 	
 		<div class="landing">
@@ -282,7 +293,7 @@
 
 <!-- 푸터입니다.  -->
 <footer class="footer">
-	<h2>비트와밀당하는 팀 X 빈칸 , 2018</h2>
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">
        <li>
            <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
