@@ -5,7 +5,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>빈칸을 채우다.e</title>
+<style type="text/css">
+.content h2{
+	text-align: center;
+}
+ul{
+	display: table;
+	margin-left: auto;
+	
+	
+}
+ul > li{
+	list-style: none;
+	
+}
+#favolist
+{
+	font-size: 30px;
+}
+</style>
+
+<title>빈칸을 채우다.</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -29,12 +49,12 @@
 				var list = eval("("+data+")");					
 				$.each(list,function(i,f){	
           
-					var img = $("<img src='../resources/img/favoriteicon.png' width='30px'>")
+					var img = $("<img src='../resources/img/favoriteicon.png' width='70px'>")
 
 					var a = $("<a href='favoritesDiary.do?fmno="+f.fmno+"&fno="+f.fno+"&id="+f.id+"'></a>").html(f.id+"님");					
 
 
-					var li = $("<li></li>")
+					var li = $("<li></li>");
 					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
 					$(li).append(img,a,removeimg);
@@ -46,7 +66,7 @@
 	});
 </script>
 </head>
-<body style="background-image: url('https://png.pngtree.com/thumb_back/fw800/back_pic/03/74/41/5757bc295499924.jpg');">
+<body>
 
 	<input type="hidden" name="mno" id="mno" value="${mno}">
 	<input type="hidden" name="fmno" id="fmno" value="${fmno}">
@@ -82,10 +102,11 @@
 	        <li><a href="myPage.do">MYPAGE</a></li>
 	    </ul>
 	</nav>
+	
 
-	<div class="content" style="margin-top: 50px;">
-		<h2>즐겨 찾기</h2>
-					<ul id="favolist" style="margin-right: auto;"></ul>
+	<div class="content" style="margin-top: 20%;">
+		<h2># 당신의 픽</h2>
+		<ul id="favolist" style="margin-right: auto;"></ul>
 		
 	</div>
 </div>	
