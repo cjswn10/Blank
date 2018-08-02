@@ -76,20 +76,8 @@
 #searchid
 	{
 		border: 1px solid black;
-		width: 200px;
 		height: 150px;
-		background-color: white;
 	}
-
-.mainSearchId
-{
-	position:relative;
-	top:30px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
-	height: 100px;
-}
 
 
 </style>
@@ -103,164 +91,191 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=4">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=7">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
-	$(function () {
-		$.ajax({
-			url: "mainList.do",
-			success:function(data){				
-				var list = eval("("+data+")");
-				$.each(list, function(i, d) {
-					
-					var font = $('<font color=" "></font>')					
-					var contents = $('<div class="contents"></div>').html(d.dcontent);
-					$(font).append(contents);
-					
-					/*
-					var diaryDiv = $('<div class="dform"></div>').attr({
-						onclick: "location.href='mainDetailDiary.do?dno="+d.dno+"'"
+$(function () {
+	$.ajax({
+		url: "mainList.do",
+		success:function(data){				
+			var list = eval("("+data+")");
+			$.each(list, function(i, d) {
+				
+				var font = $('<font color=" "></font>')					
+				var contents = $('<div class="contents"></div>').html(d.dcontent);
+				$(font).append(contents);
+				
+				/*
+				var diaryDiv = $('<div class="dform"></div>').attr({
+					onclick: "location.href='mainDetailDiary.do?dno="+d.dno+"'"
+				})
+				*/
+				var diaryDiv = $('<div class="dform"></div>');
+				
+				
+				var div = $("<div class='diaryimg'></div>").attr({
+					style: "background-image: url('../resources/upload2/"+d.dfile+"')",						
+				});
+				
+				if (d.dfile == null && d.dphoto != null) {
+					$(div).attr({
+						style: "background-image: url('../resources/upload/"+d.dphoto+"')"
 					})
-					*/
-					var diaryDiv = $('<div class="dform"></div>');
-					
-					
-					var div = $("<div class='diaryimg'></div>").attr({
-						style: "background-image: url('../resources/upload2/"+d.dfile+"')",						
-					});
-					
-					if (d.dfile == null && d.dphoto != null) {
-						$(div).attr({
-							style: "background-image: url('../resources/upload/"+d.dphoto+"')"
-						})
-					}else if (d.dfile == null && d.dphoto == null){
-						$(div).attr({
-							style: "background-image: url('../resources/upload/standard.png')"
-						})
-					}
-					
-					//fancybox를 위한 a태그와 div
-					var a = $('<a data-fancybox="gallery" data-src="#modal'+ d.dno +'" href="javascript:;"></a>');
-					var modalBox = $('<div style="display: none;max-width:800px;" id="modal'+d.dno+'"></div>');
-					
-					var src = "../resources/upload2/" + d.dfile;
-					if(d.dfile == null && d.dphoto != null) {
-						src = "../resources/upload/" + d.dphoto;
-					} else if (d.dfile == null && d.dphoto == null) {
-						src = "../resources/upload/standard.png";
-					}
-					var filephoto = $("<img></img>").attr({
-						src : src,
-						width : "400px"
-					});
+				}else if (d.dfile == null && d.dphoto == null){
+					$(div).attr({
+						style: "background-image: url('../resources/upload/standard.png')"
+					})
+				}
+				
+				//fancybox를 위한 a태그와 div
+				var a = $('<a data-fancybox="gallery" data-src="#modal'+ d.dno +'" href="javascript:;"></a>');
+				var modalBox = $('<div style="display: none;max-width:800px;" id="modal'+d.dno+'"></div>');
+				var contentsDiv = $('<div></div>');
 
-					var dtitle = $("<h5></h5>").html(d.dtitle);
-					var ddate = $("<h5></h5>").html(d.ddate);
-					var dweather = $("<h5></h5>").html(d.dweather);
-					//var writermno = $("<h5></h5>").html(d.mno);
-					var dcontent = $("<h5 class='modalContent'></h5>").html(d.dcontent);
-					$(modalBox).append(dtitle, ddate, dweather, filephoto, dcontent);	
-					//var others = $('<a href="favoritesDiary.do?mno="'+d.mno+'></a>');
-					$("#modal").append(modalBox);
+				//회원번호로 id찾기
+				var otherid;
+				$.ajax({
+					url: "getId.do",
+					data: {"mno" : d.mno},
+					async: false,
+					success : function(data) {
+						otherid = data;
+					}
+				});
+
+				var writer = $("<h5></h5>").html(otherid);
+				var dtitle = $("<h5></h5>").html(d.dtitle);
+				var ddate = $("<h5></h5>").html(d.ddate);
+				var dweather = $("<h5></h5>").html(d.dweather);
+				var dcontent = $("<h5 class='modalContent'></h5>").html(d.dcontent);
+				
+				//우선순위 1.그림 2.사진 3.기본이미지 순으로 하나만 보여주기
+				var src = "../resources/upload2/" + d.dfile;
+				if(d.dfile == null && d.dphoto != null) {
+					src = "../resources/upload/" + d.dphoto;
+				} else if (d.dfile == null && d.dphoto == null) {
+					src = "../resources/upload/standard.png";
+				}
+				var filephoto = $("<img></img>").attr({
+					src : src,
+					width : "400px"
+				});
+				
+				$(contentsDiv).append(writer, dtitle, ddate, dweather, filephoto, dcontent);	
+				
+				
+				//친구일기장으로 가는 태그
+				var others = $('<a href="othersDiary.do?id='+otherid+'&fmno='+d.mno+'"></a>');
+				//var others = $('<a href="othersDiary.do?fmno='+d.mno+'&id='+otherid+'"></a>');
+			
+				
+				$(others).append(contentsDiv);
+				$(modalBox).append(others);
+				$("#modal").append(modalBox);
+				
+				
+				
+				$(diaryDiv).append(div);
+				
+				$(a).append(diaryDiv);
+				$('#mainList').append(a);
+				
+				$(diaryDiv).hover(function() {
+					$(div).detach();
+					$(this).append(contents);
+				}, function() {		
+					$(this).append(div);
+					$(contents).detach();
+					$(font).detach();
+				})
+			})
+		}
+	})
+	
+	
+	
+	
+	
+	
+	$("#searchid").hide();
+	
+	$("#id").keyup(function() {
+		
+		$("#searchid").empty();
+		$.ajax({
+			url:"mainSearchId.do",
+			data:{"id":this.value},
+			success:function(data)
+			{
+				var arr = eval("("+data+")")
+				$.each(arr,function(i,v){
+					var id = $("<span></span>").html(v.id);
+					var br = $("<br>");
+					$("#searchid").append(id,br);
 					
-					
-					
-					$(diaryDiv).append(div);
-					
-					$(a).append(diaryDiv);
-					$('#mainList').append(a);
-					
-					$(diaryDiv).hover(function() {
-						$(div).detach();
-						$(this).append(contents);
-					}, function() {		
-						$(this).append(div);
-						$(contents).detach();
-						$(font).detach();
+					$("#searchid").click(function(){
+						$(this).hide();
 					})
+					
+					$(id).click(function() {
+						$("#id").val(v.id)
+						$("#searchid").hide();	
+						$.ajax({
+							url:"listFavorite2.do",
+							data:{"mno":v.mno},
+							success:function(data)
+							{
+								location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
+								var arr = eval("("+data+")");		
+								$.each(arr,function(i,a){
+									if(a.mno == $("#mno").val() )
+									{
+										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
+									}				
+								})
+							}
+						})
+					})
+          
+					$("#btnMove").click(function(){
+							
+						$.ajax({
+							url:"listFavorite2.do",
+							data:{"mno":v.mno},
+							success:function(data)
+							{
+								location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
+								var arr = eval("("+data+")");		
+								$.each(arr,function(i,a){
+									if(a.mno == $("#mno").val() )
+									{
+										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
+									}
+								
+								})
+							}
+						})
+						
+						
+					})
+					
 				})
 			}
 		})
-		$("#searchid").hide();
 		
-		$("#id").keyup(function() {
-			
-			$("#searchid").empty();
-			$.ajax({
-				url:"mainSearchId.do",
-				data:{"id":this.value},
-				success:function(data)
-				{
-					var arr = eval("("+data+")")
-					$.each(arr,function(i,v){
-						var id = $("<span></span>").html(v.id);
-						var br = $("<br>");
-						$("#searchid").append(id,br);
-						
-						$("#searchid").click(function(){
-							$(this).hide();
-						})
-						
-						$(id).click(function() {
-							$("#id").val(v.id)
-							$("#searchid").hide();	
-							$.ajax({
-								url:"listFavorite2.do",
-								data:{"mno":v.mno},
-								success:function(data)
-								{
-									location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
-									var arr = eval("("+data+")");		
-									$.each(arr,function(i,a){
-										
-										if(a.mno == $("#mno").val() )
-										{
-											location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
-										}
-									
-									})
-								}
-							})
-						})
-						$("#btnMove").click(function(){
-								
-							$.ajax({
-								url:"listFavorite2.do",
-								data:{"mno":v.mno},
-								success:function(data)
-								{
-									location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
-									var arr = eval("("+data+")");		
-									$.each(arr,function(i,a){
-										if(a.mno == $("#mno").val() )
-										{
-											location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
-										}
-									
-									})
-								}
-							})
-							
-							
-						})
-						
-					})
-				}
-			})
-			
-			if(this.value != "")
-			{
-				$("#searchid").show();	
-			}
-			else
-			{
-				$("#searchid").hide();
-			}	
-			
-			
-		})
+		if(this.value != "")
+		{
+			$("#searchid").show();	
+		}
+		else
+		{
+			$("#searchid").hide();
+		}	
+		
 		
 	})
+	
+})
 </script>
 <title>빈칸을 채우다.</title>
 </head>
@@ -285,11 +300,18 @@
 </section>
 
 <div id="wrapper">
-
+	
+	<div class="mainSearchId">
+		<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!">
+		<span id="btnMove" class="glyphicon glyphicon-search" ></span>
+		<div id="searchid"></div>
+	</div>
+	
 	<!-- main-menu -->
 	<nav class="clearfix">
 	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
+	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-search"></span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
 	        <li><a href="favorite.do">FAVORITES</a></li>
@@ -297,11 +319,7 @@
 	    </ul>
 	</nav>
 
-	<div class="mainSearchId">
-	<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" style="width: 200px">
-	<button id="btnMove" class="glyphicon glyphicon-search" style="height: 26px"></button>
-	<div id="searchid"></div>
-</div>
+	
 	
 		<div class="landing">
 			<div class="container">
@@ -322,7 +340,8 @@
 		   </div> 	    
 	</div>
 		
-		<input type="hidden" id="mno" name="mno" value="${mno }">
+	<input type="hidden" id="mno" name="mno" value="${mno }">
+	
 	<!-- modal들을 넣을 div -->
 	<div id="modal"></div>
 		

@@ -26,8 +26,8 @@
 	#remove_location
 	{
 		position: relative;
-		left: 290px;
-		top: -105px;
+		left: 302px;
+		top: -90px;
 	}
 
 	/* plus 아이콘 */
@@ -48,6 +48,12 @@
 		width: 960px;
 		margin: 0 auto;
 	}
+	
+	#main
+	{
+		overflow: hidden;
+	}
+	
 	/* 서브컨테이너의 자식 div들 */
 	#main_container > div
 	{
@@ -66,11 +72,15 @@
 		font-family: 'Nanum Pen Script', serif;
 		position:relative;
 		display:table;
-		font-size: 35px;
+		font-size: 30px;
 		color:black;
 		top:30px;
 		margin-left: auto;
 		margin-right: auto;
+		background-color: white;
+		width: 200px;
+		height: 30px;
+		text-align: center;
 		
 	}
 	/*일기장 수정*/
@@ -81,11 +91,10 @@
 		display:table;
 		font-size: 25px;
 		color:black;
-		top:290px;
+		top:295px;
 		left: 90px;
 
 	}
-	
 	
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -117,19 +126,19 @@
 						
 						
 						//일기장 -->> 일기목록
-						var aList = $("<a href='diary.do?mno="+d.mno+"&bno="+d.bno+"'></a>")
+						var aList = $("<a class='btitle' href='diary.do?mno="+d.mno+"&bno="+d.bno+"'></a>")
 						
 						//일기장 제목
-						var title = $("<span class='btitle'></span>").html(d.btitle);
+						var title = $("<span ></span>").html(d.btitle);
 						
 						//일기장수정 문구
-						var Update = $("<button class='update'></button>").html("일기장 수정")
+						var Update = $("<button></button>").html("일기장 수정")
 						
 						//일기장 수정a태그
-						var aUpdate = $("<a href='updateBook.do?bno="+d.bno+"'></a>")
+						var aUpdate = $("<a class='update' href='updateBook.do?bno="+d.bno+"'></a>")
 						
 						//일기장 삭제a태그
-						var aRemove = $("<a></a>")
+						var aRemove = $("<a id='remove_location'></a>")
 						
 						
 						//remove 아이콘을 누르면 발생하여 선택한 일기장 삭제
@@ -147,7 +156,7 @@
 						})
 						
 						//일기장 삭제 아이콘
-						var remove = $("<span class='glyphicon glyphicon-remove' id='remove_location'></span>")
+						var remove = $("<span class='glyphicon glyphicon-remove'></span>")
 						
 						//일기장 색상
 						var color = $(div).attr({
@@ -234,8 +243,8 @@
 		  <input type="hidden" name="mno" id="mno" value="${mno }">
 	
 </div>
-<!-- 푸터 
-<footer class="footer">
+<!-- 푸터  -->
+<footer class="footer" >
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">	
        <li>
@@ -261,6 +270,6 @@
     </ul>
 </footer>
 
- -->
+ 
 </body>
 </html>

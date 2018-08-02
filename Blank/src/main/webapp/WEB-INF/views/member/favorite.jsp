@@ -5,24 +5,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>빈칸을 채우다.e</title>
+<title>빈칸을 채우다.</title>
 <style type="text/css">
 .content h2{
 	text-align: center;
 }
-ul{
+#favolist{
 	display: table;
 	margin-left: auto;
 	
 	
 }
-ul > li{
+#favolist > li{
 	list-style: none;
 	
 }
 #favolist
 {
 	font-size: 30px;
+}
+.footer{
+	margin-top: 20%;
 }
 </style>
 
@@ -98,7 +101,7 @@ ul > li{
 	    </ul>
 	</nav>
 	
-	<div class="content" style="margin-top: 20%;">
+	<div class="content" style="margin-top: 10%;">
 		<h2># 당신의 픽</h2>
 		<ul id="favolist" style="margin-right: auto;"></ul>
 	</div>
