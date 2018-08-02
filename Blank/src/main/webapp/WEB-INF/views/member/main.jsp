@@ -8,6 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 
+.modalContent{
+	white-space: pre-line;
+}
+
 .diaryimg{
 	position: relative;    
     width: 300px;
@@ -154,7 +158,7 @@
 					var ddate = $("<h5></h5>").html(d.ddate);
 					var dweather = $("<h5></h5>").html(d.dweather);
 					//var writermno = $("<h5></h5>").html(d.mno);
-					var dcontent = $("<h5></h5>").html(d.dcontent);
+					var dcontent = $("<h5 class='modalContent'></h5>").html(d.dcontent);
 					$(modalBox).append(dtitle, ddate, dweather, filephoto, dcontent);	
 					//var others = $('<a href="favoritesDiary.do?mno="'+d.mno+'></a>');
 					$("#modal").append(modalBox);
