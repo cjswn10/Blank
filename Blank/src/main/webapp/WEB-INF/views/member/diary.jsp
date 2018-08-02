@@ -27,11 +27,7 @@
 .gi-5x{
 	font-size: 50px;
 	position: relative;
-	
-	
 }
-
-
 
 	/* 일기장 목록 컨테이너 */
 	#main_container
@@ -85,7 +81,8 @@
 <script type="text/javascript">
 	$(function () {
 		var mno = ${mno}		
-		var bno = document.location.search.substr(14,1);		
+		var bno = document.location.search.substr(14);
+
 		
 		var selectBook = function(){
 			$.ajax({
@@ -209,10 +206,11 @@
 				<option value="">이동하고싶은 일기장을 선택하세요</option>
 			</select>
 		</div>
-		<div class="insertForm">
-			<a href="insertDiary.do"><span class="glyphicon glyphicon-plus gi-5x"></span></a>
-		
-		</div>
+		<a href="insertDiary.do">
+			<div class="insertForm">
+				<span class="glyphicon glyphicon-plus gi-5x"></span>
+			</div>
+		</a>
 	
 		<div id="main">
 			<div id="main_container">

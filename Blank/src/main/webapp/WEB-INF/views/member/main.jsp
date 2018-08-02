@@ -72,20 +72,8 @@
 #searchid
 	{
 		border: 1px solid black;
-		width: 200px;
 		height: 150px;
-		background-color: white;
 	}
-
-.mainSearchId
-{
-	position:relative;
-	top:30px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
-	height: 100px;
-}
 
 
 </style>
@@ -99,7 +87,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=4">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=7">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 $(function () {
@@ -308,11 +296,18 @@ $(function () {
 </section>
 
 <div id="wrapper">
-
+	
+	<div class="mainSearchId">
+		<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!">
+		<span id="btnMove" class="glyphicon glyphicon-search" ></span>
+		<div id="searchid"></div>
+	</div>
+	
 	<!-- main-menu -->
 	<nav class="clearfix">
 	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
+	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-search"></span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
 	        <li><a href="favorite.do">FAVORITES</a></li>
@@ -320,11 +315,7 @@ $(function () {
 	    </ul>
 	</nav>
 
-	<div class="mainSearchId">
-	<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" style="width: 200px">
-	<button id="btnMove" class="glyphicon glyphicon-search" style="height: 26px"></button>
-	<div id="searchid"></div>
-</div>
+	
 	
 		<div class="landing">
 			<div class="container">
@@ -345,7 +336,8 @@ $(function () {
 		   </div> 	    
 	</div>
 		
-		<input type="hidden" id="mno" name="mno" value="${mno }">
+	<input type="hidden" id="mno" name="mno" value="${mno }">
+	
 	<!-- modal들을 넣을 div -->
 	<div id="modal"></div>
 		

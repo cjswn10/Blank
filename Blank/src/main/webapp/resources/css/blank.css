@@ -60,7 +60,18 @@ nav span {
 	float: right;
 }
 
-
+.mainSearchId {
+	background: #262626;
+    color: #fff;
+    margin: 0;
+    /*overflow: hidden;*/
+    width: 100%;
+    /*height: 0;*/
+    height: 50px;
+    top: 0;
+    left: 0;	
+    transition: height .5s;
+}
 
 
 /**************	side-menu	*************/
@@ -107,7 +118,6 @@ nav span {
 
 #wrapper {
     transition: margin-left .5s;
-    padding: 16px;
 }
 /*
 @media screen and (max-height: 450px) {
@@ -172,6 +182,7 @@ h2 {
     text-align: center;
     color: #818181;
     background-color: #151515;
+
 }
 
 .footer h3{
