@@ -5,11 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
+
 <title>빈칸을 채우다.</title>
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+.favoriteIcon:hover{
+	/* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
+	opacity: .8;
+	/* background: #fff; */
+	/* transform: scale(1.1); */
+	transform: scale(1.1);
+}
+
 .favoriteIcon{
 	cursor: pointer;
+	width: 120px;
+	height: 40px;
+	transition: transform 0.3s;
 }
 #user_id {
 	font-family: 'Nanum Pen Script', serif;
@@ -65,13 +78,12 @@
 		var mno = ${mno}
 		var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
 		var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
-		$('#user_id').text(id + "님의 일기");
-		$('	<img class="favoriteIcon" width="50" height="50" src="../resources/img/nfavorite.png">').appendTo('#user_id');
+		$('#user_id').text(id + "님의 일기  ");
+		$('	<img class="favoriteIcon" width="150" height="40" src="../resources/img/nfavorite.jpg">').appendTo('#user_id');
 		if (fno.length <= 4) {
 			$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
-		}
+		} 
 
-    
 		var othersDiaryList = function () {							
 			$.ajax({
 				url: "othersDiaryList.do",	
@@ -120,13 +132,13 @@
 					})	
 			}})		
 		}  
-		othersDiaryList();	
-
+		othersDiaryList();		
+		
 		//즐겨찾기에서 들어갔을 때
 		if (fno.length <= 4) {
 			$('.favoriteIcon').toggle(function(){
 				//즐겨찾기에서 삭제
-				$(this).attr("src","../resources/img/nfavorite.png")				
+				$(this).attr("src","../resources/img/nfavorite.jpg")				
 				$.ajax({
 					url: "deleteFavorite.do",
 					data: {"fmno":fmno,"mno":mno},
@@ -136,7 +148,7 @@
 				})  				
 			},function(){
 				//즐겨찾기에 추가
-				$(this).attr("src","../resources/img/favorite.png")
+				$(this).attr("src","../resources/img/favorite.jpg")
 				$.ajax({
 					url: "insertFavorite.do",
 					data: {"fmno":fmno, "mno":mno},
@@ -150,7 +162,7 @@
 		}else{
 			//즐겨찾기에 추가
 			$('.favoriteIcon').toggle(function () {
-				$(this).attr("src", "../resources/img/favorite.png")
+				$(this).attr("src", "../resources/img/favorite.jpg")
 				$.ajax({
 					url: "insertFavorite.do",
 					data: {"fmno":fmno, "mno":mno},
@@ -161,7 +173,7 @@
 				})				
 			},function(){
 				//즐겨찾기에서 삭제
-				$(this).attr("src", "../resources/img/nfavorite.png")				
+				$(this).attr("src", "../resources/img/nfavorite.jpg")				
 				$.ajax({
 					url: "deleteFavorite.do",
 					data: {"fmno":fmno,"mno":mno},				
@@ -245,10 +257,6 @@
        </li>
     </ul>
 </footer>
-
-
-	
-
 
 </body>
 </html>
