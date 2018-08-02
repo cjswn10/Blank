@@ -179,7 +179,7 @@
 		<div class="book">
 			<form action="insertBook.do" method="post" id="f">
 				<input type="hidden" name="mno" id="mno" value="${mno }">
-				<input type="text" name="btitle" id="btitle" class="aa" height="50" width="30" placeholder="제목">
+				<input type="text" name="btitle" id="btitle" class="aa" maxlength="10" height="50" width="30" placeholder="제목">
 				<div class="containerr">
 					<div class="example-content well">
 			       		<input id="color-picker-size" type="text" name="bcolor" class="form-control" placeholder="색상 선택"/>
