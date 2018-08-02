@@ -81,7 +81,6 @@
 		color: black;
 	}
 
-
 </style>
 
 <!-- Bootstrap -->
@@ -99,6 +98,7 @@
 
 <script type="text/javascript">
 $(function () {
+	
 	$.ajax({
 		url: "mainList.do",
 		success:function(data){				
@@ -197,28 +197,16 @@ $(function () {
 	})
 	
 	
-	
-	
-	
-	
 	$("#searchid").hide();
 	
 	$("#id").keyup(function() {
-		
+
 		$("#searchid").empty();
 		$.ajax({
 			url:"mainSearchId.do",
 			data:{"id":this.value},
 			success:function(data)
 			{
-				
-				if(data.str != 'undefined')
-				{
-					
-					$("#btnMove").click(function(){
-						location.href="#";
-					})
-				}
 
 				var arr = eval("("+data+")")
 				$.each(arr,function(i,v){
@@ -251,24 +239,39 @@ $(function () {
 					})
           
 					$("#btnMove").click(function(){
-							
-						$.ajax({
-							url:"listFavorite2.do",
-							data:{"mno":v.mno},
-							success:function(data)
-							{
-								location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
-								var arr = eval("("+data+")");		
-								$.each(arr,function(i,a){
-									if(a.mno == $("#mno").val() )
-									{
-										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
-									}
-								
-								})
-							}
-						})
 						
+							$.ajax({
+								url:"checkId2.do",
+								data:{"id":$("#id").val()},
+								success:function(data)
+								{
+									if($.trim(data) == 0){
+					                    location.href="#";	
+					                }
+					                else{
+					                	$("#searchid").empty();
+					                	$("#id").val(v.id)
+										$("#searchid").hide();
+					                	$.ajax({
+											url:"listFavorite2.do",
+											data:{"mno":v.mno},
+											success:function(data)
+											{
+												location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
+												var arr = eval("("+data+")");		
+												$.each(arr,function(i,a){
+													if(a.mno == $("#mno").val() )
+													{
+														location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
+													}				
+												})
+											}
+										})
+									
+					                	
+					                }
+								}
+							})
 						
 					})
 					
@@ -286,9 +289,7 @@ $(function () {
 			$("#searchid").hide();
 		}	
 		
-		
 	})
-	
 })
 </script>
 <title>빈칸을 채우다.</title>
