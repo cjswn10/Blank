@@ -137,7 +137,7 @@
 		})
 		
 		$("#s1").click(function() {
-			confirm("일기장이 생성되었습니다.")
+			console.log("일기장이 생성되었습니다.")
 		})
 	})
 </script>
@@ -182,7 +182,7 @@
 				<input type="text" name="btitle" id="btitle" class="aa" maxlength="10" height="50" width="30" placeholder="제목">
 				<div class="containerr">
 					<div class="example-content well">
-			       		<input id="color-picker-size" type="text" name="bcolor" class="form-control" placeholder="색상 선택"/>
+			       		<input id="color-picker-size" type="text" name="bcolor" class="form-control" placeholder="색상 선택" autocomplete="off"/>
 			       </div>
 				</div>
 				<input class="btn btn-default" id="s1" type="submit" value="등록">

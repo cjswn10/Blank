@@ -17,7 +17,6 @@
 		border: 1px solid black;
 		width: 960px;
 		margin: 0 auto;
-		
 		text-align: center;
 
 	}
@@ -58,7 +57,6 @@
 	#main_container > div
 	{
 		position:relative;
-		
 		width: 350px;
 		height: 400px;
 		float: left;
@@ -95,10 +93,6 @@
 		left: 90px;
 
 	}
-	.footer{
-		margin-top: 18%;
-	}
-	
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -110,8 +104,7 @@
 <script type="text/javascript">
 
 	$(function() {
-		//var id = $("#id").val();
-		var mno = $("#mno").val();
+		var mno = ${mno}
 		
 		//일기장 목록 불러오기위한 기능 
 		var listBook = function() {
@@ -149,7 +142,7 @@
 							re = confirm('삭제된 그림일기장은 복구할 수 없습니다.\n정말로 삭제 하시겠습니까?');
 							if(re == true)
 							{
-								confirm("일기장이 정상적으로 삭제되었습니다. ")
+								console.log("일기장이 정상적으로 삭제되었습니다. ")
 								location.href="deleteBook.do?bno="+d.bno;
 							}	
 							else
@@ -218,7 +211,9 @@
 	<!-- main-menu -->
 	<nav class="clearfix">
 	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
+
+	    
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
 	        <li><a href="favorite.do">FAVORITES</a></li>
@@ -226,7 +221,7 @@
 	    </ul>
 	</nav>
 	
-	<div class="content" style="margin-top: 180px">
+	<div class="content" style="margin-top: 100px">
 	<div id="main">
 		
 		  <div class="insertBook">
@@ -234,17 +229,11 @@
 		  </div>
 	
 		<div id="main_container">
-			
-			
-
 		</div>
 		
 	</div>
 	</div>
 		  
-		  <input type="hidden" name="id" id="id" value="${id }">
-		  <input type="hidden" name="mno" id="mno" value="${mno }">
-	
 </div>
 <!-- 푸터  -->
 <footer class="footer" >

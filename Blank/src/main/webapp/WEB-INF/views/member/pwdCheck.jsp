@@ -104,8 +104,8 @@
 	<div class="content" style="margin-top: 180px">
 		<div class="container2">
 		<div class="check">
-			<span class="my">본인확인</span><br>
-			<span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span>
+			<h2><span>본인확인</span></h2><br>
+			<h2><span>고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</span></h2>
 
       
 		</div>

@@ -81,7 +81,7 @@
 	$(function() {
 		
 		$("#sub").click(function() {
-			alert("회원정보가 수정 되었습니다.")
+			console.log("회원정보가 수정 되었습니다.")
 		})
 		
 		$("#s1").click(function() {

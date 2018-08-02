@@ -135,7 +135,7 @@
 			}	 
 		})
 		$("#s1").click(function() {
-			confirm("일기장이 수정되었습니다.")
+			console.log("일기장이 수정되었습니다.")
 		})
 	})
 </script>

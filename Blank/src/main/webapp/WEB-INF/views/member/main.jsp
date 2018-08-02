@@ -97,6 +97,8 @@
 <script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
 <script type="text/javascript">
 $(function () {
+	var mno = ${mno}
+	console.log(mno)
 	$.ajax({
 		url: "mainList.do",
 		success:function(data){				
@@ -168,7 +170,6 @@ $(function () {
 				
 				//친구일기장으로 가는 태그
 				var others = $('<a href="othersDiary.do?id='+otherid+'&fmno='+d.mno+'"></a>');
-				//var others = $('<a href="othersDiary.do?fmno='+d.mno+'&id='+otherid+'"></a>');
 			
 				
 				$(others).append(contentsDiv);
@@ -230,7 +231,7 @@ $(function () {
 								location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
 								var arr = eval("("+data+")");		
 								$.each(arr,function(i,a){
-									if(a.mno == $("#mno").val() )
+									if(a.mno == mno )
 									{
 										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
 									}				
@@ -249,7 +250,7 @@ $(function () {
 								location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
 								var arr = eval("("+data+")");		
 								$.each(arr,function(i,a){
-									if(a.mno == $("#mno").val() )
+									if(a.mno == mno )
 									{
 										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
 									}
@@ -317,8 +318,8 @@ $(function () {
 	<!-- main-menu -->
 	<nav class="clearfix">
 	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
-	    <span style="cursor:pointer" onclick="openSearch()" class="glyphicon glyphicon-search"></span>
+	    <span style="cursor:pointer;padding: 20px 20px;" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
+	    <span style="cursor:pointer;padding: 20px 20px;" onclick="openSearch()" class="glyphicon glyphicon-search"></span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
 	        <li><a href="favorite.do">FAVORITES</a></li>
@@ -337,27 +338,22 @@ $(function () {
 
 </div>
 	
+<div class="container">
+	   <div class="blog" align="center">
+	   		<div class="clearfix" id="mainList"></div>
+	   </div> 	    
+</div>
 	
-	<div class="container">
-		
-		   <div class="blog" align="center">
-		   		<div class="clearfix" id="mainList">
-	
-		    	</div>
-		   </div> 	    
-	</div>
-		
-	<input type="hidden" id="mno" name="mno" value="${mno }">
-	
-	<!-- modal들을 넣을 div -->
-	<div id="modal"></div>
+
+<!-- modal들을 넣을 div -->
+<div id="modal"></div>
 		
 
 
 <!-- 푸터입니다.  -->
 <footer class="footer">
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
-	<ul class="list-inline">
+	<ul class="list-inline" style="margin-bottom: 0;">
        <li>
            <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
            <br><h5>김영호</h5>

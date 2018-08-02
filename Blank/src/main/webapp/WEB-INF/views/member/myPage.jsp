@@ -62,7 +62,6 @@
 </div>
 
 <!-- 푸터 -->
-<br><br><br><br><br><br><br><br><br>
 <footer class="footer">
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">

@@ -23,6 +23,17 @@ a, h5, h4 {
 	color: #818181;
 }
 
+html {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+}
+
+
 /**************	  menu	*************/
 .logo {
 	width: 105px;
@@ -124,6 +135,9 @@ nav span {
 
 #wrapper {
     transition: margin-left .5s;
+    min-height: calc(100vh - 160px);
+    margin: 0;
+    /*padding-bottom: 60px;*/
 }
 /*
 @media screen and (max-height: 450px) {
@@ -188,14 +202,20 @@ h2 {
     text-align: center;
     color: #818181;
     background-color: #151515;
+    height : 156px;
 
 }
 
 .footer h3{
 	color: #818181;
 	padding-top: 20px;
+	margin-top: 0;
 }
 
+.footer ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 .btn-social {
   display: inline-block;
   height: 50px;
