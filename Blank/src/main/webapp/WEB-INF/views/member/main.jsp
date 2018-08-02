@@ -8,6 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 
+.modalContent{
+	white-space: pre-line;
+}
+
 .diaryimg{
 	position: relative;    
     width: 300px;
@@ -73,6 +77,8 @@
 	{
 		border: 1px solid black;
 		height: 150px;
+		background: white;
+		color: black;
 	}
 
 
@@ -87,8 +93,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=7">
-<script type="text/javascript" src="../resources/js/menu.js" ></script>
+
+<link rel="stylesheet" href="../resources/css/blank.css?ver=10">
+<script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
+
 <script type="text/javascript">
 $(function () {
 	$.ajax({
@@ -143,7 +151,7 @@ $(function () {
 				var dtitle = $("<h5></h5>").html(d.dtitle);
 				var ddate = $("<h5></h5>").html(d.ddate);
 				var dweather = $("<h5></h5>").html(d.dweather);
-				var dcontent = $("<h5></h5>").html(d.dcontent);
+				var dcontent = $("<h5 class='modalContent'></h5>").html(d.dcontent);
 				
 				//우선순위 1.그림 2.사진 3.기본이미지 순으로 하나만 보여주기
 				var src = "../resources/upload2/" + d.dfile;
@@ -154,7 +162,7 @@ $(function () {
 				}
 				var filephoto = $("<img></img>").attr({
 					src : src,
-					width : "400px"
+					width : "400px",
 				});
 				
 				$(contentsDiv).append(writer, dtitle, ddate, dweather, filephoto, dcontent);	
@@ -305,19 +313,25 @@ $(function () {
 	
 </section>
 
-<div id="wrapper">
-	
-	<div class="mainSearchId">
-		<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" autocomplete="off">
+
+<div class="mainSearchId" id="mainSearchId">
+	<div class="mainSearchId_inner" id="mainSearchId_inner">
+		<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" autocomplete="off" style="width:940px; color:#818181; background-color:#000000; border: none;">
 		<span id="btnMove" class="glyphicon glyphicon-search" ></span>
+		<span onclick="closeSearch()" class="glyphicon glyphicon-remove"></span>
+		
 		<div id="searchid"></div>
 	</div>
+</div>
+
+<div id="wrapper">
+	
 	
 	<!-- main-menu -->
 	<nav class="clearfix">
 	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
 	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
-	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-search"></span>
+	    <span style="cursor:pointer" onclick="openSearch()" class="glyphicon glyphicon-search"></span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
 	        <li><a href="favorite.do">FAVORITES</a></li>

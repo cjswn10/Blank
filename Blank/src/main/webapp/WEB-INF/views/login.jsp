@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>빈칸을 채우다.</title>
 	<meta charset="UTF-8">
@@ -39,7 +40,7 @@
 			<div class="wrap-login100 p-b-160 p-t-50">
 				<form class="login100-form validate-form" action="login.do" method="post">
 					<span class="login100-form-title p-b-43">
-						<img src="resources/img/blank.png" width="200px">
+						<img src="resources/img/loginlogo2.png" width="400px">
 						
 						
 						 
