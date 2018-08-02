@@ -26,8 +26,8 @@
 	#remove_location
 	{
 		position: relative;
-		left: 290px;
-		top: -105px;
+		left: 302px;
+		top: -96px;
 	}
 
 	/* plus 아이콘 */

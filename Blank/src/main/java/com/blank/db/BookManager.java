@@ -94,14 +94,7 @@ public class BookManager {
 		SqlSession session = factory.openSession();
 		
 		cnt += session.delete("book.deleteDiary", map);
-		if(cnt > 0)
-		{
-			cnt += session.delete("book.deleteBook", map);
-		}
-		else
-		{
-			cnt = 0;
-		}	
+		cnt += session.delete("book.deleteBook", map);
 		
 		if(cnt > 0)
 		{
