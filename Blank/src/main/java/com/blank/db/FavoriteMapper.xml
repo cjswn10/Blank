@@ -9,11 +9,11 @@
   </select>
    
   <select id="listFavorite2" resultType="favoriteVo" parameterType="java.lang.Integer">
-   	SELECT f.mno FROM favorites f, member m WHERE f.fmno=#{mno} AND f.fmno = m.mno
+   	SELECT f.mno,fno FROM favorites f, member m WHERE f.fmno=#{mno} AND f.fmno = m.mno
   </select> 
    
   <delete id="deleteFavorite">
-  	DELETE FROM favorites WHERE fno=#{fno}
+  	DELETE FROM favorites WHERE fmno=#{fmno} and mno=#{mno}
   </delete>
 
 	<insert id="insertFavorite">

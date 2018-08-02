@@ -239,12 +239,12 @@ $(function () {
 									if(a.mno == $("#mno").val() )
 									{
 										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
-									}
-								
+									}				
 								})
 							}
 						})
 					})
+          
 					$("#btnMove").click(function(){
 							
 						$.ajax({
