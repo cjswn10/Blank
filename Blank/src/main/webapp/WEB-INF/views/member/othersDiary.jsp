@@ -15,99 +15,44 @@
 	font-family: 'Nanum Pen Script', serif;
 	font-size: 50px;
 }
-/*로고 표시 */
-.title {
-	font-family: 'Nanum Pen Script', serif;
-	font-size: 80px;
-	position: relative;
-	width: 160px;
-	height: 100px;
-	left: 40px;
-	top: -10px;
-}
-/* 일기장,즐겨찾기 */
-.menu {
-	font-family: 'Nanum Pen Script', serif;
-	font-size: 40px;
-	position: relative;
-	width: 300px;
-	left: 1100px;
-	top: -60px;
-}
-/* id,마이페이지,로그아웃 */
-.ifm {
-	font-family: 'Nanum Pen Script', serif;
-	font-size: 25px;
-	position: relative;
-	width: 350px;
-	left: 1150px;
-	top: -160px;
-}
-/* 새일기장 만들기 */
-.insertBook {
-	font-size: 25px;
-	position: relative;
-	width: 353px;
-	border: 1px solid black;
-	height: 500px;
-	left: 450px;
-	top: 110px;
-}
-/* 일기장 목록 컨테이너 */
-#main_container {
-	position: absolute;
-	top: 200px;
-	left: 250px;
-	width: 1200px;
-	height: 1200px;
-}
-/* 일기장 목록 서브컨테이너 */
-#sub_container {
-	margin: 10px;
-	padding: 10px;
-	width: 1200px;
-	height: 900px;
-}
-/* 일기장 목록을 포괄하는 div 화면보다 넘어가면 숨김 */
-#main {
-	overflow: hidden;
-}
-/* 일기장 목록 div 생성위치를 왼쪽으로부터 생성*/
-#main>div {
-	float: left;
-}
-/* 서브컨테이너의 자식 div들 */
-#sub_container>div {
-	position: relative;
-	left: 50px;
-	top: -50px;
-	width: 350px;
-	height: 500px;
-	float: left;
-	margin: 100px;
-	padding: 40px;
-	font-size: 30px;
-}
-/* plus 아이콘위치 */
-#plus_location {
-	position: relative;
-	top: 180px;
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
-}
-/* plus 아이콘 */
-.glyphicon-plus {
-	font-size: 400%;
-	color: black;
-}
+	/* 일기장 목록 컨테이너 */
+	#main_container
+	{
+		
+		width: 960px;
+		margin: 0 auto;
+		
+	}
+
+	/* 일기장 목록을 포괄하는 div 화면보다 넘어가면 숨김 */
+	#main
+	{
+		overflow: hidden;
+	}
+	/* 서브컨테이너의 자식 div들 */
+	#main_container > div
+	{
+		position:relative;
+		width: 350px;
+		float: left;
+		margin: 50px;
+		padding: 10px;
+		font-size: 30px;
+		
+	}
+	
+	.dcontent{
+		border: 1px solid black;
+		border-radius: 10px;
+		width: 353px;
+		height: 250px;
+	}
 </style>
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../resources/css/blank.css?ver=1">
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {				
@@ -129,10 +74,11 @@
 				success:function(data){				
 					var list = eval("("+data+")");
 					$.each(list, function(i, d) {
-						var div = $('<div ></div>');						
+						var div = $('<div class="listdiary"></div>');						
 						var a = $('<a href="detailFavoriteDiary.do?dno='+d.dno+'"></a>')
-						var br = $('<br>');						
-						var p = $('<textarea rows="8" cols="30" readonly="readonly"></textarea>').html(d.dcontent);
+						var br = $('<br>');		
+						var reContent = (d.dcontent).replace(/(?:\r\n|\r|\n)/g, '<br/>');
+						var p = $('<div class="dcontent"></div>').html(reContent);
 						
 						$(p).attr({
 							style: "font-family:"+d.dfont
@@ -145,12 +91,27 @@
 							});
 							$(a).append(img);
 							$(div).append(a,br,p);
-							$("#sub_container").append(div);
+							$("#main_container").append(div);
 						}else {
 							$(a).append(p);
 							$(div).append(a);
-							$("#sub_container").append(div);
-						}		            
+							$("#main_container").append(div);
+						}	
+						
+						if (d.dfile != null) {							
+							var img = $('<img></img>').attr({
+								src: "../resources/upload2/" + d.dfile,
+								width: "353",
+								height: "250"					
+							});
+							$(a).append(img);
+							$(div).append(a,br,p);
+							$("#main_container").append(div);
+						}else {
+							$(a).append(p);
+							$(div).append(a);
+							$("#main_container").append(div);					
+						}     
 					})	
 			}})		
 		}  
@@ -209,7 +170,75 @@
 </script>
 </head>
 <body>
-	<div class="title">
+<!-- side-menu -->
+<section id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	
+	<a href="#"><img class="side_icon" src="../resources/img/icon/person.png">${id }님</a>
+	<h5>회원정보</h5>
+	<a href="pwdCheck.do?id=${id }">Edit</a>
+	<a href="logOut.do">logout</a>
+	<br>
+	<h5>고객센터</h5>
+	<a href="qNa.do">Contact</a>
+	<br>
+	<div class="side_icon_set">
+		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
+		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
+	</div>
+	
+</section>
+
+<div id="wrapper">
+
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+	
+	<div class="content" style="margin-top: 180px">
+		<div id="user_id"></div>	
+	
+		<div id="main">
+			<div id="main_container">
+				
+			</div>
+		</div>			
+	</div>	
+</div>
+
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
+	<%-- <div class="title">
 		<h1>그림 일기</h1>
 	</div>
 	<div id="main">
@@ -232,6 +261,6 @@
 	<div class="ifm">
 		<a href="#">${id }님</a><span> | </span><a href="myPage.do">마이페이지</a><span>
 			| </span><a href="logOut.do">로그아웃</a>
-	</div>
+	</div> --%>
 </body>
 </html>
