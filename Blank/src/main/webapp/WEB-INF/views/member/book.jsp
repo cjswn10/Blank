@@ -92,6 +92,10 @@
 
 	}
 	
+	.footer{
+		margin-top: 19%;
+	}
+	
 	
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -241,7 +245,7 @@
 	
 </div>
 <!-- 푸터  -->
-<footer class="footer" >
+<footer class="footer">
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">	
        <li>

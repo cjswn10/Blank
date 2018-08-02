@@ -73,6 +73,9 @@
 		
 	}
 	
+	.footer{
+		margin-top: 5%;
+	}
 
 	
 
