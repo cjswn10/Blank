@@ -6,72 +6,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
 <title>빈칸을 채우다.</title>
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-.favoriteIcon{
-	cursor: pointer;
-}
-#user_id {
-	font-family: 'Nanum Pen Script', serif;
-	font-size: 50px;
-}
 
-	/* 일기장 목록 컨테이너 */
-	#main_container
-	{
-		
-		width: 960px;
-		margin: 0 auto;
-		
-	}
-
-	/* 일기장 목록을 포괄하는 div 화면보다 넘어가면 숨김 */
-	#main
-	{
-		overflow: hidden;
-	}
-	/* 서브컨테이너의 자식 div들 */
-	#main_container > div
-	{
-		position:relative;
-		width: 350px;
-		float: left;
-		margin: 50px;
-		padding: 10px;
-		font-size: 30px;
-		
-	}
-	
-	.dcontent{
-		border: 1px solid black;
-		border-radius: 10px;
-		width: 353px;
-		height: 250px;
-	}
-
-</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../resources/css/blank.css?ver=1">
-<script type="text/javascript" src="../resources/js/menu.js" ></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
+
 <link rel="stylesheet" href="../resources/css/blank.css">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function () {				
 		
-		var id = location.search.substring(4, location.search.indexOf("&"));
+		//var id = location.search.substring(4, location.search.indexOf("&"));
 		var mno = ${mno}
-		var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
-		var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
+		//var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
+		//var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
+		
+		var othermno = ${othermno}
+		console.log(othermno);
+		
 		$('#user_id').text(id + "님의 일기");
 		$('	<img class="favoriteIcon" width="50" height="50" src="../resources/img/nfavorite.png">').appendTo('#user_id');
 		if (fno.length <= 4) {
 			$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
 		}
-
-    
+		
+		
+		
+		
+		
+		
+		
+		
 		var othersDiaryList = function () {							
 			$.ajax({
 				url: "othersDiaryList.do",	
@@ -79,11 +45,10 @@
 				success:function(data){				
 					var list = eval("("+data+")");
 					$.each(list, function(i, d) {
-						var div = $('<div class="listdiary"></div>');						
+						var div = $('<div ></div>');						
 						var a = $('<a href="detailFavoriteDiary.do?dno='+d.dno+'"></a>')
-						var br = $('<br>');		
-						var reContent = (d.dcontent).replace(/(?:\r\n|\r|\n)/g, '<br/>');
-						var p = $('<div class="dcontent"></div>').html(reContent);
+						var br = $('<br>');						
+						var p = $('<textarea rows="8" cols="30" readonly="readonly"></textarea>').html(d.dcontent);
 						
 						$(p).attr({
 							style: "font-family:"+d.dfont
@@ -96,27 +61,12 @@
 							});
 							$(a).append(img);
 							$(div).append(a,br,p);
-							$("#main_container").append(div);
+							$("#sub_container").append(div);
 						}else {
 							$(a).append(p);
 							$(div).append(a);
-							$("#main_container").append(div);
-						}	
-						
-						if (d.dfile != null) {							
-							var img = $('<img></img>').attr({
-								src: "../resources/upload2/" + d.dfile,
-								width: "353",
-								height: "250"					
-							});
-							$(a).append(img);
-							$(div).append(a,br,p);
-							$("#main_container").append(div);
-						}else {
-							$(a).append(p);
-							$(div).append(a);
-							$("#main_container").append(div);					
-						}     
+							$("#sub_container").append(div);
+						}		            
 					})	
 			}})		
 		}  
@@ -129,7 +79,7 @@
 				$(this).attr("src","../resources/img/nfavorite.png")				
 				$.ajax({
 					url: "deleteFavorite.do",
-					data: {"fmno":fmno,"mno":mno},
+					data: {"fno":fno},
 					success:function(data){
 						alert("삭제 완료");
 					}
@@ -164,7 +114,7 @@
 				$(this).attr("src", "../resources/img/nfavorite.png")				
 				$.ajax({
 					url: "deleteFavorite.do",
-					data: {"fmno":fmno,"mno":mno},				
+					data: {"fno":fno},				
 					success:function(data){
 						alert("삭제 완료")
 					}
@@ -175,7 +125,6 @@
 </script>
 </head>
 <body>
-
 <!-- side-menu -->
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -191,7 +140,6 @@
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
-
 	</div>
 	
 </section>
@@ -208,18 +156,18 @@
 	        <li><a href="myPage.do">MYPAGE</a></li>
 	    </ul>
 	</nav>
+
 	
-	<div class="content" style="margin-top: 180px">
-		<div id="user_id"></div>	
+	<div class="content">
 	
-		<div id="main">
-			<div id="main_container">
-				
-			</div>
-		</div>			
-	</div>	
+		<div id="user_id"></div>
+	</div>
+	
 </div>
 
+
+<!-- 푸터 -->
+<br><br><br><br><br><br><br><br><br>
 <footer class="footer">
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">
@@ -245,10 +193,5 @@
        </li>
     </ul>
 </footer>
-
-
-	
-
-
 </body>
 </html>

@@ -55,7 +55,7 @@
 					var img = $("<img src='../resources/img/favoriteicon.png' width='70px'>")
 					var a = $("<a href='othersDiary.do?id="+f.id+"&fno="+f.fno+"&fmno="+f.fmno+"'></a>").html(f.id+"님");		
 					var li = $("<li></li>");
-					var removeimg = $("<a href='deleteFavorite.do?fno="+f.fno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
+					var removeimg = $("<a href='deleteFavorite.do?mno="+${mno}+"&fmno="+f.fmno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
 					$(li).append(img,a,removeimg);
 					$("#favolist").append(li);

@@ -86,12 +86,13 @@ public class FavoriteController {
 	
 	@RequestMapping("member/deleteFavorite.do")
 	@ResponseBody
-	public ModelAndView delete(int fno, HttpSession session)
+	public ModelAndView delete(int fmno,int mno, HttpSession session)
 	{
 		
-		session.setAttribute("fno", fno);
+		session.setAttribute("fmno", fmno);
 		Map map = new HashMap();
-		map.put("fno", fno);
+		map.put("fmno", fmno);
+		map.put("mno", mno);
 		
 		ModelAndView mav = new ModelAndView("redirect:/member/favorite.do");
 		int re = dao.delete(map);
