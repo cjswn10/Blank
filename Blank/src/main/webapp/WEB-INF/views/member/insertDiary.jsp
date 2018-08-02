@@ -139,7 +139,7 @@ function openGrimpan() {
 
 	
 	<div class="content" style="margin-top: 100px">
-		<h2>일기 등록</h2>
+		<h2>빈칸을 채우다</h2>
 		<hr>
 	
 

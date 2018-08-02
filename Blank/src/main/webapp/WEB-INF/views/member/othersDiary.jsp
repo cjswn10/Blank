@@ -27,6 +27,7 @@
 #user_id {
 	font-family: 'Nanum Pen Script', serif;
 	font-size: 50px;
+	text-align: center;
 }
 
 	/* 일기장 목록 컨테이너 */
@@ -72,118 +73,118 @@
 <link rel="stylesheet" href="../resources/css/blank.css">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
-	$(function () {				
-		
-		var id = location.search.substring(4, location.search.indexOf("&"));
-		var mno = ${mno}
-		var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
-		var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
-		$('#user_id').text(id + "님의 일기  ");
-		$('	<img class="favoriteIcon" width="150" height="40" src="../resources/img/nfavorite.jpg">').appendTo('#user_id');
-		if (fno.length <= 4) {
-			$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
-		} 
+$(function () {				
+	
+	var id = location.search.substring(4, location.search.indexOf("&"));
+	var mno = ${mno}
+	var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
+	var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
+	$('#user_id').text(id + "님의 일기  ");
+	$('	<img class="favoriteIcon" width="150" height="40" src="../resources/img/nfavorite.jpg">').appendTo('#user_id');
+	if (fno.length <= 4) {
+		$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
+	} 
 
-		var othersDiaryList = function () {							
+	var othersDiaryList = function () {							
+		$.ajax({
+			url: "othersDiaryList.do",	
+			data: {"fmno":fmno},
+			success:function(data){				
+				var list = eval("("+data+")");
+				$.each(list, function(i, d) {
+					var div = $('<div class="listdiary"></div>');						
+					var a = $('<a href="detailFavoriteDiary.do?dno='+d.dno+'"></a>')
+					var br = $('<br>');		
+					var reContent = (d.dcontent).replace(/(?:\r\n|\r|\n)/g, '<br/>');
+					var p = $('<div class="dcontent"></div>').html(reContent);
+					
+					$(p).attr({
+						style: "font-family:"+d.dfont
+					})            
+					if (d.dphoto != null) {							
+						var img = $('<img></img>').attr({
+							src: "../resources/upload/" + d.dphoto,
+							width: "353",
+							height: "250"					
+						});
+						$(a).append(img);
+						$(div).append(a,br,p);
+						$("#main_container").append(div);
+					}else {
+						$(a).append(p);
+						$(div).append(a);
+						$("#main_container").append(div);
+					}	
+					
+					if (d.dfile != null) {							
+						var img = $('<img></img>').attr({
+							src: "../resources/upload2/" + d.dfile,
+							width: "353",
+							height: "250"					
+						});
+						$(a).append(img);
+						$(div).append(a,br,p);
+						$("#main_container").append(div);
+					}else {
+						$(a).append(p);
+						$(div).append(a);
+						$("#main_container").append(div);					
+					}     
+				})	
+		}})		
+	};
+	othersDiaryList();		
+	
+	//즐겨찾기에서 들어갔을 때
+	if (fno.length <= 4) {
+		$('.favoriteIcon').toggle(function(){
+			//즐겨찾기에서 삭제
+			$(this).attr("src","../resources/img/nfavorite.jpg")				
 			$.ajax({
-				url: "othersDiaryList.do",	
-				data: {"fmno":fmno},
-				success:function(data){				
-					var list = eval("("+data+")");
-					$.each(list, function(i, d) {
-						var div = $('<div class="listdiary"></div>');						
-						var a = $('<a href="detailFavoriteDiary.do?dno='+d.dno+'"></a>')
-						var br = $('<br>');		
-						var reContent = (d.dcontent).replace(/(?:\r\n|\r|\n)/g, '<br/>');
-						var p = $('<div class="dcontent"></div>').html(reContent);
-						
-						$(p).attr({
-							style: "font-family:"+d.dfont
-						})            
-						if (d.dphoto != null) {							
-							var img = $('<img></img>').attr({
-								src: "../resources/upload/" + d.dphoto,
-								width: "353",
-								height: "250"					
-							});
-							$(a).append(img);
-							$(div).append(a,br,p);
-							$("#main_container").append(div);
-						}else {
-							$(a).append(p);
-							$(div).append(a);
-							$("#main_container").append(div);
-						}	
-						
-						if (d.dfile != null) {							
-							var img = $('<img></img>').attr({
-								src: "../resources/upload2/" + d.dfile,
-								width: "353",
-								height: "250"					
-							});
-							$(a).append(img);
-							$(div).append(a,br,p);
-							$("#main_container").append(div);
-						}else {
-							$(a).append(p);
-							$(div).append(a);
-							$("#main_container").append(div);					
-						}     
-					})	
-			}})		
-		}  
-		othersDiaryList();		
-		
-		//즐겨찾기에서 들어갔을 때
-		if (fno.length <= 4) {
-			$('.favoriteIcon').toggle(function(){
-				//즐겨찾기에서 삭제
-				$(this).attr("src","../resources/img/nfavorite.jpg")				
-				$.ajax({
-					url: "deleteFavorite.do",
-					data: {"fmno":fmno,"mno":mno},
-					success:function(data){
-						alert("삭제 완료");
-					}
-				})  				
-			},function(){
-				//즐겨찾기에 추가
-				$(this).attr("src","../resources/img/favorite.jpg")
-				$.ajax({
-					url: "insertFavorite.do",
-					data: {"fmno":fmno, "mno":mno},
-					type: "POST",
-					success:function(data){
-						alert("추가완료");
-					}
-				}) 
-			})
-		//검색으로 들어갔을 때
-		}else{
+				url: "deleteFavorite.do",
+				data: {"fmno":fmno,"mno":mno},
+				success:function(data){
+					alert("삭제 완료");
+				}
+			})  				
+		},function(){
 			//즐겨찾기에 추가
-			$('.favoriteIcon').toggle(function () {
-				$(this).attr("src", "../resources/img/favorite.jpg")
-				$.ajax({
-					url: "insertFavorite.do",
-					data: {"fmno":fmno, "mno":mno},
-					type: "POST",
-					success:function(data){
-						alert("추가 완료")
-					}
-				})				
-			},function(){
-				//즐겨찾기에서 삭제
-				$(this).attr("src", "../resources/img/nfavorite.jpg")				
-				$.ajax({
-					url: "deleteFavorite.do",
-					data: {"fmno":fmno,"mno":mno},				
-					success:function(data){
-						alert("삭제 완료")
-					}
-				})				
-			})	 		
-		}	
-	})	
+			$(this).attr("src","../resources/img/favorite.jpg")
+			$.ajax({
+				url: "insertFavorite.do",
+				data: {"fmno":fmno, "mno":mno},
+				type: "POST",
+				success:function(data){
+					alert("추가완료");
+				}
+			}) 
+		})
+	//검색으로 들어갔을 때
+	}else{
+		//즐겨찾기에 추가
+		$('.favoriteIcon').toggle(function () {
+			$(this).attr("src", "../resources/img/favorite.jpg")
+			$.ajax({
+				url: "insertFavorite.do",
+				data: {"fmno":fmno, "mno":mno},
+				type: "POST",
+				success:function(data){
+					alert("추가 완료")
+				}
+			})				
+		}, function(){
+			//즐겨찾기에서 삭제
+			$(this).attr("src", "../resources/img/nfavorite.jpg")				
+			$.ajax({
+				url: "deleteFavorite.do",
+				data: {"fmno":fmno,"mno":mno},				
+				success:function(data){
+					alert("삭제 완료")
+				}
+			})				
+		})	 		
+	}	
+});	
 </script>
 </head>
 <body>
@@ -221,7 +222,7 @@
 	    </ul>
 	</nav>
 	
-	<div class="content" style="margin-top: 180px">
+	<div class="content" style="margin-top: 100px">
 		<div id="user_id"></div>	
 	
 		<div id="main">
