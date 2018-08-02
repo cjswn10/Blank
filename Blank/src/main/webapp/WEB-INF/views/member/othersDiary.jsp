@@ -62,6 +62,10 @@
 		width: 353px;
 		height: 250px;
 	}
+	
+	.footer{
+		margin-top: 18%;
+	}
 
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -73,17 +77,19 @@
 <link rel="stylesheet" href="../resources/css/blank.css">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
-$(function () {				
-	
-	var id = location.search.substring(4, location.search.indexOf("&"));
-	var mno = ${mno}
-	var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
-	var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
-	$('#user_id').text(id + "님의 일기  ");
-	$('	<img class="favoriteIcon" width="150" height="40" src="../resources/img/nfavorite.jpg">').appendTo('#user_id');
-	if (fno.length <= 4) {
-		$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
-	} 
+
+	$(function () {				
+		
+		var id = location.search.substring(4, location.search.indexOf("&"));
+		var mno = ${mno}
+		var fno = location.search.substring(location.search.indexOf("&")+5, location.search.lastIndexOf("&"));
+		var fmno = location.search.substr(location.search.lastIndexOf("=")+1);
+		$('#user_id').text(id + "님의 일기  ");
+		$('	<img class="favoriteIcon" width="150" height="40" src="../resources/img/nfavorite.jpg">').appendTo('#user_id');
+		if (fno.length <= 4) {
+			$('.favoriteIcon').attr("src", "../resources/img/favorite.jpg")
+		} 
+
 
 	var othersDiaryList = function () {							
 		$.ajax({
