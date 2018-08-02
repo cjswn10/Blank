@@ -91,7 +91,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=7">
+<link rel="stylesheet" href="../resources/css/blank.css?ver=8">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 $(function () {
@@ -158,7 +158,7 @@ $(function () {
 				}
 				var filephoto = $("<img></img>").attr({
 					src : src,
-					width : "400px"
+					width : "400px",
 				});
 				
 				$(contentsDiv).append(writer, dtitle, ddate, dweather, filephoto, dcontent);	
