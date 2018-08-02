@@ -32,7 +32,7 @@ public class MemberController {
 
 
 
-	//마이페이지
+	//留덉씠�럹�씠吏�
 	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
 		
@@ -41,7 +41,7 @@ public class MemberController {
 	}
 	
 
-	//계정찾기
+	//怨꾩젙李얘린
 	@RequestMapping(value="search.do")
 	public ModelAndView search() {
 			
@@ -51,7 +51,7 @@ public class MemberController {
 	
 
 
-	//id찾기
+	//id李얘린
 	@RequestMapping(value="searchIdPage.do")
 	public ModelAndView searchId() {
 				
@@ -59,7 +59,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//비밀번호 찾기
+	//鍮꾨�踰덊샇 李얘린
 	@RequestMapping(value="searchPwdPage.do")
 	public ModelAndView searchPwd() {
 					
@@ -67,7 +67,7 @@ public class MemberController {
 		return mav;
 	}
 
-	//아이디 찾기
+	//�븘�씠�뵒 李얘린
 	@RequestMapping(value="searchId.do")
 	@ResponseBody
 	public String searchId(String name,String phone)
@@ -88,7 +88,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//비밀번호 찾기
+	//鍮꾨�踰덊샇 李얘린
 	@RequestMapping(value="searchPwd.do")
 	@ResponseBody
 	public String searchPwd(String id,String phone)
@@ -109,7 +109,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//문의사항(contact)
+	//臾몄쓽�궗�빆(contact)
 	@RequestMapping(value="/member/qNa.do")
 	public ModelAndView Qna() {
 		
@@ -118,7 +118,7 @@ public class MemberController {
 	}
 
 
-	//로그아웃
+	//濡쒓렇�븘�썐
 	@RequestMapping(value="/member/logOut.do")
 	public ModelAndView logOut(HttpSession session) {
 		
@@ -129,7 +129,7 @@ public class MemberController {
 	}
 	
 
-	//회원가입
+	//�쉶�썝媛��엯
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -142,14 +142,14 @@ public class MemberController {
 		int re = dao.memberInsert(mv);
 		if (re < 1) {
 
-			mav.addObject("msg", "회원 가입 실패");
+			mav.addObject("msg", "�쉶�썝 媛��엯 �떎�뙣");
 			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
 
-	//아이디 중복확인
+	//�븘�씠�뵒 以묐났�솗�씤
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam("id")String id) {
@@ -162,8 +162,20 @@ public class MemberController {
 	
 	}
 	
+	@RequestMapping(value="/member/checkId2.do")
+	@ResponseBody
+	public String checkId2(@RequestParam("id")String id,HttpSession session) {
+		
+		Map map = new HashMap();
+		map.put("id", id);
+		int rowcount = dao.memberCheckId(map);
+        return String.valueOf(rowcount);
+        
+	
+	}
+	
 
-	//로그인
+	//濡쒓렇�씤
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public void loginForm() {
 		
@@ -180,7 +192,7 @@ public class MemberController {
 		Boolean r = dao.login(map);
 		if (r == true) {
 
-			//id, 회원번호 세션 생성
+			//id, �쉶�썝踰덊샇 �꽭�뀡 �깮�꽦
 			session.setAttribute("id", id);
 			session.setAttribute("mno", dao.mno(map));
 			mav.setViewName("redirect:/member/main.do");
@@ -190,7 +202,7 @@ public class MemberController {
 		return mav;
 	}
 
-	//회원정보 수정 시 비밀번호 확인
+	//�쉶�썝�젙蹂� �닔�젙 �떆 鍮꾨�踰덊샇 �솗�씤
   @RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
@@ -213,14 +225,14 @@ public class MemberController {
 		else
 		{
 
-			mav.addObject("msg", "비밀번호가 일치하지 않습니다.");
+			mav.addObject("msg", "鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
 		}	
 		
 		return mav;
 	}
 	
 
-	//회원정보 수정
+	//�쉶�썝�젙蹂� �닔�젙
 	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		
@@ -233,14 +245,14 @@ public class MemberController {
 		
 		int re = dao.updateMember(mv);
 		if (re < 1) {
-			mav.addObject("msg", "회원정보 수정 실패");
+			mav.addObject("msg", "�쉶�썝�젙蹂� �닔�젙 �떎�뙣");
 			mav.setViewName("/member/error");
 		}
 		
 		return mav;
 	}
 	
-	//아이디 검색(친구일기장)
+	//�븘�씠�뵒 寃��깋(移쒓뎄�씪湲곗옣)
 	@RequestMapping(value="/member/mainSearchId.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String mainSearchId(String id,HttpSession session)
@@ -260,15 +272,15 @@ public class MemberController {
 				str = "";
 			}
 			
+			
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
-			
 		return str;
 	}
 	
-	//회원번호로 id알아내기
+	//�쉶�썝踰덊샇濡� id�븣�븘�궡湲�
 	@RequestMapping(value="/member/getId.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String getIdByMno(int mno) {

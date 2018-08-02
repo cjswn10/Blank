@@ -175,7 +175,6 @@
 						//일기장 서브컨테이너에 추가
 						$("#main_container").append(div)
 					});
-					
 				}
 			});
 		}
@@ -206,7 +205,7 @@
 	
 </section>
 
-<div id="wrapper">
+	<div id="wrapper">
 
 	<!-- main-menu -->
 	<nav class="clearfix">
@@ -230,11 +229,10 @@
 	
 		<div id="main_container">
 		</div>
-		
-	</div>
-	</div>
-		  
+
+	</div>  
 </div>
+    
 <!-- 푸터  -->
 <footer class="footer" >
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
@@ -262,6 +260,5 @@
     </ul>
 </footer>
 
- 
 </body>
 </html>

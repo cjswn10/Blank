@@ -81,7 +81,6 @@
 		color: black;
 	}
 
-
 </style>
 
 <!-- Bootstrap -->
@@ -93,12 +92,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
+
 <link rel="stylesheet" href="../resources/css/blank.css?ver=10">
 <script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
+
 <script type="text/javascript">
 $(function () {
 	var mno = ${mno}
-	console.log(mno)
+	
 	$.ajax({
 		url: "mainList.do",
 		success:function(data){				
@@ -162,7 +163,7 @@ $(function () {
 				}
 				var filephoto = $("<img></img>").attr({
 					src : src,
-					width : "400px"
+					width : "400px",
 				});
 				
 				$(contentsDiv).append(writer, dtitle, ddate, dweather, filephoto, dcontent);	
@@ -196,20 +197,17 @@ $(function () {
 	})
 	
 	
-	
-	
-	
-	
 	$("#searchid").hide();
 	
 	$("#id").keyup(function() {
-		
+
 		$("#searchid").empty();
 		$.ajax({
 			url:"mainSearchId.do",
 			data:{"id":this.value},
 			success:function(data)
 			{
+
 				var arr = eval("("+data+")")
 				$.each(arr,function(i,v){
 					var id = $("<span></span>").html(v.id);
@@ -241,30 +239,47 @@ $(function () {
 					})
           
 					$("#btnMove").click(function(){
-							
-						$.ajax({
-							url:"listFavorite2.do",
-							data:{"mno":v.mno},
-							success:function(data)
-							{
-								location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
-								var arr = eval("("+data+")");		
-								$.each(arr,function(i,a){
-									if(a.mno == mno )
-									{
-										location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
-									}
-								
-								})
-							}
-						})
+
 						
+							$.ajax({
+								url:"checkId2.do",
+								data:{"id":$("#id").val()},
+								success:function(data)
+								{
+									if($.trim(data) == 0){
+					                    location.href="#";	
+					                }
+					                else{
+					                	$("#searchid").empty();
+					                	$("#id").val(v.id)
+										$("#searchid").hide();
+					                	$.ajax({
+											url:"listFavorite2.do",
+											data:{"mno":v.mno},
+											success:function(data)
+											{
+												location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
+												var arr = eval("("+data+")");		
+												$.each(arr,function(i,a){
+													if(a.mno == $("#mno").val() )
+													{
+														location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";
+													}				
+												})
+											}
+										})
+									
+					                	
+					                }
+								}
+							})
 						
 					})
 					
 				})
-			}
-		})
+				
+				
+			}})
 		
 		if(this.value != "")
 		{
@@ -275,9 +290,7 @@ $(function () {
 			$("#searchid").hide();
 		}	
 		
-		
 	})
-	
 })
 </script>
 <title>빈칸을 채우다.</title>
@@ -301,6 +314,7 @@ $(function () {
 	</div>
 	
 </section>
+
 
 <div class="mainSearchId" id="mainSearchId">
 	<div class="mainSearchId_inner" id="mainSearchId_inner">
