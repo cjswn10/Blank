@@ -267,5 +267,15 @@ public class MemberController {
 			
 		return str;
 	}
+	
+	//회원번호로 id알아내기
+	@RequestMapping(value="/member/getId.do", produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String getIdByMno(int mno) {
+		Map map = new HashMap();
+		map.put("mno", mno);
+		String id = dao.getMember(map).getId();
+		return id;
+	}
 }
 
