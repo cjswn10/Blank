@@ -81,7 +81,7 @@
 		$('#user_id').text(id + "님의 일기  ");
 		$('	<img class="favoriteIcon" width="150" height="40" src="../resources/img/nfavorite.jpg">').appendTo('#user_id');
 		if (fno.length <= 4) {
-			$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
+			$('.favoriteIcon').attr("src", "../resources/img/favorite.jpg")
 		} 
 
 		var othersDiaryList = function () {							
