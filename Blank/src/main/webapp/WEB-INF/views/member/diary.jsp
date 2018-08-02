@@ -66,6 +66,13 @@
 		height: 250px;
 	}
 	
+	.diarytitle{
+		font-family: 'Nanum Pen Script', cursive;
+		border: 1px solid black;
+		border-radius: 10px;
+		
+	}
+	
 
 	
 
@@ -118,6 +125,7 @@
 					$.each(list, function(i, d) {
 						//날짜 날씨 제목 그림 사진 글
 						var div = $('<div class="listdiary"></div>');
+						var title = $('<div class="diarytitle">제목:'+d.dtitle+'</div>');
 						
 						var a = $('<a href="detailDiary.do?dno='+d.dno+'"></a>')
 						var br = $('<br>');
@@ -136,11 +144,11 @@
 								height: "250"					
 							});
 							$(a).append(img);
-							$(div).append(a,br,p);
+							$(div).append(title,a,br,p);
 							$("#main_container").append(div);
 						}else {
 							$(a).append(p);
-							$(div).append(a);
+							$(div).append(title,a);
 							$("#main_container").append(div);					
 						}		            
 						
@@ -151,11 +159,11 @@
 								height: "250"					
 							});
 							$(a).append(img);
-							$(div).append(a,br,p);
+							$(div).append(title,a,br,p);
 							$("#main_container").append(div);
 						}else {
 							$(a).append(p);
-							$(div).append(a);
+							$(div).append(title,a);
 							$("#main_container").append(div);					
 						}		            
 
@@ -193,7 +201,7 @@
 
 	<!-- main-menu -->
 	<nav class="clearfix">
-	    <a href="main.do"><img src="../resources/img/blank_pink.png" class="logo left"></a>
+	    <a href="main.do"><img src="../resources/img/blank_black.png" class="logo left"></a>
 	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
@@ -203,7 +211,7 @@
 	</nav>
 
 	
-	<div class="content" style="margin-top: 180px">
+	<div class="content" style="margin-top: 100px">
 		<div class="selectBook">
 			<select class="btitle">
 				<option value="">이동하고싶은 일기장을 선택하세요</option>

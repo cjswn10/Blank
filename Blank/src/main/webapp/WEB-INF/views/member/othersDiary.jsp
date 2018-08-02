@@ -15,6 +15,7 @@
 	font-family: 'Nanum Pen Script', serif;
 	font-size: 50px;
 }
+
 	/* 일기장 목록 컨테이너 */
 	#main_container
 	{
@@ -47,6 +48,7 @@
 		width: 353px;
 		height: 250px;
 	}
+
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -54,6 +56,8 @@
 <link rel="stylesheet" href="../resources/css/blank.css?ver=1">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.1.min.js"></script>
+<link rel="stylesheet" href="../resources/css/blank.css">
+<script type="text/javascript" src="../resources/js/menu.js" ></script>
 <script type="text/javascript">
 	$(function () {				
 		
@@ -171,6 +175,7 @@
 </script>
 </head>
 <body>
+
 <!-- side-menu -->
 <section id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -186,6 +191,7 @@
 	<div class="side_icon_set">
 		<a href="https://github.com/cjswn10/Blank"><img class="side_icon" alt="G" src="../resources/img/icon/git.png"></a>
 		<a href="http://sc.bitcamp.co.kr/index.php?main_page=faq&action=use"><img class="side_icon" alt="B" src="../resources/img/icon/bit.png"></a>
+
 	</div>
 	
 </section>
@@ -239,29 +245,10 @@
        </li>
     </ul>
 </footer>
-	<%-- <div class="title">
-		<h1>그림 일기</h1>
-	</div>
-	<div id="main">
-		<table id="main_container">
-			<tr>
-				<td>
-					<table id="sub_container">
-						<div id="user_id"></div>
-					</table>
-				</td>
-			</tr>
-		</table>
-	</div>
 
-	<div class="menu">
-		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-			href="favorite.do">즐겨찾기</a>
-	</div>
 
-	<div class="ifm">
-		<a href="#">${id }님</a><span> | </span><a href="myPage.do">마이페이지</a><span>
-			| </span><a href="logOut.do">로그아웃</a>
-	</div> --%>
+	
+
+
 </body>
 </html>
