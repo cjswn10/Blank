@@ -211,6 +211,15 @@ $(function () {
 			data:{"id":this.value},
 			success:function(data)
 			{
+				
+				if(data.str != 'undefined')
+				{
+					
+					$("#btnMove").click(function(){
+						location.href="#";
+					})
+				}
+
 				var arr = eval("("+data+")")
 				$.each(arr,function(i,v){
 					var id = $("<span></span>").html(v.id);
@@ -264,8 +273,9 @@ $(function () {
 					})
 					
 				})
-			}
-		})
+				
+				
+			}})
 		
 		if(this.value != "")
 		{
@@ -302,6 +312,7 @@ $(function () {
 	</div>
 	
 </section>
+
 
 <div class="mainSearchId" id="mainSearchId">
 	<div class="mainSearchId_inner" id="mainSearchId_inner">

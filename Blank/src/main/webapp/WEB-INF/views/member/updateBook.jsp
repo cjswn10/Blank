@@ -180,7 +180,7 @@
 				<input type="text" name="btitle" class="aa" value="${b.btitle }" height="50" width="30">
 				<div class="containerr">
 			    	<div class="example-content well">
-			          	<input id="color-picker-size" type="text" name="bcolor" value="${b.bcolor }" class="form-control"/>
+			          	<input id="color-picker-size" type="text" name="bcolor" value="${b.bcolor }" class="form-control" autocomplete="off"/>
 			   		</div>
 				</div>
 				<input class="btn btn-default" id="s1" type="submit" value="수정">
