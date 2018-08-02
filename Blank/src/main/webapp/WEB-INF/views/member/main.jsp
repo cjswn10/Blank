@@ -208,6 +208,7 @@
 									location.href="othersDiary.do?id="+v.id+"&fmno="+v.mno+"";
 									var arr = eval("("+data+")");		
 									$.each(arr,function(i,a){
+										
 										if(a.mno == $("#mno").val() )
 										{
 											location.href="othersDiary.do?id="+v.id+"&fno="+a.fno+"&fmno="+v.mno+"";

@@ -121,7 +121,7 @@
 		if (fno.length <= 4) {
 			$('.favoriteIcon').attr("src", "../resources/img/favorite.png")
 		}
-		  
+
 		var othersDiaryList = function () {							
 			$.ajax({
 				url: "othersDiaryList.do",	
@@ -163,7 +163,7 @@
 				$(this).attr("src","../resources/img/nfavorite.png")				
 				$.ajax({
 					url: "deleteFavorite.do",
-					data: {"fno":fno},
+					data: {"fmno":fmno,"mno":mno},
 					success:function(data){
 						alert("삭제 완료");
 					}
@@ -198,7 +198,7 @@
 				$(this).attr("src", "../resources/img/nfavorite.png")				
 				$.ajax({
 					url: "deleteFavorite.do",
-					data: {"fno":fno},				
+					data: {"fmno":fmno,"mno":mno},				
 					success:function(data){
 						alert("삭제 완료")
 					}
@@ -228,7 +228,7 @@
 		<a href="book.do">일기장</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 			href="favorite.do">즐겨찾기</a>
 	</div>
-	
+
 	<div class="ifm">
 		<a href="#">${id }님</a><span> | </span><a href="myPage.do">마이페이지</a><span>
 			| </span><a href="logOut.do">로그아웃</a>
