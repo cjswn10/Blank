@@ -17,7 +17,6 @@
 		border: 1px solid black;
 		width: 960px;
 		margin: 0 auto;
-		
 		text-align: center;
 
 	}
@@ -58,7 +57,6 @@
 	#main_container > div
 	{
 		position:relative;
-		
 		width: 350px;
 		height: 400px;
 		float: left;
@@ -95,10 +93,6 @@
 		left: 90px;
 
 	}
-	.footer{
-		margin-top: 18%;
-	}
-	
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -110,7 +104,7 @@
 <script type="text/javascript">
 
 	$(function() {
-		var mno = $("#mno").val();
+		var mno = ${mno}
 		
 		//일기장 목록 불러오기위한 기능 
 		var listBook = function() {
@@ -148,7 +142,7 @@
 							re = confirm('삭제된 그림일기장은 복구할 수 없습니다.\n정말로 삭제 하시겠습니까?');
 							if(re == true)
 							{
-								confirm("일기장이 정상적으로 삭제되었습니다. ")
+								console.log("일기장이 정상적으로 삭제되었습니다. ")
 								location.href="deleteBook.do?bno="+d.bno;
 							}	
 							else
@@ -213,46 +207,58 @@
 
 	<div id="wrapper">
 
-		<!-- main-menu -->
-		<nav class="clearfix">
-			<a href="main.do"><img src="../resources/img/blank.png"
-				class="logo left"></a> <span style="cursor: pointer"
-				onclick="openNav()">&#9776; </span>
-			<ul>
-				<li><a href="book.do">DIARY</a></li>
-				<li><a href="favorite.do">FAVORITES</a></li>
-				<li><a href="myPage.do">MYPAGE</a></li>
-			</ul>
-		</nav>
+	<!-- main-menu -->
+	<nav class="clearfix">
+	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
+	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
 
-		<div class="content" style="margin-top: 180px">
-			<div id="main">
-				<div class="insertBook">
-					<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
-				</div>
-				<div id="main_container"></div>
-			</div>
+	    
+	    <ul>
+	        <li><a href="book.do">DIARY</a></li>
+	        <li><a href="favorite.do">FAVORITES</a></li>
+	        <li><a href="myPage.do">MYPAGE</a></li>
+	    </ul>
+	</nav>
+	
+	<div class="content" style="margin-top: 100px">
+	<div id="main">
+		
+		  <div class="insertBook">
+		  	<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
+		  </div>
+	
+		<div id="main_container">
 		</div>
 
-		<input type="hidden" name="id" id="id" value="${id }"> 
-		<input type="hidden" name="mno" id="mno" value="${mno }">
-	</div>
+	</div>  
+</div>
+    
+<!-- 푸터  -->
+<footer class="footer" >
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">	
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 
-	<!-- 푸터  -->
-	<footer class="footer">
-		<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
-		<ul class="list-inline">
-			<li><img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline"><br>
-			<h5>김영호</h5></li>
-			<li><img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline"> <br>
-			<h5>변성인</h5></li>
-			<li><img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline"> <br>
-			<h5>성민규</h5></li>
-			<li><img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline"> <br>
-			<h5>임연주</h5></li>
-			<li><img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline"> <br>
-			<h5>차건우</h5></li>
-		</ul>
-	</footer>
 </body>
 </html>

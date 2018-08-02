@@ -137,7 +137,7 @@
 		})
 		
 		$("#s1").click(function() {
-			confirm("일기장이 생성되었습니다.")
+			console.log("일기장이 생성되었습니다.")
 		})
 	})
 </script>

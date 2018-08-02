@@ -24,9 +24,7 @@
 {
 	font-size: 30px;
 }
-.footer{
-	margin-top: 20%;
-}
+
 </style>
 
 <title>빈칸을 채우다.</title>
@@ -51,11 +49,11 @@
 			success:function(data) {				
 				var list = eval("("+data+")");				
 
-				$.each(list,function(i,f){          
+				$.each(list, function (i,f) {          
 					var img = $("<img src='../resources/img/favoriteicon.png' width='70px'>")
 					var a = $("<a href='othersDiary.do?id="+f.id+"&fno="+f.fno+"&fmno="+f.fmno+"'></a>").html(f.id+"님");		
 					var li = $("<li></li>");
-					var removeimg = $("<a href='deleteFavorite.do?mno="+${mno}+"&fmno="+f.fmno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
+					var removeimg = $("<a href='deleteFavorite.do?mno=" + ${mno} + "&fmno="+f.fmno+"' class='glyphicon glyphicon-remove' id='plus_location'></a>");
 					
 					$(li).append(img,a,removeimg);
 					$("#favolist").append(li);
@@ -67,8 +65,6 @@
 </script>
 </head>
 <body>
-
-	<input type="hidden" name="mno" id="mno" value="${mno}">	
 
 <!-- side-menu -->
 <section id="mySidenav" class="sidenav">
@@ -101,8 +97,8 @@
 	    </ul>
 	</nav>
 	
-	<div class="content" style="margin-top: 10%;">
-		<h2># 당신의 픽</h2>
+	<div class="content" style="margin-top: 5%;">
+		<h2># 당신의 픽</h2><br><br>
 		<ul id="favolist" style="margin-right: auto;"></ul>
 	</div>
 </div>
