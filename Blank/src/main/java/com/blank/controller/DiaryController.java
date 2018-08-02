@@ -187,7 +187,7 @@ public class DiaryController {
 			}
 		}
 
-		///////////////////////////////////////////////////// 그림
+		/************** 그림 *****************/
 
 		// 그림 이름 바꾸는 코드 및 서버에 들어감
 		String orgnameG = uploadG.getOriginalFilename();
