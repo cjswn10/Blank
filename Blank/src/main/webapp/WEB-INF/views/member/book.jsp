@@ -110,7 +110,6 @@
 <script type="text/javascript">
 
 	$(function() {
-		//var id = $("#id").val();
 		var mno = $("#mno").val();
 		
 		//일기장 목록 불러오기위한 기능 
@@ -182,7 +181,6 @@
 						//일기장 서브컨테이너에 추가
 						$("#main_container").append(div)
 					});
-					
 				}
 			});
 		}
@@ -213,66 +211,48 @@
 	
 </section>
 
-<div id="wrapper">
+	<div id="wrapper">
 
-	<!-- main-menu -->
-	<nav class="clearfix">
-	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
-	    <ul>
-	        <li><a href="book.do">DIARY</a></li>
-	        <li><a href="favorite.do">FAVORITES</a></li>
-	        <li><a href="myPage.do">MYPAGE</a></li>
-	    </ul>
-	</nav>
-	
-	<div class="content" style="margin-top: 180px">
-	<div id="main">
-		
-		  <div class="insertBook">
-		  	<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
-		  </div>
-	
-		<div id="main_container">
-			
-			
+		<!-- main-menu -->
+		<nav class="clearfix">
+			<a href="main.do"><img src="../resources/img/blank.png"
+				class="logo left"></a> <span style="cursor: pointer"
+				onclick="openNav()">&#9776; </span>
+			<ul>
+				<li><a href="book.do">DIARY</a></li>
+				<li><a href="favorite.do">FAVORITES</a></li>
+				<li><a href="myPage.do">MYPAGE</a></li>
+			</ul>
+		</nav>
 
+		<div class="content" style="margin-top: 180px">
+			<div id="main">
+				<div class="insertBook">
+					<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
+				</div>
+				<div id="main_container"></div>
+			</div>
 		</div>
-		
-	</div>
-	</div>
-		  
-		  <input type="hidden" name="id" id="id" value="${id }">
-		  <input type="hidden" name="mno" id="mno" value="${mno }">
-	
-</div>
-<!-- 푸터  -->
-<footer class="footer" >
-	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
-	<ul class="list-inline">	
-       <li>
-           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
-           <br><h5>김영호</h5>
-       </li>
-       <li>
-           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
-           <br><h5>변성인</h5>
-       </li>
-       <li>
-           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
-           <br><h5>성민규</h5>
-       </li>
-       <li>
-           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
-           <br><h5>임연주</h5>
-       </li>
-       <li>
-           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
-           <br><h5>차건우</h5>
-       </li>
-    </ul>
-</footer>
 
- 
+		<input type="hidden" name="id" id="id" value="${id }"> 
+		<input type="hidden" name="mno" id="mno" value="${mno }">
+	</div>
+
+	<!-- 푸터  -->
+	<footer class="footer">
+		<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+		<ul class="list-inline">
+			<li><img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline"><br>
+			<h5>김영호</h5></li>
+			<li><img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline"> <br>
+			<h5>변성인</h5></li>
+			<li><img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline"> <br>
+			<h5>성민규</h5></li>
+			<li><img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline"> <br>
+			<h5>임연주</h5></li>
+			<li><img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline"> <br>
+			<h5>차건우</h5></li>
+		</ul>
+	</footer>
 </body>
 </html>
