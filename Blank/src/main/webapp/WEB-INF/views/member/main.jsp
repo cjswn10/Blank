@@ -203,6 +203,15 @@ $(function () {
 			data:{"id":this.value},
 			success:function(data)
 			{
+				
+				if(data.str != 'undefined')
+				{
+					
+					$("#btnMove").click(function(){
+						location.href="#";
+					})
+				}
+
 				var arr = eval("("+data+")")
 				$.each(arr,function(i,v){
 					var id = $("<span></span>").html(v.id);
@@ -256,8 +265,9 @@ $(function () {
 					})
 					
 				})
-			}
-		})
+				
+				
+			}})
 		
 		if(this.value != "")
 		{
@@ -298,7 +308,7 @@ $(function () {
 <div id="wrapper">
 	
 	<div class="mainSearchId">
-		<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!">
+		<input type="text" name="id" id="id" placeholder="검색할 아이디를 입력하세요!" autocomplete="off">
 		<span id="btnMove" class="glyphicon glyphicon-search" ></span>
 		<div id="searchid"></div>
 	</div>
