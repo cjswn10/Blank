@@ -48,6 +48,12 @@
 		width: 960px;
 		margin: 0 auto;
 	}
+	
+	#main
+	{
+		overflow: hidden;
+	}
+	
 	/* 서브컨테이너의 자식 div들 */
 	#main_container > div
 	{
@@ -234,8 +240,8 @@
 		  <input type="hidden" name="mno" id="mno" value="${mno }">
 	
 </div>
-<!-- 푸터 
-<footer class="footer">
+<!-- 푸터  -->
+<footer class="footer" >
 	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
 	<ul class="list-inline">	
        <li>
@@ -261,6 +267,6 @@
     </ul>
 </footer>
 
- -->
+ 
 </body>
 </html>
