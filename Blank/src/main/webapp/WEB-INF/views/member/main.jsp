@@ -13,16 +13,39 @@
 }
 
 .diaryimg{
-	position: relative;    
+
+	position: absolute;    
     width: 300px;
-    height: 400px;
-    float: left;
+    height: 300px;
     background-size: contain;
 	background-repeat: no-repeat;
+    vertical-align: middle;
+    
+    /*
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    */ 
 }
+
+.dform {
+
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin: 4px;
+    cursor: pointer;
+}
+/*
+.dform:last-child {
+    margin-right: 0;
+    
+}
+*/
 .contents{	
 	width: 300px;
-	height: 400px;
+	height: 300px;
 	position: absolute;
 	white-space: pre-line;
 	background-color: pink;
@@ -56,23 +79,9 @@
 	position: relative;
  	margin: 0 auto;
     padding: 100px 0;
-    width: 1200px;
+    width: 1240px;
 }
 
-.dform {
-
-    float: left;
-    width: 300px;
-    height: 400px;
-    margin-right: 30px;
-    margin-bottom: 30px;
-    cursor: pointer;
-}
-
-.dform:last-child {
-    margin-right: 0;
-    
-}
 
 #searchid
 	{
