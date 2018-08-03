@@ -13,20 +13,20 @@
 }
 
 .diaryimg{
-
-	position: absolute;    
+/*
+	position: relative;    
     width: 300px;
     height: 300px;
     background-size: contain;
 	background-repeat: no-repeat;
     vertical-align: middle;
+  */  
     
-    /*
     max-height: 100%;
     max-width: 100%;
-    width: auto;
-    height: auto;
-    */ 
+    width: 300px;
+    height: 300px;
+     
 }
 
 .dform {
@@ -127,18 +127,18 @@ $(function () {
 				*/
 				var diaryDiv = $('<div class="dform"></div>');
 				
-				
-				var div = $("<div class='diaryimg'></div>").attr({
-					style: "background-image: url('../resources/upload2/"+d.dfile+"')",						
-				});
-				
+
+				var div = $("<img class='diaryimg'></img>").attr({
+					src : "../resources/upload2/"+d.dfile
+				})
+
 				if (d.dfile == null && d.dphoto != null) {
 					$(div).attr({
-						style: "background-image: url('../resources/upload/"+d.dphoto+"')"
+						src : "../resources/upload/"+d.dphoto
 					})
 				}else if (d.dfile == null && d.dphoto == null){
 					$(div).attr({
-						style: "background-image: url('../resources/upload/standard.png')"
+						src: '../resources/upload/standard.png'
 					})
 				}
 				
