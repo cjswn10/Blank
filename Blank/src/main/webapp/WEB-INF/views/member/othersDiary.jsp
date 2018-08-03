@@ -61,6 +61,7 @@
 		border-radius: 10px;
 		width: 353px;
 		height: 250px;
+		overflow: auto;
 	}
 
 </style>
@@ -99,7 +100,7 @@
 					var br = $('<br>');		
 					var reContent = (d.dcontent).replace(/(?:\r\n|\r|\n)/g, '<br/>');
 					var p = $('<div class="dcontent"></div>').html(reContent);
-					
+					$(".dcontent").scrollTop();
 					$(p).attr({
 						style: "font-family:"+d.dfont
 					})            

@@ -60,6 +60,7 @@
 		border-radius: 10px;
 		width: 353px;
 		height: 250px;
+		overflow: auto;
 	}
 	
 	.diarytitle{
@@ -136,7 +137,7 @@
 						$(p).attr({
 							style: "font-family:"+d.dfont
 						})
-            
+            			$("dcontent").scrollTop();
 						if (d.dphoto != null) {							
 							var img = $('<img></img>').attr({
 								src: "../resources/upload/" + d.dphoto,

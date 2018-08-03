@@ -219,7 +219,7 @@ $(function () {
 					})
 					
 					$(id).click(function() {
-						$("#id").val(v.id)
+						$("#id").val(v.id);
 						$("#searchid").hide();	
 						$.ajax({
 							url:"listFavorite2.do",
@@ -238,7 +238,7 @@ $(function () {
 						})
 					})
           
-					$("#btnMove").click(function(){
+					$("#btnMove").one("click",function(){
 
 						
 							$.ajax({
@@ -247,12 +247,13 @@ $(function () {
 								success:function(data)
 								{
 									if($.trim(data) == 0){
-					                    location.href="#";	
+					                    location.href="#";
+					                    return;
 					                }
 					                else{
+					                	
 					                	$("#searchid").empty();
 					                	$("#id").val(v.id)
-										$("#searchid").hide();
 					                	$.ajax({
 											url:"listFavorite2.do",
 											data:{"mno":v.mno},
@@ -269,7 +270,7 @@ $(function () {
 											}
 										})
 									
-					                	
+
 					                }
 								}
 							})
