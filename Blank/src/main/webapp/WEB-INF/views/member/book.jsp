@@ -221,16 +221,16 @@
 	</nav>
 	
 	<div class="content" style="margin-top: 100px">
-	<div id="main">
+		<div id="main">
+			
+			  <div class="insertBook">
+			  	<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
+			  </div>
 		
-		  <div class="insertBook">
-		  	<a href="insertBook.do" id="test"><span class="glyphicon glyphicon-plus" id="plus_location"></span></a>
-		  </div>
+			<div id="main_container"></div>
 	
-		<div id="main_container">
-		</div>
-
-	</div>  
+		</div>  
+	</div>
 </div>
     
 <!-- 푸터  -->
