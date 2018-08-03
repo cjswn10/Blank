@@ -171,7 +171,25 @@ $(function () {
 				
 				//친구일기장으로 가는 태그
 				var others = $('<a href="othersDiary.do?id='+otherid+'&fmno='+d.mno+'"></a>');
-			
+				
+				$(others).click(function(){
+						
+					$.ajax({
+						url:"listFavorite2.do",
+						data:{"mno":d.mno},
+						success:function(data)
+						{
+							location.href="othersDiary.do?id="+d.id+"&fmno="+d.mno+"";
+							var arr = eval("("+data+")");		
+							$.each(arr,function(i,a){
+								if(a.mno == mno )
+								{
+									location.href="othersDiary.do?id="+d.id+"&fno="+a.fno+"&fmno="+d.mno+"";
+								}				
+							})
+						}
+					})//ajax
+				})
 				
 				$(others).append(contentsDiv);
 				$(modalBox).append(others);
