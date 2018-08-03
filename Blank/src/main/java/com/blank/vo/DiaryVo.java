@@ -18,6 +18,7 @@ public class DiaryVo {
 	private Date wdate;
 	private int mno;
 	private int bno;
+	private String id;
 
 	private MultipartFile upload;
 	private MultipartFile uploadG;
@@ -37,6 +38,14 @@ public class DiaryVo {
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
 	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public DiaryVo() {
 		super();
@@ -44,7 +53,7 @@ public class DiaryVo {
 	}
 
 	public DiaryVo(int dno, String dtitle, Date ddate, String dweather, String dfont, String dtype, String dfile,
-			String dcontent, String dphoto, int secret, Date wdate, int mno, int bno) {
+			String dcontent, String dphoto, int secret, Date wdate, int mno, int bno, String id) {
 		super();
 		this.dno = dno;
 		this.dtitle = dtitle;
@@ -59,6 +68,7 @@ public class DiaryVo {
 		this.wdate = wdate;
 		this.mno = mno;
 		this.bno = bno;
+		this.id = id;
 	}
 
 	public int getDno() {
