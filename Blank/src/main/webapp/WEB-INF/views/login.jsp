@@ -40,7 +40,7 @@
 			<div class="wrap-login100 p-b-160 p-t-50">
 				<form class="login100-form validate-form" action="login.do" method="post">
 					<span class="login100-form-title p-b-43">
-						<img src="resources/img/loginlogo2.png" width="400px">
+						<img src="resources/img/loginlogo2.gif" width="400px">
 						
 						
 						 
