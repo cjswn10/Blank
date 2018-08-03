@@ -138,17 +138,7 @@ $(function () {
 				var modalBox = $('<div style="display: none;max-width:800px;" id="modal'+d.dno+'"></div>');
 				var contentsDiv = $('<div></div>');
 
-				//회원번호로 id찾기
-				var otherid;
-				$.ajax({
-					url: "getId.do",
-					data: {"mno" : d.mno},
-					async: false,
-					success : function(data) {
-						otherid = data;
-					}
-				});
-
+				var otherid = d.id;
 				var writer = $("<h5></h5>").html(otherid);
 				var dtitle = $("<h5></h5>").html(d.dtitle);
 				var ddate = $("<h5></h5>").html(d.ddate);
