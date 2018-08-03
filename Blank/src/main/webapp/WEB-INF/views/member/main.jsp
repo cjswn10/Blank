@@ -54,7 +54,6 @@
 
 .blog {
 	position: relative;
- 	width: 1400px;
  	margin: 0 auto;
     padding: 100px 0;
 }
@@ -238,9 +237,8 @@ $(function () {
 						})
 					})
           
-					$("#btnMove").one("click",function(){
 
-						
+					$("#btnMove").one("click",function(){
 							$.ajax({
 								url:"checkId2.do",
 								data:{"id":$("#id").val()},
@@ -268,18 +266,22 @@ $(function () {
 													}				
 												})
 											}
+
 										})
 									
 
+
+										})//ajax
+
 					                }
+									
 								}
-							})
+							});//ajax
 						
-					})
+					})//btnMove
 					
 				})
-				
-				
+
 			}})
 		
 		if(this.value != "")
