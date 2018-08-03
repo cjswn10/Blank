@@ -56,7 +56,9 @@
 	position: relative;
  	margin: 0 auto;
     padding: 100px 0;
+    width: 1200px;
 }
+
 .dform {
 
     float: left;
