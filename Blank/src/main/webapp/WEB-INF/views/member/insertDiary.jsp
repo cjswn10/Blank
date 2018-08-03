@@ -209,8 +209,8 @@ function openGrimpan() {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="radio" name="secret" value=1 checked="checked">나만보기
-						<input type="radio" name="secret" value=0>전체공개
+						<input type="radio" name="secret" value=1>나만보기
+						<input type="radio" name="secret" value=0 checked="checked">전체공개
 					</td>
 				</tr>
 				<tr>
