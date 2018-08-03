@@ -80,6 +80,26 @@
 <script type="text/javascript">
 	$(function() {
 		
+		$("#phone").keyup(function() {
+			var textinput = $("#phone").val();
+			textinput = textinput.replace(/[^0-9]/g, '');
+			var tmp = ""
+
+			if (textinput.length > 3 && textinput.length <= 7) {
+				tmp += textinput.substr(0, 3);
+				tmp += '-';
+				tmp += textinput.substr(3);
+				$("#phone").val(tmp);
+			} else if (textinput.length > 7) {
+				tmp += textinput.substr(0, 3);
+				tmp += '-';
+				tmp += textinput.substr(3, 4);
+				tmp += '-';
+				tmp += textinput.substr(7);
+				$("#phone").val(tmp);
+			}
+		});
+		
 		$("#sub").click(function() {
 			console.log("회원정보가 수정 되었습니다.")
 		})
@@ -167,7 +187,7 @@
 					<tr>
 						<td>휴대전화</td>
 						<td>
-							<input type="tel" name="phone" id="phone" value="${m.phone }" style="text-align: center;">
+							<input type="tel" name="phone" id="phone" maxlength="13" value="${m.phone }" style="text-align: center;">
 						</td>
 					</tr>
 					<tr>

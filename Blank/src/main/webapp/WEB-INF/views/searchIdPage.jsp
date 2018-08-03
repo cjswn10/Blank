@@ -87,6 +87,27 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		
+		$("#phone").keyup(function() {
+			var textinput = $("#phone").val();
+			textinput = textinput.replace(/[^0-9]/g, '');
+			var tmp = ""
+
+			if (textinput.length > 3 && textinput.length <= 7) {
+				tmp += textinput.substr(0, 3);
+				tmp += '-';
+				tmp += textinput.substr(3);
+				$("#phone").val(tmp);
+			} else if (textinput.length > 7) {
+				tmp += textinput.substr(0, 3);
+				tmp += '-';
+				tmp += textinput.substr(3, 4);
+				tmp += '-';
+				tmp += textinput.substr(7);
+				$("#phone").val(tmp);
+			}
+		});
+		
 		$("#searchId").click(function() {
 			$.ajax({
 				url:"searchId.do",
@@ -130,14 +151,14 @@
 				<tr>
 					<td align="center" width="150">이름</td>
 					<td width="200">
-						<input type="text" name="name" id="name" style="text-align: center;">
+						<input type="text" name="name" id="name" style="text-align: center;" placeholder="이름">
 					</td>
 				</tr>
 				<tr>
 					<td align="center">휴대전화</td>
 					<td>
 						<input type="text" id="dd" value="+82">
-						<input type="text" name="phone" id="phone" style="text-align: center;">
+						<input type="text" name="phone" id="phone" maxlength="13" style="text-align: center;" placeholder="휴대전화">
 					</td>
 				</tr>
 			</table>

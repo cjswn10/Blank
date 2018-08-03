@@ -59,6 +59,26 @@ $(function() {
 		})
 	})
 	
+	$("#phone").keyup(function() {
+			var textinput = $("#phone").val();
+			textinput = textinput.replace(/[^0-9]/g, '');
+			var tmp = ""
+
+			if (textinput.length > 3 && textinput.length <= 7) {
+				tmp += textinput.substr(0, 3);
+				tmp += '-';
+				tmp += textinput.substr(3);
+				$("#phone").val(tmp);
+			} else if (textinput.length > 7) {
+				tmp += textinput.substr(0, 3);
+				tmp += '-';
+				tmp += textinput.substr(3, 4);
+				tmp += '-';
+				tmp += textinput.substr(7);
+				$("#phone").val(tmp);
+			}
+		});
+	
   	$("#pwd2").keyup(function() {
 	
 		if($("#pwd").val() != $("#pwd2").val()){
@@ -96,29 +116,29 @@ $(function() {
 	<h2>회원가입 </h2>
 	<div class="form-group">
 	    <label>아이디 </label>
-	    <input type="text" class="form-control" name="id" id="id" placeholder="아이디" autocomplete="off">
+	    <input type="text" class="form-control" name="id" id="id" maxlength="20" placeholder="아이디" autocomplete="off">
 	    <span id="checkMsg"></span>
 	</div>
 	<div class="form-group">
 	    <label>비밀번호 </label>
-	    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="암호" autocomplete="off">
+	    <input type="password" class="form-control" name="pwd" id="pwd" maxlength="20" placeholder="암호" autocomplete="off">
     </div>
     <div class="form-group">
 	    <label>비밀번호확인 </label>
-	    <input type="password" class="form-control" id="pwd2" placeholder="암호확인" autocomplete="off">
+	    <input type="password" class="form-control" id="pwd2" placeholder="암호확인" maxlength="20" autocomplete="off">
 	    <span id="checkPwd"></span><br>
     </div>
     <div class="form-group">
 	    <label>이름  </label>
-	    <input type="text" class="form-control" name="name" placeholder="이름" autocomplete="off">
+	    <input type="text" class="form-control" name="name" placeholder="이름" maxlength="20" autocomplete="off">
     </div>
     <div class="form-group">
 	    <label>이메일 </label>
-	    <input type="email" class="form-control" name="email" placeholder="이메일" autocomplete="off">
+	    <input type="email" class="form-control" name="email" placeholder="이메일" maxlength="30" autocomplete="off">
     </div>
     <div class="form-group">
 	    <label>연락처 </label>
-	    <input type="text" class="form-control" name="phone" placeholder="연락처" autocomplete="off">
+	    <input type="text" class="form-control" id="phone" name="phone" maxlength="13" placeholder="연락처" autocomplete="off">
     </div>
 	
 	   <button type="submit" id="joinBtn" class="btn btn-default">가입</button>
