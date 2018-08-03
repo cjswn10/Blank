@@ -96,29 +96,29 @@ $(function() {
 	<h2>회원가입 </h2>
 	<div class="form-group">
 	    <label>아이디 </label>
-	    <input type="text" class="form-control" name="id" id="id" placeholder="아이디" >
+	    <input type="text" class="form-control" name="id" id="id" placeholder="아이디" autocomplete="off">
 	    <span id="checkMsg"></span>
 	</div>
 	<div class="form-group">
 	    <label>비밀번호 </label>
-	    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="암호">
+	    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="암호" autocomplete="off">
     </div>
     <div class="form-group">
 	    <label>비밀번호확인 </label>
-	    <input type="password" class="form-control" id="pwd2" placeholder="암호확인">
+	    <input type="password" class="form-control" id="pwd2" placeholder="암호확인" autocomplete="off">
 	    <span id="checkPwd"></span><br>
     </div>
     <div class="form-group">
 	    <label>이름  </label>
-	    <input type="text" class="form-control" name="name" placeholder="이름">
+	    <input type="text" class="form-control" name="name" placeholder="이름" autocomplete="off">
     </div>
     <div class="form-group">
 	    <label>이메일 </label>
-	    <input type="email" class="form-control" name="email" placeholder="이메일">
+	    <input type="email" class="form-control" name="email" placeholder="이메일" autocomplete="off">
     </div>
     <div class="form-group">
 	    <label>연락처 </label>
-	    <input type="text" class="form-control" name="phone" placeholder="연락처">
+	    <input type="text" class="form-control" name="phone" placeholder="연락처" autocomplete="off">
     </div>
 	
 	   <button type="submit" id="joinBtn" class="btn btn-default">가입</button>

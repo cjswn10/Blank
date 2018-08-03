@@ -48,13 +48,13 @@
 					<!-- 로그인 입니다 -->
 
 						<div class="wrap-input100 rs1 validate-input" data-validate = "Username is required">
-							<input class="input100" type="text" name="id" placeholder="아이디">
+							<input class="input100" type="text" name="id" placeholder="아이디" autocomplete="off">
 							<span class="label-input100"></span>
 						</div>
 						
 						
 						<div class="wrap-input100 rs2 validate-input" data-validate="Password is required">
-							<input class="input100" type="password" name="pwd" placeholder="비밀번호">
+							<input class="input100" type="password" name="pwd" placeholder="비밀번호" autocomplete="off">
 							<span class="label-input100"></span>
 						</div>
 						
