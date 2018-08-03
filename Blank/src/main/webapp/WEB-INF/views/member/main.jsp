@@ -236,7 +236,7 @@ $(function () {
 									}				
 								})
 							}
-						})
+						})//ajax
 					})
           
 
@@ -269,33 +269,27 @@ $(function () {
 												})
 											}
 
-										})
-									
-
-
 										})//ajax
-
-					                }
 									
-								}
-							});//ajax
-						
-					})//btnMove
-					
-				})
+					                	}
+					                }
+								})//ajax
 
-			}})
-		
-		if(this.value != "")
-		{
-			$("#searchid").show();	
-		}
-		else
-		{
-			$("#searchid").hide();
-		}	
-		
-	})
+					          })
+									
+						
+							});
+						}
+					})
+				if(this.value != "")
+				{
+					$("#searchid").show();	
+				}
+				else
+				{
+					$("#searchid").hide();
+				}
+		})		
 })
 </script>
 <title>빈칸을 채우다.</title>
