@@ -58,17 +58,6 @@ public class BookController {
 		return str;
 	}
 	
-	//detailBook
-	@RequestMapping("/member/detailBook.do")
-	public ModelAndView detailBook(int bno)
-	{
-		ModelAndView mav = new ModelAndView();
-		Map map = new HashMap();
-		map.put("bno", bno);
-		mav.addObject("b", dao.detailBook(map));
-		return mav;
-	}
-	
 	//insertBook(GET)
 	@RequestMapping(value="/member/insertBook.do",method=RequestMethod.GET)
 	public void insertBookForm()
@@ -84,7 +73,7 @@ public class BookController {
 		int re = dao.insertBook(b);
 		if(re<1)
 		{
-			mav.addObject("msg", "占싹깍옙占썲에 占쌜쇽옙占쏙옙占쏙옙占쏙옙 占싹울옙占쏙옙占싹댐옙.");
+			mav.addObject("msg", "일기장 생성에 실패하였습니다.");
 			mav.setViewName("/member/error");
 		}
 		return mav;
@@ -109,7 +98,7 @@ public class BookController {
 		int re = dao.updateBook(b);
 		if(re<1)
 		{
-			mav.addObject("msg", "占싹깍옙占썲에 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싹울옙占쏙옙占싹댐옙.");
+			mav.addObject("msg", "일기장 수정에 실패하였습니다.");
 			mav.setViewName("/member/error");
 		}
 		return mav;
@@ -125,7 +114,7 @@ public class BookController {
 		int re = dao.deleteBook(map);
 		if(re<1)
 		{
-			mav.addObject("msg", "占싹깍옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싹울옙占쏙옙占싹댐옙.");
+			mav.addObject("msg", "일기장 삭제에 실패하였습니다.");
 			mav.setViewName("/member/error");
 		}
 		return mav;
