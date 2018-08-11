@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.blank.dao.DiaryDao;
 import com.blank.vo.DiaryVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.rcaller.rStuff.RCaller;
+import com.github.rcaller.rStuff.RCode;
 
 @Controller
 public class DiaryController {
@@ -265,8 +267,62 @@ public class DiaryController {
 
 	// 일기 추가(get)
 	@RequestMapping(value = "/member/insertDiary.do", method = RequestMethod.GET)
-	public void diaryInsertForm() {
+	public ModelAndView diaryInsertForm(HttpSession session,HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String cityName = request.getParameter("cityName");
+		String dtitle = request.getParameter("dtitle");
+		String ddate = request.getParameter("ddate");
+		String dcontent = request.getParameter("dcontent");
+		
+		System.out.println("cityName:"+cityName);
+		System.out.println("dtitle:"+dtitle);
+		System.out.println("ddate:"+ddate);
+		System.out.println("dcontent:"+dcontent);
+		
+		session.setAttribute("dtitle", dtitle);
+		session.setAttribute("ddate", ddate);
+		session.setAttribute("dcontent", dcontent);
+		
+		try {
+			
+		
+			RCaller caller = new RCaller();
+			caller.setRscriptExecutable("C:/Program Files/R/R-3.5.1/bin/x64/Rscript.exe");
+			
+			RCode code = new RCode();
+			code.clear();
+			
+			code.addRCode("setwd('c:/r_temp')");
+			code.addRCode("data = read.csv('weather.csv')");
+			code.addRCode("data2 = data.frame(data)");
+			code.addRCode("weather = subset(data2,city=='"+cityName+"')");
+			code.addRCode("city = as.character(weather[1,1])");
+	        code.addRCode("img = as.character(weather[1,2])");
+	        code.addRCode("tmef = as.character(weather[1,3])");
+	        code.addRCode("allvars <- as.list(globalenv())");
 
+	        caller.setRCode(code);
+
+	        caller.runAndReturnResult("allvars");
+			
+	        String city = caller.getParser().getAsStringArray("city")[0];
+	        String img = caller.getParser().getAsStringArray("img")[0];
+	        String tmef = caller.getParser().getAsStringArray("tmef")[0];
+	        
+	        String weather = caller.getParser().getXMLFileAsString();
+	        System.out.println(weather);
+	        
+			mav.addObject("weather", weather);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+			
+		
+		return mav;
 	}
 
 	// 일기 추가(post)
