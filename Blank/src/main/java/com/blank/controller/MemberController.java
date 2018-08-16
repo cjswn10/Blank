@@ -1,6 +1,10 @@
 
 package com.blank.controller;
 
+import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blank.dao.MemberDao;
+import com.blank.vo.LogVo;
 import com.blank.vo.MemberVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,9 +35,9 @@ public class MemberController {
 		this.dao = dao;
 	}
 
+	
 
-
-	//留덉씠�럹�씠吏�
+	//筌띾뜆�뵠占쎈읂占쎌뵠筌욑옙
 	@RequestMapping(value="/member/myPage.do")
 	public ModelAndView myPage() {
 		
@@ -41,7 +46,7 @@ public class MemberController {
 	}
 	
 
-	//怨꾩젙李얘린
+	//�④쑴�젟筌≪뼐由�
 	@RequestMapping(value="search.do")
 	public ModelAndView search() {
 			
@@ -51,7 +56,7 @@ public class MemberController {
 	
 
 
-	//id李얘린
+	//id筌≪뼐由�
 	@RequestMapping(value="searchIdPage.do")
 	public ModelAndView searchId() {
 				
@@ -59,7 +64,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	//鍮꾨�踰덊샇 李얘린
+	//�뜮袁⑨옙甕곕뜇�깈 筌≪뼐由�
 	@RequestMapping(value="searchPwdPage.do")
 	public ModelAndView searchPwd() {
 					
@@ -67,7 +72,7 @@ public class MemberController {
 		return mav;
 	}
 
-	//�븘�씠�뵒 李얘린
+	//占쎈툡占쎌뵠占쎈탵 筌≪뼐由�
 	@RequestMapping(value="searchId.do")
 	@ResponseBody
 	public String searchId(String name,String phone)
@@ -88,7 +93,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//鍮꾨�踰덊샇 李얘린
+	//�뜮袁⑨옙甕곕뜇�깈 筌≪뼐由�
 	@RequestMapping(value="searchPwd.do")
 	@ResponseBody
 	public String searchPwd(String id,String phone)
@@ -109,7 +114,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//臾몄쓽�궗�빆(contact)
+	//�눧紐꾩벥占쎄텢占쎈퉮(contact)
 	@RequestMapping(value="/member/qNa.do")
 	public ModelAndView Qna() {
 		
@@ -118,18 +123,54 @@ public class MemberController {
 	}
 
 
-	//濡쒓렇�븘�썐
+	//嚥≪뮄�젃占쎈툡占쎌뜍
 	@RequestMapping(value="/member/logOut.do")
-	public ModelAndView logOut(HttpSession session) {
+	public ModelAndView logOut(HttpSession session,LogVo l,HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		try {
+			
+			InetAddress addr = InetAddress.getLocalHost();
+			String ip = addr.getHostAddress();
+			
+			l.setIp(ip);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
+		String id = request.getParameter("id");
+		
+		l.setId("["+id+"] 님이 로그아웃 하였습니다.");
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+
+		Calendar today = Calendar.getInstance();
+		
+		String todays = format.format(today.getTime());
+		
+		l.setLdate(todays);
+		
+		int re = dao.logRecord(l);
+		if(re > 0)
+		{
+			mav.addObject("msg", "성공");
+			mav.setViewName("redirect:/member/main.do");
+		}
+		else
+		{
+			mav.addObject("msg", "실패");
+			mav.setViewName("error");
+		}
 		session.invalidate();
 		mav.setViewName("redirect:/login.do");
 		return mav;
 	}
 	
 
-	//�쉶�썝媛��엯
+	//占쎌돳占쎌뜚揶쏉옙占쎌뿯
 	@RequestMapping(value="join.do", method=RequestMethod.GET)	
 	public void joinForm() {
 		
@@ -142,14 +183,14 @@ public class MemberController {
 		int re = dao.memberInsert(mv);
 		if (re < 1) {
 
-			mav.addObject("msg", "�쉶�썝 媛��엯 �떎�뙣");
+			mav.addObject("msg", "占쎌돳占쎌뜚 揶쏉옙占쎌뿯 占쎈뼄占쎈솭");
 			mav.setViewName("/member/error");
 		}
 		return mav;
 	}
 	
 
-	//�븘�씠�뵒 以묐났�솗�씤
+	//占쎈툡占쎌뵠占쎈탵 餓λ쵎�궗占쎌넇占쎌뵥
 	@RequestMapping(value="checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam("id")String id) {
@@ -175,14 +216,14 @@ public class MemberController {
 	}
 	
 
-	//濡쒓렇�씤
+	//嚥≪뮄�젃占쎌뵥
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public void loginForm() {
 		
 	}
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public ModelAndView login(String id, String pwd, HttpSession session) {
+	public ModelAndView login(String id, String pwd, HttpSession session,LogVo l) {
 		ModelAndView mav = new ModelAndView();
 		
 		Map map = new HashMap();
@@ -192,17 +233,50 @@ public class MemberController {
 		Boolean r = dao.login(map);
 		if (r == true) {
 
-			//id, �쉶�썝踰덊샇 �꽭�뀡 �깮�꽦
+			//id, 占쎌돳占쎌뜚甕곕뜇�깈 占쎄쉭占쎈�� 占쎄문占쎄쉐
 			session.setAttribute("id", id);
 			session.setAttribute("mno", dao.mno(map));
 			mav.setViewName("redirect:/member/main.do");
 		}
+		try {
+			
+			InetAddress addr = InetAddress.getLocalHost();
+			String ip = addr.getHostAddress();
+			
+			l.setIp(ip);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
+		l.setId("["+id+"] 님이 로그인 하였습니다.");
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 
+		Calendar today = Calendar.getInstance();
+		
+		String todays = format.format(today.getTime());
+		
+		l.setLdate(todays);
+		
+		int re = dao.logRecord(l);
+		if(re > 0)
+		{
+			mav.addObject("msg", "성공");
+			mav.setViewName("redirect:/member/main.do");
+		}
+		else
+		{
+			mav.addObject("msg", "실패");
+			mav.setViewName("error");
+		}
+		
 		//mav.setViewName("redirect:/member/main.do");
 		return mav;
 	}
 
-	//�쉶�썝�젙蹂� �닔�젙 �떆 鍮꾨�踰덊샇 �솗�씤
+	//占쎌돳占쎌뜚占쎌젟癰귨옙 占쎈땾占쎌젟 占쎈뻻 �뜮袁⑨옙甕곕뜇�깈 占쎌넇占쎌뵥
   @RequestMapping(value="/member/pwdCheck.do", method=RequestMethod.GET)
 	public void pwdCheckForm() {
 		
@@ -225,14 +299,14 @@ public class MemberController {
 		else
 		{
 
-			mav.addObject("msg", "鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
+			mav.addObject("msg", "�뜮袁⑨옙甕곕뜇�깈揶쏉옙 占쎌뵬燁살꼹釉�筌욑옙 占쎈륫占쎈뮸占쎈빍占쎈뼄.");
 		}	
 		
 		return mav;
 	}
 	
 
-	//�쉶�썝�젙蹂� �닔�젙
+	//占쎌돳占쎌뜚占쎌젟癰귨옙 占쎈땾占쎌젟
 	@RequestMapping(value="/member/updateMember.do", method=RequestMethod.GET)
 	public void memberUpdateForm() {
 		
@@ -245,14 +319,14 @@ public class MemberController {
 		
 		int re = dao.updateMember(mv);
 		if (re < 1) {
-			mav.addObject("msg", "�쉶�썝�젙蹂� �닔�젙 �떎�뙣");
+			mav.addObject("msg", "占쎌돳占쎌뜚占쎌젟癰귨옙 占쎈땾占쎌젟 占쎈뼄占쎈솭");
 			mav.setViewName("/member/error");
 		}
 		
 		return mav;
 	}
 	
-	//�븘�씠�뵒 寃��깋(移쒓뎄�씪湲곗옣)
+	//占쎈툡占쎌뵠占쎈탵 野껓옙占쎄퉳(燁살뮄�럡占쎌뵬疫꿸퀣�삢)
 	@RequestMapping(value="/member/mainSearchId.do",produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String mainSearchId(String id,HttpSession session)
@@ -280,7 +354,7 @@ public class MemberController {
 		return str;
 	}
 	
-	//�쉶�썝踰덊샇濡� id�븣�븘�궡湲�
+	//占쎌돳占쎌뜚甕곕뜇�깈嚥∽옙 id占쎈르占쎈툡占쎄땀疫뀐옙
 	@RequestMapping(value="/member/getId.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String getIdByMno(int mno) {
