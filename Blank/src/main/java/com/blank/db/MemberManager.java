@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.blank.vo.LogVo;
 import com.blank.vo.MemberVo;
 
 public class MemberManager {
@@ -29,7 +30,7 @@ public class MemberManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	//ȸ������
+	//회占쏙옙占쏙옙占쏙옙
 	public static int memberInsert(MemberVo m)
 	{
 		int re = -1;
@@ -38,7 +39,7 @@ public class MemberManager {
 		session.close();
 		return re;
 	}
-	//ȸ�����Խ� ����ȸ����ȣ �ڵ�����
+	//회占쏙옙占쏙옙占쌉쏙옙 占쏙옙占쏙옙회占쏙옙占쏙옙호 占쌘듸옙占쏙옙占쏙옙
 	public static int memberNextMno()
 	{
 		int no = 0;
@@ -47,7 +48,7 @@ public class MemberManager {
 		session.close();
 		return no;
 	}
-	//�α���
+	//占싸깍옙占쏙옙
 	public static boolean login(Map map) {
 		boolean b = false;
 		SqlSession session = factory.openSession();
@@ -58,7 +59,7 @@ public class MemberManager {
 		return b;
 	}
 	
-	//���̵� �ߺ�üũ
+	//占쏙옙占싱듸옙 占쌩븝옙체크
 	public static int checkId(Map map)
 	{
 		int re = 0;
@@ -68,7 +69,7 @@ public class MemberManager {
 		return re;
 	}
 	
-	//ȸ����ȣ ���������� ���� �޼ҵ�
+	//회占쏙옙占쏙옙호 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌨소듸옙
 	public static int mno(Map map)
 	{
 		int mno = 0;
@@ -78,7 +79,7 @@ public class MemberManager {
 		return mno;
 	}
 	
-	//ȸ���������� ��
+	//회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙
 	public static MemberVo getMember(Map map) {
 		// TODO Auto-generated method stub
 		MemberVo mv = new MemberVo();
@@ -87,7 +88,7 @@ public class MemberManager {
 		return mv;
 	}
 	
-	//ȸ���������� �����
+	//회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占�
 	public static int updateMember(MemberVo mv) {
 		// TODO Auto-generated method stub
 		int re = -1;
@@ -105,7 +106,7 @@ public class MemberManager {
 		return list;
 	}
 	
-	//ȸ�����̵� ã��
+	//회占쏙옙占쏙옙占싱듸옙 찾占쏙옙
 	public static String searchId(Map map)
 	{
 		String id = "";
@@ -115,15 +116,35 @@ public class MemberManager {
 		return id;
 	}
 	
-	//ȸ����й�ȣ ã��
-		public static String searchPwd(Map map)
-		{
-			String pwd = "";
-			SqlSession session = factory.openSession();
-			pwd = session.selectOne("member.searchPwd", map);
-			session.close();
-			return pwd;
-		}
+	//회占쏙옙占쏙옙橘占싫� 찾占쏙옙
+	public static String searchPwd(Map map)
+	{
+		String pwd = "";
+		SqlSession session = factory.openSession();
+		pwd = session.selectOne("member.searchPwd", map);
+		session.close();
+		return pwd;
+	}
+		
+	public static int logRecord(LogVo l)
+	{
+		int re = -1;
+		SqlSession session = factory.openSession();
+		l.setLno(logNextLno());
+		re = session.insert("logRecod", l);
+		session.commit();
+		session.close();
+		return re;
+	}
+	
+	public static int logNextLno()
+	{
+		int lno = 0;
+		SqlSession session = factory.openSession();
+		lno = session.selectOne("member.logNextLno");
+		session.close();
+		return lno;
+	}
 }
 
 
