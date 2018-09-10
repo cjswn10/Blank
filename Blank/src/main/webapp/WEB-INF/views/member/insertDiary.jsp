@@ -13,8 +13,8 @@
 
 <!-- 웹폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/blank.css">
-<script type="text/javascript" src="../resources/js/menu.js" ></script>
+<link rel="stylesheet" href="../resources/css/blank.css?ver=10">
+<script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
 
 <style type="text/css">
 	.today_weather
@@ -579,5 +579,31 @@ function openGrimpan() {
 		
 	</div>
 </div>
+<!-- 푸터 -->
+<footer class="footer">
+	<h3>비트와밀당하는 팀 X 빈칸 , 2018</h3>
+	<ul class="list-inline">
+       <li>
+           <img alt="" src="../resources/img/ho.jpg" class="btn-social btn-outline">
+           <br><h5>김영호</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/adult.jpg" class="btn-social btn-outline">
+           <br><h5>변성인</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/min.jpg" class="btn-social btn-outline">
+           <br><h5>성민규</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/lim.jpg" class="btn-social btn-outline">
+           <br><h5>임연주</h5>
+       </li>
+       <li>
+           <img alt="" src="../resources/img/cha.jpg" class="btn-social btn-outline">
+           <br><h5>차건우</h5>
+       </li>
+    </ul>
+</footer>
 </body>
 </html>

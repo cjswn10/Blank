@@ -11,8 +11,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Jua|Nanum+Brush+Script|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Source+Sans+Pro|Stylish|Sunflower:300" rel="stylesheet">
 
-<link rel="stylesheet" href="../resources/css/blank.css?ver=1">
-<script type="text/javascript" src="../resources/js/menu.js" ></script>
+<link rel="stylesheet" href="../resources/css/blank.css?ver=10">
+<script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
 <script src="//code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -617,6 +617,7 @@ function openGrimpan() {
 			
 		</table>
 		<button id="btnAdd" type="submit">수정</button>
+		</div>
 	</form>
 	</div>
 </div>

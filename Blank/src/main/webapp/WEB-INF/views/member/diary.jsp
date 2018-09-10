@@ -94,7 +94,8 @@
 <link rel="stylesheet" href="../resources/css/blank.css?ver=1">
 <script type="text/javascript" src="../resources/js/menu.js" ></script>
 
-
+<link rel="stylesheet" href="../resources/css/blank.css?ver=10">
+<script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {
@@ -260,7 +261,7 @@
 	</div>
 	
 	
-</div>
+
 
 <!-- 푸터 -->
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -289,6 +290,7 @@
        </li>
     </ul>
 </footer>
+</div>
 </body>
 </html>
 
