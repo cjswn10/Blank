@@ -90,7 +90,13 @@
 		background: white;
 		color: black;
 	}
-
+#top
+	{
+		display:none;
+		position:fixed;
+		bottom:10px;
+		right:2px;
+	}
 </style>
 
 <!-- Bootstrap -->
@@ -307,6 +313,26 @@ $(function () {
 					$("#searchid").hide();
 				}
 		})		
+		
+		$(window).scroll(function(){
+			
+			if($(this).scrollTop() > 50)
+			{
+				$("#top").fadeIn();
+			}
+			else
+			{
+				$("#top").fadeOut();
+			}
+			
+		})
+		
+		$("#top").click(function(){
+			
+			$('html, body').scrollTop(0);
+			
+		})
+		
 })
 </script>
 <title>빈칸을 채우다.</title>
@@ -373,7 +399,7 @@ $(function () {
 	   		<div class="clearfix" id="mainList"></div>
 	   </div> 	    
 </div>
-	
+<img id="top" src="../resources/img/top.PNG">	
 
 <!-- modal들을 넣을 div -->
 <div id="modal"></div>
