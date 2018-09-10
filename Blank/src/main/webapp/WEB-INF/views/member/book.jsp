@@ -106,8 +106,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<link rel="stylesheet" href="../resources/css/blank.css">
-<script type="text/javascript" src="../resources/js/menu.js" ></script>
+<link rel="stylesheet" href="../resources/css/blank.css?ver=10">
+<script type="text/javascript" src="../resources/js/menu.js?ver=1" ></script>
 <script type="text/javascript">
 
 	$(function() {
@@ -235,15 +235,13 @@
 	<!-- main-menu -->
 	<nav class="clearfix">
 	    <a href="main.do"><img src="../resources/img/blank.png" class="logo left"></a>
-	    <span style="cursor:pointer" onclick="openNav()" class="glyphicon glyphicon-menu-hamburger"> </span>
-
-	    
+	    <span style="cursor:pointer" onclick="openNav()">&#9776; </span>
 	    <ul>
 	        <li><a href="book.do">DIARY</a></li>
 	        <li><a href="favorite.do">FAVORITES</a></li>
 	        <li><a href="myPage.do">MYPAGE</a></li>
 	    </ul>
-	</nav>
+	</nav>	
 	
 	<div class="content" style="margin-top: 100px">
 		<div id="main">
@@ -285,6 +283,5 @@
        </li>
     </ul>
 </footer>
-
 </body>
 </html>
