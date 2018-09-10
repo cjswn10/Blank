@@ -2,6 +2,8 @@ package com.blank.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +107,107 @@ public class DiaryController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/member/weather4.do",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String weather(HttpSession session,HttpServletRequest request,String cityName,int dates)
+	{
+
+		String weather = "";
+
+		try {
+			
+		
+			RCaller caller = new RCaller();
+			caller.setRscriptExecutable("C:/Program Files/R/R-3.5.1/bin/x64/Rscript.exe");
+			
+			RCode code = new RCode();
+			code.clear();
+			
+			code.addRCode("setwd('c:/r_temp')");
+			code.addRCode("data = read.csv('weather.csv')");
+			code.addRCode("data2 = data.frame(data)");
+			code.addRCode("weather = subset(data2,date=='"+dates+"')");
+			code.addRCode("date = as.character(weather[1,1])");
+	        code.addRCode("img = as.character(weather[1,2])");
+	        code.addRCode("tmef = as.character(weather[1,3])");
+	        
+	        code.addRCode("setwd('c:/r_temp')");
+			code.addRCode("data3 = read.csv('weather2.csv')");
+			code.addRCode("data4 = data.frame(data3)");
+			code.addRCode("weather2 = subset(data4,city=='"+cityName+"')");
+			code.addRCode("city = as.character(weather2[1,1])");
+	        code.addRCode("img2 = as.character(weather2[1,2])");
+	        code.addRCode("tmef2 = as.character(weather2[1,3])");
+	        
+	        code.addRCode("allvars <- as.list(globalenv())");
+
+	        caller.setRCode(code);
+
+	        caller.runAndReturnResult("allvars");
+			
+	        String date = caller.getParser().getAsStringArray("date")[0];
+	        String img = caller.getParser().getAsStringArray("img")[0];
+	        String tmef = caller.getParser().getAsStringArray("tmef")[0];
+	        
+	        String city = caller.getParser().getAsStringArray("city")[0];
+	        String img2 = caller.getParser().getAsStringArray("img2")[0];
+	        String tmef2 = caller.getParser().getAsStringArray("tmef2")[0];
+	        
+	        
+	        weather = caller.getParser().getXMLFileAsString();
+	        //System.out.println(weather);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return weather;
+	}
+	
+	@RequestMapping(value = "/member/weather5.do",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String weather2(HttpSession session,HttpServletRequest request,String cityName)
+	{
+		System.out.println(cityName);
+		String weather2 = "";
+
+		try {
+			
+		
+			RCaller caller = new RCaller();
+			caller.setRscriptExecutable("C:/Program Files/R/R-3.5.1/bin/x64/Rscript.exe");
+			
+			RCode code = new RCode();
+			code.clear();
+	        
+	        code.addRCode("setwd('c:/r_temp')");
+			code.addRCode("data3 = read.csv('weather2.csv')");
+			code.addRCode("data4 = data.frame(data3)");
+			code.addRCode("weather2 = subset(data4,city=='"+cityName+"')");
+			code.addRCode("city = as.character(weather2[1,1])");
+	        code.addRCode("img2 = as.character(weather2[1,2])");
+	        code.addRCode("tmef2 = as.character(weather2[1,3])");
+	        
+	        code.addRCode("allvars <- as.list(globalenv())");
+
+	        caller.setRCode(code);
+
+	        caller.runAndReturnResult("allvars");
+			
+	        String city = caller.getParser().getAsStringArray("city")[0];
+	        String img2 = caller.getParser().getAsStringArray("img2")[0];
+	        String tmef2 = caller.getParser().getAsStringArray("tmef2")[0];
+	        
+	        weather2 = caller.getParser().getXMLFileAsString();
+	        System.out.println(weather2);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return weather2;
+	}
+	
 	// 일기 update(get)
 	@RequestMapping(value = "/member/updateDiary.do", method = RequestMethod.GET)
 	public ModelAndView diaryUpdateForm(int dno) {
@@ -112,6 +215,15 @@ public class DiaryController {
 		map.put("dno", dno);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("d", dao.detailDiary(map));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+		Calendar today = Calendar.getInstance();
+		
+		String todays = sdf.format(today.getTime());
+	        
+		mav.addObject("todays", todays);
+		
 		return mav;
 	}
 
@@ -272,61 +384,17 @@ public class DiaryController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		
-		String cityName = request.getParameter("cityName");
-		String dtitle = request.getParameter("dtitle");
-		String ddate = request.getParameter("ddate");
-		String dcontent = request.getParameter("dcontent");
-		
-//		System.out.println("cityName:"+cityName);
-//		System.out.println("dtitle:"+dtitle);
-//		System.out.println("ddate:"+ddate);
-//		System.out.println("dcontent:"+dcontent);
-		
-		session.setAttribute("dtitle", dtitle);
-		session.setAttribute("ddate", ddate);
-		session.setAttribute("dcontent", dcontent);
-		
-		try {
-			
-		
-			RCaller caller = new RCaller();
-			caller.setRscriptExecutable("C:/Program Files/R/R-3.5.1/bin/x64/Rscript.exe");
-			
-			RCode code = new RCode();
-			code.clear();
-			
-			code.addRCode("setwd('c:/r_temp')");
-			code.addRCode("data = read.csv('weather.csv')");
-			code.addRCode("data2 = data.frame(data)");
-			code.addRCode("weather = subset(data2,city=='"+cityName+"')");
-			code.addRCode("city = as.character(weather[1,1])");
-	        code.addRCode("img = as.character(weather[1,2])");
-	        code.addRCode("tmef = as.character(weather[1,3])");
-	        code.addRCode("allvars <- as.list(globalenv())");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
-	        caller.setRCode(code);
+		Calendar today = Calendar.getInstance();
+		
+		String todays = sdf.format(today.getTime());
 
-	        caller.runAndReturnResult("allvars");
-			
-	        String city = caller.getParser().getAsStringArray("city")[0];
-	        String img = caller.getParser().getAsStringArray("img")[0];
-	        String tmef = caller.getParser().getAsStringArray("tmef")[0];
-	        
-//	        System.out.println(city.toString());
-//	        System.out.println(img.toString());
-//	        System.out.println(tmef.toString());
-	        
-	        String weather = caller.getParser().getXMLFileAsString();
-	        //System.out.println(weather);
-	        
-			mav.addObject("weather", weather);
-			
-		}catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-		}
-			
+		mav.addObject("todays", todays);
+		
+		//dno생성 후 전달
+		int dno = dao.diaryNextNo();
+		mav.addObject("dno", dno);
 		
 		return mav;
 	}

@@ -93,6 +93,13 @@
 		left: 90px;
 
 	}
+	#top
+	{
+		display:none;
+		position:fixed;
+		bottom:10px;
+		right:2px;
+	}	
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -181,6 +188,24 @@
 		//일기장 목록 불러오기
 		listBook();
 		
+		$(window).scroll(function(){
+			
+			if($(this).scrollTop() > 50)
+			{
+				$("#top").fadeIn();
+			}
+			else
+			{
+				$("#top").fadeOut();
+			}
+			
+		})
+		
+		$("#top").click(function(){
+			
+			$('html, body').scrollTop(0);
+			
+		})
 	})
 
 </script>
@@ -230,6 +255,7 @@
 			<div id="main_container"></div>
 	
 		</div>  
+		<img id="top" src="../resources/img/top.PNG">
 	</div>
 </div>
     
